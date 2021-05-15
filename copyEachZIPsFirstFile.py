@@ -18,7 +18,9 @@ def main():
         zf = zipfile.ZipFile(onezip, 'r')
         if not (sorted(zf.namelist())[0]).endswith('/'):
             tempFile01 = sorted(zf.namelist())[0]
+            newFileName = os.path.splitext(onezip)[0] + os.path.splitext(os.path.basename(tempFile01))[1]
             zf.extract(tempFile01,'cover')
+            os.system('rename cover\\' + tempFile01 + ' ' + newFileName)
         else:
             print('Not support subdir.')
             # tempFile02 = sorted(zf.namelist())[1]
