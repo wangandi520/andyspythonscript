@@ -19,7 +19,7 @@ def main():
         else:
             newName = newName + i
     newName = newName + 'Vol_[C]'
-    os.system('rename ' + oldName + ' ' + newName)
+    os.system('rename "' + oldName + '" "' + newName + '"')
     #print(newName)
         
 if __name__ == '__main__':
