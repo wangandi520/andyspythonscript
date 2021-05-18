@@ -13,7 +13,7 @@ def main():
             allZIPs.append(file)
         if (os.path.splitext(file)[1] == '.rar'):
             allRARs.append(file)    
-    
+            
     if not os.path.exists('noSubDir'):
         os.system('mkdir noSubDir')
     if not os.path.exists('withSubDir'):
@@ -32,7 +32,7 @@ def main():
             
     for onerar in allRARs:
         rf = rarfile.RarFile(onerar, 'r')
-        if rf.namelist()[0].endswith('/'):
+        if rf.namelist()[-1].endswith('/'):
             rf.close()
             inputCMD = 'move "' + onerar + '" withSubDir'
             os.system(inputCMD)
