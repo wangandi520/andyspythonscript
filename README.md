@@ -40,7 +40,7 @@
 
 第一个文件夹的数字，请修改dirCount
 
-## classifyIfSubDirInZIPRAR.py
+### classifyIfSubDirInZIPRAR.py
 
 如果压缩文件夹rar，zip里包含仅一个文件夹，就移动压缩文件到withSubDir文件夹
 
