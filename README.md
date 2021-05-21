@@ -24,6 +24,8 @@
 
 用途：total commander 中ctrl+m批量重命名多卷漫画使用
 
+输入输出都在renameToTC.txt里
+
 ### allFolderFilesRename.py
 
 同级目录下有数个文件夹，每个文件夹里数个文件，没有二级文件夹。
