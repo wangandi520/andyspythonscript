@@ -21,7 +21,6 @@ def writefile(filereadlines):
 def main():
     readTxts = readfile()
     outTxts = []
-    print(readTxts)
     for txt in readTxts:
         oldName = txt
         newName = ''
