@@ -48,4 +48,13 @@
 
 如果不包含文件夹，就移动到noSubDir文件夹
 
+### listAllFoldersAndSubFoldersName.py
+
+把和py文件当前目录下所有文件夹和子文件夹的名字输出到listAllFoldersAndSubFoldersName.txt中
+
+### listFirstAndSecondFoldersToTwoFIles.py
+
+把和py文件当前目录的同级文件夹名字，输出到firstFoldersName.txt中
+把和py文件当前目录的所有子文件夹名字，输出到secondFoldersName.txt中
+
 # 使用前请备份，防止文件名不符合你的需求
