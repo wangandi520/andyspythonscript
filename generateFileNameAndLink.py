@@ -44,6 +44,8 @@ def main():
     showTableBorder = 1
     # 显示第一行，show first line = 1, no first line = 0(file name, sha1, file size)
     showFirstLine = 1
+    # 是否显示处理过程
+    showProcessDetails = 1
     
     outputFile = '<html><head><title>index.html</title><style>table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{text-decoration: none;}td{width:100px;}table tr td:first-child{width:' + str(columnWidth) +'px}tr:hover{background-color:#eee;}</style><script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script></head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
@@ -54,6 +56,8 @@ def main():
     for root, dirs, files in os.walk(".", topdown=False):
         for name in files:
             loc = os.path.join(root, name)[2:]
+            if showProcessDetails:
+                print(loc)
             if showAllAddress:
                 showName = loc
             else:
