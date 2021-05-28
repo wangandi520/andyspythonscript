@@ -44,13 +44,15 @@ def main():
     showTableBorder = 1
     # 显示第一行，show first line = 1, no first line = 0(file name, sha1, file size)
     showFirstLine = 1
-    # 是否显示处理过程
+    # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
+    # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'， 文件数大于两万建议后者
+    howToReactSearch = 'onkeyup'
     
     outputFile = '<html><head><title>index.html</title><style>table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{text-decoration: none;}td{width:100px;}table tr td:first-child{width:' + str(columnWidth) +'px}tr:hover{background-color:#eee;}</style><script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script></head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
         if showFileSize:
-            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" onkeyup="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>'
+            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>'
         else:
             outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" onkeyup="onSearch()" placeholder="搜索..."></td></tr>'
     fileCount = 0
