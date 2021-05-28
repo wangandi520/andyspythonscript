@@ -34,15 +34,15 @@ def writefile(filereadlines):
     newfile.close()     
     
 def main():
-    # show file size = 1, no file size = 0
+    # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
-    # show all address = 1, only show file name = 0
+    # 显示完整地址还是只显示文件名，show all address = 1, only show file name = 0
     showAllAddress = 1
-    # each column width
+    # 第一栏的宽度，first column width
     columnWidth = 550
-    # show table border = 1, no border = 0
+    # 显示边框，show table border = 1, no border = 0
     showTableBorder = 1
-    # show first line = 1, no first line = 0(file name, sha1, file size)
+    # 显示第一行，show first line = 1, no first line = 0(file name, sha1, file size)
     showFirstLine = 1
     
     outputFile = '<html><head><title>index.html</title><style>table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{text-decoration: none;}td{width:100px;}table tr td:first-child{width:' + str(columnWidth) +'px}tr:hover{background-color:#eee;}</style><script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script></head><body><div>\n<table id="allFileTable">'
