@@ -57,4 +57,8 @@
 把和py文件当前目录的同级文件夹名字，输出到firstFoldersName.txt中
 把和py文件当前目录的所有子文件夹名字，输出到secondFoldersName.txt中
 
+## generateFileNameAndLink.py
+
+当前目录下所有文件，生成index.html，可搜索
+
 # 使用前请备份，防止文件名不符合你的需求
