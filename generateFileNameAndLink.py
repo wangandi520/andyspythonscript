@@ -52,7 +52,7 @@ def main():
     
     title = os.getcwd().split('\\')[-1]
     outputFile = '<html><head><title>' + title + '</title>\n'
-    outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%}tr:hover{background-color:#eee;}</style>\n'
+    outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}</style>\n'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script>\n'
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
