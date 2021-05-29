@@ -1,6 +1,6 @@
 # encoding:utf-8
 
-import os
+from pathlib import Path
 
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
@@ -29,7 +29,7 @@ def formatFileSize(sizeBytes):
     return format(result,'.2f') + suffix
         
 def writefile(filereadlines):
-    fileName = os.getcwd().split('\\')[-1] + '.html'
+    fileName = str(Path.cwd().name) + '.html'
     newfile = open(fileName, mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()     
@@ -50,7 +50,7 @@ def main():
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
     howToReactSearch = 'onkeyup'
     
-    title = os.getcwd().split('\\')[-1]
+    title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
     outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}</style>\n'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script>\n'
@@ -63,24 +63,28 @@ def main():
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
-    for root, dirs, files in os.walk(".", topdown=False):
-        for eachdir in dirs:
+
+    mypath = Path('.')
+    for file in mypath.glob('**/*'):
+        if Path.is_dir(file):
             folderCount = folderCount + 1
-        for name in files:
+        if Path.is_file(file):
             fileCount = fileCount + 1
-            loc = os.path.join(root, name)[2:]
-            if showProcessDetails:
-                print(loc)
-            if showAllAddress:
-                showName = loc
-            else:
-                showName = name
-            if showFileSize:
-                fileSize = formatFileSize(os.path.getsize(loc))
-                fileSizeCount = fileSizeCount + os.path.getsize(loc)
-                outputFile = outputFile + '<tr><td><a href="' + loc + '">' + showName + '</td><td>' + fileSize + '</a></tr>\n'
-            else:
-                outputFile = outputFile + '<tr><td><a href="' + loc + '">' + loc + '</a></td></tr>\n'
+        loc = file.parent.joinpath(file.name)
+        if showProcessDetails:
+            print(loc)
+        if showAllAddress:
+            showName = str(loc)
+        else:
+            showName = str(file.name)
+        if showFileSize:
+            fileSize = Path(loc).stat().st_size
+            showFileSize = formatFileSize(fileSize)
+            fileSizeCount = fileSizeCount + fileSize
+            outputFile = outputFile + '<tr><td><a href="' + showName + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+        else:
+            outputFile = outputFile + '<tr><td><a href="' + showName + '">' + showName + '</a></td></tr>\n'
+   
     outputFile = outputFile + '</td></table></div></body></html>'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "Name (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
     if showFileSize:
