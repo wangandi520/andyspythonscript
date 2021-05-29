@@ -49,6 +49,8 @@ def main():
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
     howToReactSearch = 'onkeyup'
+    # 相对路径 = 1，还是绝对路径 = 0
+    showPath = 1
     
     title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
@@ -66,7 +68,11 @@ def main():
 
     mypath = Path('.')
     for file in mypath.glob('**/*'):
-        loc = file.parent.joinpath(file.name)
+        if showPath:
+            loc = file.parent.joinpath(file.name)
+        else:
+            loc = Path.cwd().joinpath(file)
+            print(loc)
         if showProcessDetails:
             print(loc)
         if showAllAddress:
