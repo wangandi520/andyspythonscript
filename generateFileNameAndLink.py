@@ -35,8 +35,6 @@ def writefile(filereadlines):
     newfile.close()     
     
 def main():
-    # 是否显示文件大小，show file size = 1, no file size = 0
-    showFileSize = 1
     # 显示完整地址还是只显示文件名，show all address = 1, only show file name = 0
     showAllAddress = 0
     # 第一栏的宽度，first column width %
@@ -51,6 +49,10 @@ def main():
     howToReactSearch = 'onkeyup'
     # 相对路径 = 1，还是绝对路径 = 0
     showPath = 1
+    # 显示文件夹和文件 = 1，只显示文件夹 = 0
+    showFolderAndFile = 1
+    # 是否显示文件大小，show file size = 1, no file size = 0
+    showFileSize = 1
     
     title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
@@ -58,9 +60,9 @@ def main():
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script>\n'
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
-        if showFileSize:
+        if showFileSize and showFolderAndFile:
             outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>'
-        else:
+        if (not showFileSize) or (not showFolderAndFile):
             outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td></tr>'
     fileCount = 0
     fileSizeCount = 0
@@ -86,12 +88,12 @@ def main():
             showName = '<span class="folder">' + showName + '</span>'
         if Path.is_file(file):
             fileCount = fileCount + 1
-        if showFileSize:
+        if showFolderAndFile and showFileSize:
             fileSize = Path(loc).stat().st_size
             showFileSize = formatFileSize(fileSize)
             fileSizeCount = fileSizeCount + fileSize
             outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
-        else:
+        if (not showFolderAndFile and Path.is_dir(file)) or (not showFileSize):
             outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
    
     outputFile = outputFile + '</td></table></div></body></html>'
