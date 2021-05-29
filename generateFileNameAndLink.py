@@ -48,7 +48,7 @@ def main():
     # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
-    howToReactSearch = 'onchange'
+    howToReactSearch = 'onkeyup'
     
     title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
@@ -59,7 +59,7 @@ def main():
         if showFileSize:
             outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>'
         else:
-            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" onkeyup="onSearch()" placeholder="搜索..."></td></tr>'
+            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td></tr>'
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
