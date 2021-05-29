@@ -38,7 +38,7 @@ def main():
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
     # 显示完整地址还是只显示文件名，show all address = 1, only show file name = 0
-    showAllAddress = 1
+    showAllAddress = 0
     # 第一栏的宽度，first column width %
     columnWidth = 80
     # 显示边框，show table border = 1, no border = 0
@@ -48,11 +48,11 @@ def main():
     # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
-    howToReactSearch = 'onkeyup'
+    howToReactSearch = 'onchange'
     
     title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
-    outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}</style>\n'
+    outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}.folder{font-weight:bold;}</style>\n'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script>\n'
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
@@ -66,24 +66,27 @@ def main():
 
     mypath = Path('.')
     for file in mypath.glob('**/*'):
-        if Path.is_dir(file):
-            folderCount = folderCount + 1
-        if Path.is_file(file):
-            fileCount = fileCount + 1
         loc = file.parent.joinpath(file.name)
         if showProcessDetails:
             print(loc)
         if showAllAddress:
             showName = str(loc)
+            showAddr = str(loc)
         else:
             showName = str(file.name)
+            showAddr = str(loc)
+        if Path.is_dir(file):
+            folderCount = folderCount + 1
+            showName = '<span class="folder">' + showName + '</span>'
+        if Path.is_file(file):
+            fileCount = fileCount + 1
         if showFileSize:
             fileSize = Path(loc).stat().st_size
             showFileSize = formatFileSize(fileSize)
             fileSizeCount = fileSizeCount + fileSize
-            outputFile = outputFile + '<tr><td><a href="' + showName + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+            outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
         else:
-            outputFile = outputFile + '<tr><td><a href="' + showName + '">' + showName + '</a></td></tr>\n'
+            outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
    
     outputFile = outputFile + '</td></table></div></body></html>'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "Name (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
