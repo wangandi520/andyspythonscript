@@ -35,7 +35,8 @@ def main():
                 newName = newName + i
         if newName.startswith('[[]'):
             newName = newName + 'Vol_[C]'
-        outTxts.append(newName + '\n\n')
+        if newName != oldName:
+            outTxts.append(newName + '\n\n')
     writefile(outTxts)
         
 if __name__ == '__main__':
