@@ -33,7 +33,7 @@ def main():
                 newName = newName + '[]]'
             else:
                 newName = newName + i
-        if i.startswith('[[]'):
+        if newName.startswith('[[]'):
             newName = newName + 'Vol_[C]'
         outTxts.append(newName + '\n\n')
     writefile(outTxts)
