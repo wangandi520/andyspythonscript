@@ -21,6 +21,7 @@ def writefile(filereadlines):
 def main():
     readTxts = readfile()
     outTxts = []
+    print(readTxts)
     for txt in readTxts:
         oldName = txt
         newName = ''
@@ -32,7 +33,8 @@ def main():
                 newName = newName + '[]]'
             else:
                 newName = newName + i
-        newName = newName + 'Vol_[C]'
+        if i.startswith('[[]'):
+            newName = newName + 'Vol_[C]'
         outTxts.append(newName + '\n\n')
     writefile(outTxts)
         
