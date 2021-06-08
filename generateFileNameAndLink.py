@@ -36,13 +36,13 @@ def writefile(filereadlines):
     newfile.close()     
     
 def main():
-    # 显示完整地址还是只显示文件名，show all address = 1, only show file name = 0
+    # 显示完整地址 = 1，还是只显示文件名 = 0
     showAllAddress = 0
     # 第一栏的宽度，first column width %
     columnWidth = 80
-    # 显示边框，show table border = 1, no border = 0
+    # 是否显示边框，show table border = 1, no border = 0
     showTableBorder = 1
-    # 显示第一行，show first line = 1, no first line = 0(file name, sha1, file size)
+    # 是否显示第一行，show first line = 1, no first line = 0(Name, sha1, file size)
     showFirstLine = 1
     # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
@@ -50,7 +50,7 @@ def main():
     howToReactSearch = 'onkeyup'
     # 相对路径 = 1，还是绝对路径 = 0
     showPath = 1
-    # 显示文件夹和文件 = 1，只显示文件夹 = 0
+    # 显示文件夹和文件 = 1，还是只显示文件夹 = 0
     showFolderAndFile = 1
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
