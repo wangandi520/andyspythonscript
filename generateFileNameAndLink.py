@@ -54,11 +54,13 @@ def main():
     showFolderAndFile = 1
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
+    # 点击文件夹的操作，搜索包含这个文件夹名的所有路径 = 1，跳转到这个文件夹 = 0
+    clickFolder = 1
     
     title = str(Path.cwd().name)
     outputFile = '<html><head><title>' + title + '</title>\n'
     outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}.folder{font-weight:bold;}</style>\n'
-    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}</script>\n'
+    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function onSearch(){searchContent = document.getElementById(\'mySearch\').value;var storeId = document.getElementById(\'allFileTable\');var rowsLength = storeId.rows.length;for(var i=1;i<rowsLength;i++){var searchText = storeId.rows[i].cells[0].innerHTML;if(searchText.match(searchContent) || searchText.toUpperCase().match(searchContent.toUpperCase())){storeId.rows[i].style.display=\'\';}else{storeId.rows[i].style.display=\'none\';}}}function clickFolder(){document.getElementById("mySearch").value = event.target.innerHTML;onSearch();}function frontpage(){document.getElementById("mySearch").value = "";onSearch();}</script>\n'
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
         if showFileSize and showFolderAndFile:
@@ -93,12 +95,18 @@ def main():
             fileSize = Path(loc).stat().st_size
             showFileSize = formatFileSize(fileSize)
             fileSizeCount = fileSizeCount + fileSize
-            outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+            if clickFolder and Path.is_dir(file):
+                outputFile = outputFile + '<tr><td><a onclick="clickFolder()" href="javascript:void(0);">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+            else:
+                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
         if (not showFolderAndFile and Path.is_dir(file)) or (not showFileSize):
-            outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
+            if clickFolder:
+                outputFile = outputFile + '<tr><td><a onclick="clickFolder()" href="javascript:void(0);">' + showName + '</a></td></tr>\n'
+            else:
+                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
    
     outputFile = outputFile + '</td></table></div></body></html>'
-    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "Name (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
+    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">Name</a> (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
     if showFileSize:
         outputFile = outputFile + ', '+ formatFileSize(fileSizeCount)
     outputFile = outputFile +  ') ";</script>'
