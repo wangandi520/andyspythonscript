@@ -59,7 +59,7 @@
 
 ## generateFileNameAndLink.py
 
-当前目录下所有文件，生成文件夹名.html，可搜索
+当前目录下所有文件，生成文件夹名.html，可搜索，点击Name回到首页
 
 main()函数前几行可以进行一些自定义设置
 
