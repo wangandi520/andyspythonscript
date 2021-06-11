@@ -69,9 +69,9 @@ def main():
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
         if showFileSize and showFolderAndFile:
-            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>'
+            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>\n'
         if (not showFileSize) or (not showFolderAndFile):
-            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td></tr>'
+            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td></tr>\n'
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
