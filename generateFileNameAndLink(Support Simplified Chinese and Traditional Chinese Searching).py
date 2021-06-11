@@ -58,7 +58,7 @@ def main():
     clickFolder = 1
     
     title = str(Path.cwd().name)
-    outputFile = '<html><head><title>' + title + '</title>\n'
+    outputFile = '<html><head><meta charset="UTF-8"><title>' + title + '</title>\n'
     # CSS
     outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}.folder{font-weight:bold;}</style>\n'
     # Simplified Chinese and Traditional Chinese Support
