@@ -35,7 +35,6 @@ def writefile(filereadlines,inputPath):
         newfile = open(Path.cwd().name + '.html', mode='w', encoding='UTF-8')
     elif inputPath:
         newfile = open(inputPath.name + '.html', mode='w', encoding='UTF-8')
-    print((str(inputPath) == '.'))
     newfile.writelines(filereadlines)
     newfile.close()     
     
@@ -52,14 +51,16 @@ def main(inputPath):
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
     howToReactSearch = 'onkeyup'
-    # 相对路径 = 1，还是绝对路径 = 0
-    showPath = 1
+    # 隐藏文件路径 = 1，不隐形并显示绝对路径 = 0
+    hidePath = 0
     # 显示文件夹和文件 = 1，还是只显示文件夹 = 0
     showFolderAndFile = 1
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
     # 点击文件夹的操作，搜索包含这个文件夹名的所有路径 = 1，跳转到这个文件夹 = 0
     clickFolder = 1
+    # 绝对路径 = 1， 还是相对路径 = 0
+    absolutePath = 0
     
     mypath = Path(inputPath)
     title = mypath.name
@@ -82,19 +83,25 @@ def main(inputPath):
     folderCount = 0
     
     for file in mypath.glob('**/*'):
-        if showPath:
-            loc = file.parent.joinpath(file.name)
-        else:
-            loc = Path.cwd().joinpath(file)
-            print(loc)
+        loc = file.parent.joinpath(file.name)
         if showProcessDetails:
             print(loc)
         if showAllAddress:
             showName = str(loc)
-            showAddr = str(loc)
+            if hidePath:
+                showAddr = 'javascript:void(0);'
+            elif absolutePath:
+                showAddr = str(loc)
+            else:
+                showAddr = str(Path(mypath.name).joinpath(file.name))
         else:
             showName = str(file.name)
-            showAddr = str(loc)
+            if hidePath:
+                showAddr = 'javascript:void(0);'
+            elif absolutePath:
+                showAddr = str(loc)
+            else:
+                showAddr = str(Path(mypath.name).joinpath(file.name))
         if Path.is_dir(file):
             folderCount = folderCount + 1
             showName = '<span class="folder">' + showName + '</span>'
