@@ -49,7 +49,7 @@ def main(inputPath):
     # 是否显示第一行，show first line = 1, no first line = 0(Name, sha1, file size)
     showFirstLine = 1
     # 是否显示处理过程, show process details = 1, no detils = 0
-    showProcessDetails = 0
+    showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
     howToReactSearch = 'onkeyup'
     # 相对路径 = 1，还是绝对路径 = 0
