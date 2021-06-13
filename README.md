@@ -69,4 +69,6 @@ main()函数前几行可以进行一些自定义设置
 
 generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searching).py，自动搜索中文简体和繁体
 
+支持拖拽文件夹到py文件
+
 # 使用前请备份，防止文件名不符合你的需求

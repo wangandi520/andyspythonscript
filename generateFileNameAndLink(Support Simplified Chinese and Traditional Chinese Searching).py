@@ -2,6 +2,7 @@
 # https://github.com/wangandi520/andyspythonscript
 
 from pathlib import Path
+import sys
 
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
@@ -29,13 +30,16 @@ def formatFileSize(sizeBytes):
         result = result / 1024
     return format(result,'.2f') + suffix
         
-def writefile(filereadlines):
-    fileName = str(Path.cwd().name) + '.html'
-    newfile = open(fileName, mode='w', encoding='UTF-8')
+def writefile(filereadlines,inputPath):
+    if str(inputPath) == '.':
+        newfile = open(Path.cwd().name + '.html', mode='w', encoding='UTF-8')
+    elif inputPath:
+        newfile = open(inputPath.name + '.html', mode='w', encoding='UTF-8')
+    print((str(inputPath) == '.'))
     newfile.writelines(filereadlines)
     newfile.close()     
     
-def main():
+def main(inputPath):
     # 显示完整地址 = 1，还是只显示文件名 = 0
     showAllAddress = 0
     # 第一栏的宽度，first column width %
@@ -45,7 +49,7 @@ def main():
     # 是否显示第一行，show first line = 1, no first line = 0(Name, sha1, file size)
     showFirstLine = 1
     # 是否显示处理过程, show process details = 1, no detils = 0
-    showProcessDetails = 1
+    showProcessDetails = 0
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
     howToReactSearch = 'onkeyup'
     # 相对路径 = 1，还是绝对路径 = 0
@@ -57,7 +61,8 @@ def main():
     # 点击文件夹的操作，搜索包含这个文件夹名的所有路径 = 1，跳转到这个文件夹 = 0
     clickFolder = 1
     
-    title = str(Path.cwd().name)
+    mypath = Path(inputPath)
+    title = mypath.name
     outputFile = '<html><head><meta charset="UTF-8"><title>' + title + '</title>\n'
     # CSS
     outputFile = outputFile + '<style>body{width:90%;}table,td{border:' + str(showTableBorder) +'px solid #000000;table-layout:fixed;border-collapse:collapse;}a{color:#000000;text-decoration: none;}td{width:10%;}table tr td:first-child{width:' + str(columnWidth) +'%;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}.folder{font-weight:bold;}</style>\n'
@@ -75,8 +80,7 @@ def main():
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
-
-    mypath = Path('.')
+    
     for file in mypath.glob('**/*'):
         if showPath:
             loc = file.parent.joinpath(file.name)
@@ -115,7 +119,13 @@ def main():
     if showFileSize:
         outputFile = outputFile + ', '+ formatFileSize(fileSizeCount)
     outputFile = outputFile +  ') ";</script>'
-    writefile(outputFile)
+    writefile(outputFile,mypath)
     
 if __name__ == '__main__':
-    main()
+    try:
+        if len(sys.argv) == 1:
+            main('.')
+        elif len(sys.argv) == 2:
+            main(sys.argv[1])
+    except IndexError:
+        pass
