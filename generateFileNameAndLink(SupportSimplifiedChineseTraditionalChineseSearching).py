@@ -93,7 +93,7 @@ def main(inputPath):
             elif absolutePath:
                 showAddr = str(loc)
             else:
-                showAddr = str(Path(mypath.name).joinpath(file.name))
+                showAddr = str(mypath.joinpath(file))
         else:
             showName = str(file.name)
             if hidePath:
@@ -101,7 +101,7 @@ def main(inputPath):
             elif absolutePath:
                 showAddr = str(loc)
             else:
-                showAddr = str(Path(mypath.name).joinpath(file.name))
+                showAddr = str(mypath.joinpath(file))
         if Path.is_dir(file):
             folderCount = folderCount + 1
             showName = '<span class="folder">' + showName + '</span>'
