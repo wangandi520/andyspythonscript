@@ -93,6 +93,6 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 ## switchFolderFirstAndSecond[].py
 
-把文件夹名字中前两个[]的内容交换位置，支持多个文件夹一起拖拽
+把文件夹或文件名字中前两个[]的内容交换位置，支持多个文件夹或文件一起拖拽
 
 # 使用前请备份，防止文件名不符合你的需求
