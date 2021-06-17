@@ -22,6 +22,7 @@ def main(inputPath):
         for file in Path(inputPath).glob('**/*'):
             newFileName = folderName + 'Vol_' + str(fileCount + 1).zfill(2) + file.suffix
             imputCmd = 'rename "' + str(Path(inputPath).joinpath(file)) + '" "' + newFileName + '"'
+            print(file.name + '  ->  ' + newFileName)
             os.system(imputCmd)
             fileCount = fileCount + 1
             lastFileName = newFileName
@@ -29,8 +30,10 @@ def main(inputPath):
         # rename last file.
         if renameLastFile:
             imputCmd = 'rename "' + str(Path(inputPath).joinpath(lastFileName)) + '" "' + lastFileName[0:-4] + ' End' + newFileName[-4:] + '"'
+            print(lastFileName + '  ->  ' + lastFileName[0:-4] + ' End' + newFileName[-4:])
             os.system(imputCmd)
-    
+        os.system("pause")
+        
 if __name__ == '__main__':
     try:
         if len(sys.argv) == 1:
