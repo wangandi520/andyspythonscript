@@ -71,4 +71,14 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 支持拖拽文件夹到py文件
 
+## renameEFolderNameToFile.py
+
+使用前请备份，不符合以下格式的不能用
+
+文件夹必须是以"完]"结尾的，比如"[名字][作者][出版社][扫者][10完]"
+
+文件名结尾必须是"Vol_两位数字.zip"这样的格式，比如"ABCDEVol_01.zip"
+
+只支持拖拽操作，把文件夹拖到py文件上
+
 # 使用前请备份，防止文件名不符合你的需求
