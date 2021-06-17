@@ -10,10 +10,12 @@ def main(inputPath):
     if Path.is_dir(Path(inputPath)):
         folderName = Path(inputPath).name
         renameLastFile = False
-        if folderName.endswith('完]'):
-            renameLastFile = True
+        if folderName.endswith('完]') or folderName.endswith('未]'):
             loc = folderName.rfind('[')
             folderName = folderName[:loc]
+        if folderName.endswith('完]'):
+            renameLastFile = True
+            
         # rename file
         fileCount = 0
         lastFileName = ''
