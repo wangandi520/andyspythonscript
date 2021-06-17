@@ -5,13 +5,15 @@ from pathlib import Path
 import sys
 import os
     
-def writefile(filereadlines):
-    newfile = open('renameAnyFolderNameToFile.txt', mode='w', encoding='UTF-8')
+def writefile(filename, filereadlines):
+    newfile = open(filename, mode='w', encoding='ANSI')
     newfile.writelines(filereadlines)
     newfile.close()
     
 def main(inputPath):
     # get folder name
+    # create log and recover file
+    createLogAndRecover = True
     if Path.is_dir(Path(inputPath)):
         folderName = Path(inputPath).name
         renameLastFile = False
@@ -23,9 +25,7 @@ def main(inputPath):
             
         # rename file
         cmdLog = []
-        cmdLog.append('Log:\n')
         recoverLog = []
-        recoverLog.append('Recover:\n')
         fileCount = 0
         lastFileName = ''
         lastFileOldName = ''
@@ -49,9 +49,10 @@ def main(inputPath):
             recoverLog.append(recoverCmd)
             print(lastFileName + '  ->  ' + lastFileName[0:-4] + ' End' + newFileName[-4:])
             os.system(imputCmd)
-        cmdLog.append('\n\n')
-        output = cmdLog + recoverLog
-        writefile(cmdLog + recoverLog)
+        
+        if createLogAndRecover:
+            writefile('Log ' + folderName + '.txt', cmdLog)
+            writefile('Recover ' + folderName + '.bat', recoverLog)
         os.system("pause")
         
 if __name__ == '__main__':

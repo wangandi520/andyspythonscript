@@ -87,9 +87,13 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 文件夹可以是以"完]"结尾的，或其他，比如"[名字][作者][出版社][扫者][10完]"
 
+以"完]"结尾，最后一个文件名会加上" End"
+
 文件名无要求
 
 只支持拖拽操作，把文件夹拖到py文件上
+
+会生成日志和恢复文件名的bat文件，不过不想生成，就修改文件里的createLogAndRecover = False
 
 ## switchFolderFirstAndSecond[].py
 
