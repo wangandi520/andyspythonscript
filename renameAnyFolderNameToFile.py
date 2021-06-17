@@ -9,10 +9,11 @@ def main(inputPath):
     # get folder name
     if Path.is_dir(Path(inputPath)):
         folderName = Path(inputPath).name
+        renameLastFile = False
         if folderName.endswith('完]'):
+            renameLastFile = True
             loc = folderName.rfind('[')
             folderName = folderName[:loc]
-        
         # rename file
         fileCount = 0
         lastFileName = ''
@@ -23,9 +24,10 @@ def main(inputPath):
             fileCount = fileCount + 1
             lastFileName = newFileName
             
-        # rename last file
-        imputCmd = 'rename "' + str(Path(inputPath).joinpath(lastFileName)) + '" "' + lastFileName[0:-4] + ' End' + newFileName[-4:] + '"'
-        os.system(imputCmd)
+        # rename last file.
+        if renameLastFile:
+            imputCmd = 'rename "' + str(Path(inputPath).joinpath(lastFileName)) + '" "' + lastFileName[0:-4] + ' End' + newFileName[-4:] + '"'
+            os.system(imputCmd)
     
 if __name__ == '__main__':
     try:
