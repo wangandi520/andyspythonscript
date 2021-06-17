@@ -17,15 +17,18 @@ def main(inputPath):
     fileCount = 0
     lastFileName = ''
     for file in Path(inputPath).glob('**/*'):
-        if re.search('Vol_(\d{2}).zip$',file.name[-10:]):
+        if re.search('Vol_(\d{2}).(zip|rar)$',file.name[-10:]):
             newFileName = folderName + file.name[-10:]
             imputCmd = 'rename "' + str(Path(inputPath).joinpath(file)) + '" "' + newFileName + '"'
+            print(imputCmd)
             os.system(imputCmd)
             fileCount = fileCount + 1
             lastFileName = newFileName
     # rename last file
-    imputCmd = 'rename "' + str(Path(inputPath).joinpath(lastFileName)) + '" "' + lastFileName[0:-4] + ' End.zip"'
+    imputCmd = 'rename "' + str(Path(inputPath).joinpath(lastFileName)) + '" "' + lastFileName[0:-4] + ' End' + newFileName[-4:] + '"'
+    print(imputCmd)
     os.system(imputCmd)
+    x=input()
     
 if __name__ == '__main__':
     try:
