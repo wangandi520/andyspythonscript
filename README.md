@@ -81,4 +81,8 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 只支持拖拽操作，把文件夹拖到py文件上
 
+## switchFolderFirstAndSecond[].py
+
+把文件夹名字中前两个[]的内容交换位置
+
 # 使用前请备份，防止文件名不符合你的需求
