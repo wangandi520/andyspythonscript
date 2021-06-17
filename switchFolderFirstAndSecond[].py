@@ -4,20 +4,22 @@
 from pathlib import Path
 import sys
 import os
+import re
     
 def main(inputPath):
     del inputPath[0]
     for folder in inputPath:
         folderName = Path(folder).name
-        nameSplit = folderName.split('][')
-        i = 2
-        newFileName = '[' + nameSplit[1] + ']' + nameSplit[0] + ']'
-        for i in range(2, len(nameSplit)):
-            if not nameSplit[i].endswith(']') and Path.is_dir(Path(folder)):
-                newFileName = newFileName + '[' + nameSplit[i] + ']'
-            if nameSplit[i].endswith(']') or Path.is_file(Path(folder)):
-                newFileName = newFileName + '[' + nameSplit[i]
+        nameParts = re.findall("(\\[[^\\]]*\\])", folderName)
+        lastSymbol = folderName.rfind(']') + 1
+        fileSuffix = folderName[lastSymbol:]
+        nameParts[1], nameParts[0] = nameParts[0], nameParts[1]
+        newFileName = ''
+        for part in nameParts:
+            newFileName = newFileName + part
+        newFileName = newFileName + fileSuffix
         imputCmd = 'rename "' + folder + '" "' + newFileName + '"'
+        print(imputCmd)
         os.system(imputCmd)
             
 if __name__ == '__main__':
