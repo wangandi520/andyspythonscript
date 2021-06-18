@@ -19,7 +19,6 @@ def main(inputPath):
             newFileName = newFileName + part
         newFileName = newFileName + fileSuffix
         imputCmd = 'rename "' + folder + '" "' + newFileName + '"'
-        print(imputCmd)
         os.system(imputCmd)
             
 if __name__ == '__main__':
