@@ -93,6 +93,8 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 只支持拖拽操作，把文件夹拖到py文件上
 
+文件夹里可以是文件，或者文件夹，不支持混合
+
 会生成日志和恢复文件名的bat文件，不过不想生成，就修改文件里的createLogAndRecover = False
 
 ## switchFolderFirstAndSecond[].py
