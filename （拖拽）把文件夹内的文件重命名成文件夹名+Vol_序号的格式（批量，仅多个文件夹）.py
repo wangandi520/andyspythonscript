@@ -13,6 +13,7 @@ def writefile(filename, filereadlines):
 def main(inputPath):
     # get folder name
     # create log and recover file = True, don't create = False
+    # 如果不想生成日志和恢复文件，下面这行改成createLogAndRecover = False
     createLogAndRecover = True
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
