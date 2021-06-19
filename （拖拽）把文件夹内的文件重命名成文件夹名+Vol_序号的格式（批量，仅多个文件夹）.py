@@ -14,11 +14,13 @@ def main(inputPath):
     # get folder name
     # create log and recover file = True, don't create = False
     # 如果不想生成日志和恢复文件，下面这行改成createLogAndRecover = False
-    createLogAndRecover = False
+    createLogAndRecover = True
     # show window，如果不想显示处理窗口，showCMDwindows = False
     showCMDwindows = True
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
+            # first boox start index，第一本书的序号
+            startIndex = 1
             folderName = Path(aPath).name
             renameLastFile = False
             # remove [XX完] or [XX未]
@@ -45,11 +47,10 @@ def main(inputPath):
             # rename all file
             cmdLog = []
             recoverLog = []
-            fileCount = 0
             lastFileName = ''
             lastFileOldName = ''
             for file in Path(aPath).glob('*'):
-                newFileName = folderName + 'Vol_' + str(fileCount + 1).zfill(2)
+                newFileName = folderName + 'Vol_' + str(startIndex).zfill(2)
                 # get file suffix
                 if Path.is_file(file):
                     newFileName = newFileName + file.suffix
@@ -62,7 +63,7 @@ def main(inputPath):
                 # output
                 print(file.name + '  ->  ' + newFileName)
                 os.system(imputCmd)
-                fileCount = fileCount + 1
+                startIndex = startIndex + 1
                 lastFileName = newFileName
                 lastFileOldName = file.name
                 
