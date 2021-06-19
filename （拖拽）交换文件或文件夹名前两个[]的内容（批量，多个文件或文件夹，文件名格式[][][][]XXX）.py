@@ -16,7 +16,7 @@ def main(inputPath):
             if folderName[index] == ']':
                 rightSymbol.append(index)
         newFileName = folderName[leftSymbol[1]:rightSymbol[1] + 1] + folderName[leftSymbol[0]:rightSymbol[0] + 1] + folderName[rightSymbol[1] + 1:]
-        Path(file).rename(newFileName)
+        Path(file).rename(Path(file).parent.joinpath(newFileName))
             
 if __name__ == '__main__':
     try:
