@@ -10,6 +10,8 @@ def main(inputPath):
         folderName = Path(file).name
         leftSymbol = []
         rightSymbol = []
+        if not('[' in folderName and ']' in folderName):
+            continue
         for index in range(len(folderName)):
             if folderName[index] == '[':
                 leftSymbol.append(index)
