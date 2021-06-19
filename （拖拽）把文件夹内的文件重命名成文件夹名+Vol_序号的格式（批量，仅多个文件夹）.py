@@ -14,7 +14,9 @@ def main(inputPath):
     # get folder name
     # create log and recover file = True, don't create = False
     # 如果不想生成日志和恢复文件，下面这行改成createLogAndRecover = False
-    createLogAndRecover = True
+    createLogAndRecover = False
+    # show window，如果不想显示处理窗口，showCMDwindows = False
+    showCMDwindows = True
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             folderName = Path(aPath).name
@@ -81,7 +83,8 @@ def main(inputPath):
             if createLogAndRecover:
                 writefile('Log ' + folderName + '.txt', cmdLog)
                 writefile('Recover ' + folderName + '.bat', recoverLog)
-    os.system("pause")
+    if showCMDwindows:
+        os.system("pause")
         
 if __name__ == '__main__':
     try:
