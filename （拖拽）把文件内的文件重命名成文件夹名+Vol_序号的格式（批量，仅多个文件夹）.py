@@ -80,7 +80,7 @@ def main(inputPath):
             if createLogAndRecover:
                 writefile('Log ' + folderName + '.txt', cmdLog)
                 writefile('Recover ' + folderName + '.bat', recoverLog)
-            os.system("pause")
+    os.system("pause")
         
 if __name__ == '__main__':
     try:
