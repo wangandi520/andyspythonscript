@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
     
 def main(inputPath):
+    del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('*.1234'):
