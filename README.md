@@ -105,4 +105,8 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 把文件夹内后缀名是.1234文件，去掉.1234，支持多个文件夹或文件一起拖拽
 
+## removeFilenameBefore-.py
+
+文件夹名是 xxx - xxx.xxx的格式时，删除前面的xxx和 - ，只剩后面的xxx.xxx，拖拽文件夹到py上运行
+
 # 使用前请备份，防止文件名不符合你的需求
