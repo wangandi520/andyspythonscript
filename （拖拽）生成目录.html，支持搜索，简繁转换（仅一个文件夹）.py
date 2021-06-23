@@ -2,7 +2,9 @@
 # https://github.com/wangandi520/andyspythonscript
 
 from pathlib import Path
+import pathlib
 import sys
+
 
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
@@ -93,7 +95,7 @@ def main(inputPath):
             elif absolutePath:
                 showAddr = str(loc)
             else:
-                showAddr = str(mypath.joinpath(file))
+                showAddr = str(file.relative_to(mypath))
         else:
             showName = str(file.name)
             if hidePath:
@@ -101,7 +103,7 @@ def main(inputPath):
             elif absolutePath:
                 showAddr = str(loc)
             else:
-                showAddr = str(mypath.joinpath(file))
+                showAddr = str(file.relative_to(mypath))
         if Path.is_dir(file):
             folderCount = folderCount + 1
             showName = '<span class="folder">' + showName + '</span>'
