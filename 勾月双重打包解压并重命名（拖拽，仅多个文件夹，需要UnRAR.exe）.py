@@ -1,5 +1,6 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
+# 需要UnRAR.exe 或 pip3 install unrar
 
 from pathlib import Path
 import sys
