@@ -129,7 +129,7 @@ def main(inputPath):
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">Name</a> (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
     if showFileSize:
         outputFile = outputFile + ', '+ formatFileSize(fileSizeCount)
-    outputFile = outputFile +  ') ";document.getElementById(\"tips\").innerHTML = \"\";</script>'
+    outputFile = outputFile +  ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();</script>'
     writefile(outputFile,mypath)
     
 if __name__ == '__main__':
