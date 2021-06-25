@@ -6,6 +6,14 @@ import pathlib
 import sys
 
 
+def formatFileSize(sizeBytes):# encoding:utf-8
+# https://github.com/wangandi520/andyspythonscript
+
+from pathlib import Path
+import pathlib
+import sys
+
+
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
     result = float(abs(sizeBytes))
@@ -32,11 +40,11 @@ def formatFileSize(sizeBytes):
         result = result / 1024
     return format(result,'.2f') + suffix
         
-def writefile(filereadlines,inputPath):
+def writefile(filereadlines, inputPath, info):
     if str(inputPath) == '.':
-        newfile = open(Path.cwd().name + '.html', mode='w', encoding='UTF-8')
+        newfile = open(Path.cwd().name + ',' + str(info[0]) + 'Files,' + info[1] + '.html', mode='w', encoding='UTF-8')
     elif inputPath:
-        newfile = open(inputPath.name + '.html', mode='w', encoding='UTF-8')
+        newfile = open(inputPath.name + ',' + str(info[0]) + 'Files,' + info[1] + '.html', mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()     
     
@@ -77,9 +85,9 @@ def main(inputPath):
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
         if showFileSize and showFolderAndFile:
-            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td><td>Size</td></tr>\n'
+            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td><td>大小</td></tr>\n'
         if (not showFileSize) or (not showFolderAndFile):
-            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td></tr>\n'
+            outputFile = outputFile + '<tr><td>Name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td></tr>\n'
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
@@ -126,11 +134,12 @@ def main(inputPath):
                 outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
    
     outputFile = outputFile + '</td></table></div></body></html>'
-    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">Name</a> (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
+    outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">文件名</a> (' + str(fileCount) + '个文件，' + str(folderCount) + '个文件夹，'
     if showFileSize:
-        outputFile = outputFile + ', '+ formatFileSize(fileSizeCount)
+        outputFile = outputFile + formatFileSize(fileSizeCount)
     outputFile = outputFile +  ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();</script>'
-    writefile(outputFile,mypath)
+    info = [fileCount, formatFileSize(fileSizeCount)]
+    writefile(outputFile, mypath, info)
     
 if __name__ == '__main__':
     try:
