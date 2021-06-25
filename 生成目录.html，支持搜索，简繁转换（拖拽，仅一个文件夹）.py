@@ -60,7 +60,7 @@ def main(inputPath):
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
     # 点击文件夹的操作，搜索包含这个文件夹名的所有路径 = 1，跳转到这个文件夹 = 0
-    clickFolder = 1
+    clickFolder = 0
     # 绝对路径 = 1， 还是相对路径 = 0
     absolutePath = 0
     
@@ -114,7 +114,9 @@ def main(inputPath):
             showFileSize = formatFileSize(fileSize)
             fileSizeCount = fileSizeCount + fileSize
             if clickFolder and Path.is_dir(file):
-                outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+                outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</td><td></a></tr>\n'
+            elif (not clickFolder) and Path.is_dir(file):
+                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td></a></tr>\n'
             else:
                 outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
         if (not showFolderAndFile and Path.is_dir(file)) or (not showFileSize):
