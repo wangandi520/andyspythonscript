@@ -52,7 +52,7 @@ def main(inputPath):
     # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
-    howToReactSearch = 'onkeyup'
+    howToReactSearch = 'onchange'
     # 隐藏文件路径 = 1，不隐形并显示绝对路径 = 0
     hidePath = 0
     # 显示文件夹和文件 = 1，还是只显示文件夹 = 0
@@ -77,9 +77,9 @@ def main(inputPath):
     outputFile = outputFile + '</head><body><div>\n<table id="allFileTable">'
     if showFirstLine:
         if showFileSize and showFolderAndFile:
-            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td><td>Size</td></tr>\n'
+            outputFile = outputFile + '<tr><td><span id="fileNameID"></span><input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td><td>Size</td></tr>\n'
         if (not showFileSize) or (not showFolderAndFile):
-            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."></td></tr>\n'
+            outputFile = outputFile + '<tr><td>File name:<input type="text" id="mySearch" ' + howToReactSearch + '="onSearch()" placeholder="搜索..."><span id="tips">文件列表载入中，请等待这段话消失后再搜索<span></td></tr>\n'
     fileCount = 0
     fileSizeCount = 0
     folderCount = 0
@@ -127,7 +127,7 @@ def main(inputPath):
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">Name</a> (' + str(fileCount) + ' files in ' + str(folderCount) + ' folders'
     if showFileSize:
         outputFile = outputFile + ', '+ formatFileSize(fileSizeCount)
-    outputFile = outputFile +  ') ";</script>'
+    outputFile = outputFile +  ') ";document.getElementById(\"tips\").innerHTML = \"\";</script>'
     writefile(outputFile,mypath)
     
 if __name__ == '__main__':
