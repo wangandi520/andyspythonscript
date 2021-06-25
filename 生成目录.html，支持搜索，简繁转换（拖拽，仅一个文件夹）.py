@@ -60,7 +60,7 @@ def main(inputPath):
     # 是否显示文件大小，show file size = 1, no file size = 0
     showFileSize = 1
     # 点击文件夹的操作，搜索包含这个文件夹名的所有路径 = 1，跳转到这个文件夹 = 0
-    clickFolder = 0
+    clickFolder = 1
     # 绝对路径 = 1， 还是相对路径 = 0
     absolutePath = 0
     
