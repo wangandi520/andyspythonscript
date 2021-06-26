@@ -20,8 +20,11 @@ def main(inputPath):
                         leftSymbol.append(index)
                     if folderName[index] == ']':
                         rightSymbol.append(index)
-                newFileName = folderName[0:leftSymbol[-1]] + folderName[rightSymbol[-1] + 1:-4] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[-4:]
                 if (folderName[rightSymbol[-1] + 1:-6] == 'Vol_'):
+                    newFileName = folderName[0:leftSymbol[-1]] + folderName[rightSymbol[-1] + 1:-4] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[-4:]
+                    Path(file).rename(Path(file).parent.joinpath(newFileName))
+                if (folderName[-5] == ']'):
+                    newFileName = folderName[0:rightSymbol[-2] + 1] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[rightSymbol[-2] + 1:leftSymbol[-1]] + folderName[-4:]
                     Path(file).rename(Path(file).parent.joinpath(newFileName))
                 
         if Path.is_file(Path(aPath)):
@@ -35,8 +38,11 @@ def main(inputPath):
                     leftSymbol.append(index)
                 if folderName[index] == ']':
                     rightSymbol.append(index)
-            newFileName = folderName[0:leftSymbol[-1]] + folderName[rightSymbol[-1] + 1:-4] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[-4:]
             if (folderName[rightSymbol[-1] + 1:-6] == 'Vol_'):
+                newFileName = folderName[0:leftSymbol[-1]] + folderName[rightSymbol[-1] + 1:-4] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[-4:]
+                Path(aPath).rename(Path(aPath).parent.joinpath(newFileName))
+            if (folderName[-5] == ']'):
+                newFileName = folderName[0:rightSymbol[-2] + 1] + folderName[leftSymbol[-1]:rightSymbol[-1] + 1] + folderName[rightSymbol[-2] + 1:leftSymbol[-1]] + folderName[-4:]
                 Path(aPath).rename(Path(aPath).parent.joinpath(newFileName))
         
 if __name__ == '__main__':
