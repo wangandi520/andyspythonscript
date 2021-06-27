@@ -4,15 +4,7 @@
 from pathlib import Path
 import pathlib
 import sys
-
-
-def formatFileSize(sizeBytes):# encoding:utf-8
-# https://github.com/wangandi520/andyspythonscript
-
-from pathlib import Path
-import pathlib
-import sys
-
+import time
 
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
@@ -42,9 +34,9 @@ def formatFileSize(sizeBytes):
         
 def writefile(filereadlines, inputPath, info):
     if str(inputPath) == '.':
-        newfile = open(Path.cwd().name + ',' + str(info[0]) + 'Files,' + info[1] + '.html', mode='w', encoding='UTF-8')
+        newfile = open(Path.cwd().name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html', mode='w', encoding='UTF-8')
     elif inputPath:
-        newfile = open(inputPath.name + ',' + str(info[0]) + 'Files,' + info[1] + '.html', mode='w', encoding='UTF-8')
+        newfile = open(inputPath.name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html', mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()     
     
@@ -137,7 +129,7 @@ def main(inputPath):
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">文件名</a> (' + str(fileCount) + '个文件，' + str(folderCount) + '个文件夹，'
     if showFileSize:
         outputFile = outputFile + formatFileSize(fileSizeCount)
-    outputFile = outputFile +  ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();</script>'
+    outputFile = outputFile + '，' + time.strftime("%Y%m%d", time.localtime()) + ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();</script>'
     info = [fileCount, formatFileSize(fileSizeCount)]
     writefile(outputFile, mypath, info)
     
