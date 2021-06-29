@@ -10,9 +10,9 @@ import rarfile
 def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
-        tmpPath = ''
         firstRARName = ''
         if Path.is_dir(Path(aPath)):
+            tmpPath = ''
             for file in Path(aPath).glob('*.part1.rar'):
                 firstRARName = file 
                 tmpPath = Path(aPath).joinpath(firstRARName)
@@ -20,8 +20,9 @@ def main(inputPath):
             rar = rarfile.RarFile(tmpPath)
             rar.extractall(Path(aPath), pwd = '1234')
             rar.close()
+            tmpPath = ''
             for file in Path(aPath).glob('*.part1.rar'):
-                if file.name != firstRARName:
+                if file != firstRARName:
                     tmpPath = Path(aPath).joinpath(file)
                     break
             print('UnRAR: ' + str(tmpPath))
@@ -32,7 +33,6 @@ def main(inputPath):
             print('Done: ')
             for file in fileList:
                 print(file)
-
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
