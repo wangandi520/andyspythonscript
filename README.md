@@ -109,4 +109,18 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 文件夹名是 xxx - xxx.xxx的格式时，删除前面的xxx和 - ，只剩后面的xxx.xxx，拖拽文件夹到py上运行
 
+## 文件夹和二级文件名简体转繁体（拖拽，多个文件或文件夹）.py
+## 文件夹和二级文件名繁体转简体（拖拽，多个文件或文件夹）.py
+
+拖拽文件或文件夹到py上，被拖拽的文件夹和里面的二级目录的文件夹和文件名都会被转换
+
+需要pip install opencc-python-reimplemented
+
+## 文件和文件夹夹繁体转简体，不转换二级目录（拖拽，仅文件夹）.py
+## 文件和文件夹名简体转繁体，不转换二级目录（拖拽，仅文件夹）.py
+
+拖拽文件或文件夹到py上，二级目录的文件夹和文件名不会被转换
+
+需要pip install opencc-python-reimplemented
+
 # 使用前请备份，防止文件名不符合你的需求
