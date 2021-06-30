@@ -85,7 +85,7 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 使用前请备份，不符合以下格式的不能用
 
-文件夹可以是以"完]"结尾的，或其他，比如"[名字][作者][出版社][扫者][10完]"
+文件夹可以是以"完]"结尾的，或其他，比如"[作品名][作者][出版社][扫者][10完]"
 
 以"完]"结尾，最后一个文件名会加上" End"
 
@@ -130,5 +130,9 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 ## 解压双重分割打包的RAR（拖拽，仅多个文件夹，需要UnRAR.exe）.py
 
 识别两层rar的文件结尾.part1.rar
+
+## 识别作者名作品名并新建文件夹移动文件（拖拽，仅多个文件夹）.py
+
+文件夹名格式[作品名][作者][出版社][扫者][10完]，新建文件夹名是作者名，二级文件夹名是作品名，被拖拽的文件夹里的文件会被移动到作品名文件夹里
 
 # 使用前请备份，防止文件名不符合你的需求
