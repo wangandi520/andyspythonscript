@@ -30,6 +30,7 @@ def main(inputPath):
                 oldFilePath = Path(aPath).joinpath(Path(file.name))
                 newFilePath = Path(workPath).joinpath(Path(file.name))
                 Path(oldFilePath).replace(newFilePath)
+            Path.rmdir(Path(aPath))
         
 if __name__ == '__main__':
     try:
