@@ -57,7 +57,7 @@
 把和py文件当前目录的同级文件夹名字，输出到firstFoldersName.txt中
 把和py文件当前目录的所有子文件夹名字，输出到secondFoldersName.txt中
 
-## generateFileNameAndLink.py
+## 生成目录.html，支持搜索，简繁转换（拖拽，仅一个文件夹）.py
 
 当前目录下所有文件，生成文件夹名.html，可搜索，点击Name回到首页
 
@@ -70,16 +70,6 @@ main()函数前几行可以进行一些自定义设置
 generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searching).py，自动搜索中文简体和繁体
 
 支持拖拽文件夹到py文件
-
-## renameEFolderNameToFile.py
-
-使用前请备份，不符合以下格式的不能用
-
-文件夹可以是以"完]"结尾的，或其他，比如"[名字][作者][出版社][扫者][10完]"
-
-文件名结尾必须是"Vol_两位数字.zip"这样的格式，比如"ABCDEVol_01.zip"
-
-只支持拖拽操作，把文件夹拖到py文件上
 
 ## 把文件夹内的文件重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
 
@@ -105,7 +95,7 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 把文件夹或文件名字中最后[]和Vol_XX的内容交换位置，文件名格式[][][][]Vol_XX，支持多个文件夹或文件一起拖拽
 
-## remove.1234FileInFolder.py
+## 删除文件结尾的.1234（拖拽，多个文件或文件夹）.py
 
 把文件夹内后缀名是.1234文件，去掉.1234，支持多个文件夹或文件一起拖拽
 
@@ -135,8 +125,12 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 文件夹名格式[作品名][作者][出版社][扫者][10完]，新建文件夹名是作者名，二级文件夹名是作品名，被拖拽的文件夹里的文件会被移动到作品名文件夹里
 
+需要pip install opencc-python-reimplemented
+
 ## 识别作者名作品名并新建文件夹移动文件（拖拽，仅多个文件）.py
 
 文件名格式[作品名][作者][出版社][扫者][10完]，新建文件夹名是作者名，二级文件夹名是作品名，被拖拽的文件会被移动到作品名文件夹里
+
+需要pip install opencc-python-reimplemented
 
 # 使用前请备份，防止文件名不符合你的需求
