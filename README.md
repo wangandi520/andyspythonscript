@@ -81,7 +81,7 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 只支持拖拽操作，把文件夹拖到py文件上
 
-## renameAnyFolderNameToFile.py
+## 把文件夹内的文件重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
 
 使用前请备份，不符合以下格式的不能用
 
@@ -97,9 +97,13 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 
 会生成日志和恢复文件名的bat文件，不过不想生成，就修改文件里的createLogAndRecover = False
 
-## switchFolderFirstAndSecond[].py
+## 交换文件或文件夹名前两个[]的内容（拖拽，多个文件或文件夹）.py
 
 把文件夹或文件名字中前两个[]的内容交换位置，支持多个文件夹或文件一起拖拽
+
+## 交换文件名最后[]和Vol_XX（拖拽，多个文件夹，文件名格式[][][][]Vol_XX）.py
+
+把文件夹或文件名字中最后[]和Vol_XX的内容交换位置，文件名格式[][][][]Vol_XX，支持多个文件夹或文件一起拖拽
 
 ## remove.1234FileInFolder.py
 
@@ -122,5 +126,9 @@ generateFileNameAndLink(Support Simplified Chinese and Traditional Chinese Searc
 拖拽文件或文件夹到py上，二级目录的文件夹和文件名不会被转换
 
 需要pip install opencc-python-reimplemented
+
+## 解压双重分割打包的RAR（拖拽，仅多个文件夹，需要UnRAR.exe）.py
+
+识别两层rar的文件结尾.part1.rar
 
 # 使用前请备份，防止文件名不符合你的需求
