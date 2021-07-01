@@ -63,6 +63,8 @@ def main(inputPath):
     clickFolder = 1
     # 绝对路径 = 1， 还是相对路径 = 0
     absolutePath = 0
+    # 文件夹名显示完整的相对路径 = 1，还是只显示一层文件夹名
+    showAllFolderAddr = 1
     
     mypath = Path(inputPath)
     title = mypath.name
@@ -106,7 +108,10 @@ def main(inputPath):
                 showAddr = str(file.relative_to(mypath))
         if Path.is_dir(file):
             folderCount = folderCount + 1
-            showName = '<span class="folder"><span class=folderNameShow">' + showName + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
+            if showAllFolderAddr:
+                showName = '<span class="folder"><span class=folderNameShow">' + showAddr + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
+            else:
+                showName = '<span class="folder"><span class=folderNameShow">' + showName + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
         if Path.is_file(file):
             fileCount = fileCount + 1
         if showFolderAndFile and showFileSize:
