@@ -17,7 +17,7 @@ def main(inputPath):
                 Path(file).rename(Path(file).parent.joinpath(TraditionalName))
             folderName = Path(aPath).name
             TraditionalName = OpenCC('s2t').convert(folderName)
-            Path(aPath).rename(TraditionalName)
+            Path(aPath).rename(Path(aPath).parent.joinpath(TraditionalName))
                 
         if Path.is_file(Path(aPath)):
             fileName = Path(aPath).name
