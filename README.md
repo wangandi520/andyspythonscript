@@ -48,9 +48,9 @@
 
 如果不包含文件夹，就移动到noSubDir文件夹
 
-### listAllFoldersAndSubFoldersName.py
+### 生成所有子文件目录到文件夹名.txt（拖拽，仅多个文件夹）.py
 
-把和py文件当前目录下所有文件夹和子文件夹的名字输出到listAllFoldersAndSubFoldersName.txt中
+把和py文件当前目录下所有文件夹和子文件夹的名字（默认相对路径，可选绝对路径）输出到文件夹名.txt中
 
 ### listFirstAndSecondFoldersToTwoFIles.py
 
