@@ -28,15 +28,28 @@ def main(inputPath):
     del inputPath[0]
     for file in inputPath:
         pathFile = Path(file)
+        outputLines = []
         if Path.is_file(pathFile) and pathFile.suffix == '.txt':
             inputLines = readfile(pathFile)
-            outputLines = []
+            lastLine = ''
             for line in inputLines:
+                if line.startswith('提取码'):
+                    if line[3] == '：' and line[4] != ' ':
+                        line = line.replace('：', ': ')
+                    if lastLine[2] == '：' and lastLine[3] != ' ':
+                        lastLine = lastLine.replace('：', ': ')
+                    line = lastLine + ' ' + line 
+                else:
+                    outputLines.append(lastLine + '\n')
+                lastLine = ''
                 splitLine = line.split(' ')
                 if len(splitLine) >= 4 and splitLine[0] == '链接:' and splitLine[2] == '提取码:':
                     outputLines.append(splitLine[1] + '#' + splitLine[3] + '\n\n')
                 else:
-                    outputLines.append(line + '\n')
+                    if '提取码' in line:
+                        outputLines.append(line + '\n')
+                    else:
+                        lastLine = line
         writefile(str(pathFile.parent.joinpath(pathFile)) + '.txt', outputLines)
     
 if __name__ == '__main__':
