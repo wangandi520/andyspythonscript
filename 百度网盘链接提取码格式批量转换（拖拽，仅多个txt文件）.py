@@ -33,7 +33,7 @@ def main(inputPath):
             outputLines = []
             for line in inputLines:
                 splitLine = line.split(' ')
-                if len(splitLine) == 5 and splitLine[0] == '链接:' and splitLine[2] == '提取码:':
+                if len(splitLine) >= 4 and splitLine[0] == '链接:' and splitLine[2] == '提取码:':
                     outputLines.append(splitLine[1] + '#' + splitLine[3] + '\n\n')
                 else:
                     outputLines.append(line + '\n')
