@@ -151,5 +151,28 @@ main()函数前几行可以进行一些自定义设置，文件夹名加粗显�
 
 需要pip install opencc-python-reimplemented
 
+## 百度网盘网址#提取码直接识别跳转.js
+
+把百度网盘链接改成这种形式：
+
+https://pan.baidu.com/s/xxxxxxx#yyyy
+
+yyyy是提取码
+
+脚本会自动识别，填写提取码，进入文件列表
+
+## 百度网盘链接提取码格式批量转换（拖拽，仅多个txt文件）.py
+
+把存储百度网盘链接的txt文件拖到py上
+
+原格式：链接: https://pan.baidu.com/s/xxxxxxxxx 提取码: yyyy 复制这段内容后打开百度网盘手机App，操作更方便哦	
+
+新格式：https://pan.baidu.com/s/xxxxxxxxx#yyyy
+
+源文件名：链接.txt
+
+新文件名：链接.txt.txt
+
+可以直接在notepad++里双击进去链接，配合上面的tampermonkey脚本，可直接进入文件列表
 
 ## 使用前请备份，防止文件名不符合你的需求
