@@ -11,18 +11,18 @@ def main(inputPath):
         if Path.is_file(Path(aPath)):
             fileName = Path(aPath).name
             nameParts = re.findall("(\\[[^\\]]*\\])", fileName)
-            workName = nameParts[0][1:-1]
-            authorName = nameParts[1][1:-1]
-            
-            authorPath = Path(aPath).parent.joinpath(Path(authorName))
-            if not authorPath.exists():
-                Path.mkdir(authorPath)
-            workPath = Path(authorPath).joinpath(Path(workName))
-            if not workPath.exists():
-                Path.mkdir(workPath)
-            oldFilePath = Path(aPath)
-            newFilePath = Path(workPath).joinpath(Path(aPath).name)
-            Path(oldFilePath).replace(newFilePath)
+            if len(nameParts) >= 2:
+                workName = nameParts[0][1:-1]
+                authorName = nameParts[1][1:-1]
+                authorPath = Path(aPath).parent.joinpath(Path(authorName))
+                if not authorPath.exists():
+                    Path.mkdir(authorPath)
+                workPath = Path(authorPath).joinpath(Path(workName))
+                if not workPath.exists():
+                    Path.mkdir(workPath)
+                oldFilePath = Path(aPath)
+                newFilePath = Path(workPath).joinpath(Path(aPath).name)
+                Path(oldFilePath).replace(newFilePath)
         
 if __name__ == '__main__':
     try:
