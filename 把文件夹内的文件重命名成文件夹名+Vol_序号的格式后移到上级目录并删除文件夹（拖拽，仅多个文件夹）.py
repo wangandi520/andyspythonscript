@@ -24,9 +24,9 @@ def main(inputPath):
             folderName = Path(aPath).name
             renameLastFile = False
             # remove [XX完] or [XX未]
-            if folderName.endswith('完]'):
+            if folderName.endswith('完]') or folderName.endswith('全]'):
                 renameLastFile = True
-            if folderName.endswith('完]') or folderName.endswith('未]'):
+            if folderName.endswith('完]') or folderName.endswith('全]') or folderName.endswith('未]'):
                 loc = folderName.rfind('[')
                 folderName = folderName[:loc]
                 
