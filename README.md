@@ -8,12 +8,6 @@
 
 用途：复制出漫画封面
 
-### copyEachZIPsFirstFile.py
-
-会把同级目录下的所有zip的第一个文件复制到cover文件夹内
-
-用途：复制出漫画封面
-
 ### renameToTC.py
 
 会把[换成[[]，]换成[]]
