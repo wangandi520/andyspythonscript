@@ -36,11 +36,13 @@
 
 第一个文件夹的数字，请修改dirCount
 
-### classifyIfSubDirInZIPRAR.py
+### 根据rarzip文件是否包含文件夹分类.py
 
-如果压缩文件夹rar，zip里包含仅一个文件夹，就移动压缩文件到withSubDir文件夹
+把zip，rar文件分成2类并放入对应的文件夹里
 
-如果不包含文件夹，就移动到noSubDir文件夹
+1.包含一个或多个二级文件夹。2.仅包含文件的。
+
+需要pip3 install zipfile，pip3 install rarfile
 
 ### 生成所有子文件目录到文件夹名.txt（拖拽，仅多个文件夹）.py
 
