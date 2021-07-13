@@ -127,7 +127,7 @@ def main(inputPath):
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function start(){document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">文件名</a> (' + str(fileCount) + '个文件，' + str(folderCount) + '个文件夹，'
     if showFileSize:
         outputFile = outputFile + formatFileSize(fileSizeCount)
-    outputFile = outputFile + '，' + time.strftime("%Y%m%d", time.localtime()) + ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();}start();var address = window.location.href.split(\"#\")[1];if (address){document.getElementById(\"mySearch\").value = decodeURI(address);onSearch();}start();</script>'
+    outputFile = outputFile + '，' + time.strftime("%Y%m%d", time.localtime()) + ') ";document.getElementById(\"tips\").innerHTML = \"\";document.getElementById(\"mySearch\").focus();}start();var address = window.location.href.split(\"?search=\")[1];if (address){document.getElementById(\"mySearch\").value = decodeURI(address);onSearch();}start();</script>'
     info = [fileCount, formatFileSize(fileSizeCount)]
     writefile(outputFile, mypath, info)
     
