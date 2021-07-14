@@ -30,6 +30,8 @@ def main(inputPath):
                         if keyword in eachFile:
                             print(file)
                     zf.close()
+                if keyword in file.name:
+                    print(file)
                             
         if Path.is_file(Path(aPath)):
             file = Path(aPath)
@@ -50,6 +52,8 @@ def main(inputPath):
                     if keyword in eachFile:
                         print(file)
                 zf.close()
+            if keyword in file.name:
+                print(file)
     print('\n')
     os.system('pause')
         
