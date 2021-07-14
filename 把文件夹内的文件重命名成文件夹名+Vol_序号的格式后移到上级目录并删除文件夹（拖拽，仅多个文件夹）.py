@@ -19,7 +19,7 @@ def main(inputPath):
     showCMDwindows = False
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
-            # first boox start index，第一本书的序号
+            # first book start index，第一本书的序号
             startIndex = 1
             folderName = Path(aPath).name
             renameLastFile = False
