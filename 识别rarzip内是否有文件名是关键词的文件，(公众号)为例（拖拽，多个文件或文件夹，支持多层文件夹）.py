@@ -9,7 +9,6 @@ import rarfile
 
 def main(inputPath):
     del inputPath[0]
-    allFileName = []
     # 设置你的关键词
     keyword = '公众号'
     for aPath in inputPath:
@@ -19,7 +18,7 @@ def main(inputPath):
                     rf = rarfile.RarFile(file)
                     for eachFile in rf.namelist():
                         if keyword in eachFile:
-                            allFileName.append(file)
+                            print(file)
                     rf.close()
                 if file.suffix == '.zip' and zipfile.is_zipfile(file):
                     zf = zipfile.ZipFile(file)                        
@@ -29,7 +28,7 @@ def main(inputPath):
                         except:
                             eachFile = eachFile.encode('utf-8').decode('utf-8')
                         if keyword in eachFile:
-                            allFileName.append(file)
+                            print(file)
                     zf.close()
                             
         if Path.is_file(Path(aPath)):
@@ -38,7 +37,7 @@ def main(inputPath):
                 rf = rarfile.RarFile(file)
                 for eachFile in rf.namelist():
                     if keyword in eachFile:
-                        allFileName.append(file)
+                        print(file)
                 rf.close()
                                         
             if file.suffix == '.zip' and zipfile.is_zipfile(file):
@@ -49,13 +48,9 @@ def main(inputPath):
                     except:
                         eachFile = eachFile.encode('utf-8').decode('utf-8')
                     if keyword in eachFile:
-                        allFileName.append(file)
+                        print(file)
                 zf.close()
-    if allFileName:         
-        for file in allFileName:
-            print(file)
-    else:
-        print('未找到符合的文件\n')
+    print('\n')
     os.system('pause')
         
 if __name__ == '__main__':
