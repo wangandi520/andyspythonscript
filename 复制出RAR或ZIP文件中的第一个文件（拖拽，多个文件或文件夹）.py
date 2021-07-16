@@ -24,18 +24,27 @@ def main(inputPath):
                     if len(fileNameList[0].split('/')) == 1:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                     if len(fileNameList[0].split('/')) == 2:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                         Path.rmdir(Path(folder).joinpath(fileNameList[0].split('/')[0]))
                     if len(fileNameList[0].split('/')) == 3:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[2])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                         tmpPath = Path(folder).joinpath(fileNameList[0].split('/')[0])
                         tmpPath = Path(tmpPath).joinpath(fileNameList[0].split('/')[1])
@@ -55,18 +64,27 @@ def main(inputPath):
                     if len(fileNameList[0].split('/')) == 1:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                     if len(fileNameList[0].split('/')) == 2:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                         Path.rmdir(Path(folder).joinpath(fileNameList[0].split('/')[0]))
                     if len(fileNameList[0].split('/')) == 3:
                         oldFilePath = Path(folder).joinpath(fileNameList[0])
                         #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[2])
-                        newFilePath = Path(folder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                        coverFolder = Path(folder).joinpath('cover')
+                        if not coverFolder.exists():
+                            Path.mkdir(coverFolder)
+                        newFilePath = Path(coverFolder).joinpath(file.stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                         Path(oldFilePath).replace(newFilePath)
                         tmpPath = Path(folder).joinpath(fileNameList[0].split('/')[0])
                         tmpPath = Path(tmpPath).joinpath(fileNameList[0].split('/')[1])
@@ -87,18 +105,27 @@ def main(inputPath):
                 if len(fileNameList[0].split('/')) == 1:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                 if len(fileNameList[0].split('/')) == 2:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                     Path.rmdir(Path(folder).parent.joinpath(fileNameList[0].split('/')[0]))
                 if len(fileNameList[0].split('/')) == 3:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[2])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                     tmpPath = Path(folder).parent.joinpath(fileNameList[0].split('/')[0])
                     tmpPath = Path(tmpPath).joinpath(fileNameList[0].split('/')[1])
@@ -118,18 +145,27 @@ def main(inputPath):
                 if len(fileNameList[0].split('/')) == 1:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                 if len(fileNameList[0].split('/')) == 2:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[1])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                     Path.rmdir(Path(folder).parent.joinpath(fileNameList[0].split('/')[0]))
                 if len(fileNameList[0].split('/')) == 3:
                     oldFilePath = Path(folder).parent.joinpath(fileNameList[0])
                     #newFilePath = Path(folder).joinpath(fileNameList[0].split('/')[2])
-                    newFilePath = Path(folder).parent.joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
+                    coverFolder = Path(folder).parent.joinpath('cover')
+                    if not coverFolder.exists():
+                        Path.mkdir(coverFolder)
+                    newFilePath = Path(coverFolder).joinpath(Path(folder).stem + '.' + fileNameList[0].split('/')[-1].split('.')[-1])
                     Path(oldFilePath).replace(newFilePath)
                     tmpPath = Path(folder).parent.joinpath(fileNameList[0].split('/')[0])
                     tmpPath = Path(tmpPath).joinpath(fileNameList[0].split('/')[1])
