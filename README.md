@@ -2,6 +2,8 @@
 
 ## 说明：
 
+使用前请先安装python[https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe](https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe)
+
 ### copyEachFoldersFirstFile.py
 
 会把同级目录下的所有文件夹的第一个文件复制到cover文件夹内
