@@ -41,6 +41,8 @@ def writefile(filereadlines, inputPath, info):
     newfile.close()     
     
 def main(inputPath):
+    # 忽略的文件名，不会写到html里，格式 keyWords = ['关键词1','关键词2','关键词3']
+    keyWords = []
     # 显示完整地址 = 1，还是只显示文件名 = 0
     showAllAddress = 0
     # 是否显示处理过程, show process details = 1, no detils = 0
@@ -81,47 +83,48 @@ def main(inputPath):
     
     for file in mypath.glob('**/*'):
         loc = file.parent.joinpath(file.name)
-        if showProcessDetails:
-            print(loc)
-        if showAllAddress:
-            showName = str(loc)
-            if hidePath:
-                showAddr = 'javascript:void(0);'
-            elif absolutePath:
-                showAddr = str(loc)
+        if not any(kw in str(loc) for kw in keyWords):
+            if showProcessDetails:
+                print(loc)
+            if showAllAddress:
+                showName = str(loc)
+                if hidePath:
+                    showAddr = 'javascript:void(0);'
+                elif absolutePath:
+                    showAddr = str(loc)
+                else:
+                    showAddr = str(file.relative_to(mypath))
             else:
-                showAddr = str(file.relative_to(mypath))
-        else:
-            showName = str(file.name)
-            if hidePath:
-                showAddr = 'javascript:void(0);'
-            elif absolutePath:
-                showAddr = str(loc)
-            else:
-                showAddr = str(file.relative_to(mypath))
-        if Path.is_dir(file):
-            folderCount = folderCount + 1
-            if showAllFolderAddr:
-                showName = '<span class="folder"><span class=folderNameShow">' + showAddr + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
-            else:
-                showName = '<span class="folder"><span class=folderNameShow">' + showName + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
-        if Path.is_file(file):
-            fileCount = fileCount + 1
-        if showFolderAndFile and showFileSize:
-            fileSize = Path(loc).stat().st_size
-            showFileSize = formatFileSize(fileSize)
-            fileSizeCount = fileSizeCount + fileSize
-            if clickFolder and Path.is_dir(file):
-                outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</td><td></a></tr>\n'
-            elif (not clickFolder) and Path.is_dir(file):
-                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td></a></tr>\n'
-            else:
-                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
-        if (not showFolderAndFile and Path.is_dir(file)) or (not showFileSize):
-            if clickFolder:
-                outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</a></td></tr>\n'
-            else:
-                outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
+                showName = str(file.name)
+                if hidePath:
+                    showAddr = 'javascript:void(0);'
+                elif absolutePath:
+                    showAddr = str(loc)
+                else:
+                    showAddr = str(file.relative_to(mypath))
+            if Path.is_dir(file):
+                folderCount = folderCount + 1
+                if showAllFolderAddr:
+                    showName = '<span class="folder"><span class=folderNameShow">' + showAddr + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
+                else:
+                    showName = '<span class="folder"><span class=folderNameShow">' + showName + '</span><span class="folderNameHide">' + showAddr + '</span></span>'
+            if Path.is_file(file):
+                fileCount = fileCount + 1
+            if showFolderAndFile and showFileSize:
+                fileSize = Path(loc).stat().st_size
+                showFileSize = formatFileSize(fileSize)
+                fileSizeCount = fileSizeCount + fileSize
+                if clickFolder and Path.is_dir(file):
+                    outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</td><td></a></tr>\n'
+                elif (not clickFolder) and Path.is_dir(file):
+                    outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td></a></tr>\n'
+                else:
+                    outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</td><td>' + showFileSize + '</a></tr>\n'
+            if (not showFolderAndFile and Path.is_dir(file)) or (not showFileSize):
+                if clickFolder:
+                    outputFile = outputFile + '<tr><td><a onclick="doClickFolder()" href="javascript:void(0);">' + showName + '</a></td></tr>\n'
+                else:
+                    outputFile = outputFile + '<tr><td><a href="' + showAddr + '">' + showName + '</a></td></tr>\n'
    
     outputFile = outputFile + '</td></table></div></body></html>'
     outputFile = outputFile + '<script type="text/javascript" language="JavaScript">function start(){document.getElementById("fileNameID").innerHTML = "<a href=\\"javascript:frontpage()\\">文件名 (' + str(fileCount) + '个文件，' + str(folderCount) + '个文件夹，'
