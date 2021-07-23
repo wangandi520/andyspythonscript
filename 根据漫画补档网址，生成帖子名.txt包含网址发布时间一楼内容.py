@@ -12,7 +12,8 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    url = 'https://www.manhuabudang.com/read.php?tid=xxx'
+    tid = 386
+    url = 'https://www.manhuabudang.com/read.php?tid=' + str(tid)
     getHtml = requests.get(url)
     soup = BeautifulSoup(getHtml.text, 'html.parser')
     getName = soup.find(attrs={'id' : 'subject_tpc'}).string
