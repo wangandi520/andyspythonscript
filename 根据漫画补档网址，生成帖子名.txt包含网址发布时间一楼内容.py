@@ -12,7 +12,7 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    tid = 386
+    tid = 10000
     url = 'https://www.manhuabudang.com/read.php?tid=' + str(tid)
     getHtml = requests.get(url)
     soup = BeautifulSoup(getHtml.text, 'html.parser')
@@ -21,10 +21,8 @@ def main():
     getContent = str(soup.find(attrs={'id' : 'read_tpc'}))
     getContent = getContent.replace('<br/>',"\n")
     getContent = BeautifulSoup(getContent, 'html.parser').get_text()
-    
     writefile(getName, url + getTime + getContent)
         
-
 if __name__ == '__main__':
     main()
     
