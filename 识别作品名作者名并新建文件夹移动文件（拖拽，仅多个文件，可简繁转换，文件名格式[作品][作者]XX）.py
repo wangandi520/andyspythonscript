@@ -15,12 +15,20 @@ def main(inputPath):
             fileName = Path(aPath).name
             nameParts = re.findall("(\\[[^\\]]*\\])", fileName)
             if len(nameParts) >= 2:
-                if fileNameType:
-                    workName = OpenCC('t2s').convert(nameParts[0][1:-1])
-                    authorName = OpenCC('t2s').convert(nameParts[1][1:-1])
+                if nameParts[0] == '[Comic]' or nameParts[0] == '[comic]':
+                    if fileNameType:
+                        workName = OpenCC('t2s').convert(nameParts[1][1:-1])
+                        authorName = OpenCC('t2s').convert(nameParts[2][1:-1])
+                    else:
+                        workName = OpenCC('s2t').convert(nameParts[1][1:-1])
+                        authorName = OpenCC('s2t').convert(nameParts[2][1:-1])
                 else:
-                    workName = OpenCC('s2t').convert(nameParts[0][1:-1])
-                    authorName = OpenCC('s2t').convert(nameParts[1][1:-1])
+                    if fileNameType:
+                        workName = OpenCC('t2s').convert(nameParts[0][1:-1])
+                        authorName = OpenCC('t2s').convert(nameParts[1][1:-1])
+                    else:
+                        workName = OpenCC('s2t').convert(nameParts[0][1:-1])
+                        authorName = OpenCC('s2t').convert(nameParts[1][1:-1])
                 authorPath = Path(aPath).parent.joinpath(Path(authorName))
                 if not authorPath.exists():
                     Path.mkdir(authorPath)
