@@ -12,17 +12,18 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    tid = 10000
-    url = 'https://www.manhuabudang.com/read.php?tid=' + str(tid)
-    print(url)
-    getHtml = requests.get(url)
-    soup = BeautifulSoup(getHtml.text, 'html.parser')
-    getName = soup.find(attrs={'id' : 'subject_tpc'}).string
-    getTime = '\n\n' + soup.find(attrs={'id' : 'readfloor_tpc'}).find(attrs={'class' : 'tipTop s6'}).findAll('span')[-1].get_text() + '\n'
-    getContent = str(soup.find(attrs={'id' : 'read_tpc'}))
-    getContent = getContent.replace('<br/>',"\n")
-    getContent = BeautifulSoup(getContent, 'html.parser').get_text()
-    writefile(getName, url + getTime + getContent)
+    tid = [1000,1001]
+    for eachtid in tid:
+        url = 'https://www.manhuabudang.com/read.php?tid=' + str(eachtid)
+        print(url)
+        getHtml = requests.get(url)
+        soup = BeautifulSoup(getHtml.text, 'html.parser')
+        getName = soup.find(attrs={'id' : 'subject_tpc'}).string
+        getTime = '\n\n' + soup.find(attrs={'id' : 'readfloor_tpc'}).find(attrs={'class' : 'tipTop s6'}).findAll('span')[-1].get_text() + '\n'
+        getContent = str(soup.find(attrs={'id' : 'read_tpc'}))
+        getContent = getContent.replace('<br/>',"\n")
+        getContent = BeautifulSoup(getContent, 'html.parser').get_text()
+        writefile(getName, url + getTime + getContent)
         
 if __name__ == '__main__':
     main()
