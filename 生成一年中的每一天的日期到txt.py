@@ -15,14 +15,12 @@ def main():
     setYear = 2021
     myDate = datetime.date(setYear,1,1)
     output = []
-    # if(calendar.isleap(setYear) == True):
-        # print('闰年')
-    # else:
-        # print('平年')
+    # 2021年01月01日
     while myDate.strftime("%Y") == str(setYear):
         output.append(myDate.strftime("%Y年%m月%d日"))
         output.append('\n\n\n')
         myDate = myDate+datetime.timedelta(days =+ 1)
+        print(myDate.strftime("%-m"))
     writefile(output)
         
 if __name__ == '__main__':
