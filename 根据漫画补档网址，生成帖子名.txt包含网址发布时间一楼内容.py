@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 
 def writefile(fileName, filereadlines):
     #write file
+    fileName = fileName.replace('/', ' ')
     with open(fileName + '.txt', mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
