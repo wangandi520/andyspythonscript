@@ -20,7 +20,6 @@ def main():
         output.append(myDate.strftime("%Y年%m月%d日"))
         output.append('\n\n\n')
         myDate = myDate+datetime.timedelta(days =+ 1)
-        print(myDate.strftime("%-m"))
     writefile(output)
         
 if __name__ == '__main__':
