@@ -18,7 +18,7 @@ document.onkeydown = function(){
             function()
             {
                 eachScore[i].click();
-                console.log('Floor = ' + i);
+                console.log('正在评分第' + i + '楼');
                 setTimeout(
                     function()
                     {
