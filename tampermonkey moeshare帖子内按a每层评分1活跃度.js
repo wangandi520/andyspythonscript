@@ -11,7 +11,7 @@
 
 
 
-function pingfen(eachScore,i,count){
+function pingfen(eachScore,i){
     eachScore[i - 1].click();
     console.log('正在评分第' + i + '楼');
     setTimeout(function(){
@@ -20,8 +20,7 @@ function pingfen(eachScore,i,count){
         my.querySelector('input').value = 1;
         setTimeout(function(){
             document.querySelector('#box_container .btn2 button').click();
-            count = count + 1;
-            console.log('评分完毕，活跃度 +' + count);
+            console.log('评分完毕，活跃度 + 1');
         }, 1000);
     }, 1000);
 }
@@ -29,11 +28,10 @@ function pingfen(eachScore,i,count){
 document.onkeydown = function(){
     var eachScore = document.getElementsByClassName('r-score');
     var i = 1;
-    var count = 0;
     //在帖子内，按a键开始自动评分
     if (event.keyCode == 65){
         setInterval(function(){
-            pingfen(eachScore,i,count);
+            pingfen(eachScore,i);
             i = i + 1;
         }, 5000);
     }
