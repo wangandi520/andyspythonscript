@@ -20,6 +20,7 @@ function pingfen(eachScore,i){
         my.querySelector('input').value = 1;
         setTimeout(function(){
             document.querySelector('#box_container .btn2 button').click();
+            console.log('评分完毕，活跃度 + 1');
         }, 1000);
     }, 1000);
 }
