@@ -2,6 +2,7 @@ import random
 
 # 日本麻将发牌配牌模拟
 # 136张牌，p筒s索m万123456789，z字东南西北白发中，0红宝牌
+# 从北家右手方向逆时针生成
 rawMahjong = [
 '1p', '1p', '1p', '1p', 
 '2p', '2p', '2p', '2p', 
@@ -136,7 +137,14 @@ wangPai = wangPai + newRandomMahjong[len(newRandomMahjong) - 14: len(newRandomMa
 
 print('骰子: ' + str(getNum))
 print()
-print('配牌方向: ' + getDirection)
+if (getDirection == 'Dong'):
+    print('配牌方向: 东')
+if (getDirection == 'Nan'):
+    print('配牌方向: 南')
+if (getDirection == 'Xi'):
+    print('配牌方向: 西')
+if (getDirection == 'Bei'):
+    print('配牌方向: 北')
 print()
 print('牌山: ')
 for i in newRandomMahjong:
@@ -158,8 +166,8 @@ print('北家配牌: ')
 for i in playerBei:
     print(i, end = '')
 print('\n')
-print('剩余牌山: ')
-for i in range(53, len(newRandomMahjong)):
+print('剩余牌山（不含王牌）: ')
+for i in range(53, len(newRandomMahjong) - 14):
     print(newRandomMahjong[i], end = '')
 print('\n')
 print('王牌: ')
