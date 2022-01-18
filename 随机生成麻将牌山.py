@@ -63,13 +63,13 @@ getDirection = ''
 #判断拿牌起始位置
 
 if (getNum in changfengDong):
-    getDirection = 'Dong'
+    getDirection = '东'
 elif (getNum in changfengNan):
-    getDirection = 'Nan'
+    getDirection = '南'
 elif (getNum in changfengXi):
-    getDirection = 'Xi'
+    getDirection = '西'
 elif (getNum in changfengBei):
-    getDirection = 'Bei'
+    getDirection = '北'
 
 # 打印牌谱，北家右侧起，上下上下
 # 北牌堆
@@ -96,13 +96,13 @@ playerBei = []
 # 王牌
 wangPai = []
 
-if (getDirection == 'Dong'):
+if (getDirection == '东'):
     startIndex = 2 * getNum + 102
-elif (getDirection == 'Nan'):
+elif (getDirection == '南'):
     startIndex = 2 * getNum + 68
-elif (getDirection == 'Xi'):
+elif (getDirection == '西'):
     startIndex = 2 * getNum + 34
-elif (getDirection == 'Bei'):
+elif (getDirection == '北'):
     startIndex = 2 * getNum
     
 # 重置牌谱，第一张配牌的为起始，前面的添加到后面，并分出王牌
@@ -137,14 +137,7 @@ wangPai = wangPai + newRandomMahjong[len(newRandomMahjong) - 14: len(newRandomMa
 
 print('骰子: ' + str(getNum))
 print()
-if (getDirection == 'Dong'):
-    print('配牌方向: 东')
-if (getDirection == 'Nan'):
-    print('配牌方向: 南')
-if (getDirection == 'Xi'):
-    print('配牌方向: 西')
-if (getDirection == 'Bei'):
-    print('配牌方向: 北')
+print('配牌方向: ' + getDirection)
 print()
 print('牌山: ')
 for i in newRandomMahjong:
