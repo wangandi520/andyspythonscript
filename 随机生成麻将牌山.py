@@ -2,7 +2,7 @@ import random
 
 # 日本麻将发牌配牌模拟
 # 136张牌，p筒s索m万123456789，z字东南西北白发中，0红宝牌
-# 从北家右手方向逆时针生成
+# 从北家右手方向顺时针生成
 rawMahjong = [
 '1p', '1p', '1p', '1p', 
 '2p', '2p', '2p', '2p', 
@@ -43,7 +43,7 @@ rawMahjong = [
 # 随机生成的牌谱
 randomMahjong = []
 
-for i in range(0, len(rawMahjong) - 1):
+for i in range(0, len(rawMahjong)):
     randomIndex = random.randint(0, len(rawMahjong) - 1)
     randomMahjong.append(rawMahjong[randomIndex])
     del rawMahjong[randomIndex]
@@ -64,29 +64,16 @@ getDirection = ''
 
 if (getNum in changfengDong):
     getDirection = '东'
+    startIndex = 2 * getNum + 102
 elif (getNum in changfengNan):
     getDirection = '南'
+    startIndex = 2 * getNum + 68
 elif (getNum in changfengXi):
     getDirection = '西'
+    startIndex = 2 * getNum + 34
 elif (getNum in changfengBei):
     getDirection = '北'
-
-# 打印牌谱，北家右侧起，上下上下
-# 北牌堆
-#for i in range(0, 33):
-#    print(randomMahjong[i], end = '')
-#print('\n')
-# 西牌堆
-#for i in range(34, 67):
-#    print(randomMahjong[i], end = '')
-# 南牌堆
-#print('\n')
-#for i in range(68, 101):
-#    print(randomMahjong[i], end = '')
-# 东牌堆
-#print('\n')
-#for i in range(102, 135):
-#    print(randomMahjong[i], end = '')
+    startIndex = 2 * getNum
 
 # 每家配牌
 playerDong = []
@@ -95,77 +82,70 @@ playerXi = []
 playerBei = []
 # 王牌
 wangPai = []
-
-if (getDirection == '东'):
-    startIndex = 2 * getNum + 102
-elif (getDirection == '南'):
-    startIndex = 2 * getNum + 68
-elif (getDirection == '西'):
-    startIndex = 2 * getNum + 34
-elif (getDirection == '北'):
-    startIndex = 2 * getNum
-    
+   
 # 重置牌谱，第一张配牌的为起始，前面的添加到后面，并分出王牌
 newRandomMahjong = []
+newnewRandomMahjong = []
 for i in range(startIndex, len(randomMahjong)):
     newRandomMahjong.append(randomMahjong[i])
 for i in range(0, startIndex):
     newRandomMahjong.append(randomMahjong[i])
-
+newnewRandomMahjong = list(newRandomMahjong)
 newStartIndex = 0
-playerDong = playerDong + newRandomMahjong[newStartIndex + 0: newStartIndex + 4]
-playerNan = playerNan + newRandomMahjong[newStartIndex + 4: newStartIndex + 8]
-playerXi = playerXi + newRandomMahjong[newStartIndex + 8: newStartIndex + 12]
-playerBei = playerBei + newRandomMahjong[newStartIndex + 12: newStartIndex + 16]
-playerDong = playerDong + newRandomMahjong[newStartIndex + 16: newStartIndex + 20]
-playerNan = playerNan + newRandomMahjong[newStartIndex + 20: newStartIndex + 24]
-playerXi = playerXi + newRandomMahjong[newStartIndex + 24: newStartIndex + 28]
-playerBei = playerBei + newRandomMahjong[newStartIndex + 28: newStartIndex + 32]
-playerDong = playerDong + newRandomMahjong[newStartIndex + 32: newStartIndex + 36]
-playerNan = playerNan + newRandomMahjong[newStartIndex + 36: newStartIndex + 40]
-playerXi = playerXi + newRandomMahjong[newStartIndex + 40: newStartIndex + 44]
-playerBei = playerBei + newRandomMahjong[newStartIndex + 44: newStartIndex + 48]
-playerDong = playerDong + newRandomMahjong[newStartIndex + 48: newStartIndex + 49]
-playerDong = playerDong + newRandomMahjong[newStartIndex + 52: newStartIndex + 53]
-playerNan = playerNan + newRandomMahjong[newStartIndex + 49: newStartIndex + 50]
-playerXi = playerXi + newRandomMahjong[newStartIndex + 50: newStartIndex + 51]
-playerBei = playerBei + newRandomMahjong[newStartIndex + 51: newStartIndex + 52]
 
-lastIndex = 53
+index = 0
+while index < 3:
+    playerDong = playerDong + newnewRandomMahjong[0: 4]
+    del newnewRandomMahjong[0: 4]
+    playerNan = playerNan + newnewRandomMahjong[0: 4]
+    del newnewRandomMahjong[0: 4]
+    playerXi = playerXi + newnewRandomMahjong[0: 4]
+    del newnewRandomMahjong[0: 4]
+    playerBei = playerBei + newnewRandomMahjong[0: 4]
+    del newnewRandomMahjong[0: 4]
+    index = index + 1
 
-wangPai = wangPai + newRandomMahjong[len(newRandomMahjong) - 14: len(newRandomMahjong)]
+playerDong.append(newnewRandomMahjong[0])
+playerDong.append(newnewRandomMahjong[4])
+playerNan.append(newnewRandomMahjong[1])
+playerXi.append(newnewRandomMahjong[2])
+playerBei.append(newnewRandomMahjong[3])
+del newnewRandomMahjong[0: 5]
+wangPai = wangPai + newnewRandomMahjong[len(newnewRandomMahjong) - 14: len(newnewRandomMahjong)]
 
 print('骰子: ' + str(getNum))
 print()
 print('配牌方向: ' + getDirection)
 print()
-print('牌山: ')
+print('牌山（数量' + str(len(newRandomMahjong)) + '）: ')
 for i in newRandomMahjong:
     print(i, end = '')
 print('\n')
-print('东家配牌: ')
+print('东家配牌（数量' + str(len(playerDong)) + '）: ')
 for i in playerDong:
     print(i, end = '')
 print('\n')
-print('南家配牌: ')
+print('南家配牌（数量' + str(len(playerNan)) + '）: ')
 for i in playerNan:
     print(i, end = '')
 print('\n')
-print('西家配牌: ')
+print('西家配牌（数量' + str(len(playerXi)) + '）: ')
 for i in playerXi:
     print(i, end = '')
 print('\n')
-print('北家配牌: ')
+print('北家配牌（数量' + str(len(playerBei)) + '）: ')
 for i in playerBei:
     print(i, end = '')
 print('\n')
-print('剩余牌山（不含王牌）: ')
-for i in range(53, len(newRandomMahjong) - 14):
-    print(newRandomMahjong[i], end = '')
+print('剩余牌山（数量' + str(len(newnewRandomMahjong) - 14) + '，不含王牌）: ')
+for i in range(0, len(newnewRandomMahjong) - 14):
+    print(newnewRandomMahjong[i], end = '')
 print('\n')
-print('王牌: ')
+print('王牌（数量14）: ')
 for i in wangPai:
     print(i, end = '')
 print('\n')
 print('宝牌: ')
-print(newRandomMahjong[-6], end = '')
+print(newnewRandomMahjong[-6], end = '')
+print('\n')
+input()
