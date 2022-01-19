@@ -117,7 +117,11 @@ print('骰子: ' + str(getNum))
 print()
 print('配牌方向: ' + getDirection)
 print()
-print('牌山（数量' + str(len(newRandomMahjong)) + '）: ')
+print('初始牌山（北家右侧起，数量' + str(len(randomMahjong)) + '）: ')
+for i in randomMahjong:
+    print(i, end = '')
+print('\n')
+print('配牌牌山（拿起第一组起，数量' + str(len(newRandomMahjong)) + '）: ')
 for i in newRandomMahjong:
     print(i, end = '')
 print('\n')
@@ -147,5 +151,4 @@ for i in wangPai:
 print('\n')
 print('宝牌: ')
 print(newnewRandomMahjong[-6], end = '')
-print('\n')
 input()
