@@ -217,4 +217,8 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 修改py内的url，获取漫画补档的某个帖子内容
 
+### tampermonkey moeshare帖子内按a每层评分1活跃度
+
+chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去，在水区帖子立按a开始评分。
+
 ## 使用前请备份，防止文件名不符合你的需求
