@@ -225,4 +225,8 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 漫画补档首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
 
+linux每天0点5分签到
+crontab -e后填写，注意python和脚本要写绝对路径
+5 0 * * * /usr/bin/python /root/qiandao.py
+
 ## 使用前请备份，防止文件名不符合你的需求

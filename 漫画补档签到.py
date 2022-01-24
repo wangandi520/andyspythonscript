@@ -12,6 +12,8 @@ url = 'https://www.manhuabudang.com/u.php'
          
 headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
          "Cookie": ""}
+         
+print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
 se = requests.Session()
 response = requests.get(url,headers=headers)
