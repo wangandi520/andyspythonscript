@@ -217,8 +217,12 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 修改py内的url，获取漫画补档的某个帖子内容
 
-### tampermonkey moeshare帖子内按a每层评分1活跃度
+### tampermonkey moeshare帖子内按a每层评分1活跃度.js
 
 chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去，在水区帖子立按a开始评分。
+
+### 漫画补档签到.py
+
+漫画补档首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
 
 ## 使用前请备份，防止文件名不符合你的需求
