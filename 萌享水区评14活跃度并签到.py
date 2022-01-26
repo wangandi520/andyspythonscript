@@ -6,7 +6,7 @@ import requests
 import time
 
 # cookie
-# 萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号，结尾到8017a_c_stamp=处。
+# 萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
 
 # 水区帖子tid
 tid = '211701'
@@ -33,6 +33,13 @@ if response.status_code == 200:
     #print('status code: ' + str(resp.status_code))
 index = (response.text).find('verifyhash')
 
+# 获取MD MB
+
+tmpIndex2 = (response.text).find('枚</a>')
+tmpIndex3 = (response.text).find('点</a>')
+
+getMB = (response.text)[tmpIndex2 - 8: tmpIndex2].split('>')[1]
+getMD = (response.text)[tmpIndex3 - 8: tmpIndex3].split('>')[1]
 time.sleep(5)
 
 # 获取倒数第二页数=最新页数-1
@@ -49,9 +56,9 @@ if response.status_code == 200:
 pidArray = []
 newStart = 0
 for i in range(0,14):
-    tmpIndex = (response.text[newStart:]).find('showping_')
-    tmpPid = ((response.text[newStart:])[tmpIndex + 9: tmpIndex + 16])
-    newStart = newStart + tmpIndex + 16
+    tmpIndex5 = (response.text[newStart:]).find('showping_')
+    tmpPid = ((response.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
+    newStart = newStart + tmpIndex5 + 16
     pidArray.append(tmpPid)
 
 # 添加活跃度
@@ -99,4 +106,4 @@ elif (index != -1):
     se4 = requests.Session()
     if response4.status_code == 200:
         resp4 = se4.get(url)
-        print('request url: ' + qiandaoUrl)
+    print('现在MB: ' + getMB + ' MD: ' + getMD)
