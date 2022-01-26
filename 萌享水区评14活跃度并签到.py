@@ -32,7 +32,7 @@ if response.status_code == 200:
     resp = se.get(url)
     #print('status code: ' + str(resp.status_code))
 index = (response.text).find('verifyhash')
-
+myveri = ((response.text)[index + 14: index + 22])
 # 获取MD MB
 
 tmpIndex2 = (response.text).find('枚</a>')
@@ -61,12 +61,12 @@ for i in range(0,14):
     newStart = newStart + tmpIndex5 + 16
     pidArray.append(tmpPid)
 
+
 # 添加活跃度
 if (index == -1):
     print('也许cookie设置错误')
 elif (index != -1):
     for eachPid in pidArray:
-        myveri = ((response.text)[index + 14: index + 22])
         # print('verifyhash: ' + myveri)
         newtime2 = int(round(time.time() * 1000))
         myreferer = 'https://moeshare.cc/read-htm-tid-211701-page-' + newpage + '.html'
@@ -97,7 +97,7 @@ elif (index != -1):
             if ('活跃度' in response2.text):
                 print('页数: ' + newpage + ' PID: ' + eachPid + ' 活跃度+1')
             else:
-                print('Error: ' + response2.text)
+                print('页数: ' + newpage + ' PID: ' + eachPid + ' Error: ' + response2.text)
                 
     # 签到
     time.sleep(5)
