@@ -229,4 +229,8 @@ linux每天0点5分签到
 crontab -e后填写，注意python和脚本要写绝对路径
 5 0 * * * /usr/bin/python /root/qiandao.py
 
+### 萌享水区评14活跃度并签到.py
+
+萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号，结尾到8017a_c_stamp=处。
+
 ## 使用前请备份，防止文件名不符合你的需求

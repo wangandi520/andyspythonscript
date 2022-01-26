@@ -24,7 +24,7 @@ if response.status_code == 200:
 index = (response.text).find('verifyhash')
 myveri = ((response.text)[index + 14: index + 22])
 print('verifyhash: ' + myveri)
-mytime = t = int(round(time.time() * 1000))
+mytime = int(round(time.time() * 1000))
 
 time.sleep(2)
 
