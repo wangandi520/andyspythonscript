@@ -102,7 +102,7 @@ elif (index != -1):
     # 签到
     time.sleep(5)
     qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(int(round(time.time() * 1000))) + '&verify=' + myveri
-    response4 = requests.get(buttonUrl,headers=headers)
+    response4 = requests.get(qiandaoUrl,headers=headers)
     se4 = requests.Session()
     if response4.status_code == 200:
         resp4 = se4.get(url)
