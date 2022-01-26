@@ -19,11 +19,13 @@ se = requests.Session()
 response = requests.get(url,headers=headers)
 if response.status_code == 200:
     resp = se.get(url)
-    print('status code: ' + str(resp.status_code))
 
+index2 = (response.text).find('<li>漫画:') + 4
+index3 = (response.text).find('卷</li>')
+getmanhua = (response.text)[index2: index3]
 index = (response.text).find('verifyhash')
 myveri = ((response.text)[index + 14: index + 22])
-print('verifyhash: ' + myveri)
+#print('verifyhash: ' + myveri)
 mytime = int(round(time.time() * 1000))
 
 time.sleep(2)
@@ -34,12 +36,14 @@ response2 = requests.get(buttonUrl,headers=headers)
 se2 = requests.Session()
 if response2.status_code == 200:
     resp2 = se2.get(url)
-    print('request url: ' + buttonUrl)
-    print('status code: ' + str(resp2.status_code))
+    #print('request url: ' + buttonUrl)
+    #print('status code: ' + str(resp2.status_code))
     if ('你已经打卡' in response2.text):
         print('已经签到过了')
+        print(getmanhua)
     elif ('漫画+2' in response2.text):
         print('签到成功')
+        print(getmanhua)
     else:
         print('cookies或其他设置错误，打卡失败')
     
