@@ -14,6 +14,7 @@ headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537
          "Cookie": ""}
          
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+print('签到前' + getmanhua)
 
 se = requests.Session()
 response = requests.get(url,headers=headers)
@@ -40,10 +41,8 @@ if response2.status_code == 200:
     #print('status code: ' + str(resp2.status_code))
     if ('你已经打卡' in response2.text):
         print('已经签到过了')
-        print(getmanhua)
     elif ('漫画+2' in response2.text):
-        print('签到成功')
-        print(getmanhua)
+        print('签到成功，漫画+2')
     else:
         print('cookies或其他设置错误，打卡失败')
     
