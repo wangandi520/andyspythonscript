@@ -9,15 +9,14 @@ url = 'https://www.manhuabudang.com/u.php'
 
 # cookie
 # 漫画补档首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
-         
-headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
-         "Cookie": ""}
-         
+
+headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
+           "Cookie": ""}
+
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-print('签到前' + getmanhua)
 
 se = requests.Session()
-response = requests.get(url,headers=headers)
+response = requests.get(url, headers=headers)
 if response.status_code == 200:
     resp = se.get(url)
 
@@ -29,11 +28,13 @@ myveri = ((response.text)[index + 14: index + 22])
 #print('verifyhash: ' + myveri)
 mytime = int(round(time.time() * 1000))
 
+print('签到前' + getmanhua)
+
 time.sleep(2)
 
 buttonUrl = 'https://www.manhuabudang.com/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(mytime) + '&verify=' + myveri
 
-response2 = requests.get(buttonUrl,headers=headers)
+response2 = requests.get(buttonUrl, headers=headers)
 se2 = requests.Session()
 if response2.status_code == 200:
     resp2 = se2.get(url)
@@ -45,4 +46,3 @@ if response2.status_code == 200:
         print('签到成功，漫画+2')
     else:
         print('cookies或其他设置错误，打卡失败')
-    
