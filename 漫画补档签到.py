@@ -15,34 +15,15 @@ headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/
 
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
-se = requests.Session()
-response = requests.get(url, headers=headers)
-if response.status_code == 200:
-    resp = se.get(url)
+buttonUrl = 'https://www.manhuabudang.com//jobcenter.php?action=punch&step=2'
 
-index2 = (response.text).find('<li>漫画:') + 4
-index3 = (response.text).find('卷</li>')
-getmanhua = (response.text)[index2: index3]
-index = (response.text).find('verifyhash')
-myveri = ((response.text)[index + 14: index + 22])
-#print('verifyhash: ' + myveri)
-mytime = int(round(time.time() * 1000))
-
-print('签到前' + getmanhua)
-
-time.sleep(2)
-
-buttonUrl = 'https://www.manhuabudang.com/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(mytime) + '&verify=' + myveri
-
-response2 = requests.get(buttonUrl, headers=headers)
+response2 = requests.get(buttonUrl,headers=headers)
 se2 = requests.Session()
 if response2.status_code == 200:
-    resp2 = se2.get(url)
-    #print('request url: ' + buttonUrl)
-    #print('status code: ' + str(resp2.status_code))
     if ('你已经打卡' in response2.text):
         print('已经签到过了')
     elif ('漫画+2' in response2.text):
-        print('签到成功，漫画+2')
+    	print('签到成功，漫画+2')
     else:
         print('cookies或其他设置错误，打卡失败')
+    
