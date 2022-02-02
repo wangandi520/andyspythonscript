@@ -15,13 +15,11 @@ mytime = int(round(time.time()))
 newtimetmp = int(round(time.time() * 1000))
 # 脚本累计加过的活跃度
 addhuoyue = 0
-# 0 = 不跳过，1 = 跳过评分直接签到
-skipaddhuoyue = 0
 
 # cookie
 # 萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
 # f12查看自己的cookie并修改，只需复制8017a_c_stamp=前面的部分
-mycookie = "8017a_c_stamp=" + str(mytime) + "; 8017a_lastvisit=0	" + str(mytime) + "	/index.php"
+mycookie = " 8017a_c_stamp=" + str(mytime) + "; 8017a_lastvisit=0	" + str(mytime) + "	/index.php"
 
 headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
          "Cookie": mycookie}
@@ -42,9 +40,11 @@ if response5.status_code == 200:
     print('verifyhash :' + myveri)
     print(response5.text[tmpIndex5 + 18: tmpIndex6 - 6])
         
-if (huoyueNum < 14 and not skipaddhuoyue):
+if (huoyueNum < 14):
     se = requests.Session()
     response = requests.get(url,headers=headers)
+    if response.status_code == 200:
+        resp = se.get(url)
     if (' ' in myveri):
         print('Cookie 获取出错: veryify = ' + myveri + ' (8位数字字母组合且无空格)')
         sys.exit()
@@ -62,7 +62,9 @@ if (huoyueNum < 14 and not skipaddhuoyue):
     newpage = str(int((response.text)[tmpIndex + 17: tmpIndex + 21]) - 1)
     url = 'https://moeshare.cc/read-htm-tid-' + tid + '-page-' + newpage + '.html'
     response = requests.get(url,headers=headers)
-    
+    if response.status_code == 200:
+        resp = se.get(url)
+        
     # 获取倒数第二页所有pid
     pidArray = []
     newStart = 0
@@ -72,8 +74,9 @@ if (huoyueNum < 14 and not skipaddhuoyue):
         newStart = newStart + tmpIndex5 + 16
         pidArray.append(tmpPid)
 
+
     # 添加活跃度
-    if (index == -1 and skipaddhuoyue):
+    if (index == -1):
         print('也许cookie设置错误')
     elif (index != -1):
         for eachPid in pidArray:
@@ -102,6 +105,7 @@ if (huoyueNum < 14 and not skipaddhuoyue):
             se2 = requests.Session()
             newtimetmp = newtime2
             if response2.status_code == 200:
+                resp2 = se2.get(url)
                 #print(response2.text)
                 if ('活跃度' in response2.text):
                     print('页数: ' + newpage + ' PID: ' + eachPid + ' 活跃度+1')
@@ -111,9 +115,10 @@ if (huoyueNum < 14 and not skipaddhuoyue):
         time.sleep(5)
     
 # 签到
-if True:
-    qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
+if addhuoyue > 13:
+    qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(int(round(time.time() * 1000))) + '&verify=' + myveri
     response4 = requests.get(qiandaoUrl,headers=headers)
     se4 = requests.Session()
     if response4.status_code == 200:
         print(response4.text)
+        response4 = se4.get(url)
