@@ -75,7 +75,7 @@ if (huoyueNum < 14):
 
 
     # 添加活跃度
-    if (index == -1 and skipaddhuoyue):
+    if (index == -1):
         print('也许cookie设置错误')
     elif (index != -1):
         for eachPid in pidArray:
@@ -112,15 +112,13 @@ if (huoyueNum < 14):
                     print('页数: ' + newpage + ' PID: ' + eachPid + ' Error: ' + response2.text)
         time.sleep(3)
 
+# 签到
+# qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(int(round(time.time() * 1000))) + '&verify=' + myveri
 mytime3 = int(round(time.time()))
 headers3={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
-         "Cookie": mycookie +  + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}
-         
-# 签到
-if True:
-    # qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(int(round(time.time() * 1000))) + '&verify=' + myveri
-    qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
-    response4 = requests.get(qiandaoUrl,headers=headers3)
-    se4 = requests.Session()
-    if response4.status_code == 200:
-        print(response4.text)
+         "Cookie": mycookie +  + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}      
+qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
+response4 = requests.get(qiandaoUrl,headers=headers3)
+se4 = requests.Session()
+if response4.status_code == 200:
+    print(response4.text)
