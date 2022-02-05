@@ -23,7 +23,7 @@ addhuoyue = 0
 mycookie = "8017a_c_stamp="
 
 headers={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
-         "Cookie": mycookie +  + str(mytime) + "; 8017a_lastvisit=0	" + str(mytime) + "	/index.php"}
+         "Cookie": mycookie + str(mytime) + "; 8017a_lastvisit=0	" + str(mytime) + "	/index.php"}
 
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
