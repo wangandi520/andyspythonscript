@@ -35,7 +35,11 @@ if response5.status_code == 200:
     tmpIndex5 = (response5.text).find('<li class="w mb5">活跃度')
     tmpIndex6 = (response5.text).find('<li class="w mb5">YQBD')
     huoyue = response5.text[tmpIndex5 + 18: tmpIndex6 - 6]
-    huoyueNum = int(huoyue.split('：')[1])
+    try:
+        huoyueNum = int(huoyue.split('：')[1])
+    except IndexError:
+        print('也许cookie设置错误。01')
+        sys.exit()
     addhuoyue = addhuoyue + huoyueNum
     index = (response5.text).find('verifyhash')
     myveri = ((response5.text)[index + 14: index + 22])
@@ -62,21 +66,28 @@ if (huoyueNum < 14):
     tmpIndex = (response.text).find('<div class="fl">共')
     newpage = str(int((response.text)[tmpIndex + 17: tmpIndex + 21]) - 1)
     url = 'https://moeshare.cc/read-htm-tid-' + tid + '-page-' + newpage + '.html'
-    response = requests.get(url,headers=headers)
+    
+    mytime7 = int(round(time.time()))
+    headers7={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
+         "Cookie": mycookie + str(mytime7) + "; 8017a_lastvisit=0	" + str(mytime7) + "	/index.php"}
+    response7 = requests.get(url,headers=headers7)
     
     # 获取倒数第二页所有pid
     pidArray = []
     newStart = 0
     for i in range(0,14):
-        tmpIndex5 = (response.text[newStart:]).find('showping_')
-        tmpPid = ((response.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
+        tmpIndex5 = (response7.text[newStart:]).find('showping_')
+        tmpPid = ((response7.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
+        if not tmpPid.isdigit():
+            print('PID 获取错误，不是数字：tmpPid = ' + tmpPid)
+            sys.exit()
         newStart = newStart + tmpIndex5 + 16
         pidArray.append(tmpPid)
 
 
     # 添加活跃度
     if (index == -1):
-        print('也许cookie设置错误')
+        print('也许cookie设置错误。02')
     elif (index != -1):
         for eachPid in pidArray:
             # print('verifyhash: ' + myveri)
@@ -107,16 +118,20 @@ if (huoyueNum < 14):
                 #print(response2.text)
                 if ('活跃度' in response2.text):
                     addhuoyue = addhuoyue + 1
-                    print('页数: ' + newpage + ' PID: ' + eachPid + ' 活跃度： ' + addhuoyue)
+                    print('页数: ' + str(newpage) + ' PID: ' + str(eachPid) + ' 活跃度： ' + str(addhuoyue))
                 else:
-                    print('页数: ' + newpage + ' PID: ' + eachPid + ' Error: ' + response2.text)
-        time.sleep(3)
+                    print('页数: ' + str(newpage) + ' PID: ' + str(eachPid) + ' Error: ' + response2.text)
+            time.sleep(3)
 
+mytime3 = int(round(time.time()))
+headers3={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
+         "Cookie": mycookie + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}
+         
 # 签到
 # qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&verify=' + myveri + '&step=2&nowtime=' + str(int(round(time.time() * 1000))) + '&verify=' + myveri
 mytime3 = int(round(time.time()))
 headers3={"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/97.0.4692.99 Safari/537.36 Edg/97.0.1072.69",
-         "Cookie": mycookie +  + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}      
+         "Cookie": mycookie + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}      
 qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
 response4 = requests.get(qiandaoUrl,headers=headers3)
 se4 = requests.Session()
