@@ -57,7 +57,9 @@ changfengBei = [4 ,8, 12]
 # 骰子
 touzi1 = [1, 2, 3, 4, 5, 6]
 touzi2 = [1, 2, 3, 4, 5, 6]
-getNum = touzi1[random.randint(0, 5)] + touzi2[random.randint(0, 5)]
+getNum1 = touzi1[random.randint(0, 5)]
+getNum2 = touzi2[random.randint(0, 5)]
+getNum = getNum1 + getNum2
 getDirection = ''
 
 #判断拿牌起始位置
@@ -113,7 +115,7 @@ playerBei.append(newnewRandomMahjong[3])
 del newnewRandomMahjong[0: 5]
 wangPai = wangPai + newnewRandomMahjong[len(newnewRandomMahjong) - 14: len(newnewRandomMahjong)]
 
-print('骰子: ' + str(getNum))
+print('骰子: ' + str(getNum1) + ' + ' + str(getNum2))
 print()
 print('配牌方向: ' + getDirection)
 print()
