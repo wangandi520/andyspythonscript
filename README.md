@@ -221,16 +221,4 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去，在水区帖子立按a开始评分。
 
-### 漫画补档签到.py
-
-漫画补档首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号。
-
-linux每天0点5分签到
-crontab -e后填写，注意python和脚本要写绝对路径
-5 0 * * * /usr/bin/python /root/qiandao.py
-
-### 萌享水区评14活跃度并签到.py
-
-萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键user-agent和cookie，复制值到下面冒号后，别忘了引号，只需复制8017a_c_stamp=前面的部分。
-
 ## 使用前请备份，防止文件名不符合你的需求
