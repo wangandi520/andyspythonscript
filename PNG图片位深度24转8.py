@@ -17,13 +17,13 @@ def main(inputPath):
             for file in Path(aPath).glob('*'):
                 img = Image.open(file)
                 img = Image.fromarray(numpy.uint8(img.convert('L')))  # *255
-                img.save(file.parent.joinpath(file.stem + ' new.png'))
+                img.save(file.parent.joinpath(file.stem + ' new' + file.suffix))
 
         if Path.is_file(Path(aPath)):
             file = Path(aPath)
             img = Image.open(file)
             img = Image.fromarray(numpy.uint8(img.convert('L')))  # *255
-            img.save(file.parent.joinpath(file.stem + ' new.png'))
+            img.save(file.parent.joinpath(file.stem + ' new' + file.suffix))
         
 if __name__ == '__main__':
     try:
