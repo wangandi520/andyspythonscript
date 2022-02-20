@@ -1,4 +1,5 @@
 # encoding:utf-8
+# pip install opencc-python-reimplemented
 # https://github.com/wangandi520/andyspythonscript
 
 from opencc import OpenCC
