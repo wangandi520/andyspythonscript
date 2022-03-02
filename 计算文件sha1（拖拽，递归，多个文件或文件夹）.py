@@ -71,7 +71,7 @@ def main(inputPath):
         if Path.is_dir(Path(aPath)):
             allDirInfo = []
             for aFile in Path(aPath).glob('**/*'): 
-                if not Path.is_dir(aFile):
+                if Path.is_file(aFile):
                     fileSha1 = getSha1(aFile)
                     fileSize = Path(aFile).stat().st_size
                     fileName = Path(aFile).name
