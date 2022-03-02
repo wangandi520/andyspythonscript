@@ -2,7 +2,11 @@
 
 ## 说明：
 
-使用前请先安装python[https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe](https://www.python.org/ftp/python/3.9.6/python-3.9.6-amd64.exe)
+使用前请先安装python[https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe](https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe)
+
+官方网站[https://www.python.org/](https://www.python.org/)
+
+别在baidu搜索或别的不明网站下载，谨防流氓软件
 
 ### copyEachFoldersFirstFile.py
 
