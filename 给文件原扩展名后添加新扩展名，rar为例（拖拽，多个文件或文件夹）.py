@@ -15,7 +15,6 @@ def main(inputPath):
                 if Path.is_file(file) and file.suffix != newSuffix:
                     file.rename(Path(aPath).joinpath(file.name + newSuffix))
         if Path.is_file(Path(aPath)) and Path(aPath).suffix != newSuffix:
-            print(Path(aPath).suffix)
             Path(aPath).rename(Path(aPath).parent.joinpath(Path(aPath).name + newSuffix))
         
 if __name__ == '__main__':
