@@ -9,11 +9,10 @@ def main(inputPath):
     
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('*'):
-                newFileName = Path(file).stem[::-1] + Path(file).suffix
-                Path(file).rename(Path(file).parent.joinpath(newFileName))
-            newFolderName = Path(aPath).name[::-1]
-            Path(aPath).rename(Path(aPath).parent.joinpath(newFolderName))
+            for file in Path(aPath).glob('**/*'):
+                if Path.is_file(file):
+                    newFileName = Path(file).stem[::-1] + Path(file).suffix
+                    Path(file).rename(Path(file).parent.joinpath(newFileName))
                 
         if Path.is_file(Path(aPath)):
             newFileName = Path(aPath).stem[::-1] + Path(aPath).suffix
