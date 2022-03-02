@@ -13,12 +13,12 @@ def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('*'):
+            for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file):
                     if setStyle:
-                        file.rename(Path(aPath).joinpath(''.join(lazy_pinyin(file.name))))
+                        file.rename(Path(file).parent.joinpath(''.join(lazy_pinyin(file.name))))
                     else:
-                        file.rename(Path(aPath).joinpath(''.join(lazy_pinyin(file.name, style=Style.FIRST_LETTER))))
+                        file.rename(Path(file).parent.joinpath(''.join(lazy_pinyin(file.name, style=Style.FIRST_LETTER))))
         if Path.is_file(Path(aPath)):
             if setStyle:
                 Path(aPath).rename(Path(aPath).parent.joinpath(''.join(lazy_pinyin(Path(aPath).name))))

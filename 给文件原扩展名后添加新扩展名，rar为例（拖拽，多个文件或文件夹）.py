@@ -11,12 +11,18 @@ def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('*'):
+            for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file) and file.suffix != newSuffix:
-                    file.rename(Path(aPath).joinpath(file.name + newSuffix))
+                    try:
+                        file.rename(Path(file).parent.joinpath(file.name + newSuffix))
+                    except FileExistsError:
+                        print('文件已存在')
         if Path.is_file(Path(aPath)) and Path(aPath).suffix != newSuffix:
-            Path(aPath).rename(Path(aPath).parent.joinpath(Path(aPath).name + newSuffix))
-        
+            try:
+                Path(aPath).rename(Path(aPath).parent.joinpath(Path(aPath).name + newSuffix))
+            except FileExistsError:
+                print('文件已存在')
+                
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
