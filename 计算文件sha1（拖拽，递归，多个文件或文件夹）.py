@@ -40,7 +40,13 @@ def formatFileSize(sizeBytes):
 def writefile(filereadlines, inputPath):
     # 文件名是.txt格式还是其他
     fileSuffix = '.txt'
-    newfile = open(Path(inputPath).joinpath(inputPath.name + fileSuffix), mode='a', encoding='UTF-8')
+    # txt放到这个文件外面 = 1 还是里面 = 0
+    setFileLocation = 0
+    
+    if setFileLocation:
+        newfile = open(Path(inputPath).parent.joinpath(inputPath.name + fileSuffix), mode='a', encoding='UTF-8')
+    else:
+        newfile = open(Path(inputPath).joinpath(inputPath.name + fileSuffix), mode='a', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()   
     
@@ -64,15 +70,16 @@ def main(inputPath):
             
         if Path.is_dir(Path(aPath)):
             allDirInfo = []
-            for aFile in Path(aPath).glob('*'): 
-                fileSha1 = getSha1(aFile)
-                fileSize = Path(aFile).stat().st_size
-                fileName = Path(aFile).name
-                showFileSize = formatFileSize(fileSize)
-                if showOrNoFileSize:
-                    allDirInfo.append(fileSha1 +  ' ' + fileName + ' ' + showFileSize + '\n')
-                else:
-                    allDirInfo.append(fileSha1 +  ' ' + fileName + '\n')
+            for aFile in Path(aPath).glob('**/*'): 
+                if not Path.is_dir(aFile):
+                    fileSha1 = getSha1(aFile)
+                    fileSize = Path(aFile).stat().st_size
+                    fileName = Path(aFile).name
+                    showFileSize = formatFileSize(fileSize)
+                    if showOrNoFileSize:
+                        allDirInfo.append(fileSha1 +  ' ' + fileName + ' ' + showFileSize + '\n')
+                    else:
+                        allDirInfo.append(fileSha1 +  ' ' + fileName + '\n')
             writefile(allDirInfo, Path(aPath))
         
 if __name__ == '__main__':
