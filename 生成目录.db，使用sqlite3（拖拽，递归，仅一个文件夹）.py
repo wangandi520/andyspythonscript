@@ -5,6 +5,8 @@ from pathlib import Path
 import sys
 import sqlite3
 
+# 数据库定义
+# id，文件名，文件路径，文件大小
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
     result = float(abs(sizeBytes))
@@ -45,9 +47,6 @@ def main(inputPath):
     # 文件夹名显示完整的相对路径 = 1，还是只显示一层文件夹名
     showAllFolderAddr = 1
     mypath = Path(inputPath)
-    # fileCount = 0
-    # fileSizeCount = 0
-    # folderCount = 0
     outputFile = []
     
     for file in mypath.glob('**/*'):
@@ -58,16 +57,15 @@ def main(inputPath):
             showAddr = str(loc)
         else:
             showAddr = str(file.relative_to(mypath))  
+            
         if Path.is_dir(file):
-            #folderCount = folderCount + 1
             if showAllFolderAddr:
-                showName = showAddr     
-        # if Path.is_file(file):
-            # fileCount = fileCount + 1
-        fileSize = Path(loc).stat().st_size
-        outputFile.append((showName, showAddr, formatFileSize(fileSize)))
-   
-    #info = [fileCount, folderCount, formatFileSize(fileSizeCount)]
+                showName = showAddr
+            fileSize = ''
+            outputFile.append((showName, showAddr, ''))
+        if Path.is_file(file):        
+            fileSize = Path(loc).stat().st_size
+            outputFile.append((showName, showAddr, formatFileSize(fileSize)))
     writefile(outputFile, mypath)
     
 if __name__ == '__main__':
