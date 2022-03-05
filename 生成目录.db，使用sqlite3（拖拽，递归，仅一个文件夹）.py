@@ -36,8 +36,8 @@ def formatFileSize(sizeBytes):
 def writefile(outputFile, path):
     myConnect = sqlite3.connect(path.name + '.db')
     #myCursor = myConnect.cursor()
-    myConnect.execute('''CREATE TABLE filelist(id INTEGER PRIMARY KEY AUTOINCREMENT, filename text, filepath text, filesize text)''')
-    myConnect.executemany('INSERT INTO filelist(filename, filepath, filesize) VALUES (?,?,?)', outputFile)
+    myConnect.execute('''CREATE TABLE filelist(id INTEGER PRIMARY KEY AUTOINCREMENT, filename text, filepath text, filesuffix text, filesize text)''')
+    myConnect.executemany('INSERT INTO filelist(filename, filepath, filesuffix, filesize) VALUES (?,?,?,?)', outputFile)
     myConnect.commit()
     myConnect.close()   
     
@@ -53,6 +53,7 @@ def main(inputPath):
         loc = file.parent.joinpath(file.name)
         print(loc)
         showName = str(file.name)
+        showSuffix = str(file.suffix)[1:]
         if absolutePath:
             showAddr = str(loc)
         else:
@@ -62,10 +63,10 @@ def main(inputPath):
             if showAllFolderAddr:
                 showName = showAddr
             fileSize = ''
-            outputFile.append((showName, showAddr, ''))
+            outputFile.append((showName, showAddr, '', ''))
         if Path.is_file(file):        
             fileSize = Path(loc).stat().st_size
-            outputFile.append((showName, showAddr, formatFileSize(fileSize)))
+            outputFile.append((showName, showAddr, showSuffix, formatFileSize(fileSize)))
     writefile(outputFile, mypath)
     
 if __name__ == '__main__':
