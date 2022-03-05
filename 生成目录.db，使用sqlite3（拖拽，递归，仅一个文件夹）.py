@@ -36,8 +36,8 @@ def formatFileSize(sizeBytes):
 def writefile(outputFile, path):
     myConnect = sqlite3.connect(path.name + '.db')
     #myCursor = myConnect.cursor()
-    myConnect.execute('''CREATE TABLE book(id INTEGER PRIMARY KEY AUTOINCREMENT, filename text, filepath text, filesize text)''')
-    myConnect.executemany('INSERT INTO book(filename, filepath, filesize) VALUES (?,?,?)', outputFile)
+    myConnect.execute('''CREATE TABLE filelist(id INTEGER PRIMARY KEY AUTOINCREMENT, filename text, filepath text, filesize text)''')
+    myConnect.executemany('INSERT INTO filelist(filename, filepath, filesize) VALUES (?,?,?)', outputFile)
     myConnect.commit()
     myConnect.close()   
     
