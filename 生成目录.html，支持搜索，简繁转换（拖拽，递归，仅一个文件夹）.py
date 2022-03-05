@@ -2,7 +2,6 @@
 # https://github.com/wangandi520/andyspythonscript
 
 from pathlib import Path
-import pathlib
 import sys
 import time
 
