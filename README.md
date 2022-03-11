@@ -14,39 +14,6 @@
 
 别在baidu搜索或别的不明网站下载，谨防流氓软件
 
-### copyEachFoldersFirstFile.py
-
-会把同级目录下的所有文件夹的第一个文件复制到cover文件夹内
-
-用途：复制出漫画封面
-
-### renameToTC.py
-
-会把[换成[[]，]换成[]]
-例如
-[頭文字D_InitialD][重野秀一][尖端]
-变成
-[[]頭文字D_InitialD[]][[]重野秀一[]][[]尖端[]]Vol_[C]
-
-用途：total commander 中ctrl+m批量重命名多卷漫画使用
-
-输入输出都在renameToTC.txt里
-
-### allFolderFilesRename.py
-
-同级目录下有数个文件夹，每个文件夹里数个文件，没有二级文件夹。
-
-重命名的格式，会自动识别扩展名:
-
-第一个文件夹的文件夹01_001.jpg，到01_030.jpg，如果一共30个文件，扩展名是jpg的话
-
-第二个文件夹的文件夹02_001.jpg，到02_030.jpg，如果一共30个文件，扩展名是jpg的话
-
-以此类推
-
-如果把allFolderFilesRename.py改名其他名字，如123_.py，那文件名就是123_01_01.jpg
-
-第一个文件夹的数字，请修改dirCount
 
 ### 根据rarzip文件是否包含文件夹分类（拖拽，多个文件或文件夹）.py
 
@@ -59,11 +26,6 @@
 ### 生成所有子文件目录到文件夹名.txt（拖拽，仅多个文件夹）.py
 
 把和py文件当前目录下所有文件夹和子文件夹的名字（默认相对路径，可选绝对路径）输出到文件夹名.txt中
-
-### listFirstAndSecondFoldersToTwoFIles.py
-
-把和py文件当前目录的同级文件夹名字，输出到firstFoldersName.txt中
-把和py文件当前目录的所有子文件夹名字，输出到secondFoldersName.txt中
 
 ### 生成目录.html，支持搜索，简繁转换（拖拽，仅一个文件夹）.py
 
@@ -254,3 +216,5 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 文件内设置显示方式
 
 ## 使用前请备份，防止文件名不符合你的需求
+
+## Please test and backup, make sure it is your need. before you use it.
