@@ -12,7 +12,7 @@ def main(inputPath):
     # 显示每张图片的高度 = True， 不显示 = False
     showEachFile = True
     # 显示完整路径 = True，只显示文件名 = False
-    showAllPath = True
+    showAllPath = False
     # 文件格式
     fileType = ['.jpg', '.png']
     
@@ -61,35 +61,27 @@ def main(inputPath):
                 fileHeight[tmpImg.size[1]] = fileHeight[tmpImg.size[1]] + 1
       
     print()
-    makeChoice = {}
-    count = 1
     for key in fileHeight:
-        makeChoice[str(count)] = str(key)
-        count = count + 1
-        print('图片高度: ' + str(key) + ', 文件数量: ' + str(fileHeight[key]))
-             
+        print('图片高度: ' + str(key) + ', 文件数量: ' + str(fileHeight[key]))       
     print()
     print('输入数字查看对应高度的全部文件：')
-    
-    for key in makeChoice:
-        print(key + ': ' + makeChoice[key])
-
-    # for tmpfilePath, tmpHeight in filePathStorage:
-        # print(tmpfilePath + ' ' + tmpHeight)
+    for index, key in enumerate(fileHeight, start=1):
+        print(str(index) + '：' + str(key))
     print()
     getInput = input('输入回车退出: ')
     print()
-    while (getInput != ''):
-        print('高度' + makeChoice[getInput] + '：')
-        for eachFile in filePathStorage:
-            # print(eachFile[1])
-            # print(makeChoice[getInput])
-            # print(getInput)
-            if eachFile[1] == makeChoice[getInput]:
-                print(eachFile[0])
-        print()
-        getInput = input('输入回车退出: ')
-        print()
+    
+    while (getInput != ''): 
+        if int(getInput) <= len(fileHeight):
+            getInput = int(getInput) - 1
+            tmpHeight = list(fileHeight.keys())[getInput]
+            print('高度' + str(tmpHeight) + '：')
+            for eachFile in filePathStorage:
+                if eachFile[1] == str(tmpHeight):
+                    print(eachFile[0])
+            print()
+            getInput = input('输入回车退出: ')
+            print()
         
 if __name__ == '__main__':
     try:
