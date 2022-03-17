@@ -39,7 +39,7 @@ def formatFileSize(sizeBytes):
 
 def writefile(filereadlines, inputPath):
     # 文件名是.txt格式还是其他
-    fileSuffix = '.txt'
+    fileSuffix = '.sha'
     # txt放到这个文件外面 = 1 还是里面 = 0
     setFileLocation = 0
     
@@ -77,9 +77,9 @@ def main(inputPath):
                     fileName = Path(aFile).name
                     showFileSize = formatFileSize(fileSize)
                     if showOrNoFileSize:
-                        allDirInfo.append(fileSha1 +  ' ' + fileName + ' ' + showFileSize + '\n')
+                        allDirInfo.append(fileSha1 +  ' *' + fileName + ' ' + showFileSize + '\n')
                     else:
-                        allDirInfo.append(fileSha1 +  ' ' + fileName + '\n')
+                        allDirInfo.append(fileSha1 +  ' *' + fileName + '\n')
             writefile(allDirInfo, Path(aPath))
         
 if __name__ == '__main__':

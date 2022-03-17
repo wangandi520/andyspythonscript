@@ -221,6 +221,8 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 需要UnRAR.exe 或 pip3 install unrar
 
+如果直接运行，存在文件夹名.sha文件的话，就开始校验文件
+
 
 ## 使用前请备份，防止文件名不符合你的需求
 

@@ -58,7 +58,24 @@ def writeFile(aPath, filereadlines):
     newfile = open(aPath, mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()  
+
+def readFile(filename):
+    # 读取文件
     
+    try:
+        with open(filename, mode='r', encoding='UTF-8') as file:
+            filereadlines = file.readlines()
+        for i in filereadlines:
+        # 去掉空行
+            if i == '\n':
+                filereadlines.remove(i)
+        # remove '\n' in line end
+        for i in range(len(filereadlines)):
+            filereadlines[i] = filereadlines[i].rstrip()
+        return filereadlines 
+    except FileNotFoundError:
+        print(filename + '文件不存在')
+        pass
     
 def arrayFormatToHTML(myArray):
     # 转换成html格式
@@ -136,18 +153,35 @@ def getFileInfo(directoryPath, filePath):
     print(eachFileInfo)
     return eachFileInfo
     
+
+def checkSha1(filePath):
+    # 当前文件夹名内有文件夹.sha1的话，就开始校验
+    getFileContent = readFile(Path.cwd().name + '.sha')
+    for eachFile in getFileContent:
+        tempSha1 = eachFile.split(' *')[0]
+        tempFileName = eachFile.split(' *')[1]
+        if (getSha1(tempFileName) == tempSha1):
+            print('校验成功 ' + tempFileName)
+        else:
+            print('校验失败 ' + tempFileName)
+    input()
+
 def main(inputPath): 
     del inputPath[0]
     # 所有信息
     # 每个文件的信息：|文件夹名|文件类型|文件大小|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码
     allFileInfo = []
+    allFileSha1 = []
     #转换成html = True, markdown = False
     fileType = True
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'): 
                 if Path.is_file(Path(file)):
-                    allFileInfo.append(getFileInfo(Path(aPath), file))
+                    tempFileInfo = getFileInfo(Path(aPath), file)
+                    allFileInfo.append(tempFileInfo)
+                    allFileSha1.append(tempFileInfo[7] + ' *' + tempFileInfo[0] + '\n')       
+            writeFile(Path(aPath).joinpath(Path(aPath).name + '.sha'), allFileSha1)
             if fileType:
                 writeFile(Path(aPath).joinpath(Path(aPath).name + '.html'), arrayFormatToHTML(allFileInfo))
             else:
@@ -157,5 +191,7 @@ if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
             main(sys.argv)
+        elif len(sys.argv) == 1:
+            checkSha1(sys.argv)
     except IndexError:
         pass
