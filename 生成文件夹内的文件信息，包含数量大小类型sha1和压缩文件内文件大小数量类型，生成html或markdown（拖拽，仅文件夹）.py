@@ -145,7 +145,7 @@ def getFileInfo(directoryPath, filePath):
     eachFileInfo.append(fileCount)
     eachFileInfo.append(dirCount)
     tempFileType = ''
-    for key in fileType:
+    for key in sorted(fileType):
         tempFileType = tempFileType + key[1:] + '=' + str(fileType[key]) + ', '
     eachFileInfo.append(tempFileType[:-2])
     eachFileInfo.append(getSha1(filePath))
