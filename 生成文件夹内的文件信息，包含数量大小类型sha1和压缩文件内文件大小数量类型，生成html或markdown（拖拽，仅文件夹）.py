@@ -158,10 +158,8 @@ def checkSha1(filePath):
     fileName = ''
     getFileContent = ''
     if (Path(filePath)) == (Path.cwd()):
-        print(Path.cwd().joinpath(Path.cwd().name + '.sha'))
         getFileContent = readFile(Path.cwd().name + '.sha')
     else:
-        print(Path(filePath).joinpath(Path(filePath).name + '.sha'))
         getFileContent = readFile(Path(filePath).joinpath(Path(filePath).name + '.sha'))
     print()
     for eachFile in getFileContent:
@@ -171,10 +169,11 @@ def checkSha1(filePath):
             print('校验成功 ' + tempFileName)
         else:
             print('!校验失败 ' + tempFileName)
-    input()
 
 def main(inputPath): 
     del inputPath[0]
+    if (len(inputPath) == 0):
+        inputPath = [Path.cwd()]
     # 所有信息
     # 每个文件的信息：|文件夹名|文件类型|文件大小|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码
     allFileInfo = []
@@ -201,10 +200,12 @@ def main(inputPath):
                     break
             if sha1FileExisted:
                 checkSha1(aPath)
-            input()
+            print()
+            print('发布网址 https://github.com/wangandi520/andyspythonscript')
+            input('按回车退出')
         
         if Path.is_file(Path(aPath)) and Path(aPath).suffix == '.sha':
-            print('sha')
+            
             getFileContent = readFile(Path(aPath))
             
             for eachFile in getFileContent:
@@ -214,13 +215,17 @@ def main(inputPath):
                     print('校验成功 ' + tempFileName)
                 else:
                     print('!校验失败 ' + tempFileName)
-            input()
+            print()
+            print('发布网址 https://github.com/wangandi520/andyspythonscript')
+            input('按回车退出')
     
 if __name__ == '__main__':
     try:
-        if len(sys.argv) >= 2:
-            main(sys.argv)
-        else:
-            checkSha1(Path(sys.argv[0]).parent)
+        main(sys.argv)
+        print(sys.argv)
+        # if len(sys.argv) >= 2:
+            # main(sys.argv)
+        # else:
+            # checkSha1(Path(sys.argv[0]).parent)
     except IndexError:
         pass
