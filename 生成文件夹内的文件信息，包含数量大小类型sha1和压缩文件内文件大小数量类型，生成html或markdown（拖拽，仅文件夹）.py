@@ -59,9 +59,9 @@ def writeFile(aPath, filereadlines):
     newfile.writelines(filereadlines)
     newfile.close()  
 
+
 def readFile(filename):
     # 读取文件
-    
     try:
         with open(filename, mode='r', encoding='UTF-8') as file:
             filereadlines = file.readlines()
@@ -155,11 +155,19 @@ def getFileInfo(directoryPath, filePath):
 
 def checkSha1(filePath):
     # 当前文件夹名内有文件夹.sha1的话，就开始校验
-    getFileContent = readFile(Path.cwd().name + '.sha')
+    fileName = ''
+    getFileContent = ''
+    if (Path(filePath)) == (Path.cwd()):
+        print(Path.cwd().joinpath(Path.cwd().name + '.sha'))
+        getFileContent = readFile(Path.cwd().name + '.sha')
+    else:
+        print(Path(filePath).joinpath(Path(filePath).name + '.sha'))
+        getFileContent = readFile(Path(filePath).joinpath(Path(filePath).name + '.sha'))
+    print()
     for eachFile in getFileContent:
         tempSha1 = eachFile.split(' *')[0]
         tempFileName = eachFile.split(' *')[1]
-        if (getSha1(tempFileName) == tempSha1):
+        if (getSha1(Path(filePath).joinpath(tempFileName)) == tempSha1):
             print('校验成功 ' + tempFileName)
         else:
             print('!校验失败 ' + tempFileName)
@@ -179,18 +187,40 @@ def main(inputPath):
                 if Path.is_file(Path(file)):
                     tempFileInfo = getFileInfo(Path(aPath), file)
                     allFileInfo.append(tempFileInfo)
-                    allFileSha1.append(tempFileInfo[7] + ' *' + tempFileInfo[0] + '\n')       
+                    allFileSha1.append(tempFileInfo[7] + ' *' + tempFileInfo[0] + '\n')  
             writeFile(Path(aPath).joinpath(Path(aPath).name + '.sha'), allFileSha1)
             if fileType:
                 writeFile(Path(aPath).joinpath(Path(aPath).name + '.html'), arrayFormatToHTML(allFileInfo))
             else:
                 writeFile(Path(aPath).joinpath(Path(aPath).name + '.md'), arrayFormatToMD(allFileInfo))
+            
+            sha1FileExisted = False
+            for fileName in allFileInfo:
+                if (Path(aPath).name + '.sha' in fileName[0]) :
+                    sha1FileExisted = True
+                    break
+            if sha1FileExisted:
+                checkSha1(aPath)
+            input()
+        
+        if Path.is_file(Path(aPath)) and Path(aPath).suffix == '.sha':
+            print('sha')
+            getFileContent = readFile(Path(aPath))
+            
+            for eachFile in getFileContent:
+                tempSha1 = eachFile.split(' *')[0]
+                tempFileName = eachFile.split(' *')[1]
+                if (getSha1(Path(aPath).parent.joinpath(tempFileName)) == tempSha1):
+                    print('校验成功 ' + tempFileName)
+                else:
+                    print('!校验失败 ' + tempFileName)
+            input()
     
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
             main(sys.argv)
-        elif len(sys.argv) == 1:
-            checkSha1(sys.argv)
+        else:
+            checkSha1(Path(sys.argv[0]).parent)
     except IndexError:
         pass
