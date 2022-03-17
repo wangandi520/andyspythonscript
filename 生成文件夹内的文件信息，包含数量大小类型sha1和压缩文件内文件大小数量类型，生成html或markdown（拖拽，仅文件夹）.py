@@ -75,7 +75,6 @@ def readFile(filename):
         return filereadlines 
     except FileNotFoundError:
         print(filename + '文件不存在')
-        pass
     
 def arrayFormatToHTML(myArray):
     # 转换成html格式
@@ -88,7 +87,6 @@ def arrayFormatToHTML(myArray):
             newContent = newContent + '<td>' + str(eachString) + '</td>'
         returnFileInfo.append(newContent + '</tr>')
     returnFileInfo.append('</table></body></html>')
-    print(returnFileInfo)
     return returnFileInfo
     
     
@@ -137,7 +135,8 @@ def getFileInfo(directoryPath, filePath):
                     fileType[Path(eachFile.filename).suffix] = fileType[Path(eachFile.filename).suffix] + 1
         rf.close()
         
-    eachFileInfo.append(filePath.name)
+    #eachFileInfo.append(str(filePath.parent.joinpath(filePath.name)))
+    eachFileInfo.append(str(filePath.relative_to(directoryPath)))
     eachFileInfo.append(filePath.suffix[1:])
     eachFileInfo.append(formatFileSize(filePath.stat().st_size))
     #eachFileInfo.append(datetime.datetime.strptime(filePath.stat().st_mtime, "%Y-%m-%d %H:%M:%S.%f"))
@@ -163,7 +162,7 @@ def checkSha1(filePath):
         if (getSha1(tempFileName) == tempSha1):
             print('校验成功 ' + tempFileName)
         else:
-            print('校验失败 ' + tempFileName)
+            print('!校验失败 ' + tempFileName)
     input()
 
 def main(inputPath): 
