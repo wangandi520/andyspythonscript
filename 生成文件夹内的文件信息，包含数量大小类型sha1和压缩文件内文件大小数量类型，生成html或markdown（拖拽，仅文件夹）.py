@@ -8,6 +8,7 @@ from hashlib import sha1
 import sys
 import zipfile
 import rarfile
+import datetime
 
 # pip install rarfile, zipfile
 
@@ -62,7 +63,7 @@ def writeFile(aPath, filereadlines):
 def arrayFormatToHTML(myArray):
     # 转换成html格式
     returnFileInfo = []
-    returnFileInfo.append('<html><head><title>文件信息</title><style>table{width:auto;}table,td{border:1px solid #000000;table-layout:fixed;border-collapse:collapse;}table td:first-child{width:auto;}table td{min-width:100px;}a{text-decoration: none;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}</style></head><body><table id="allFileTable"><tr><td>文件夹名</td><td>文件类型</td><td>文件大小</td><td>压缩包内文件数量</td><td>压缩包内文件夹数量</td><td>扩展名对应的文件数量</td><td>SHA1校验码</td></tr>')
+    returnFileInfo.append('<html><head><title>文件信息</title><style>table{width:auto;}table,td{border:1px solid #000000;table-layout:fixed;border-collapse:collapse;}table td:first-child{width:auto;}table td{min-width:100px;}a{text-decoration: none;}table tr:first-child{background-color:#eee;}tr:hover{background-color:#eee;}</style></head><body><table id="allFileTable"><tr><td>文件夹名</td><td>文件类型</td><td>文件大小</td><td>修改时间</td><td>压缩包内文件数量</td><td>压缩包内文件夹数量</td><td>扩展名对应的文件数量</td><td>SHA1校验码</td></tr>')
     
     for eachInfo in myArray:
         newContent = '<tr>'
@@ -77,7 +78,7 @@ def arrayFormatToHTML(myArray):
 def arrayFormatToMD(myArray):
     # 转换成markdown格式
     returnFileInfo = []
-    returnFileInfo.append('|文件夹名|文件类型|文件大小|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码|\n')
+    returnFileInfo.append('|文件夹名|文件类型|文件大小|修改时间|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码|\n')
     returnFileInfo.append('| --- | --- | --- | --- | --- | --- | --- |\n')
     
     for eachInfo in myArray:
@@ -122,6 +123,9 @@ def getFileInfo(directoryPath, filePath):
     eachFileInfo.append(filePath.name)
     eachFileInfo.append(filePath.suffix[1:])
     eachFileInfo.append(formatFileSize(filePath.stat().st_size))
+    #eachFileInfo.append(datetime.datetime.strptime(filePath.stat().st_mtime, "%Y-%m-%d %H:%M:%S.%f"))
+    eachFileInfo.append(datetime.datetime.fromtimestamp(filePath.stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S'))
+    
     eachFileInfo.append(fileCount)
     eachFileInfo.append(dirCount)
     tempFileType = ''
@@ -135,7 +139,7 @@ def getFileInfo(directoryPath, filePath):
 def main(inputPath): 
     del inputPath[0]
     # 所有信息
-    # 每个文件的信息：|文件夹名|文件类型，文件大小|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码
+    # 每个文件的信息：|文件夹名|文件类型|文件大小|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码
     allFileInfo = []
     #转换成html = True, markdown = False
     fileType = True
