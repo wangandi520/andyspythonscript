@@ -43,8 +43,11 @@ def formatFileSize(sizeBytes):
 def getSha1(filename):
     # 计算sha1
     sha1Obj = sha1()
-    with open(filename, 'rb') as f:
-        sha1Obj.update(f.read())
+    try:
+        with open(filename, 'rb') as f:
+            sha1Obj.update(f.read())
+    except FileNotFoundError:
+        print(str(filename) + '文件不存在')
     return sha1Obj.hexdigest()
     
     
@@ -74,7 +77,7 @@ def readFile(filename):
             filereadlines[i] = filereadlines[i].rstrip()
         return filereadlines 
     except FileNotFoundError:
-        print(filename + '文件不存在')
+        print(str(filename) + '文件不存在')
     
 def arrayFormatToHTML(myArray):
     # 转换成html格式
@@ -200,9 +203,7 @@ def main(inputPath):
                     break
             if sha1FileExisted:
                 checkSha1(aPath)
-            print()
-            print('发布网址 https://github.com/wangandi520/andyspythonscript')
-            input('按回车退出')
+      
         
         if Path.is_file(Path(aPath)) and Path(aPath).suffix == '.sha':
             
@@ -215,14 +216,14 @@ def main(inputPath):
                     print('校验成功 ' + tempFileName)
                 else:
                     print('!校验失败 ' + tempFileName)
-            print()
-            print('发布网址 https://github.com/wangandi520/andyspythonscript')
-            input('按回车退出')
+                    
+    print()
+    print('发布网址 https://github.com/wangandi520/andyspythonscript')
+    input('按回车退出')
     
 if __name__ == '__main__':
     try:
         main(sys.argv)
-        print(sys.argv)
         # if len(sys.argv) >= 2:
             # main(sys.argv)
         # else:
