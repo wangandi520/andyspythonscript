@@ -5,7 +5,7 @@ import sys
 
 from opencc import OpenCC
 from PyQt5.QtWidgets import QApplication, QWidget, QHBoxLayout, QVBoxLayout, QLabel, QLineEdit, QPushButton, QRadioButton
-from PyQt5.QtCore import QSize
+from PyQt5.QtCore import QSize, QUrl
 from pypinyin import pinyin, lazy_pinyin, Style
 from pathlib import Path
 
@@ -82,8 +82,9 @@ class MyQWidget(QWidget):
     
     def dropEvent(self, event):
         self.inputLineEdit.setText(Path(event.mimeData().text()).stem)
-        self.currentFilePath = Path(event.mimeData().text())
-           
+        getDropFilePath = event.mimeData().urls()[0].toString()
+        if (getDropFilePath[0:8] == 'file:///'):
+            self.currentFilePath = Path(getDropFilePath[8:])
 
     def convertText(self):
         self.outputTLineEdit.setText(OpenCC('s2t').convert(self.inputLineEdit.text()))

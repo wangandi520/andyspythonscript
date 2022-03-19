@@ -225,6 +225,14 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 拖文件夹或.sha文件到脚本上，也可以校验
 
+### 老王扩展名修改器=db3_rar.pyw
+
+使用PyQt5编写
+
+可以拖拽文件或文件夹，文件夹内所有符合条件的文件都会生效
+
+文件后面的=py_pyw可以让程序读取，格式：=原扩展名_新扩展名
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
