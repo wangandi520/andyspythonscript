@@ -6,6 +6,8 @@
 
 递归：这个效果，对于文件夹和他的所有子文件夹都会有效
 
+部分脚本PyQt版[https://github.com/wangandi520/andyspyqtscript](https://github.com/wangandi520/andyspyqtscript)
+
 ## 说明：
 
 使用前请先安装python[https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe](https://www.python.org/ftp/python/3.10.2/python-3.10.2-amd64.exe)
