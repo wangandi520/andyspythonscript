@@ -97,7 +97,7 @@ def arrayFormatToMD(myArray):
     # 转换成markdown格式
     returnFileInfo = []
     returnFileInfo.append('|文件夹名|文件类型|文件大小|修改时间|压缩包内文件数量|压缩包内文件夹数量|扩展名对应的文件数量|SHA1校验码|\n')
-    returnFileInfo.append('| --- | --- | --- | --- | --- | --- | --- |\n')
+    returnFileInfo.append('| --- | --- | --- | --- | --- | --- | --- | --- |\n')
     
     for eachInfo in myArray:
         newContent = '|'
