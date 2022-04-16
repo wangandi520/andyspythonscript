@@ -40,36 +40,37 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                imgData = Image.open(file)
-                allFileInfo.append('文件名： ' + str(file.name) + '\n')
-                allFileInfo.append('格式： ' + str(imgData.format) + '\n')
-                allFileInfo.append('宽度： ' + str(imgData.size[0]) + ' 像素\n')
-                allFileInfo.append('高度： ' + str(imgData.size[1]) + ' 像素\n')
-                allFileInfo.append('模式： ' + str(imgData.mode) + '\n')
-                if showOtherInfo:
-                    allFileInfo.append('信息： ' + str(imgData.info) + '\n')
-                
-                print('文件名： ' + str(file.name))
-                print('格式： ' + str(imgData.format))
-                print('宽度： ' + str(imgData.size[0]) + ' 像素')
-                print('高度： ' + str(imgData.size[1]) + ' 像素')
-                print('模式： ' + str(imgData.mode))
-                if showOtherInfo:
-                    print('信息： ' + str(imgData.info))
-                
-                imgDataRGBA = imgData.convert('RGBA')
-                imgDataRGBAArray = numpy.array(imgDataRGBA)
-                uniqueImgDataRGBAArray = numpy.unique(imgDataRGBAArray)
-                allFileInfo.append('颜色表： ' + str(len(uniqueImgDataRGBAArray)) + '\n')
-                print('颜色表： ' + str(len(uniqueImgDataRGBAArray)))
-                for eachColor in uniqueImgDataRGBAArray:
-                    allFileInfo.append('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3 + '\n')
-                    print('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3)
-                allFileInfo.append('\n')
-                imgData.close()
-                print()
+                if file.suffix in ['.png', '.jpg']:
+                    imgData = Image.open(file)
+                    allFileInfo.append('文件名： ' + str(file.name) + '\n')
+                    allFileInfo.append('格式： ' + str(imgData.format) + '\n')
+                    allFileInfo.append('宽度： ' + str(imgData.size[0]) + ' 像素\n')
+                    allFileInfo.append('高度： ' + str(imgData.size[1]) + ' 像素\n')
+                    allFileInfo.append('模式： ' + str(imgData.mode) + '\n')
+                    if showOtherInfo:
+                        allFileInfo.append('信息： ' + str(imgData.info) + '\n')
+                    
+                    print('文件名： ' + str(file.name))
+                    print('格式： ' + str(imgData.format))
+                    print('宽度： ' + str(imgData.size[0]) + ' 像素')
+                    print('高度： ' + str(imgData.size[1]) + ' 像素')
+                    print('模式： ' + str(imgData.mode))
+                    if showOtherInfo:
+                        print('信息： ' + str(imgData.info))
+                    
+                    imgDataRGBA = imgData.convert('RGBA')
+                    imgDataRGBAArray = numpy.array(imgDataRGBA)
+                    uniqueImgDataRGBAArray = numpy.unique(imgDataRGBAArray)
+                    allFileInfo.append('颜色表： ' + str(len(uniqueImgDataRGBAArray)) + '\n')
+                    print('颜色表： ' + str(len(uniqueImgDataRGBAArray)))
+                    for eachColor in uniqueImgDataRGBAArray:
+                        allFileInfo.append('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3 + '\n')
+                        print('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3)
+                    allFileInfo.append('\n')
+                    imgData.close()
+                    print()
             
-        if Path.is_file(Path(aPath)):
+        if Path.is_file(Path(aPath)) and Path(aPath).suffix in ['.png', '.jpg']:
             imgData = Image.open(aPath)
             allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
             allFileInfo.append('格式： ' + str(imgData.format) + '\n')
