@@ -231,6 +231,10 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 获取图片的宽度高度模式和颜色表，并输出到文件
 
+### 读取Photoshop颜色表(.act Adobe Color Table)（拖拽，多个文件或文件夹）.py
+
+读取Photoshop颜色表
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
