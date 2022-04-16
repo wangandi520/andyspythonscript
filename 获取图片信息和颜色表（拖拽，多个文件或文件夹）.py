@@ -66,6 +66,7 @@ def main(inputPath):
                     allFileInfo.append('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3 + '\n')
                     print('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3)
                 allFileInfo.append('\n')
+                imgData.close()
                 print()
             
         if Path.is_file(Path(aPath)):
@@ -95,12 +96,13 @@ def main(inputPath):
                 allFileInfo.append('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3 + '\n')
                 print('rgb(' + str(eachColor) + ',' + str(eachColor) + ',' + str(eachColor) + ') #' + str(hex(eachColor))[2:] * 3)
             allFileInfo.append('\n')
+            imgData.close()
             print()
     
     if outputToFile:
         writeToFile(allFileInfo[0][4:-1], allFileInfo)
         
-    input()
+    input('按回车键退出')
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
