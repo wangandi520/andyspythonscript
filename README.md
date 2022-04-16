@@ -227,6 +227,10 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 拖文件夹或.sha文件到脚本上，也可以校验
 
+### 获取图片信息和颜色表（拖拽，多个文件或文件夹）.py
+
+获取图片的宽度高度模式和颜色表，并输出到文件
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
