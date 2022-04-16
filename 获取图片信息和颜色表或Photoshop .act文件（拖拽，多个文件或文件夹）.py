@@ -34,6 +34,8 @@ def main(inputPath):
     outputToFile = True
     #是否显示exif等其他信息
     showOtherInfo = False
+    # 设置文件类型
+    fileType = ['.png']
     
     allFileInfo = []
     
@@ -41,7 +43,7 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in ['.png', '.jpg']:
+                if file.suffix in fileType:
                     imgData = Image.open(file)
                     allFileInfo.append('文件名： ' + str(file.name) + '\n')
                     allFileInfo.append('格式： ' + str(imgData.format) + '\n')
@@ -86,7 +88,7 @@ def main(inputPath):
                     allFileInfo.append('\n')
             
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in ['.png', '.jpg']:
+            if Path(aPath).suffix in fileType:
                 imgData = Image.open(aPath)
                 allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
                 allFileInfo.append('格式： ' + str(imgData.format) + '\n')
