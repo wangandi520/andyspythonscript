@@ -78,13 +78,12 @@ def main(inputPath):
                     misterious_count = (int(hexData[-4:-3], 16))
                     tempAllColors = [hexData[i:i+6].decode() for i in range(0, totalColorsCount*6, 6)]
                     allColors = []
-                    allFileInfo.append('颜色表： \n')
+                    allFileInfo.append('颜色表数量： ' + str(totalColorsCount) + '\n')
                     for eachColor in tempAllColors:
                         print('rgb(' + str(int(eachColor[:2],16)) + ',' + str(int(eachColor[2:4],16)) + ',' + str(int(eachColor[4:6],16)) + ') #' + eachColor)
                         allFileInfo.append('rgb(' + str(int(eachColor[:2],16)) + ',' + str(int(eachColor[2:4],16)) + ',' + str(int(eachColor[4:6],16)) + ') #' + eachColor + '\n')
-                    print('颜色表数量： ' + str(totalColorsCount))
                     print()
-                    allFileInfo.append('颜色表数量： ' + str(totalColorsCount) + '\n\n')
+                    allFileInfo.append('\n')
             
         if Path.is_file(Path(aPath)):
             if Path(aPath).suffix in ['.png', '.jpg']:
@@ -124,13 +123,13 @@ def main(inputPath):
                 misterious_count = (int(hexData[-4:-3], 16))
                 tempAllColors = [hexData[i:i+6].decode() for i in range(0, totalColorsCount*6, 6)]
                 allColors = []
-                allFileInfo.append('颜色表： \n')
+                allFileInfo.append('颜色表数量： ' + str(totalColorsCount) + '\n')
+                print('颜色表数量： ' + str(totalColorsCount))
                 for eachColor in tempAllColors:
                     print('rgb(' + str(int(eachColor[:2],16)) + ',' + str(int(eachColor[2:4],16)) + ',' + str(int(eachColor[4:6],16)) + ') #' + eachColor)
                     allFileInfo.append('rgb(' + str(int(eachColor[:2],16)) + ',' + str(int(eachColor[2:4],16)) + ',' + str(int(eachColor[4:6],16)) + ') #' + eachColor + '\n')
-                print('颜色表数量： ' + str(totalColorsCount))
                 print()
-                allFileInfo.append('颜色表数量： ' + str(totalColorsCount) + '\n\n')
+                allFileInfo.append('\n')
     
     if outputToFile:
         writeToFile(allFileInfo[0][4:-1], allFileInfo)
