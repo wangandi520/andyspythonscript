@@ -23,6 +23,33 @@ from codecs import encode
 # I 	32位有符号整数像素
 # F 	32位浮点像素
 
+def formatFileSize(sizeBytes):
+    # 格式化文件大小
+    sizeBytes = float(sizeBytes)
+    result = float(abs(sizeBytes))
+    suffix = "B"
+    if (result > 1024):
+        suffix = "KB"
+        mult = 1024
+        result = result / 1024
+    if (result > 1024):
+        suffix = "MB"
+        mult *= 1024
+        result = result / 1024
+    if (result > 1024):
+        suffix = "GB"
+        mult *= 1024
+        result = result / 1024
+    if (result > 1024):
+        suffix = "TB"
+        mult *= 1024
+        result = result / 1000
+    if (result > 1024):
+        suffix = "PB"
+        mult *= 1024
+        result = result / 1024
+    return format(result, '.2f') + suffix
+        
 def writeToFile(filename, filereadlines):
     newfile = open(filename + '.txt', mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
@@ -47,6 +74,7 @@ def main(inputPath):
                 if file.suffix in fileType:
                     imgData = Image.open(file)
                     allFileInfo.append('文件名： ' + str(file.name) + '\n')
+                    allFileInfo.append('大小： ' + str(formatFileSize(file.stat().st_size)) + '\n')
                     allFileInfo.append('格式： ' + str(imgData.format) + '\n')
                     allFileInfo.append('宽度： ' + str(imgData.size[0]) + ' 像素\n')
                     allFileInfo.append('高度： ' + str(imgData.size[1]) + ' 像素\n')
@@ -54,6 +82,7 @@ def main(inputPath):
                     if showOtherInfo:
                         allFileInfo.append('信息： ' + str(imgData.info) + '\n')
                     print('文件名： ' + str(file.name))
+                    print('大小： ' + str(formatFileSize(file.stat().st_size)))
                     print('格式： ' + str(imgData.format))
                     print('宽度： ' + str(imgData.size[0]) + ' 像素')
                     print('高度： ' + str(imgData.size[1]) + ' 像素')
@@ -92,6 +121,7 @@ def main(inputPath):
             if Path(aPath).suffix in fileType:
                 imgData = Image.open(aPath)
                 allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
+                allFileInfo.append('大小： ' + str(formatFileSize(Path(aPath).stat().st_size)) + '\n')
                 allFileInfo.append('格式： ' + str(imgData.format) + '\n')
                 allFileInfo.append('宽度： ' + str(imgData.size[0]) + ' 像素\n')
                 allFileInfo.append('高度： ' + str(imgData.size[1]) + ' 像素\n')
@@ -99,6 +129,7 @@ def main(inputPath):
                 if showOtherInfo:
                     allFileInfo.append('信息： ' + str(imgData.info) + '\n')
                 print('文件名： ' + str(Path(aPath).name))
+                print('大小： ' + str(formatFileSize(Path(aPath).stat().st_size)))
                 print('格式： ' + str(imgData.format))
                 print('宽度： ' + str(imgData.size[0]) + ' 像素')
                 print('高度： ' + str(imgData.size[1]) + ' 像素')
