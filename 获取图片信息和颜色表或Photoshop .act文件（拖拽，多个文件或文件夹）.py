@@ -31,11 +31,12 @@ def writeToFile(filename, filereadlines):
 def main(inputPath):
 
     #是否输出到文件
-    outputToFile = True
+    outputToFile = False
     #是否显示exif等其他信息
     showOtherInfo = False
     # 设置文件类型
-    fileType = ['.png']
+    #fileType = ['.png']
+    fileType = ['.png','.jpg']
     
     allFileInfo = []
     
@@ -70,7 +71,7 @@ def main(inputPath):
                     allFileInfo.append('\n')
                     imgData.close()
                     print()
-                if file.suffix in ['.act']:
+                if file.suffix in ['.act', '.ACT']:
                     print('文件名： ' + str(file.name))
                     allFileInfo.append('文件名： ' + str(file.name) + '\n')
                     with open(file, 'rb') as actFile:
@@ -115,7 +116,7 @@ def main(inputPath):
                 allFileInfo.append('\n')
                 imgData.close()
                 print()
-            if Path(aPath).suffix in ['.act']:
+            if Path(aPath).suffix in ['.act', '.ACT']:
                 print('文件名： ' + str(Path(aPath).name))
                 allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
                 with open(Path(aPath), 'rb') as actFile:
