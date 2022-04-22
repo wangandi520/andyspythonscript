@@ -27,7 +27,6 @@ def main(inputPath):
                 img = Image.open(Path(aPath))
                 imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
                 img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
-                print(Path(aPath).parent.joinpath(Path(aPath).stem + '_' + str(imgHeight) + Path(aPath).suffix))
                 img.save(Path(aPath).parent.joinpath(Path(aPath).stem + '_' + str(imgHeight) + Path(aPath).suffix)) 
 
 if __name__ == '__main__':
