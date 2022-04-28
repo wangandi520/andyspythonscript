@@ -13,7 +13,7 @@ def readfile(filename):
 
 def writefile(filename,filereadlines):
     # write file
-    newfile = open('new ' + Path(filename).stem + '.txt', mode='w', encoding='UTF-8')
+    newfile = open(Path(filename).stem + '.txt', mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()
     
