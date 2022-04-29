@@ -237,6 +237,14 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 按比例修改图片高度，文件里填写需要的高度
 
+### 使用ImageMagick包中的convert旋转图片角度（拖拽，多个文件或文件夹）.py
+
+旋转，文件内修改角度
+
+### 使用pingo压缩图片（拖拽，多个文件或文件夹）.py
+
+压缩图片
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
