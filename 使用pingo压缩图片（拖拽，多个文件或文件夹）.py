@@ -6,6 +6,7 @@ import sys
 import os.path
   
 # https://css-ig.net/bin/pingo-win64.zip
+# 需要pingo.exe
 # usage (examples)
 # pingo [options] files/folders pingo -s0 *.png pingo -s0 myfolder pingo -s0 c:\myfolder
 # PNG — lossless
