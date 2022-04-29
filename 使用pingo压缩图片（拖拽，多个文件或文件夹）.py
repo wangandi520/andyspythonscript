@@ -22,13 +22,11 @@ def main(inputPath):
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix in fileType:
-                    print('pingo.exe -s9 "' + str(file) + '"')
                     cmd = 'pingo.exe -s9 "' + str(file) + '"'
                     os.system(cmd)
                 
         if Path.is_file(Path(aPath)):
             if Path(aPath).suffix in fileType:
-                print('pingo.exe -s9 "' + aPath)
                 cmd = 'pingo.exe -s9 "' + aPath + '"'
                 os.system(cmd)
 
