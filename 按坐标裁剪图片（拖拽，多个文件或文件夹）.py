@@ -6,11 +6,11 @@ from pathlib import Path
 import sys
   
 def main(inputPath):
-    # 图片高度
-    imgHeight = 4000
     # 设置文件类型
     #fileType = ['.png']
     fileType = ['.png','.jpg']
+    # 新图片的尺寸(左下角横坐标, 左下角纵坐标, 右上角横坐标, 右上角纵坐标)
+    newImgSize =  (0, 0, 200 / 2, 100)
     
     del inputPath[0]
     for aPath in inputPath:
@@ -18,16 +18,14 @@ def main(inputPath):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix in fileType:
                     img = Image.open(file)
-                    imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
-                    img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
-                    img.save(file.parent.joinpath(file.stem + '_' + str(imgHeight) + file.suffix)) 
+                    newImg = img.crop(newImgSize) 
+                    newImg.save(file.parent.joinpath(file.stem + '_new' + file.suffix)) 
                 
         if Path.is_file(Path(aPath)):
             if Path(aPath).suffix in fileType: 
                 img = Image.open(Path(aPath))
-                imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
-                img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
-                img.save(Path(aPath).parent.joinpath(Path(aPath).stem + '_' + str(imgHeight) + Path(aPath).suffix)) 
+                newImg = img.crop(newImgSize) 
+                newImg.save(Path(aPath).parent.joinpath(Path(aPath).stem + '_new' + Path(aPath).suffix)) 
 
 if __name__ == '__main__':
     try:

@@ -245,6 +245,14 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 压缩图片
 
+### 图片按左右分割成两张图（拖拽，多个文件或文件夹）.py
+
+裁剪分割图片，文件内设置参数
+
+### 按坐标裁剪图片（拖拽，多个文件或文件夹）.py
+
+文件内设置新图片的坐标
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
