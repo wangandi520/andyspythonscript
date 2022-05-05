@@ -21,13 +21,21 @@ def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
+            # 读取所有文件
             allFilesPath = []
             for file in Path(aPath).glob('**/*'):
                 if file.suffix in fileType:
                     allFilesPath.append(file)
+            # 新建文件夹存放合并后的图片
             newPath = Path(aPath).joinpath('convertedImageFolder')
             if not newPath.exists():
                 Path.mkdir(newPath)
+            # 获取单页文件宽度
+            normalImgWidth = Image.open(allFilesPath[0]).size[0]
+            for img in allFilesPath:
+                # 跳过双页文件
+                if Image.open(img).size[0] > normalImgWidth * 1.8:
+                    allFilesPath.remove(img)
             for imgIndex in range(0, len(allFilesPath), 2):
                 if Path.is_file(allFilesPath[imgIndex]) and Path.is_file(allFilesPath[imgIndex + 1]) and (allFilesPath[imgIndex].suffix == allFilesPath[imgIndex + 1].suffix):
                     if direction:
