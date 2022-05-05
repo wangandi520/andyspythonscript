@@ -4,7 +4,7 @@
 from pathlib import Path
 from PIL import Image
 import sys
-import os.path
+import os
 
 # https://imagemagick.org/
 # 需要ImageMagick包中的convert.exe

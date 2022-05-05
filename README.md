@@ -239,6 +239,8 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 ### 使用ImageMagick包中的convert旋转图片角度（拖拽，多个文件或文件夹）.py
 
+需要下载convert.exe
+
 旋转，文件内修改角度
 
 ### 使用pingo压缩图片（拖拽，多个文件或文件夹）.py
@@ -253,7 +255,15 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 文件内设置新图片的坐标
 
+### 使用ImageMagick包中的convert把图片水平分割成两张图（拖拽，多个文件或文件夹）.py
+
+需要下载convert.exe
+
+拖拽文件夹到py上运行
+
 ### 使用ImageMagick包中的convert把每两张图片水平合并（拖拽，仅文件夹）.py
+
+需要下载convert.exe
 
 拖拽文件夹到py上运行
 

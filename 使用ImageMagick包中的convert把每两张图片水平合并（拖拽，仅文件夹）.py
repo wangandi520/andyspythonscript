@@ -4,7 +4,7 @@
 from pathlib import Path
 from PIL import Image
 import sys
-import os.path
+import os
 
 # https://imagemagick.org/
 # 需要ImageMagick包中的convert.exe
@@ -16,7 +16,7 @@ def main(inputPath):
     #fileType = ['.png']
     fileType = ['.png','.jpg']
     # 从右到左 = True, 从左到右 = False
-    direction = True
+    RightToLeftDirection = True
     
     del inputPath[0]
     for aPath in inputPath:
@@ -38,7 +38,7 @@ def main(inputPath):
                     allFilesPath.remove(img)
             for imgIndex in range(0, len(allFilesPath), 2):
                 if Path.is_file(allFilesPath[imgIndex]) and Path.is_file(allFilesPath[imgIndex + 1]) and (allFilesPath[imgIndex].suffix == allFilesPath[imgIndex + 1].suffix):
-                    if direction:
+                    if RightToLeftDirection:
                         cmd = 'convert.exe +append "' + str(allFilesPath[imgIndex + 1]) + '" "' + str(allFilesPath[imgIndex]) + '" "' + str(Path(newPath).joinpath(allFilesPath[imgIndex].stem + '_' + allFilesPath[imgIndex + 1].stem + allFilesPath[imgIndex].suffix)) + '"'
                     else:
                         cmd = 'convert.exe +append "' + str(allFilesPath[imgIndex]) + '" "' + str(allFilesPath[imgIndex + 1]) + '" "' + str(Path(newPath).joinpath(allFilesPath[imgIndex].stem + '_' + allFilesPath[imgIndex + 1].stem + allFilesPath[imgIndex].suffix)) + '"'
