@@ -267,7 +267,7 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 拖拽文件夹到py上运行
 
-文件夹内的第一张图一定要是单页的，会读取这页的宽度来判断哪些已经是双页的
+文件夹内的第一张图如果不是单页，在文件内的setFirstSinglePage设置，比如第一张是单页，setFirstSinglePage = 0，第五张是单页，设置setFirstSinglePage = 4，会读取这页的宽度来判断哪些已经是双页的
 
 ## 使用前请备份，防止文件名不符合你的需求
 
