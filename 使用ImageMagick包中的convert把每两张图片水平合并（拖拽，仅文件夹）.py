@@ -19,7 +19,7 @@ def main(inputPath):
     # 从右到左 = True, 从左到右 = False
     RightToLeftDirection = True
     # 设置第一张单页图片是第几张，第一张 = 0
-    setFirstSinglePage = 3
+    setFirstSinglePage = 0
     
     del inputPath[0]
     for aPath in inputPath:
