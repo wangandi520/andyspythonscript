@@ -70,12 +70,28 @@ def main(inputPath):
                     elif (tmpImg.size[1] in fileHeight):
                         fileHeight[tmpImg.size[1]] = fileHeight[tmpImg.size[1]] + 1
             folderName = Path(aPath).name
-            # 文件夹格式必须是[书名][作者][出版][扫者]Vol01
             if folderName[0] == '[':
                 letterCount = 0
                 for eachLetter in folderName:
                     if eachLetter in ['[', ']']:
                         letterCount = letterCount + 1
+                # 文件夹格式[书名][作者][出版]Vol01
+                print(letterCount)
+                if letterCount == 6:
+                    folderName = folderName
+                    print('书名：' + folderName.split('][')[0][1:])
+                    print('作者：' + folderName.split('][')[1])
+                    outputFile.append('书名：' + folderName.split('][')[0][1:] + '\n')
+                    outputFile.append('作者：' + folderName.split('][')[1] + '\n')
+                    if folderName[-1] != ']' and folderName.split('][')[2].find(']'):
+                        print('出版：' + folderName.split('][')[2].split(']')[0])
+                        print('册数：' + folderName.split('][')[2].split(']')[1])
+                        outputFile.append('出版：' + folderName.split('][')[2].split(']')[0] + '\n')
+                        outputFile.append('册数：' + folderName.split('][')[2].split(']')[1] + '\n')
+                    elif folderName[-1] == ']':
+                        print('扫者：' + folderName.split('][')[2][:-1])
+                        outputFile.append('扫者：' + folderName.split('][')[2][:-1] + '\n')
+                # 文件夹格式[书名][作者][出版][扫者]Vol01
                 if letterCount == 8:
                     folderName = folderName
                     print('书名：' + folderName.split('][')[0][1:])
