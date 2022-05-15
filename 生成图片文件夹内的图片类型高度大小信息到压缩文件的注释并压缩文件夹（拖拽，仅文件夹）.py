@@ -62,7 +62,8 @@ def main(inputPath):
                 if Path.is_file(file) and (file.suffix in fileType):
                     allFileSize = allFileSize + file.stat().st_size
                     allFileCount = allFileCount + 1
-                    allFilelist.append(file.relative_to(Path(aPath).parent))
+                    #allFilelist.append(file.relative_to(Path(aPath).parent))
+                    allFilelist.append(file)
                     tmpImg = Image.open(file)
                     if file.suffix not in numberOfFileType:
                         numberOfFileType[file.suffix] = 1
@@ -127,7 +128,7 @@ def main(inputPath):
                     
             zf = zipfile.ZipFile(str(Path(aPath).name) + '.zip', 'w', zipfile.ZIP_STORED)
             for file in allFilelist:
-                zf.write(file)
+                zf.write(file, str(file)[len(aPath) - len(Path(aPath).name):])
             zf.comment = ''.join(outputFile).encode('utf-8')
             zf.close()
         
