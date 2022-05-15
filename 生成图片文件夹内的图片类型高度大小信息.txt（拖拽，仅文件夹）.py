@@ -70,22 +70,28 @@ def main(inputPath):
                     elif (tmpImg.size[1] in fileHeight):
                         fileHeight[tmpImg.size[1]] = fileHeight[tmpImg.size[1]] + 1
             folderName = Path(aPath).name
-            # 文件夹格式必须是[书名][作者][出版][扫者]
-            if folderName[0] == '[' and Path(aPath).name[-1] == ']':
+            # 文件夹格式必须是[书名][作者][出版][扫者]Vol01
+            if folderName[0] == '[':
                 letterCount = 0
                 for eachLetter in folderName:
                     if eachLetter in ['[', ']']:
                         letterCount = letterCount + 1
                 if letterCount == 8:
-                    tempFolderName = folderName[1:-1]
-                    print('书名：' + tempFolderName.split('][')[0])
-                    print('作者：' + tempFolderName.split('][')[1])
-                    print('出版：' + tempFolderName.split('][')[2])
-                    print('扫者：' + tempFolderName.split('][')[3])
-                    outputFile.append('书名：' + tempFolderName.split('][')[0] + '\n')
-                    outputFile.append('作者：' + tempFolderName.split('][')[1] + '\n')
-                    outputFile.append('出版：' + tempFolderName.split('][')[2] + '\n')
-                    outputFile.append('扫者：' + tempFolderName.split('][')[3] + '\n')
+                    folderName = folderName
+                    print('书名：' + folderName.split('][')[0][1:])
+                    print('作者：' + folderName.split('][')[1])
+                    print('出版：' + folderName.split('][')[2])
+                    outputFile.append('书名：' + folderName.split('][')[0][1:] + '\n')
+                    outputFile.append('作者：' + folderName.split('][')[1] + '\n')
+                    outputFile.append('出版：' + folderName.split('][')[2] + '\n')
+                    if folderName[-1] != ']' and folderName.split('][')[3].find(']'):
+                        print('扫者：' + folderName.split('][')[3].split(']')[0])
+                        print('册数：' + folderName.split('][')[3].split(']')[1])
+                        outputFile.append('扫者：' + folderName.split('][')[3].split(']')[0] + '\n')
+                        outputFile.append('册数：' + folderName.split('][')[3].split(']')[1] + '\n')
+                    elif folderName[-1] == ']':
+                        print('扫者：' + folderName.split('][')[3][:-1])
+                        outputFile.append('扫者：' + folderName.split('][')[3][:-1] + '\n')
             for key in sorted(numberOfFileType):
                 print('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]))
                 outputFile.append('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]) + '\n')
@@ -96,7 +102,7 @@ def main(inputPath):
             print('文件夹大小：' + formatFileSize(allFileSize))
             print('文件夹创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S'))
             print('文件夹修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S'))
-            outputFile.append('文件数量：' + str(allFileCount))
+            outputFile.append('文件数量：' + str(allFileCount)+ '\n')
             outputFile.append('文件夹大小：' + formatFileSize(allFileSize) + '\n')
             outputFile.append('文件夹创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
             outputFile.append('文件夹修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
