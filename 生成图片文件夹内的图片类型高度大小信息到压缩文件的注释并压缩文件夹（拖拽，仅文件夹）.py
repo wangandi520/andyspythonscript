@@ -6,14 +6,13 @@ from PIL import Image
 from pathlib import Path
 import sys
 import datetime
-import time
 import zipfile
    
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
     result = float(abs(sizeBytes))
     suffix = "B";
-    if(result>1024):
+    if(result > 1024):
         suffix = "KB"
         mult = 1024
         result = result / 1024
@@ -128,11 +127,9 @@ def main(inputPath):
                     
             zf = zipfile.ZipFile(str(Path(aPath).name) + '.zip', 'w', zipfile.ZIP_STORED)
             for file in allFilelist:
-                #print arcname
                 zf.write(file)
             zf.comment = ''.join(outputFile).encode('utf-8')
             zf.close()
-            #writeFile(folderName + '.txt', outputFile)
         
         
 if __name__ == '__main__':

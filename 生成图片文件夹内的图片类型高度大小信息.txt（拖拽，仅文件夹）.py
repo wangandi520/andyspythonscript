@@ -6,13 +6,12 @@ from PIL import Image
 from pathlib import Path
 import sys
 import datetime
-import time
    
 def formatFileSize(sizeBytes):
     sizeBytes = float(sizeBytes)
     result = float(abs(sizeBytes))
     suffix = "B";
-    if(result>1024):
+    if(result > 1024):
         suffix = "KB"
         mult = 1024
         result = result / 1024
