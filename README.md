@@ -269,6 +269,12 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 文件夹内的第一张图如果不是单页，在文件内的setFirstSinglePage设置，比如第一张是单页，setFirstSinglePage = 0，第五张是单页，设置setFirstSinglePage = 4，会读取这页的宽度来判断哪些已经是双页的
 
+### 生成图片文件夹内的图片类型高度大小信息.txt（拖拽，仅文件夹）.py
+
+**适用于添加到压缩文件注释**
+
+生成.txt文件包含信息：书名、作者、出版、扫者、类型数量、高度数量、文件数量、文件夹大小、文件夹创建时间、文件夹修改时间
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
