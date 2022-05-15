@@ -76,7 +76,6 @@ def main(inputPath):
                     if eachLetter in ['[', ']']:
                         letterCount = letterCount + 1
                 # 文件夹格式[书名][作者][出版]Vol01
-                print(letterCount)
                 if letterCount == 6:
                     folderName = folderName
                     print('书名：' + folderName.split('][')[0][1:])
