@@ -1,5 +1,6 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
+# pip install pillow
 
 from PIL import Image
 from pathlib import Path
