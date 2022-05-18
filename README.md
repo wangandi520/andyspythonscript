@@ -19,6 +19,10 @@
 
 ### 根据rarzip文件是否包含文件夹分类（拖拽，多个文件或文件夹）.py
 
+sort .rar and .zip into two type:
+
+1.contain one or more folders. 2.only contain files
+
 把zip，rar文件分成2类并放入对应的文件夹里
 
 1.包含一个或多个二级文件夹。2.仅包含文件的。
@@ -27,9 +31,13 @@
 
 ### 生成所有子文件目录到文件夹名.txt（拖拽，仅多个文件夹）.py
 
+get all file names in .txt 
+
 把和py文件当前目录下所有文件夹和子文件夹的名字（默认相对路径，可选绝对路径）输出到文件夹名.txt中
 
 ### 生成目录.html，支持搜索，简繁转换（拖拽，仅一个文件夹）.py
+
+generate .html file of all file in folders
 
 适用于搜索，分享，查看所有的库存资源
 
@@ -49,6 +57,8 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 ### 把文件夹内的文件重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
 
+rename files in folder
+
 **适用于已排序好的需要重命名的文件，拖拽文件夹拖到py文件上**
 
 使用把文件夹内的文件重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
@@ -67,6 +77,8 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 ### 交换文件或文件夹名前两个[]的内容（拖拽，多个文件或文件夹）.py
 
+switch two [] content in file names
+
 **把[扫者]放在Vol之后，适用于多个扫者的情况下卷的顺序错乱的情况，拖拽文件（夹）拖到py文件上**
 
 把文件（夹）名中最后[]的内容和Vol_XX交换位置
@@ -77,6 +89,8 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 ### 交换文件名最后[]和Vol_XX（拖拽，多个文件夹，文件名格式[][][][]Vol_XX）.py
 
+switch Vol_xx and last []
+
 把[扫者]放在Vol之后
 
 适用于多个扫者的情况下卷的顺序错乱的情况
@@ -85,13 +99,13 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 ### 删除文件结尾的.1234（拖拽，多个文件或文件夹）.py
 
+remove .1234 in file name
+
 把文件夹内后缀名是.1234文件，去掉.1234，支持多个文件夹或文件一起拖拽
 
-### removeFilenameBefore-.py
-
-文件夹名是 xxx - xxx.xxx的格式时，删除前面的xxx和 - ，只剩后面的xxx.xxx，拖拽文件夹到py上运行
-
 ### 文件和文件夹名简繁体转换（拖拽，递归，多个文件或文件夹）.py.py
+
+rename file between simplfied chinese and tradition chinese
 
 拖拽文件或文件夹到py上，被拖拽的文件夹和里面所有的文件夹和文件名都会被转换
 
@@ -99,17 +113,15 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 需要pip install opencc-python-reimplemented
 
-### 解压双重分割打包的RAR（拖拽，仅多个文件夹，需要UnRAR.exe）.py
-
-需要UnRAR.exe 或 pip3 install unrar
-
-识别两层rar的文件结尾.part1.rar
-
 ### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，文件夹名格式[作品][作者]XX）.py
+
+mkdir folder/subfolder in old folder name [subfolder][folder]
 
 文件名格式[书名][作者]XX.XX，新建文件夹名是作者（无方括号），二级文件夹名是书名（无方括号），被拖拽的文件会被移动到作品名文件夹里
 
 ### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，可简繁转换，文件夹名格式[作品][作者]XX）.py
+
+mkdir folder/subfolder in old folder name [subfolder][folder], rename file between simplfied chinese and tradition chinese
 
 文件夹名格式[书名][作者]XX，新建文件夹名是作者（无方括号），二级文件夹名是书名（无方括号），被拖拽的文件夹里的文件会被移动到作品名文件夹里
 
@@ -117,27 +129,21 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 ### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，文件名格式[作品][作者]XX）.py
 
+mkdir folder/subfolder in old file name [subfolder][folder]
+
 文件夹名格式[书名][作者]XX，新建文件夹名是作者（无方括号），二级文件夹名是书名（无方括号）
 
 被拖拽的文件夹里的文件会被移动到作品名文件夹里
 
 ### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，可简繁转换，文件名格式[作品][作者]XX）.py
 
+mkdir folder/subfolder in old file name [subfolder][folder], rename file between simplfied chinese and tradition chinese
+
 文件名格式[书名][作者]XX.XX，新建文件夹名是作者（无方括号），二级文件夹名是书名（无方括号），被拖拽的文件会被移动到作品名文件夹里
 
 可识别文件名以[Comic]开头
 
 需要pip install opencc-python-reimplemented
-
-### 百度网盘网址#提取码直接识别跳转.js
-
-把百度网盘链接改成这种形式：
-
-https://pan.baidu.com/s/xxxxxxx#yyyy
-
-yyyy是提取码
-
-脚本会自动识别，填写提取码，进入文件列表
 
 ### 百度网盘链接提取码格式批量转换（拖拽，仅多个txt文件）.py
 
@@ -157,17 +163,17 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 ### 复制出RAR或ZIP文件中的第一个文件（拖拽，多个文件或文件夹）.py
 
+copy first file in .rar or .zip
+
 需要UnRAR.exe 或 pip3 install unrar
 
 常用于提取漫画封面
 
 支持压缩包里有一层或两层文件夹的情况
 
-### 给无扩展名的文件添加扩展名，rar为例（拖拽，多个文件或文件夹）.py
-
-添加扩展名
-
 ### 把文件或文件夹名重命名为翻转的形式（拖拽，多个文件或文件夹，包含二级目录文件）.py
+
+reverse file name
 
 例12345.txt会重命名成54321.txt
 
@@ -175,9 +181,13 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 ### 识别rarzip内是否有文件名是关键词的文件，(公众号)为例（拖拽，多个文件或文件夹，支持多层文件夹）.py
 
+search file name in .rar or .zip
+
 如果压缩包里有文件夹包含"公众号"3个字，就会显示出这个压缩包的名字
 
 ### 计算文件sha1（拖拽，多个文件或文件夹）.py
+
+cal sha1
 
 拖拽文件或文件夹到py上，生成的.txt在和文件同级目录，在文件夹目录内
 
@@ -185,21 +195,25 @@ txt要是UTF-8编码，可用记事本打开另存为时修改
 
 ### 根据漫画补档网址，生成帖子名.txt包含网址发布时间一楼内容.py
 
+get manhuabudang.com content
+
 修改py内的url，获取漫画补档的某个帖子内容
 
 ### tampermonkey moeshare帖子内按a每层评分1活跃度.js
 
+add huoyue in moeshare.cc
+
 chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去，在水区帖子立按a开始评分。
 
-### PNG图片位深度24转8（拖拽，多个文件或文件夹）.py
-
-拖文件上去
-
 ### 给文件原扩展名后添加新扩展名，rar为例（拖拽，多个文件或文件夹）.py
+
+add new suffix to file
 
 给文件原扩展名后添加新扩展名
 
 ### 中文文件名改成拼音或拼音首字母（拖拽，多个文件或文件夹）.py
+
+rename file name to pinyin
 
 需要pip install pypinyin
 
@@ -209,15 +223,21 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 ### 获取图片高度和对应文件数量（拖拽，递归，多个文件或文件夹）.py
 
+get image's height and file count
+
 需要pip install pillow
 
 文件内设置显示方式
 
 ### 搜索sha1相同的文件（拖拽，递归，多个文件或文件夹）.py
 
+search same sha1 file
+
 文件内设置显示方式
 
 ### 获取文件夹内文件的压缩文件多少大小类型sha1（拖拽，仅文件夹）.py
+
+get folder's file's type, count, size
 
 用于显示文件各种信息，整理
 
@@ -229,11 +249,15 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 ### 获取图片信息和颜色表或Photoshop .act文件（拖拽，多个文件或文件夹）.py
 
+get color table of image and photoshop .act
+
 获取图片的宽度高度模式和颜色表，并输出到文件
 
 读取Photoshop颜色表
 
 ### 按比例修改图片高度（拖拽，多个文件或文件夹）.py
+
+resize image for height
 
 需要pip install pillow
 
@@ -241,29 +265,41 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 ### 使用ImageMagick包中的convert旋转图片角度（拖拽，多个文件或文件夹）.py
 
+change image's degree
+
 需要下载convert.exe
 
 旋转，文件内修改角度
 
 ### 使用pingo压缩图片（拖拽，多个文件或文件夹）.py
 
+loseless compress image
+
 压缩图片
 
 ### 图片按左右分割成两张图（拖拽，多个文件或文件夹）.py
+
+divide image into two
 
 裁剪分割图片，文件内设置参数
 
 ### 按坐标裁剪图片（拖拽，多个文件或文件夹）.py
 
+cut image file for (x,y)
+
 文件内设置新图片的坐标
 
 ### 使用ImageMagick包中的convert把图片水平分割成两张图（拖拽，多个文件或文件夹）.py
+
+divide image into two
 
 需要下载convert.exe
 
 拖拽文件夹到py上运行
 
 ### 使用ImageMagick包中的convert把每两张图片水平合并（拖拽，仅文件夹）.py
+
+combine two image into one
 
 需要下载convert.exe
 
@@ -273,6 +309,8 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 ### 生成图片文件夹内的图片类型高度大小信息.txt（拖拽，仅文件夹）.py
 
+get image's height
+
 需要pip install pillow
 
 **适用于添加到压缩文件注释**
@@ -280,6 +318,8 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 生成.txt文件包含信息：书名、作者、出版、扫者、类型数量、高度数量、文件数量、文件夹大小、文件夹创建时间、文件夹修改时间
 
 ### 生成图片文件夹内的图片类型高度大小信息到压缩文件的注释并压缩文件夹（拖拽，仅文件夹）.py
+
+get image's height and put it into .zip file
 
 需要pip install pillow
 
