@@ -135,7 +135,8 @@ def main(inputPath):
             outputFile.append('文件夹创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
             outputFile.append('文件夹修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
                     
-            zf = zipfile.ZipFile(str(Path(aPath).name) + '.zip', 'w', zipfile.ZIP_STORED)
+            zf = zipfile.ZipFile(str(Path(aPath).parent.joinpath(Path(aPath).name)) + '.zip', 'w', zipfile.ZIP_STORED)
+            print(str(Path(aPath).parent.joinpath(Path(aPath).name)) + '.zip')
             for file in allFilelist:
                 zf.write(file, str(file)[len(aPath) - len(Path(aPath).name):])
             zf.comment = ''.join(outputFile).encode('utf-8')
