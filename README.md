@@ -329,6 +329,10 @@ get image's height and put it into .zip file
 
 相当于上一个py脚本加上压缩文件这步整合起来
 
+### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）
+
+使用epub元数据的书名重命名.epub文件
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
