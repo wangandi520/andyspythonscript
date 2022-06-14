@@ -331,6 +331,8 @@ get image's height and put it into .zip file
 
 ### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）
 
+rename .epub file by epub metadata 
+
 使用epub元数据的书名重命名.epub文件
 
 ## 使用前请备份，防止文件名不符合你的需求
