@@ -18,20 +18,16 @@ def getEpubInfo(filePath):
         # OPFファイルに記載されている書籍名や作者名の要素のnamespace
         'dc': 'http://purl.org/dc/elements/1.1/'
     }
-
     # epubファイルはzipファイル
     zip = zipfile.ZipFile(filePath)
-
     # /META-INF/container.xml からメタデータが記録されているファイルのパスを取得する
     txt = zip.read('META-INF/container.xml')
     tree = etree.fromstring(txt)
     opf_path = tree.xpath('n:rootfiles/n:rootfile/@full-path', namespaces=ns)[0]
-
     # OPFファイルのpackage要素の中のmetadata要素を取得する
     opf = zip.read(opf_path)
     tree = etree.fromstring(opf)
     metadata = tree.xpath('/pkg:package/pkg:metadata', namespaces=ns)[0]
-
     # metadata要素の情報をディクショナリに整形する
     res = {}
     for s in ['title', 'language', 'creator', 'date', 'identifier']:
@@ -40,7 +36,6 @@ def getEpubInfo(filePath):
             res[s] = metadata.xpath(
                 'dc:{0}/text()'.format(s), namespaces=ns)[0]
     return res
-
 
 def validFileName(fileName):
     # 把不能作为文件的字符替换成空格
