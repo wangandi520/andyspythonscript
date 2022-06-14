@@ -59,18 +59,7 @@ def validFileName(fileName):
     # Macのファイル名禁止文字
     fileName = fileName.replace(',', '，')
     return fileName
-
-    # args = sys.argv
-    # work_path = args[1]
-
-    # epub_files = os.listdir(work_path)
-    # for index, epubFile in enumerate(epub_files):
-            # book = getEpubInfo(epubFilePath)
-            # title = validFileName(book['title']) + '.epub'
-            # print('rename epub [{0}/{1}] : {2} -> {3}'.format(index +
-                                                              # 1, len(epub_files), epub_file, title))
-            # os.rename(epubFilePath, os.path.join(work_path, title))
-            
+      
 def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
@@ -78,7 +67,7 @@ def main(inputPath):
         fileType = ['.epub']
         
         if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('*'):
+            for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file) and (file.suffix in fileType):
                     book = getEpubInfo(file)
                     title = validFileName(book['title']) + '.epub'
