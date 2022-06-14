@@ -43,21 +43,10 @@ def getEpubInfo(filePath):
 
 
 def validFileName(fileName):
-    # Windowsのファイル名禁止文字
-    fileName = fileName.replace('?', '？')
-    fileName = fileName.replace('\\', '￥')
-    fileName = fileName.replace('/', '／')
-    fileName = fileName.replace('<', '＜')
-    fileName = fileName.replace('>', '＞')
-    fileName = fileName.replace('*', '＊')
-    fileName = fileName.replace('\"', '”')
-    fileName = fileName.replace('|', '｜')
-    fileName = fileName.replace(':', '：')
-    fileName = fileName.replace(';', '；')
-    # Linuxのファイル名禁止文字
-    fileName = fileName.replace('\0', '')
-    # Macのファイル名禁止文字
-    fileName = fileName.replace(',', '，')
+    # 把不能作为文件的字符替换成空格
+    for each in fileName:
+        if each in '\/:*?"<>|,':
+            fileName = fileName.replace(each, ' ')
     return fileName
       
 def main(inputPath):
@@ -70,14 +59,14 @@ def main(inputPath):
             for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file) and (file.suffix in fileType):
                     book = getEpubInfo(file)
-                    title = validFileName(book['title']) + '.epub'
+                    title = validFileName(book['title']) + file.suffix
                     Path(file).rename(Path(file).parent.joinpath(title))
                     print(file.name + ' -> ' + title)
 
         if Path.is_file(Path(aPath)):
             if Path(aPath).suffix in fileType:
                 book = getEpubInfo(aPath)
-                title = validFileName(book['title']) + '.epub'
+                title = validFileName(book['title']) + Path(aPath).suffix
                 Path(aPath).rename(Path(aPath).parent.joinpath(title))
                 print(Path(aPath).name + ' -> ' + title)
             
