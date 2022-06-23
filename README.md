@@ -307,9 +307,11 @@ combine two image into one
 
 文件夹内的第一张图如果不是单页，在文件内的setFirstSinglePage设置，比如第一张是单页，setFirstSinglePage = 0，第五张是单页，设置setFirstSinglePage = 4，会读取这页的宽度来判断哪些已经是双页的
 
-### 生成图片文件夹内的图片类型高度大小信息.txt（拖拽，仅文件夹）.py
+### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息.txt（拖拽，仅文件夹）
 
-get image's height
+get image's height,width, support zip and rar
+
+支持压缩包
 
 需要pip install pillow
 
