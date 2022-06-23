@@ -43,10 +43,12 @@ def main(inputPath):
     for aPath in inputPath:
         # 文件格式
         fileType = ['.jpg', '.png']
-        # 图片高度统计
-        fileHeight = {}
-        # 图片宽度统计
+        # 图片宽度统计，size[0]
         fileWidth = {}
+        # 图片高度统计，size[1]
+        fileHeight = {}
+        # 图片长度宽度统计，[size[0],，size[1]]
+        fileWidthAndHeight = {}
         # 图片类型统计
         numberOfFileType = {}
         # 文件夹大小
@@ -74,6 +76,10 @@ def main(inputPath):
                         fileWidth[tmpImg.size[0]] = 1
                     elif (tmpImg.size[0] in fileWidth):
                         fileWidth[tmpImg.size[0]] = fileWidth[tmpImg.size[0]] + 1
+                    if ((tmpImg.size[0],tmpImg.size[1]) not in fileWidthAndHeight):
+                        fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = 1
+                    elif ((tmpImg.size[0],tmpImg.size[1]) in fileWidthAndHeight):
+                        fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] + 1
             folderName = Path(aPath).name
             if folderName[0] == '[':
                 letterCount = 0
@@ -120,7 +126,10 @@ def main(inputPath):
                 outputFile.append('高度：' + str(key) + ', 数量: ' + str(fileHeight[key]) + '\n')    
             for key in fileWidth:
                 print('宽度：' + str(key) + ', 数量: ' + str(fileWidth[key]))
-                outputFile.append('宽度：' + str(key) + ', 数量: ' + str(fileWidth[key]) + '\n')       
+                outputFile.append('宽度：' + str(key) + ', 数量: ' + str(fileWidth[key]) + '\n')      
+            for key in fileWidthAndHeight:
+                print('宽度和高度：' + str(key) + ', 数量: ' + str(fileWidthAndHeight[key]))
+                outputFile.append('宽度和高度：' + str(key) + ', 数量: ' + str(fileWidthAndHeight[key]) + '\n')      
             print('文件数量：' + str(allFileCount))
             print('文件夹大小：' + formatFileSize(allFileSize))
             print('文件夹创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S'))
