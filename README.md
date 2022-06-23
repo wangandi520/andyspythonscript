@@ -307,11 +307,11 @@ combine two image into one
 
 文件夹内的第一张图如果不是单页，在文件内的setFirstSinglePage设置，比如第一张是单页，setFirstSinglePage = 0，第五张是单页，设置setFirstSinglePage = 4，会读取这页的宽度来判断哪些已经是双页的
 
-### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息.txt（拖拽，仅文件夹）
+### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息.txt（拖拽，文件夹或ziprar）.py
 
 get image's height,width, support zip and rar
 
-支持压缩包
+支持zip,rar压缩包
 
 需要pip install pillow
 
@@ -319,7 +319,7 @@ get image's height,width, support zip and rar
 
 生成.txt文件包含信息：书名、作者、出版、扫者、类型数量、高度数量、文件数量、文件夹大小、文件夹创建时间、文件夹修改时间
 
-### 生成图片文件夹内的图片类型高度大小信息到压缩文件的注释并压缩文件夹（拖拽，仅文件夹）.py
+### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息到压缩文件的注释并压缩或添加注释（拖拽，文件夹或ziprar）.py
 
 get image's height and put it into .zip file
 
@@ -330,6 +330,8 @@ get image's height and put it into .zip file
 并创建zip文件，把上面的信息添加到注释里，压缩方式：存储
 
 相当于上一个py脚本加上压缩文件这步整合起来
+
+zip压缩包会添加注释，rar不会
 
 ### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）
 
