@@ -60,7 +60,7 @@ def main(inputPath):
         allFilelist = []
         
         if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('*'):
+            for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file) and (file.suffix in fileType):
                     allFileSize = allFileSize + file.stat().st_size
                     allFileCount = allFileCount + 1
