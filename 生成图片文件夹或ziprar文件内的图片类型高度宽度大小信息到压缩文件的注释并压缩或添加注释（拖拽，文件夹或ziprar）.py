@@ -63,6 +63,8 @@ def main(inputPath):
         outputFile = []
         # 文件路径
         allFilelist = []
+        # 是否写入到无注释的zip文件中
+        writeToZipComment = True
         
         if Path.is_file(Path(aPath)):
             if rarfile.is_rarfile(Path(aPath)):
@@ -164,7 +166,7 @@ def main(inputPath):
                     outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
                     
                     writeFile(Path(aPath).name + '.txt', outputFile)
-                    if not zf.comment:
+                    if (not zf.comment) and writeToZipComment:
                         zf.comment = ''.join(outputFile).encode('utf-8')
         
         if Path.is_dir(Path(aPath)):
