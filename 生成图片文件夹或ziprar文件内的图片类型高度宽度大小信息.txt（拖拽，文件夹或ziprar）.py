@@ -36,7 +36,7 @@ def formatFileSize(sizeBytes):
     return format(result,'.2f') + suffix
     
 def writeFile(myPath, filereadlines):
-    newfile = open(myPath, mode='w', encoding='UTF-8')
+    newfile = open(myPath, mode='a+', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close() 
     
@@ -59,6 +59,8 @@ def main(inputPath):
         allFileCount = 0
         # 输出
         outputFile = []
+        # 压缩文件信息输出到一个文件 = True，各自的文件 = False
+        outputToOneFile = True
         
         if Path.is_file(Path(aPath)):
             if rarfile.is_rarfile(Path(aPath)):
@@ -107,9 +109,12 @@ def main(inputPath):
                     outputFile.append('文件数量：' + str(allFileCount)+ '\n')
                     outputFile.append('文件大小：' + formatFileSize(Path(aPath).stat().st_size) + '\n')
                     outputFile.append('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
-                    outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
+                    outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n\n')
                     
-                    writeFile(Path(aPath).name + '.txt', outputFile)
+                    if outputToOneFile:
+                        writeFile(Path(aPath).parent.joinpath(Path(aPath).parent.name + '.txt'), outputFile)
+                    else:
+                        writeFile(Path(aPath).parent.joinpath(Path(aPath).name + '.txt'), outputFile)
                 
             if zipfile.is_zipfile(Path(aPath)):
                 with zipfile.ZipFile(Path(aPath)) as zf:
@@ -157,9 +162,12 @@ def main(inputPath):
                     outputFile.append('文件数量：' + str(allFileCount)+ '\n')
                     outputFile.append('文件大小：' + formatFileSize(Path(aPath).stat().st_size) + '\n')
                     outputFile.append('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
-                    outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
+                    outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n\n')
                     
-                    writeFile(Path(aPath).name + '.txt', outputFile)
+                    if outputToOneFile:
+                        writeFile(Path(aPath).parent.joinpath(Path(aPath).parent.name + '.txt'), outputFile)
+                    else:
+                        writeFile(Path(aPath).parent.joinpath(Path(aPath).name + '.txt'), outputFile)
         
         
         if Path.is_dir(Path(aPath)):
