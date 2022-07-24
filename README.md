@@ -333,11 +333,17 @@ get image's height and put it into .zip file
 
 zip压缩包会添加注释，rar不会
 
-### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）
+### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）.py
 
 rename .epub file by epub metadata 
 
 使用epub元数据的书名重命名.epub文件
+
+### 识别文件真正的扩展名并修改（拖拽，多个文件或文件夹）.py
+
+需要pip install fleep
+
+默认只显示信息不修改扩展名，如果需要修改扩展名请把第14行改为renameToRealSuffix = True
 
 ## 使用前请备份，防止文件名不符合你的需求
 
