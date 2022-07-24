@@ -9,13 +9,15 @@ from pathlib import Path
 
 def main(inputPath):
     del inputPath[0]
-    for aPath in inputPath:
-        # 把文件扩展名改成真正的扩展名 = True，不改名只显示信息 = False
-        renameToRealSuffix = False
+    
+    # 把文件扩展名改成真正的扩展名 = True，不改名只显示信息 = False
+    renameToRealSuffix = False
+    
+    if not renameToRealSuffix:
+        print('如果需要修改扩展名请把第14行改为renameToRealSuffix = True')
+        print()
         
-        if not renameToRealSuffix:
-            print('如果需要修改扩展名请把第14行改为renameToRealSuffix = True')
-            print()
+    for aPath in inputPath:
             
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
