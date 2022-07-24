@@ -21,16 +21,16 @@ def main(inputPath):
             for file in Path(aPath).glob('**/*'):
                 if Path.is_file(file):
                     with open(file, 'rb') as openFile:
-                        info = fleep.get(openFile.read(128)) 
-                if not info.extension_matches(Path(file).suffix[1:]):
-                    if renameToRealSuffix and len(info.extension) == 1:
-                        Path(file).rename(Path(file).parent.joinpath(Path(file).stem + '.' + info.extension[0]))
-                        print('已修改，' + Path(file).name + ' -> ' + Path(file).stem + '.' + info.extension[0])
-                    else:
-                        if len(info.extension) == 1:
-                            print('未修改，扩展名可能是 ' + info.extension[0] + '： ' + Path(file).name)
-                        if len(info.extension) > 1:
-                            print('未修改，这个文件的扩展名可能有多种可能： ' + ', '.join(info.extension))
+                        info = fleep.get(openFile.read(128))
+                    if not info.extension_matches(Path(file).suffix[1:]):
+                        if renameToRealSuffix and len(info.extension) == 1:
+                            Path(file).rename(Path(file).parent.joinpath(Path(file).stem + '.' + info.extension[0]))
+                            print('已修改，' + Path(file).name + ' -> ' + Path(file).stem + '.' + info.extension[0])
+                        else:
+                            if len(info.extension) == 1:
+                                print('未修改，扩展名可能是 ' + info.extension[0] + '： ' + Path(file).name)
+                            if len(info.extension) > 1:
+                                print('未修改，这个文件的扩展名可能有多种可能： ' + ', '.join(info.extension))
 
         if Path.is_file(Path(aPath)):
             with open(aPath, 'rb') as openFile:
@@ -45,7 +45,9 @@ def main(inputPath):
                     if len(info.extension) > 1:
                         print('未修改，这个文件的扩展名可能有多种可能： ' + ', '.join(info.extension))
     
-    input()
+    print()
+    getInput = input('输入回车退出: ')
+    print()
     
 if __name__ == '__main__':
     try:
