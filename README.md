@@ -145,22 +145,6 @@ mkdir folder/subfolder in old file name [subfolder][folder], rename file between
 
 需要pip install opencc-python-reimplemented
 
-### 百度网盘链接提取码格式批量转换（拖拽，仅多个txt文件）.py
-
-把存储百度网盘链接的txt文件拖到py上
-
-原格式：链接: https://pan.baidu.com/s/xxxxxxxxx 提取码: yyyy 复制这段内容后打开百度网盘手机App，操作更方便哦	
-
-新格式：https://pan.baidu.com/s/xxxxxxxxx#yyyy
-
-源文件名：链接.txt
-
-新文件名：链接.txt.txt
-
-可以直接在notepad++里双击进去链接，配合上面的tampermonkey脚本，可直接进入文件列表
-
-txt要是UTF-8编码，可用记事本打开另存为时修改
-
 ### 复制出RAR或ZIP文件中的第一个文件（拖拽，多个文件或文件夹）.py
 
 copy first file in .rar or .zip
