@@ -8,9 +8,11 @@ import fleep
 from pathlib import Path
 
 def doChangeFileSuffix(filePath):
-    #typeof(filePath): Path
+    # typeof(filePath): Path
     # 把文件扩展名改成真正的扩展名 = True，不改名只显示信息 = False
-    renameToRealSuffix = True
+    renameToRealSuffix = False
+    # 有多个可能时，强行修改成第N个扩展名，不强行修改 = -1，改成第1个 = 0，改成第2个 = 1
+    forceRenameToRealSuffixIndex = -1
     
     if Path.is_file(filePath):
         with open(filePath, 'rb') as openFile:
@@ -18,12 +20,15 @@ def doChangeFileSuffix(filePath):
         if not info.extension_matches(filePath.suffix[1:]):
             if renameToRealSuffix and len(info.extension) == 1:
                 filePath.rename(filePath.parent.joinpath(filePath.stem + '.' + info.extension[0]))
-                print('已修改，' + filePath.name + ' -> ' + filePath.stem + '.' + info.extension[0])
+                print('已修改， ' + filePath.name + ' -> ' + filePath.stem + '.' + info.extension[0])
+            elif renameToRealSuffix and len(info.extension) > 1 and forceRenameToRealSuffixIndex >= 0:
+                filePath.rename(filePath.parent.joinpath(filePath.stem + '.' + info.extension[forceRenameToRealSuffixIndex]))
+                print('已修改， ' + filePath.name + ' -> ' + filePath.stem + '.' + info.extension[forceRenameToRealSuffixIndex])
             else:
                 if len(info.extension) == 1:
-                    print('未修改，扩展名可能是 ' + info.extension[0] + '： ' + filePath.name)
+                    print('未修改， ' + filePath.name + ' 的扩展名可能是 ' + info.extension[0])
                 if len(info.extension) > 1:
-                    print('未修改，这个文件的扩展名可能有多种可能： ' + ', '.join(info.extension))
+                    print('未修改， ' + filePath.name + ' 的扩展名可能有多种可能： ' + ', '.join(info.extension))
         
 def main(inputPath):
     print('如果需要修改扩展名请把第13行改为renameToRealSuffix = True')
