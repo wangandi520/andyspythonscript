@@ -329,6 +329,15 @@ rename .epub file by epub metadata
 
 默认只显示信息不修改扩展名，如果需要修改扩展名请把第14行改为renameToRealSuffix = True
 
+
+### 使用flac元数据的歌名歌手重命名.flac文件（拖拽，多个文件或文件夹）.py
+
+需要pip install tinytag
+
+rename .flac file by flac metadata 
+
+使用flac元数据的歌名歌手重命名.flac文件
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
