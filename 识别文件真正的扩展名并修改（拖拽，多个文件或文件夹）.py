@@ -44,7 +44,7 @@ def main(inputPath):
     
     print()
     print('执行结束，如果没有输出，可是所有文件扩展名未出错')
-    getInput = input('输入回车退出: ')
+    getInput = input('输入回车退出或右上角关闭: ')
     print()
     
 if __name__ == '__main__':

@@ -15,7 +15,7 @@ def validFileName(fileName):
     return fileName
 
 def doChangeFileName(filePath):
-    #typeof(filePath): Path
+    # typeof(filePath): Path
     # 文件格式，如果需要其他格式请手动添加，支持的格式见第三行的网址
     fileType = ['.flac', '.mp3']
     # newFileName是文件名格式，按需求修改，eachTag.title是歌名，eachTag.artist是歌手，其他信息见第三行的网址

@@ -8,7 +8,6 @@ from pathlib import Path
 import sys
     
 def main(inputPath):
-    
     # 显示每张图片的宽度 = True， 不显示 = False
     showEachFile = True
     # 显示完整路径 = True，只显示文件名 = False
@@ -80,7 +79,7 @@ def main(inputPath):
                 if eachFile[1] == str(tmpHeight):
                     print(eachFile[0])
             print()
-            getInput = input('输入回车退出: ')
+            getInput = input('输入回车退出或右上角关闭: ')
             print()
         
 if __name__ == '__main__':
