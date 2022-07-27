@@ -5,30 +5,29 @@
 from PIL import Image
 from pathlib import Path
 import sys
-  
-def main(inputPath):
+
+def doChangeImageHeight(filePath):
+    #typeof(filePath): Path
     # 图片高度
-    imgHeight = 4000
+    imgHeight = 3000
     # 设置文件类型
     #fileType = ['.png']
     fileType = ['.png','.jpg']
-    
+    if filePath.suffix in fileType:
+        img = Image.open(filePath)
+        imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
+        img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
+        img.save(filePath.parent.joinpath(filePath.stem + '_' + str(imgHeight) + filePath.suffix)) 
+
+def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
-                    img = Image.open(file)
-                    imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
-                    img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
-                    img.save(file.parent.joinpath(file.stem + '_' + str(imgHeight) + file.suffix)) 
+                doChangeImageHeight(file)
                 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType: 
-                img = Image.open(Path(aPath))
-                imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
-                img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
-                img.save(Path(aPath).parent.joinpath(Path(aPath).stem + '_' + str(imgHeight) + Path(aPath).suffix)) 
+            doChangeImageHeight(Path(aPath))
 
 if __name__ == '__main__':
     try:

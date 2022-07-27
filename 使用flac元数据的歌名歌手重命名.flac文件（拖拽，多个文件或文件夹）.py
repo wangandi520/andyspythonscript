@@ -13,28 +13,28 @@ def validFileName(fileName):
         if each in '\/:*?"<>|,':
             fileName = fileName.replace(each, ' ')
     return fileName
+
+def doChangeFileName(filePath):
+    #typeof(filePath): Path
+    # 文件格式，如果需要其他格式请手动添加，支持的格式见第三行的网址
+    fileType = ['.flac', '.mp3']
+    # newFileName是文件名格式，按需求修改，eachTag.title是歌名，eachTag.artist是歌手，其他信息见第三行的网址
     
+    if Path.is_file(filePath) and (filePath.suffix in fileType):
+        eachTag = TinyTag.get(filePath)
+        newFileName = validFileName(eachTag.title + ' - ' + eachTag.artist) + filePath.suffix
+        filePath.rename(filePath.parent.joinpath(newFileName))
+        print(filePath.name + ' -> ' + newFileName)
+
 def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
-        # 文件格式，如果需要其他格式请手动添加，支持的格式见第三行的网址
-        fileType = ['.flac', '.mp3']
-        # newFileName是文件名格式，按需求修改，eachTag.title是歌名，eachTag.artist是歌手，其他信息见第三行的网址
-        
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if Path.is_file(file) and (file.suffix in fileType):
-                    eachTag = TinyTag.get(file)
-                    newFileName = validFileName(eachTag.title + ' - ' + eachTag.artist) + Path(file).suffix
-                    Path(file).rename(Path(file).parent.joinpath(newFileName))
-                    print(Path(file).name + ' -> ' + newFileName)
+                doChangeFileName(file)
 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
-                eachTag = TinyTag.get(aPath)
-                newFileName = validFileName(eachTag.title + ' - ' + eachTag.artist) + Path(aPath).suffix
-                Path(aPath).rename(Path(aPath).parent.joinpath(newFileName))
-                print(Path(aPath).name + ' -> ' + newFileName)
+            doChangeFileName(Path(aPath))
             
 if __name__ == '__main__':
     try:

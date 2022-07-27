@@ -43,7 +43,18 @@ def validFileName(fileName):
         if each in '\/:*?"<>|,':
             fileName = fileName.replace(each, ' ')
     return fileName
-      
+
+def doChangeFileName(filePath):
+    #typeof(filePath): Path
+    # 文件格式
+    fileType = ['.epub']
+    
+    if Path.is_file(filePath) and (filePath.suffix in fileType):
+        book = getEpubInfo(filePath)
+        title = validFileName(book['title']) + filePath.suffix
+        filePath.rename(filePath.parent.joinpath(title))
+        print(filePath.name + ' -> ' + title)
+        
 def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
@@ -52,18 +63,10 @@ def main(inputPath):
         
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if Path.is_file(file) and (file.suffix in fileType):
-                    book = getEpubInfo(file)
-                    title = validFileName(book['title']) + file.suffix
-                    Path(file).rename(Path(file).parent.joinpath(title))
-                    print(file.name + ' -> ' + title)
+                doChangeFileName(file)
 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
-                book = getEpubInfo(aPath)
-                title = validFileName(book['title']) + Path(aPath).suffix
-                Path(aPath).rename(Path(aPath).parent.joinpath(title))
-                print(Path(aPath).name + ' -> ' + title)
+            doChangeFileName(Path(aPath))
             
 if __name__ == '__main__':
     try:
