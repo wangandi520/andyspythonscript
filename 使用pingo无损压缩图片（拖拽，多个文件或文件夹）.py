@@ -7,20 +7,23 @@ import os.path
 import piexif
 
 # pip install piexif
-# https://css-ig.net/bin/pingo-win64.zip
 # 需要pingo.exe
+# https://css-ig.net/bin/pingo-win64.zip
 # usage (examples)
 # pingo [options] files/folders pingo -s0 *.png pingo -s0 myfolder pingo -s0 c:\myfolder
 # PNG — lossless
 # pingo -sN file.png
 # N from 0 to 9, optimization level
+# JPEG — lossless
+# -jpgtype=M -sN in.jpg
+# M from 0 to 2, compression type
 
 def doPingo(filePath):
     # typeof(filePath): Path
     # 文件格式，暂时支持png jpg
     # fileType = ['.png','.jpg']
-    # 是否保留旧的exif信息
-    preserveMetadata = True
+    # 是否保留jpg文件的metadata
+    preserveJPGsMetadata = True
     
     if filePath.suffix.lower() == '.png':
         cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
