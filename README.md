@@ -255,7 +255,7 @@ change image's degree
 
 旋转，文件内修改角度
 
-### 使用pingo压缩图片（拖拽，多个文件或文件夹）.py
+### 使用pingo无损压缩图片（拖拽，多个文件或文件夹）.py
 
 loseless compress image
 
