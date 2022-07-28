@@ -15,12 +15,14 @@ import os.path
 
 def doPingo(filePath):
     # typeof(filePath): Path
-    # 文件格式
-    # fileType = ['.png']
-    fileType = ['.png','.jpg']
+    # 文件格式，暂时支持png jpg
+    # fileType = ['.png','.jpg']
     
-    if filePath.suffix in fileType:
+    if filePath.suffix == '.png':
         cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
+        os.system(cmd)
+    if filePath.suffix == '.jpg':
+        cmd = 'pingo.exe -jpgtype=0 -s0 "' + str(filePath) + '"'
         os.system(cmd)
     
 def main(inputPath):
