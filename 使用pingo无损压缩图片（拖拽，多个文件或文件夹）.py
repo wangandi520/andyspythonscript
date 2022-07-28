@@ -20,17 +20,17 @@ def doPingo(filePath):
     # 文件格式，暂时支持png jpg
     # fileType = ['.png','.jpg']
     # 是否保留旧的exif信息
-    preserveExifData = True
+    preserveMetadata = True
     
     if filePath.suffix.lower() == '.png':
         cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
         os.system(cmd)
     if filePath.suffix.lower() == '.jpg':
-        if preserveExifData:
+        if preserveMetadata:
             oldImgExif = piexif.dump(piexif.load(str(filePath)))
         cmd = 'pingo.exe -jpgtype=0 -s0 "' + str(filePath) + '"'
         os.system(cmd)
-        if preserveExifData:
+        if preserveMetadata:
             piexif.insert(oldImgExif, str(filePath))
     
 def main(inputPath):
