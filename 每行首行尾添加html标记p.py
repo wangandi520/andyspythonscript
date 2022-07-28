@@ -39,7 +39,7 @@ def main(inputPath):
             for file in Path(aPath).glob('*.txt'):
                 convertHTML(file)
         if Path.is_file(Path(aPath)):
-            if (Path(aPath).suffix == '.txt'):
+            if (Path(aPath).suffix.lower() == '.txt'):
                 convertHTML(aPath)
         
 if __name__ == '__main__':

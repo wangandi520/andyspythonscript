@@ -71,7 +71,7 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
+                if file.suffix.lower() in fileType:
                     imgData = Image.open(file)
                     allFileInfo.append('文件名： ' + str(file.name) + '\n')
                     allFileInfo.append('大小： ' + str(formatFileSize(file.stat().st_size)) + '\n')
@@ -118,7 +118,7 @@ def main(inputPath):
                     allFileInfo.append('\n')
             
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
+            if Path(aPath).suffix.lower() in fileType:
                 imgData = Image.open(aPath)
                 allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
                 allFileInfo.append('大小： ' + str(formatFileSize(Path(aPath).stat().st_size)) + '\n')

@@ -20,7 +20,7 @@ def doChangeFileName(filePath):
     fileType = ['.flac', '.mp3']
     # newFileName是文件名格式，按需求修改，eachTag.title是歌名，eachTag.artist是歌手，其他信息见第三行的网址
     
-    if Path.is_file(filePath) and (filePath.suffix in fileType):
+    if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         eachTag = TinyTag.get(filePath)
         newFileName = validFileName(eachTag.title + ' - ' + eachTag.artist) + filePath.suffix
         filePath.rename(filePath.parent.joinpath(newFileName))

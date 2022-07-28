@@ -16,13 +16,13 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
+                if file.suffix.lower() in fileType:
                     img = Image.open(file)
                     newImg = img.crop(newImgSize) 
                     newImg.save(file.parent.joinpath(file.stem + '_new' + file.suffix)) 
                 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType: 
+            if Path(aPath).suffix.lower() in fileType: 
                 img = Image.open(Path(aPath))
                 newImg = img.crop(newImgSize) 
                 newImg.save(Path(aPath).parent.joinpath(Path(aPath).stem + '_new' + Path(aPath).suffix)) 

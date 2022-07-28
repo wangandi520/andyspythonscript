@@ -25,14 +25,14 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
+                if file.suffix.lower() in fileType:
                     img = Image.open(file)
                     imgWidth, imgHeight = img.size
                     cmd = 'convert.exe "' + str(file) + '" -crop ' + str(imgWidth / 2) + 'x' + str(imgHeight) + ' "' + str(file) + '"'
                     os.system(cmd)
                 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
+            if Path(aPath).suffix.lower() in fileType:
                 img = Image.open(Path(aPath))
                 imgWidth, imgHeight = img.size
                 cmd = 'convert.exe "' + aPath + '" -crop ' + str(imgWidth / 2) + 'x' + str(imgHeight) + ' "' + aPath + '"'

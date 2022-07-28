@@ -49,7 +49,7 @@ def doChangeFileName(filePath):
     # 文件格式
     fileType = ['.epub']
     
-    if Path.is_file(filePath) and (filePath.suffix in fileType):
+    if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         book = getEpubInfo(filePath)
         title = validFileName(book['title']) + filePath.suffix
         filePath.rename(filePath.parent.joinpath(title))

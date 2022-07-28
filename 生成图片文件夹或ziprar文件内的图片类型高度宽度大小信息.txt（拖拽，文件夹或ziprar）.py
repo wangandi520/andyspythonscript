@@ -71,7 +71,7 @@ def main(inputPath):
                             fileNameList.append(eachFile.filename)
                     allFileCount = len(fileNameList)
                     for fileName in fileNameList:
-                        if Path(fileName).suffix in fileType:
+                        if Path(fileName).suffix.lower() in fileType:
                             with rf.open(fileName) as readImage:
                                 tmpImg = Image.open(readImage)
                                 if Path(fileName).suffix not in numberOfFileType:
@@ -124,7 +124,7 @@ def main(inputPath):
                             fileNameList.append(eachFile.filename)
                     allFileCount = len(fileNameList)
                     for fileName in fileNameList:
-                        if Path(fileName).suffix in fileType:
+                        if Path(fileName).suffix.lower() in fileType:
                             with zf.open(fileName) as readImage:
                                 tmpImg = Image.open(readImage)
                                 if Path(fileName).suffix not in numberOfFileType:

@@ -14,13 +14,13 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix == '.rar' and rarfile.is_rarfile(file):
+                if file.suffix.lower() == '.rar' and rarfile.is_rarfile(file):
                     rf = rarfile.RarFile(file)
                     for eachFile in rf.namelist():
                         if keyword in eachFile:
                             print(file)
                     rf.close()
-                if file.suffix == '.zip' and zipfile.is_zipfile(file):
+                if file.suffix.lower() == '.zip' and zipfile.is_zipfile(file):
                     zf = zipfile.ZipFile(file)                        
                     for eachFile in zf.namelist():
                         try:
@@ -35,14 +35,14 @@ def main(inputPath):
                             
         if Path.is_file(Path(aPath)):
             file = Path(aPath)
-            if file.suffix == '.rar' and rarfile.is_rarfile(file):
+            if file.suffix.lower() == '.rar' and rarfile.is_rarfile(file):
                 rf = rarfile.RarFile(file)
                 for eachFile in rf.namelist():
                     if keyword in eachFile:
                         print(file)
                 rf.close()
                                         
-            if file.suffix == '.zip' and zipfile.is_zipfile(file):
+            if file.suffix.lower() == '.zip' and zipfile.is_zipfile(file):
                 zf = zipfile.ZipFile(file)
                 for eachFile in zf.namelist():
                     try:

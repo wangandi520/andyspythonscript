@@ -21,12 +21,12 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
+                if file.suffix.lower() in fileType:
                     cmd = 'convert.exe -rotate ' + str(setRotate) + ' "' + str(file) + '" "' + str(file) + '"'
                     os.system(cmd)
                 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
+            if Path(aPath).suffix.lower() in fileType:
                 cmd = 'convert.exe -rotate ' + str(setRotate) + ' "' + aPath + '" "' + aPath + '"'
                 os.system(cmd)
 

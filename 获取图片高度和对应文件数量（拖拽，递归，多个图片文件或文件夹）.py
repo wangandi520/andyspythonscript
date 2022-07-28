@@ -23,7 +23,7 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if Path.is_file(file) and (file.suffix in fileType):
+                if Path.is_file(file) and (file.suffix.lower() in fileType):
                     tmpImg = Image.open(file)
                     if (tmpImg.size[1] not in fileHeight):
                         if (showEachFile and showAllPath):
@@ -41,7 +41,7 @@ def main(inputPath):
                             print(str(Path(file.name)) + ' ' + str(tmpImg.size[1]))
                             filePathStorage.append([str(Path(file.name)), str(tmpImg.size[1])])
                         fileHeight[tmpImg.size[1]] = fileHeight[tmpImg.size[1]] + 1
-        if Path.is_file(Path(aPath)) and (Path(aPath).suffix in fileType):
+        if Path.is_file(Path(aPath)) and (Path(aPath).suffix.lower() in fileType):
             tmpImg = Image.open(aPath)
             if (tmpImg.size[1] not in fileHeight):
                 if (showEachFile and showAllPath):

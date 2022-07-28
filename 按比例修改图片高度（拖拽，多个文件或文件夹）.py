@@ -13,7 +13,7 @@ def doChangeImageHeight(filePath):
     # 设置文件类型
     #fileType = ['.png']
     fileType = ['.png','.jpg']
-    if filePath.suffix in fileType:
+    if filePath.suffix.lower() in fileType:
         img = Image.open(filePath)
         imgWidth = int(img.size[0] / (img.size[1] / imgHeight ))
         img = img.resize((imgWidth, imgHeight),Image.ANTIALIAS) 
