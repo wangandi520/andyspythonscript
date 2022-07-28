@@ -257,6 +257,8 @@ change image's degree
 
 ### 使用pingo无损压缩图片（拖拽，多个文件或文件夹）.py
 
+需要pip install piexif
+
 loseless compress image
 
 压缩图片
