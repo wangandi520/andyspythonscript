@@ -13,23 +13,25 @@ import os.path
 # pingo -sN file.png
 # N from 0 to 9, optimization level
 
-def main(inputPath):
-    # 设置文件类型
-    #fileType = ['.png']
+def doPingo(filePath):
+    # typeof(filePath): Path
+    # 文件格式
+    # fileType = ['.png']
     fileType = ['.png','.jpg']
     
+    if filePath.suffix in fileType:
+        cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
+        os.system(cmd)
+    
+def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if file.suffix in fileType:
-                    cmd = 'pingo.exe -s9 "' + str(file) + '"'
-                    os.system(cmd)
+                doPingo(file)
                 
         if Path.is_file(Path(aPath)):
-            if Path(aPath).suffix in fileType:
-                cmd = 'pingo.exe -s9 "' + aPath + '"'
-                os.system(cmd)
+            doPingo(Path(aPath))
 
 if __name__ == '__main__':
     try:
