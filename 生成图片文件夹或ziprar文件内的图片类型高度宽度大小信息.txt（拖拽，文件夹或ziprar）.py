@@ -90,6 +90,7 @@ def main(inputPath):
                                     fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = 1
                                 elif ((tmpImg.size[0],tmpImg.size[1]) in fileWidthAndHeight):
                                     fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] + 1
+                    outputFile.append(Path(aPath).name + '\n')      
                     for key in sorted(numberOfFileType):
                         print('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]))
                         outputFile.append('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]) + '\n')
@@ -106,7 +107,7 @@ def main(inputPath):
                     print('文件大小：' + formatFileSize(Path(aPath).stat().st_size))
                     print('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S'))
                     print('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S'))
-                    outputFile.append('文件数量：' + str(allFileCount)+ '\n')
+                    outputFile.append('文件数量：' + str(allFileCount) + '\n')
                     outputFile.append('文件大小：' + formatFileSize(Path(aPath).stat().st_size) + '\n')
                     outputFile.append('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
                     outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n\n')
@@ -143,6 +144,7 @@ def main(inputPath):
                                     fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = 1
                                 elif ((tmpImg.size[0],tmpImg.size[1]) in fileWidthAndHeight):
                                     fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] = fileWidthAndHeight[(tmpImg.size[0],tmpImg.size[1])] + 1
+                    outputFile.append(Path(aPath).name + '\n')      
                     for key in sorted(numberOfFileType):
                         print('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]))
                         outputFile.append('类型：' + key[1:] + '，数量: ' +  str(numberOfFileType[key]) + '\n')
@@ -159,11 +161,11 @@ def main(inputPath):
                     print('文件大小：' + formatFileSize(Path(aPath).stat().st_size))
                     print('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S'))
                     print('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S'))
-                    outputFile.append('文件数量：' + str(allFileCount)+ '\n')
+                    outputFile.append('文件数量：' + str(allFileCount) + '\n')
                     outputFile.append('文件大小：' + formatFileSize(Path(aPath).stat().st_size) + '\n')
                     outputFile.append('文件创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
                     outputFile.append('文件修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n\n')
-                    
+
                     if outputToOneFile:
                         writeFile(Path(aPath).parent.joinpath(Path(aPath).parent.name + '.txt'), outputFile)
                     else:
