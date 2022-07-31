@@ -251,8 +251,7 @@ def main(inputPath):
             outputFile.append('文件夹创建时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_ctime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
             outputFile.append('文件夹修改时间：' + datetime.datetime.fromtimestamp(Path(aPath).stat().st_mtime).strftime('%Y-%m-%d %H:%M:%S') + '\n')
             
-            writeFile(folderName + '.txt', outputFile)
-        
+            writeFile(Path(aPath).parent.joinpath(Path(aPath).name + '.txt'), outputFile)        
         
 if __name__ == '__main__':
     try:
