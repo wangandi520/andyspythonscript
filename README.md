@@ -341,6 +341,14 @@ rename .flac file by flac metadata
 
 使用flac元数据的歌名歌手重命名.flac文件
 
+### 检测图片损坏（拖拽，多个文件或文件夹）.py
+
+需要pip install pillow
+
+检测图片损坏
+
+使用pillow verify() 
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
