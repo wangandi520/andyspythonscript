@@ -6,6 +6,8 @@ import sys
 import json
 import calendar
 
+# 本脚本原理：
+# 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，14活跃度后签到
 # 本脚本使用前提：
 # 1.网上搜索，安装python和pip插件，在命令提示符输入pip install requests
 # 2.账号能进入萌享会员自由交流区https://moeshare.cc/thread-htm-fid-16.html，不能进的话每天14活跃度签到，月底道具中心买全满勤奖后使用
