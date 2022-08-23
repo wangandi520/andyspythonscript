@@ -28,6 +28,7 @@ def main(inputPath):
         if Path.is_file(Path(aPath)):
             doVerify(Path(aPath))
 
+    print('检测结束。')
     input()
     
 if __name__ == '__main__':
