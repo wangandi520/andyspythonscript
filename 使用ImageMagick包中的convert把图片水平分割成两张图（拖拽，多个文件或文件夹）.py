@@ -22,7 +22,7 @@ def doCrop(filePath):
     rightImgName = '_right'
     img = Image.open(filePath)
     imgWidth, imgHeight = img.size
-    cmd = 'convert.exe "' + str(filePath) + '" -crop ' + str(imgWidth / 2) + 'x' + str(imgHeight) + '  -quality ' + str(setQuality) + ' "' + str(filePath) + '"'
+    cmd = 'convert.exe "' + str(filePath) + '" -crop ' + str(imgWidth / 2) + 'x' + str(imgHeight) + ' -quality ' + str(setQuality) + ' "' + str(filePath) + '"'
     print(cmd)
     os.system(cmd)
     
