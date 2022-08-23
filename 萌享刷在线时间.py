@@ -17,21 +17,24 @@ import schedule
 def doOnline():
     myCookie01 = "8017a_c_stamp="
 
-    myAgent = "Edg/103.0.1264.71"
+    myAgent = "Edg/103.0.1264.70"
 
+    global myCount
     # 帖子地址
-    url01 = 'https://moeshare.cc/read-htm-tid-211701-page-1.html'
+    url = 'https://moeshare.cc/read-htm-tid-211701-page-1.html'
 
     mytime = int(round(time.time()))
     headers = {"User-Agent": myAgent,
                 "Cookie": myCookie01 + str(mytime) + "; 8017a_lastvisit=0	" + str(mytime) + "	/index.php"}
-    response = requests.get(url01, headers=headers)
+    response = requests.get(url, headers=headers)
     if response.status_code == 200:
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        print('url01刷新')
-        
+        print('第' + str(myCount) + '次刷新')
+        myCount = myCount + 1
+
+myCount = 1
 doOnline()  
-schedule.every(2).minutes.do(doOnline)
+schedule.every(1).minutes.do(doOnline)
 
 while True:
     schedule.run_pending()
