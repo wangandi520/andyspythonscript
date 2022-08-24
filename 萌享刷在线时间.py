@@ -36,7 +36,7 @@ def doOnline():
 
 myCount = 1
 doOnline()  
-schedule.every(110).seconds.do(doOnline)
+schedule.every(5).minutes.do(doOnline)
 
 while True:
     schedule.run_pending()
