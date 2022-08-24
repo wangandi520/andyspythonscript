@@ -22,7 +22,7 @@ def doOnline():
     myAgent = "Edg/103.0.1264.70"
 
     # 帖子地址
-    url = 'https://moeshare.cc/read-htm-tid-211701.html'
+    url = 'https://moeshare.cc/read-htm-tid-211701-page-2000.html'
 
     headers = {"User-Agent": myAgent,
                 "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
