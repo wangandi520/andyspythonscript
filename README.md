@@ -349,6 +349,12 @@ rename .flac file by flac metadata
 
 使用pillow verify() 
 
+### 使用mupdf包中的mutool提取pdf图片和字体（拖拽，多个文件或文件夹）.py
+
+需要mutool.exe，下载地址https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
+
+提取pdf图片和字体
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
