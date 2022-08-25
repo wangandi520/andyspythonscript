@@ -29,11 +29,11 @@ def doPingo(filePath):
         cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
         os.system(cmd)
     if filePath.suffix.lower() == '.jpg':
-        if preserveMetadata:
+        if preserveJPGsMetadata:
             oldImgExif = piexif.dump(piexif.load(str(filePath)))
         cmd = 'pingo.exe -jpgtype=0 -s0 "' + str(filePath) + '"'
         os.system(cmd)
-        if preserveMetadata:
+        if preserveJPGsMetadata:
             piexif.insert(oldImgExif, str(filePath))
     
 def main(inputPath):
