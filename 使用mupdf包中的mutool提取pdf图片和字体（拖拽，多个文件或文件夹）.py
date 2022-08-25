@@ -8,7 +8,8 @@ import os
 # https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
 # mutool.exe extract xxx.pdf
 
-def domupdf(filePath):
+def domupdf(pythonPath, filePath):
+    # typeof(pythonPath): Path
     # typeof(filePath): Path
     # 提取图片字体
     print('提取中...' + str(filePath.name))
@@ -25,7 +26,7 @@ def domupdf(filePath):
         Path.mkdir(newFolderPath)
     # 移动文件到文件夹
     for eachFileName in allFileName:
-        oldFilePath = filePath.parent.joinpath(eachFileName)
+        oldFilePath = pythonPath.parent.joinpath(eachFileName)
         newFilePath = newFolderPath.joinpath(eachFileName)
         Path(oldFilePath).replace(newFilePath)
     print('提取完成')
@@ -33,17 +34,18 @@ def domupdf(filePath):
 def main(inputPath):
     # 设置文件类型
     fileType = ['.pdf']
+    path0 = Path(inputPath[0])
     
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix.lower() in fileType:
-                    domupdf(file)
+                    domupdf(path0, file)
                 
         if Path.is_file(Path(aPath)):
             if Path(aPath).suffix.lower() in fileType: 
-                domupdf(Path(aPath))
+                domupdf(path0, Path(aPath))
 
 if __name__ == '__main__':
     try:
