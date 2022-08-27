@@ -355,6 +355,10 @@ rename .flac file by flac metadata
 
 提取pdf图片和字体
 
+### 向图片末尾添加一行信息，如果已添加则显示信息（拖拽，多个文件或文件夹）.py
+
+向图片末尾添加一行信息，如果已添加则显示信息
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
