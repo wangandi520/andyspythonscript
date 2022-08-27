@@ -9,26 +9,29 @@ def doAddMessageToImage(filePath):
     # 设置文件类型
     fileType = ['.png','.jpg']
     # 需要添加的信息
-    myMessage = b'myMessage'
+    myMessage = '需要添加的信息'
+    encodeMessage:bytes = myMessage.encode('utf-8')
     if filePath.suffix.lower() in fileType:
         with open(filePath, 'rb') as fileRead:
             fileReadLine = fileRead.readlines()
     if filePath.suffix.lower() == '.jpg':
         if fileReadLine[-1][-2:] == b'\xff\xd9':
             fileReadLine.append(b'\n')
-            fileReadLine.append(myMessage)
+            fileReadLine.append(encodeMessage)
             with open(filePath.parent.joinpath(filePath.stem + '_new' + filePath.suffix), 'wb') as fileSave:
                 fileSave.writelines(fileReadLine)
         else:
-            print(str(fileReadLine[-1], encoding = 'utf-8'))
+            decodeMessage = fileReadLine[-1].decode('utf-8')
+            print(decodeMessage)
     if filePath.suffix.lower() == '.png':
         if fileReadLine[-1][-1:] == b'\x82':
             fileReadLine.append(b'\n')
-            fileReadLine.append(myMessage)
+            fileReadLine.append(encodeMessage)
             with open(filePath.parent.joinpath(filePath.stem + '_new' + filePath.suffix), 'wb') as fileSave:
                 fileSave.writelines(fileReadLine)
         else:
-            print(str(fileReadLine[-1], encoding = 'utf-8'))
+            decodeMessage = fileReadLine[-1].decode('utf-8')
+            print(decodeMessage)
 
 def main(inputPath):
     del inputPath[0]
