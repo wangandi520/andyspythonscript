@@ -3,13 +3,14 @@
 
 from pathlib import Path
 import sys
+import time
 
 def doAddMessageToImage(filePath):
     # typeof(filePath): Path
     # 设置文件类型
     fileType = ['.png','.jpg']
-    # 需要添加的信息
-    myMessage = '需要添加的信息'
+    # 需要添加的信息，当前时间time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    myMessage = '需要添加的信息' + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     encodeMessage:bytes = myMessage.encode('utf-8')
     if filePath.suffix.lower() in fileType:
         with open(filePath, 'rb') as fileRead:
