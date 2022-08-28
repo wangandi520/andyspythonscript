@@ -361,6 +361,8 @@ rename .flac file by flac metadata
 
 ### 把每个ziprar文件添加密码后压缩为7z（拖拽，仅ziprar文件）.py
 
+需要pip install py7zr
+
 每个分别压缩
 
 ## 使用前请备份，防止文件名不符合你的需求
