@@ -17,7 +17,7 @@ def doAddToEncrypted7z(filePath):
         newFileName = '密码' + myPassword + '_' + Path(filePath).stem
         print('正在处理...' + filePath.name)
         with py7zr.SevenZipFile(str(Path(filePath).parent.joinpath(newFileName)) + '.7z', 'w', password = myPassword) as archive:
-            archive.write(filePath)
+            archive.write(filePath, str(filePath)[len(str(filePath)) - len(str(filePath.name)):])
         print('完成')
 
 def main(inputPath):
