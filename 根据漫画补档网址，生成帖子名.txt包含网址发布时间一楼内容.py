@@ -1,7 +1,6 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
-# pip3 install requests
-# pip3 install bs4
+# pip3 install requests bs4
 
 import requests
 from bs4 import BeautifulSoup
@@ -13,16 +12,16 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    tid = [1000,1001]
+    tid = [4]
     for eachtid in tid:
-        url = 'https://www.manhuabudang.com/read.php?tid=' + str(eachtid)
+        url = 'https://www.manhuabudangbs.com/read-htm-tid-' + str(eachtid) + '.html'
         print(url)
         getHtml = requests.get(url)
         soup = BeautifulSoup(getHtml.text, 'html.parser')
-        getName = soup.find(attrs={'id' : 'subject_tpc'}).string
-        getTime = '\n\n' + soup.find(attrs={'id' : 'readfloor_tpc'}).find(attrs={'class' : 'tipTop s6'}).findAll('span')[-1].get_text() + '\n'
-        getContent = str(soup.find(attrs={'id' : 'read_tpc'}))
-        getContent = getContent.replace('<br/>',"\n")
+        getName = soup.select('#subject_tpc')[0].get_text()[:-7]
+        getTime = '\n\n' + soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
+        getContent = soup.select('#td_tpc > div.tpc_content')
+        getContent = str(getContent).replace('<br/>',"\n")
         getContent = BeautifulSoup(getContent, 'html.parser').get_text()
         writefile(getName, url + getTime + getContent)
         
