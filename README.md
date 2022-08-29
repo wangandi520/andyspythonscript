@@ -365,6 +365,10 @@ rename .flac file by flac metadata
 
 每个分别压缩
 
+### 把文件或文件夹添加密码后压缩为rar（拖拽，文件或文件夹）.py
+
+需要Rar.exe
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
