@@ -10,8 +10,10 @@ def doAddToEncryptedRar(filePath):
     # type(filePath): Path
     # 设置密码为1234
     myPassword = '1234'
-    # 新文件名 = 密码1234_ + 旧文件名
+    # 新文件名 = 密码1234_ + 旧文件名 + .rar
     newFileName = '密码' + myPassword + '_' + Path(filePath).stem + '.rar'
+    # 新文件名 = 旧文件名 + .rar
+    # newFileName = Path(filePath).stem + '.rar'
     print('正在处理...' + filePath.name)
     # -ep不包含路径
     # -ep1包含一层目录
