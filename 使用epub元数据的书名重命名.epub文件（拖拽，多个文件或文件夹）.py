@@ -45,7 +45,7 @@ def validFileName(fileName):
     return fileName
 
 def doChangeFileName(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 文件格式
     fileType = ['.epub']
     

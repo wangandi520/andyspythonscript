@@ -5,25 +5,25 @@
 from pathlib import Path
 from pypinyin import pinyin, lazy_pinyin, Style
 import sys
-    
-def main(inputPath):
+
+def doPinyin(filePath):
+    # type(filePath): Path
     # 文件名全拼 = 1，首字母 = 0
     setStyle = 1
+    if setStyle:
+        filePath.rename(filePath.parent.joinpath(''.join(lazy_pinyin(filePath.name))))
+    else:
+        filePath.rename(filePath.parent.joinpath(''.join(lazy_pinyin(filePath.name, style=Style.FIRST_LETTER))))
     
+def main(inputPath):
     del inputPath[0]
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
-                if Path.is_file(file):
-                    if setStyle:
-                        file.rename(Path(file).parent.joinpath(''.join(lazy_pinyin(file.name))))
-                    else:
-                        file.rename(Path(file).parent.joinpath(''.join(lazy_pinyin(file.name, style=Style.FIRST_LETTER))))
+                doPinyin(file)
+                    
         if Path.is_file(Path(aPath)):
-            if setStyle:
-                Path(aPath).rename(Path(aPath).parent.joinpath(''.join(lazy_pinyin(Path(aPath).name))))
-            else:
-                Path(aPath).rename(Path(aPath).parent.joinpath(''.join(lazy_pinyin(Path(aPath).name, style=Style.FIRST_LETTER))))
+            doPinyin(Path(aPath))
             
 if __name__ == '__main__':
     try:

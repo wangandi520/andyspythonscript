@@ -19,7 +19,7 @@ import piexif
 # M from 0 to 2, compression type
 
 def doPingo(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 文件格式，暂时支持png jpg
     # fileType = ['.png','.jpg']
     # 是否保留jpg文件的metadata

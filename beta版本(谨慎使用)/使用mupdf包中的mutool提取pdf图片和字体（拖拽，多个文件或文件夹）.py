@@ -9,8 +9,8 @@ import os
 # mutool.exe extract xxx.pdf
 
 def domupdf(pythonPath, filePath):
-    # typeof(pythonPath): Path
-    # typeof(filePath): Path
+    # type(pythonPath): Path
+    # type(filePath): Path
     # 提取图片字体
     print('提取中...' + str(filePath.name))
     cmd = 'mutool.exe extract "' + str(filePath) + '"'

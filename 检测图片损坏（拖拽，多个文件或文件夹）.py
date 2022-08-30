@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 def doVerify(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 设置文件类型
     fileType = ['.png','.jpg','.jpeg','.bmp','.webp']
     if filePath.suffix.lower() in fileType:

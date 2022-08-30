@@ -6,7 +6,7 @@ import sys
 import time
 
 def doAddMessageToImage(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 设置文件类型
     fileType = ['.png','.jpg']
     # 需要添加的信息，当前时间time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())

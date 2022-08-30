@@ -7,7 +7,7 @@ import py7zr
 import sys
 
 def doAddToEncrypted7z(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 设置文件类型
     fileType = ['.zip','.rar']
     # 设置密码为1234

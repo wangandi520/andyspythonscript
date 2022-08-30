@@ -7,7 +7,7 @@ import sys
 import os
 
 def doAddToEncryptedRar(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 设置密码为1234
     myPassword = '1234'
     # 新文件名 = 密码1234_ + 旧文件名

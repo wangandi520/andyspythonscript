@@ -7,7 +7,7 @@ from opencc import OpenCC
 import sys
 
 def doOpenCC(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 注意安装第三行的文件
     # 简体->繁体 = t2s，繁体->简体 = s2t
     setMethod = 's2t'

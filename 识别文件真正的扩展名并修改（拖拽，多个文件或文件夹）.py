@@ -8,7 +8,7 @@ import fleep
 from pathlib import Path
 
 def doChangeFileSuffix(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 把文件扩展名改成真正的扩展名 = True，不改名只显示信息 = False
     renameToRealSuffix = False
     # 有多个可能时，强行修改成第N个扩展名，不强行修改 = -1，改成第1个 = 0，改成第2个 = 1

@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 
 def doChangeImageHeight(filePath):
-    # typeof(filePath): Path
+    # type(filePath): Path
     # 图片高度
     imgHeight = 3000
     # 设置文件类型
