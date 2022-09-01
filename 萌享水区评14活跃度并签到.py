@@ -9,12 +9,10 @@ import calendar
 暂时运行不了，待测试
 
 # 本脚本原理：
-# 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，10活跃度后签到
-# 20220831，论坛改版，lv0,1,2每天能加的活跃度是1,2,5，所以现在需要用其他方式补充，lv3刚好每天10点
-# 还可以在找个网页，每5分钟刷新一次。在hack.php?H_name=integral保存积分，积分转换里转换成活跃度
+# 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，14活跃度后签到
 # 本脚本使用前提：
 # 1.网上搜索，安装python和pip插件，在命令提示符输入pip install requests
-# 2.账号能进入萌享会员自由交流区https://moeshare.cc/thread-htm-fid-16.html，不能进的话每天10活跃度签到，月底道具中心买全满勤奖后使用
+# 2.账号能进入萌享会员自由交流区https://moeshare.cc/thread-htm-fid-16.html，不能进的话每天14活跃度签到，月底道具中心买全满勤奖后使用
 # 3.cookie设置：
 # 只需要填写下面的myCookie和myAgent，其他的不用改
 # 萌享首页，chrome或edge按f12，网络，刷新页面，名称里选index.php，右侧请求标头，右键cookie和user-agent，复制值到下面myCookie和myAgent后，别忘了引号。
@@ -66,8 +64,8 @@ today = int(time.strftime("%d", time.localtime()))
 lastDay = calendar.monthrange(year, month)[1]
 
 #if (daka == str(today) and lastDay == today):
-if (huoyueNum >= 10):
-    print('活跃 >= 10')
+if (huoyueNum >= 14):
+    print('活跃 >= 14')
 elif (daka == str(today)):
     print('今天已经打过卡了，by python.')
 elif (daka != time.strftime("%d", time.localtime())):
@@ -96,7 +94,7 @@ elif (daka != time.strftime("%d", time.localtime())):
     # 获取倒数第二页所有pid
     pidArray = []
     newStart = 0
-    for i in range(0, 10 - addhuoyue):
+    for i in range(0, 14 - addhuoyue):
         tmpIndex5 = (response7.text[newStart:]).find('showping_')
         tmpPid = ((response7.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
         if not tmpPid.isdigit():
@@ -150,7 +148,7 @@ elif (daka != time.strftime("%d", time.localtime())):
     # newfile.close()
 
 # 签到
-# if (huoyueNum >= 10):
+# if (huoyueNum >= 14):
 mytime3 = int(round(time.time()))
 headers3 = {"User-Agent": myAgent,
             "Cookie": myCookie + str(mytime3) + "; 8017a_lastvisit=0	" + str(mytime3) + "	/index.php"}
