@@ -215,6 +215,8 @@ elif (daka != time.strftime("%d", time.localtime())):
             if ('完成积分转换') in response13.text:
                 print(response13.text)
                 huoyueAddedByScript = huoyueAddedByScript + int(transOnTime)
+    else:
+        print('在线时间不足，无法签到')
     time.sleep(3)
 
 # def writefile(filereadlines):
