@@ -10,7 +10,7 @@ import math
 # 本脚本原理：
 # 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，10活跃度后签到
 # 20220831，论坛改版，lv0,1每天能加的活跃度是2,5，所以现在需要用其他方式补充，lv2刚好每天10点
-# 新脚本会把在线时间转换成缺少的活跃度，如果你是lv1，可以加5点活跃，需要有5以上的在线时间才能签到成功
+# 新脚本会把在线时间转换成缺少的活跃度，如果你是lv1，可以加5点活跃，需要有3以上的在线时间才能签到成功
 # 保存时间：https://moeshare.cc/hack.php?H_name=integral，换成活跃度：https://moeshare.cc/userpay.php?action=change
 # 本脚本使用前提：
 # 1.网上搜索，安装python和pip插件，在命令提示符输入pip install requests
@@ -197,10 +197,8 @@ elif (daka != time.strftime("%d", time.localtime())):
         elif ('一共转存了'):
             print('转存成功')
     time.sleep(3)
-    print(10 - huoyueAddedByScript)
-    print(int(onlineTime) / 2 + 1)
-    print((math.ceil((10 - huoyueAddedByScript) / 2)))
-    if 10 - huoyueAddedByScript < (int(onlineTime) / 2 + 1):
+    
+    if int(onlineTime) / 2 + 1 > 10 - huoyueAddedByScript:
         onlineTimeToHuoyueUrl = 'https://moeshare.cc/userpay.php?action=change&'
         transOnTime = str(math.ceil((10 - huoyueAddedByScript) / 2))
         formData2 = {
