@@ -17,10 +17,11 @@ def doAddToEncryptedRar(filePath):
     # 新文件名 = 旧文件名 + .rar
     # newFileName = Path(filePath).stem + '.rar'
     print('正在处理...' + filePath.name)
-    # -ep不包含路径
-    # -ep1包含一层目录
-    # -m0压缩方式存储
-    # -hp加密
+    # -ep 不包含路径
+    # -ep1 包含一层目录
+    # -m0 压缩方式存储
+    # -hp 加密
+    # -rr3p 添加3%恢复记录
     if Path.is_file(filePath):
         os.system('Rar.exe -ep -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
     if Path.is_dir(filePath):
