@@ -18,6 +18,10 @@ global myCookie
 global myAgent
 global myCount
 global firstTime
+global timeInterval
+
+# 几分钟刷新一次
+timeInterval = 10
 
 myCount = 0
 
@@ -37,7 +41,7 @@ def doOnline():
     response = session.post(url, headers=headers)
     if response.status_code == 200:
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        print('未转存时间' + str(firstTime) + '分钟，第' + str(myCount) + '次刷新，共' + str(myCount * 5) + '分钟，预计总时间' + str(firstTime + myCount * 5) + '分钟')
+        print('未转存时间' + str(firstTime) + '分钟，第' + str(myCount) + '次刷新，共' + str(myCount * timeInterval) + '分钟，预计总时间' + str(firstTime + myCount * timeInterval) + '分钟')
         myCount = myCount + 1
 
 # 获得未转存时间
@@ -55,7 +59,7 @@ time.sleep(3)
 # 第一次执行
 doOnline()
 # 设置间隔时间5分钟
-schedule.every(5).minutes.do(doOnline)
+schedule.every(timeInterval).minutes.do(doOnline)
 
 while True:
     schedule.run_pending()
