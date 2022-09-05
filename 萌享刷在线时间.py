@@ -22,7 +22,7 @@ global timeInterval
 
 # 几分钟刷新一次
 timeInterval = 5
-
+# 第几次刷新
 myCount = 0
 
 myCookie = "8017a_c_stamp="
@@ -31,30 +31,25 @@ myAgent = "Edg/103.0.1264.70"
 
 def doOnline():
     global myCount
+    global firstTime
     # 帖子地址
-    url = 'https://moeshare.cc/read-htm-tid-211701-page-2000.html'
-
+    url = 'https://moeshare.cc/hack.php?H_name=integral'
     headers = {"User-Agent": myAgent,
-               "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastpos=index;  8017a_lastvisit=566	" + str(int(round(time.time())) - 300) + "	/index.php"}
-                
+               "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastpos=index;  8017a_lastvisit=566	" + str(int(round(time.time())) - 300) + "	/index.php"}        
     session = requests.session()
     response = session.post(url, headers=headers)
     if response.status_code == 200:
+        # 获得未转存时间
+        tmpIndex01 = (response.text).find('<td>未转存时间:</td>')
+        tmpIndex02 = (response.text).find('<td>这次可以保存的积分:</td>')
+        if myCount == 0:
+            firstTime = int(response.text[tmpIndex01 + 20: tmpIndex02 - 36])
+            nowTime = firstTime
+        else:
+            nowTime = int(response.text[tmpIndex01 + 20: tmpIndex02 - 36])
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        print('未转存时间' + str(firstTime) + '分钟，第' + str(myCount) + '次刷新，共' + str(myCount * timeInterval) + '分钟，预计总时间' + str(firstTime + myCount * timeInterval) + '分钟')
+        print('脚本开始时未转存时间' + str(firstTime) + '分钟，网页显示现在未转存时间' + str(nowTime) + '分钟，第' + str(myCount) + '次刷新，共' + str(myCount * timeInterval) + '分钟，脚本预计未转存时间' + str(firstTime + myCount * timeInterval) + '分钟')
         myCount = myCount + 1
-
-# 获得未转存时间
-url = 'https://moeshare.cc/hack.php?H_name=integral'
-headers = {"User-Agent": myAgent,
-           "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastpos=index;  8017a_lastvisit=566	" + str(int(round(time.time())) - 300) + "	/index.php"}
-session2 = requests.session()
-response2 = session2.post(url, headers=headers)
-if response2.status_code == 200:
-    tmpIndex01 = (response2.text).find('<td>未转存时间:</td>')
-    tmpIndex02 = (response2.text).find('<td>这次可以保存的积分:</td>')
-    firstTime = int(response2.text[tmpIndex01 + 20: tmpIndex02 - 36])
-time.sleep(3)
 
 # 第一次执行
 doOnline()
