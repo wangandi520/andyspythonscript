@@ -23,9 +23,9 @@ def doAddToEncryptedRar(filePath):
     # -hp 加密
     # -rr3p 添加3%恢复记录
     if Path.is_file(filePath):
-        os.system('Rar.exe -ep -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
+        os.system('Rar.exe -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
     if Path.is_dir(filePath):
-        os.system('Rar.exe -ep1 -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
+        os.system('Rar.exe -rr3p -ep1 -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
     print('完成')
             
 def main(inputPath):
