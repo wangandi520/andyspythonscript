@@ -226,15 +226,15 @@ elif (daka != time.strftime("%d", time.localtime())):
     # newfile.close()
 
 # 签到
-# if (huoyueAddedByScript >= 10):
-headers13 = {"User-Agent": myAgent,
-            "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
-qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
-response13 = requests.get(qiandaoUrl, headers=headers13)
-if response13.status_code == 200:
-    if ('打卡成功' in response13.text):
-        print('打卡成功!获得 2MB。' +
-        time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')
-        #outputData = {'meng_qiandao': time.strftime("%Y-%m-%d", time.localtime())}
-        #writefile(json.dumps(outputData))
+if (huoyueAddedByScript >= 10):
+    headers13 = {"User-Agent": myAgent,
+                "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
+    qiandaoUrl = 'https://moeshare.cc/jobcenter.php?action=punch&step=2'
+    response13 = requests.get(qiandaoUrl, headers=headers13)
+    if response13.status_code == 200:
+        if ('打卡成功' in response13.text):
+            print('打卡成功!获得 2MB。' +
+            time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()) + '\n')
+            #outputData = {'meng_qiandao': time.strftime("%Y-%m-%d", time.localtime())}
+            #writefile(json.dumps(outputData))
 input()
