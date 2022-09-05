@@ -249,7 +249,7 @@ if ifReply:
         'verify': myveri,
         '_hexie': 'd8507211',
         'iscontinue': '0',
-        'atc_title': 'Re:日常打卡，随机给回帖的人送活跃度',
+        'atc_title': '',
         'atc_content': '水一贴，每天打卡活跃一下。' + time.strftime("%Y%m%d", time.localtime()),
         'attachment_1': '(二进制)',
         'atc_desc1': ''
