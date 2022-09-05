@@ -10,7 +10,7 @@ import math
 # 本脚本原理：
 # 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，10活跃度后签到
 # 20220831，论坛改版，lv0,1每天能加的活跃度是2,5，所以现在需要用其他方式补充，lv2刚好每天10点
-# 新脚本会把时辰转换成缺少的活跃度，如果你是lv1，可以加5点活跃，需要有3以上的时辰才能签到成功
+# 新脚本会把在线时间转换成缺少的活跃度，如果你是lv1，可以加5点活跃，需要有3以上的在线时间才能签到成功
 # 保存时间：https://moeshare.cc/hack.php?H_name=integral，换成活跃度：https://moeshare.cc/userpay.php?action=change
 # 本脚本使用前提：
 # 1.网上搜索，安装python和pip插件，在命令提示符输入pip install requests
@@ -64,13 +64,13 @@ if response5.status_code == 200:
     tmpIndex5 = (response5.text).find('<li class="w mb5">活跃度')
     tmpIndex6 = (response5.text).find('<li class="w mb5">YQBD')
     tmpIndex7 = (response5.text).find('<li class="w mb5">本月打卡')
-    tmpIndex8 = (response5.text).find('<li class="w mb5">时辰')
+    tmpIndex8 = (response5.text).find('<li class="w mb5">在线时间')
     tmpIndex9 = (response5.text).find('<h5 class="h5"><a class="fr" href="userpay.php?action=log">进入积分日志')
     getHuoyueNum = response5.text[tmpIndex5 + 18: tmpIndex6 - 6]
     daka = response5.text[tmpIndex7 + 23: tmpIndex5 - 6]
-    onlineTime = response5.text[tmpIndex8 + 21: tmpIndex9 - 12]
+    onlineTime = response5.text[tmpIndex8 + 23: tmpIndex9 - 12]
     print('本月打卡: ' + daka)
-    print('时辰: ' + onlineTime)
+    print('在线时间: ' + onlineTime)
     try:
         huoyueAddedByScript = int(getHuoyueNum.split('：')[1])
     except IndexError:
@@ -91,7 +91,7 @@ lastDay = calendar.monthrange(year, month)[1]
 if (daka == str(today)):
     print('今天已经打过卡了。')
 elif (huoyueAddedByScript >= 10):
-    print('活跃度 >= 10')
+    print('活跃 >= 10')
 elif (daka != time.strftime("%d", time.localtime())):
     headers2 = {"User-Agent": myAgent,
            "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
@@ -182,7 +182,7 @@ elif (daka != time.strftime("%d", time.localtime())):
                           str(eachPid) + ' Error: ' + response2.text)
             time.sleep(3)
             
-    # 时辰转换成活跃度
+    # 在线时间转换成活跃度
     saveOnlineTimeUrl = 'https://moeshare.cc/hack.php?H_name=integral&action=save'
     formData3 = {
         "integralsubmit": '1',
@@ -207,16 +207,16 @@ elif (daka != time.strftime("%d", time.localtime())):
             "verify": myveri,
             "change": transOnTime
         }
-        print(transOnTime + '时辰转换成活跃度')
+        print(transOnTime + '在线时间转换成活跃度')
         headers = {"User-Agent": myAgent,
            "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
         response13 = requests.post(onlineTimeToHuoyueUrl, headers=headers, data=formData2)
         if response13.status_code == 200:
             if ('完成积分转换') in response13.text:
-                print('完成积分转换')
+                print(response13.text)
                 huoyueAddedByScript = huoyueAddedByScript + int(transOnTime)
     else:
-        print('时辰不足，无法签到')
+        print('在线时间不足，无法签到')
     time.sleep(3)
 
 # def writefile(filereadlines):
