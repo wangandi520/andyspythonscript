@@ -21,7 +21,7 @@ global firstTime
 global timeInterval
 
 # 几分钟刷新一次
-timeInterval = 5
+timeInterval = 10
 
 myCount = 0
 
