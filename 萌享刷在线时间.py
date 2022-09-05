@@ -48,7 +48,10 @@ def doOnline():
         else:
             nowTime = int(response.text[tmpIndex01 + 20: tmpIndex02 - 36])
         print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-        print('脚本开始时未转存时间' + str(firstTime) + '分钟，网页显示现在未转存时间' + str(nowTime) + '分钟，第' + str(myCount) + '次刷新，共' + str(myCount * timeInterval) + '分钟，脚本预计未转存时间' + str(firstTime + myCount * timeInterval) + '分钟')
+        if nowTime == (firstTime + myCount * timeInterval):
+            print('开始时未转存时间' + str(firstTime) + '分钟，第' + str(myCount) + '次刷新，经过' + str(myCount * timeInterval) + '分钟，现在未转存时间' + str(nowTime) + '分钟，无误差。')
+        else:
+            print('开始时未转存时间' + str(firstTime) + '分钟，第' + str(myCount) + '次刷新，经过' + str(myCount * timeInterval) + '分钟，现在未转存时间' + str(nowTime) + '分钟，误差' + str((firstTime + myCount * timeInterval) - nowTime) + '分钟')
         myCount = myCount + 1
 
 # 第一次执行
