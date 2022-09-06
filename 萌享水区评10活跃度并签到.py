@@ -27,16 +27,22 @@ myCookie = "8017a_c_stamp="
 
 myAgent = "Edg/103.0.1264.70"
 
-# 是否回复一贴，回复一次+1活跃度，是 = True，否 = False
+# 是否回复一帖，回复一次+1活跃度，是 = True，否 = False
 ifReply = True
 # 是否把时辰转换成缺少活跃度，1时辰 = 2活跃度，是 = True，否 = False
-ifOnlineTimeToHuoyue = True
-
-# 水区帖子tid
-tid = '211701'
+ifOnlineTimeToHuoyue = False
+# 水区帖子tid，第一个用于加活跃度，全部帖都会回复，回复几贴加几活跃度
+tid = ['211701', '211817', '210595', '233094']
+# 每一帖回复的内容，相邻的内容不能一样，数量和tid数量一致
+myReply = ['水一帖，每天打卡活跃一下。',
+        '来水一帖，每天打卡活跃下。',
+        '来水一下，每天打卡活跃下。',
+        '水水帖，每天打卡活跃一下。']
+if ifReply and len(tid) != len(myReply):
+    print('myReply和tid长度不一致。')
 page = '1'
-# 帖子地址
-url = 'https://moeshare.cc/read-htm-tid-' + tid + '-page-' + page + '.html'
+# 帖子地址，tid[0]
+url = 'https://moeshare.cc/read-htm-tid-' + tid[0] + '-page-' + page + '.html'
 # 时间戳
 mytime = int(round(time.time()))
 newtimetmp = int(round(time.time() * 1000))
@@ -47,7 +53,6 @@ headers = {"User-Agent": myAgent,
            "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
 #当前时间
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-
 # 获取用户等级
 myUrl = 'https://moeshare.cc/u.php'
 response6 = requests.get(myUrl, headers=headers)
@@ -122,7 +127,7 @@ elif (daka != time.strftime("%d", time.localtime())):
     tmpIndex = (response.text).find('<div class="fl">共')
     # 第几页
     newpage = str(int((response.text)[tmpIndex + 17: tmpIndex + 21]) - 1)
-    url = 'https://moeshare.cc/read-htm-tid-' + tid + '-page-' + newpage + '.html'
+    url = 'https://moeshare.cc/read-htm-tid-' + tid[0] + '-page-' + newpage + '.html'
     headers7 = {"User-Agent": myAgent,
                 "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
     response7 = requests.get(url, headers=headers7)
@@ -155,7 +160,7 @@ elif (daka != time.strftime("%d", time.localtime())):
     elif (index != -1):
         for eachPid in pidArray:
             newtime2 = int(round(time.time() * 1000))
-            myreferer = 'https://moeshare.cc/read-htm-tid-' + tid + '-page-' + newpage + '.html'
+            myreferer = 'https://moeshare.cc/read-htm-tid-' + tid[0] + '-page-' + newpage + '.html'
             shuiquUrl = 'https://moeshare.cc/operate.php?action=showping&ajax=1&nowtime=' + \
                 str(newtime2) + '&verify=' + myveri
             preCookie = myCookie.split('8017a_c_stamp')[0]
@@ -168,7 +173,7 @@ elif (daka != time.strftime("%d", time.localtime())):
             formData = {
                 "verify": myveri,
                 "page": newpage,
-                "tid": tid,
+                "tid": tid[0],
                 "selid[]": eachPid,
                 "step": "1",
                 "cid[]": "currency",
@@ -232,38 +237,39 @@ elif (daka != time.strftime("%d", time.localtime())):
         
 # 回复一帖
 if ifReply:
-    replyUrl = 'https://moeshare.cc/post.php?fid=16&nowtime=' + str(int(round(time.time()))) + '&verify=' + myveri
-    formData3 = {
-        'atc_usesign': '1',
-        'replytouser': '',
-        'atc_convert': '1',
-        'atc_autourl': '1',
-        'step': '2',
-        'type': 'ajax_addfloor',
-        'action': 'reply',
-        'fid': '16',
-        'cyid': '',
-        'tid': tid,
-        'stylepath': 'wind8black',
-        'ajax': '1',
-        'verify': myveri,
-        '_hexie': 'd8507211',
-        'iscontinue': '0',
-        'atc_title': '',
-        'atc_content': '水一贴，每天打卡活跃一下。' + time.strftime("%Y%m%d", time.localtime()),
-        'attachment_1': '(二进制)',
-        'atc_desc1': ''
-    }
-    headers = {"User-Agent": myAgent,
-       "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
-    response14 = requests.post(replyUrl, headers=headers, data=formData3)
-    if response14.status_code == 200:
-        print(response14.text)
-        if ('水一贴，每天打卡活跃一下。') in response14.text:
-            print('回帖成功')
-            huoyueAddedByScript = huoyueAddedByScript + 1
-            print('现在活跃度：' + str(huoyueAddedByScript))
-    time.sleep(3)
+    for eachIndex in range(0, len(tid)):
+        replyUrl = 'https://moeshare.cc/post.php?fid=16&nowtime=' + str(int(round(time.time()))) + '&verify=' + myveri
+        formData3 = {
+            'atc_usesign': '1',
+            'replytouser': '',
+            'atc_convert': '1',
+            'atc_autourl': '1',
+            'step': '2',
+            'type': 'ajax_addfloor',
+            'action': 'reply',
+            'fid': '16',
+            'cyid': '',
+            'tid': tid[eachIndex],
+            'stylepath': 'wind8black',
+            'ajax': '1',
+            'verify': myveri,
+            '_hexie': 'd8507211',
+            'iscontinue': '0',
+            'atc_title': '',
+            'atc_content': myReply[eachIndex] + time.strftime("%Y%m%d", time.localtime()),
+            'attachment_1': '(二进制)',
+            'atc_desc1': ''
+        }
+        headers = {"User-Agent": myAgent,
+           "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
+        response14 = requests.post(replyUrl, headers=headers, data=formData3)
+        if response14.status_code == 200:
+            if (myReply[eachIndex]) in response14.text:
+                print('tid=' + tid[eachIndex] + '回帖成功')
+                huoyueAddedByScript = huoyueAddedByScript + 1
+                print('现在活跃度：' + str(huoyueAddedByScript))
+        print('15秒后回复下一帖')
+        time.sleep(15)
     
 # def writefile(filereadlines):
     # # 写入日志文件
