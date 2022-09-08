@@ -24,7 +24,7 @@ def info(url):
     chrome_options.add_experimental_option('w3c', False)
     caps = {
         'browserName': 'chrome',
-        'loggingPrefs': {
+        'goog:loggingPrefs': {
             'browser': 'ALL',
             'driver': 'ALL',
             'performance': 'ALL',
