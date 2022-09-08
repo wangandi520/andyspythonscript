@@ -26,9 +26,9 @@ def doAddToEncryptedRar(filePath):
         myPassword = ''.join(passwordGenerate)
     elif  randomPassword == 0:
         myPassword = '1234'
-    # 新文件名 = 密码1234_ + 旧文件名.扩展名 + .rar
+    # 新文件名 = N位密码1234_ + 旧文件名.扩展名 + .rar
     newFileName = str(len(myPassword)) + '位密码' + myPassword + '文件名' + Path(filePath).name + '.rar'
-    # 新文件名 = 密码1234_ + 旧文件名 + .rar
+    # 新文件名 = N位密码1234_ + 旧文件名 + .rar
     #newFileName = str(len(myPassword)) + '位密码' + myPassword + '文件名' + Path(filePath).stem + '.rar'
     # 新文件名 = 旧文件名 + .rar
     # newFileName = Path(filePath).stem + '.rar'
