@@ -3,7 +3,7 @@
 
 from pathlib import Path
 import sys
-import os.path
+import os
 import piexif
 
 # pip install piexif
