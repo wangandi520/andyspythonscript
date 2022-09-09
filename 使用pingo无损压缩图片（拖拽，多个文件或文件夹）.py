@@ -20,8 +20,8 @@ import piexif
 
 def doPingo(filePath):
     # type(filePath): Path
-    # 文件格式，暂时支持png jpg
-    # fileType = ['.png','.jpg']
+    # 文件格式
+    # fileType = ['.png','.jpg','.webp']
     # 是否保留jpg文件的metadata
     preserveJPGsMetadata = True
     
@@ -34,7 +34,10 @@ def doPingo(filePath):
         cmd = 'pingo.exe -jpgtype=0 -s0 "' + str(filePath) + '"'
         os.system(cmd)
         if preserveJPGsMetadata:
-            piexif.insert(oldImgExif, str(filePath))
+            piexif.insert(oldImgExif, str(filePath))   
+    if filePath.suffix.lower() == '.webp':
+        cmd = 'pingo.exe -webp-lossless -s9 "' + str(filePath) + '"'
+        os.system(cmd)
     
 def main(inputPath):
     del inputPath[0]
