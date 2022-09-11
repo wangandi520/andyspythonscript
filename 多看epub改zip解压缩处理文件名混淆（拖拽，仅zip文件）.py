@@ -6,6 +6,8 @@ import io
 import zipfile
 from pathlib import Path
 
+# 半成品，xhtml文件内文件名未改
+
 def doDKunzip(filePath):
     # type(filePath): Path
     # 把epub文件备份后的扩展名改成zip
