@@ -20,7 +20,7 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    for eachtid in range(4, 1973):
+    for eachtid in range(1, 1974):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         getHtml = requests.get(url)
         try:
