@@ -3,6 +3,7 @@
 # pip3 install requests bs4
 
 import requests
+import time
 from bs4 import BeautifulSoup
 
 def writefile(fileName, filereadlines):
@@ -12,8 +13,7 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    tid = [2]
-    for eachtid in tid:
+    for eachtid in range(4, 1971):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         print(url)
         getHtml = requests.get(url)
@@ -30,6 +30,7 @@ def main():
             writefile(getName, getName + '\n' + url + getTime + getContent)
         except:
             print('Error')
+        time.sleep(3)     
         
 if __name__ == '__main__':
     main()
