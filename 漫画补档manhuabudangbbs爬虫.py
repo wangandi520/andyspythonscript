@@ -6,9 +6,16 @@ import requests
 import time
 from bs4 import BeautifulSoup
 
+def validFileName(fileName):
+    # 把不能作为文件的字符替换成空格
+    for each in fileName:
+        if each in '\/:*?"<>|,':
+            fileName = fileName.replace(each, ' ')
+    return fileName
+    
 def writefile(fileName, filereadlines):
     #write file
-    fileName = fileName.replace('/', ' ')
+    fileName = validFileName(fileName)
     with open(fileName + '.txt', mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
@@ -29,7 +36,7 @@ def main():
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n' + url + getTime + getContent)
         except:
-            print(eachtid + 'Error')
+            print(str(eachtid) + '帖子错误')
         time.sleep(1)     
         
 if __name__ == '__main__':
