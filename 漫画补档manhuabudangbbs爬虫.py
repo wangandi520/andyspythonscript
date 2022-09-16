@@ -29,7 +29,7 @@ def main():
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n' + url + getTime + getContent)
         except:
-            print('Error')
+            print(eachtid + 'Error')
         time.sleep(3)     
         
 if __name__ == '__main__':
