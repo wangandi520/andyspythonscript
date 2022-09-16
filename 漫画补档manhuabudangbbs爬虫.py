@@ -13,7 +13,7 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    for eachtid in range(4, 1971):
+    for eachtid in range(4, 1973):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         print(url)
         getHtml = requests.get(url)
@@ -30,7 +30,7 @@ def main():
             writefile(getName, getName + '\n' + url + getTime + getContent)
         except:
             print(eachtid + 'Error')
-        time.sleep(3)     
+        time.sleep(1)     
         
 if __name__ == '__main__':
     main()
