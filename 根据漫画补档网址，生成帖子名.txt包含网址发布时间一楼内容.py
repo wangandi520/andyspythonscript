@@ -14,7 +14,7 @@ def writefile(fileName, filereadlines):
 def main():
     tid = [4]
     for eachtid in tid:
-        url = 'https://www.manhuabudangbs.com/read-htm-tid-' + str(eachtid) + '.html'
+        url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         print(url)
         getHtml = requests.get(url)
         soup = BeautifulSoup(getHtml.text, 'html.parser')
