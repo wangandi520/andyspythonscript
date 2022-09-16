@@ -22,12 +22,11 @@ def writefile(fileName, filereadlines):
 def main():
     for eachtid in range(4, 1973):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
-        print(url)
         getHtml = requests.get(url)
         try:
             soup = BeautifulSoup(getHtml.text, 'html.parser')
             getName = soup.select('#subject_tpc')[0].get_text()[:-7]
-            print(getName)
+            print(url + ' ' + getName)
             getTime = '\n\n' + soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
             getContent = soup.select('#td_tpc > div.tpc_content')
             # 替换成换行
