@@ -27,17 +27,18 @@ def main():
         try:
             soup = BeautifulSoup(getHtml.text, 'html.parser')
             getName = soup.select('#subject_tpc')[0].get_text()[:-7]
+            print(getName)
             getTime = '\n\n' + soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
             getContent = soup.select('#td_tpc > div.tpc_content')
-            getContent = str(getContent).replace('<br/>','\n')
-            getContent = str(getContent).replace('<br>','\n')
-            getContent = str(getContent).replace('</blockquote>','\n')
-            getContent = str(getContent).replace('</div>','\n')
+            # 替换成换行
+            myReplace = ['<br/>', '<br>', '</blockquote>', '</div>']
+            for eachReplace in myReplace:
+                getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n' + url + getTime + getContent)
         except:
             print(str(eachtid) + '帖子错误')
-        time.sleep(1)     
+        time.sleep(2)     
         
 if __name__ == '__main__':
     main()
