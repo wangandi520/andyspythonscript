@@ -11,7 +11,7 @@ import string
 def doAddToEncryptedRar(filePath):
     # type(filePath): Path
     # randomPassword = 0时设置密码为1234，randomPassword = N（N >= 1）设置为随机N位数密码
-    randomPassword = 16
+    randomPassword = 0
     if randomPassword > 0:
         tempPunctuation = string.punctuation
         for each in tempPunctuation:
@@ -41,6 +41,7 @@ def doAddToEncryptedRar(filePath):
     if Path.is_file(filePath):
         os.system('Rar.exe -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
     if Path.is_dir(filePath):
+        newFileName = newFileName.replace('文件名', '文件夹名')
         os.system('Rar.exe -rr3p -ep1 -m0 -hp' + myPassword + ' a "' + str(filePath.parent.joinpath(newFileName)) + '" "' + str(filePath) + '"')
     print('完成')
             
