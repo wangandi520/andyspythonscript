@@ -3,7 +3,6 @@
 # 需要Rar.exe
 
 from pathlib import Path
-#from shutil import copy
 import sys
 import os
 import random
@@ -17,9 +16,8 @@ def doAddToEncryptedRar(filePath):
     ifshowPasswordInFilename = True
     # randomPassword = 0时设置密码为1234或自定义，randomPassword = N（N >= 1）设置为随机N位数密码
     randomPassword = 0
-    # if Path.exists(Path("C:\\Program Files\\WinRAR\\Rar.exe")) and not Path.exists(Path("Rar.exe")):
-        # copy(Path("C:\\Program Files\\WinRAR\\Rar.exe"), Path(sys.argv[0]).parent)
     rarFilePath = 'Rar.exe'
+    
     if randomPassword == 0:
         # 自定义密码，默认为1234
         myPassword = '1234'
