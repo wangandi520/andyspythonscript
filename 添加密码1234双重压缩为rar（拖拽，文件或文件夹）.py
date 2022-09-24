@@ -33,6 +33,7 @@ def doAddToEncryptedRar(filePath):
         passwordGenerate = random.sample(passwordComponent, passwordLength)
         myPassword = ''.join(passwordGenerate)
     elif randomPassword == 0:
+        # 自定义密码，默认为1234
         myPassword = '1234'
     # 一次压缩文件名
     newFileName01 = '[一次压缩][' + str(len(myPassword)) + '位密码' + myPassword + '][文件名' + Path(filePath).name + '].rar'
