@@ -35,8 +35,14 @@ def doAddToEncryptedRar(filePath):
         # 生成密码
         passwordGenerate = random.sample(passwordComponent, passwordLength)
         myPassword = ''.join(passwordGenerate)
+    # 文件名显示密码 = True， 不显示密码 = False
+    ifshowPasswordInFilename = True
+    if ifshowPasswordInFilename:
+        showmyPassword = myPassword
+    else:
+        showmyPassword = ''
     # 一次压缩文件名
-    newFileName01 = '[一次压缩][' + str(len(myPassword)) + '位密码' + myPassword + '][文件名' + Path(filePath).name + '].rar'
+    newFileName01 = '[一次压缩][' + str(len(myPassword)) + '位密码' + showmyPassword + '][文件名' + Path(filePath).name + '].rar'
     print('正在第一次压缩...' + filePath.name)
     # -ep 不包含路径
     # -ep1 包含一层目录
@@ -52,7 +58,7 @@ def doAddToEncryptedRar(filePath):
         os.system(rarFilePath + ' -rr3p -ep1 -m0 -hp' + myPassword + ' a "' + str(firstZipFileName) + '" "' + str(filePath) + '"')
     if ifDoubleZip:
         # 二次压缩文件名
-        newFileName02 =  '[二次压缩][' + str(len(myPassword)) + '位密码' + myPassword + '][文件名' + Path(filePath).name + '].rar'
+        newFileName02 =  '[二次压缩][' + str(len(myPassword)) + '位密码' + showmyPassword + '][文件名' + Path(filePath).name + '].rar'
         print('正在第二次压缩...' + firstZipFileName.name) 
         secondZipFileName = firstZipFileName.parent.joinpath(newFileName02)
         os.system(rarFilePath + ' -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(secondZipFileName) + '" "' + str(firstZipFileName) + '"')
