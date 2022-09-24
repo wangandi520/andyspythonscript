@@ -12,7 +12,7 @@ import string
 def doAddToEncryptedRar(filePath):
     # type(filePath): Path
     # ifDoubleZip 是否双重压缩，是 = True，否 = False
-    ifDoubleZip = False
+    ifDoubleZip = True
     # randomPassword = 0时设置密码为1234或自定义，randomPassword = N（N >= 1）设置为随机N位数密码
     randomPassword = 0
     # if Path.exists(Path("C:\\Program Files\\WinRAR\\Rar.exe")) and not Path.exists(Path("Rar.exe")):
