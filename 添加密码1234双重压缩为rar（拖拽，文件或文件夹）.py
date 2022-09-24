@@ -13,15 +13,17 @@ def doAddToEncryptedRar(filePath):
     # ifDoubleZip 是否双重压缩，是 = True，否 = False
     ifDoubleZip = True
     # 文件名显示密码 = True， 不显示密码 = False
-    ifshowPasswordInFilename = True
-    # randomPassword = 0时设置密码为1234或自定义，randomPassword = N（N >= 1）设置为随机N位数密码
-    randomPassword = 0
+    ifShowPasswordInFilename = True
+    # 是否删除第一次压缩的文件，是 = True，否 = False
+    ifDeleteFirstZipFileName = False
+    # setPasswordTypeAndLength = 0时设置密码为1234或自定义，setPasswordTypeAndLength = N（N >= 1）设置为随机N位数密码
+    setPasswordTypeAndLength = 0
     rarFilePath = 'Rar.exe'
     
-    if randomPassword == 0:
+    if setPasswordTypeAndLength == 0:
         # 自定义密码，默认为1234
         myPassword = '1234'
-    elif randomPassword > 0:
+    elif setPasswordTypeAndLength > 0:
         tempPunctuation = string.punctuation
         for each in tempPunctuation:
             if each in '\/:*?"<>|,':
@@ -31,11 +33,11 @@ def doAddToEncryptedRar(filePath):
         # 密码组合：字母+数字+符号
         #passwordComponent = string.ascii_letters + string.digits + tempPunctuation
         # 密码长度
-        passwordLength = randomPassword
+        passwordLength = setPasswordTypeAndLength
         # 生成密码
         passwordGenerate = random.sample(passwordComponent, passwordLength)
         myPassword = ''.join(passwordGenerate)
-    if ifshowPasswordInFilename:
+    if ifShowPasswordInFilename:
         showmyPassword = myPassword
     else:
         showmyPassword = ''
@@ -61,7 +63,8 @@ def doAddToEncryptedRar(filePath):
         secondZipFileName = firstZipFileName.parent.joinpath(newFileName02)
         os.system(rarFilePath + ' -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(secondZipFileName) + '" "' + str(firstZipFileName) + '"')
         # 是否删除第一次压缩的文件
-        #firstZipFileName.unlink()
+        if ifDeleteFirstZipFileName:
+            firstZipFileName.unlink()
     print('完成')
             
 def main(inputPath):
