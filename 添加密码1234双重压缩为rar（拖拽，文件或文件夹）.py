@@ -11,7 +11,7 @@ import string
 
 def doAddToEncryptedRar(filePath):
     # type(filePath): Path
-    # ifDoubleZip 是否双重压缩
+    # ifDoubleZip 是否双重压缩，是 = True，否 = False
     ifDoubleZip = True
     # randomPassword = 0时设置密码为1234，randomPassword = N（N >= 1）设置为随机N位数密码
     randomPassword = 0
