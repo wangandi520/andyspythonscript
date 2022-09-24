@@ -3,7 +3,7 @@
 # 需要Rar.exe
 
 from pathlib import Path
-from shutil import copy
+#from shutil import copy
 import sys
 import os
 import random
@@ -12,7 +12,7 @@ import string
 def doAddToEncryptedRar(filePath):
     # type(filePath): Path
     # ifDoubleZip 是否双重压缩，是 = True，否 = False
-    ifDoubleZip = True
+    ifDoubleZip = False
     # randomPassword = 0时设置密码为1234，randomPassword = N（N >= 1）设置为随机N位数密码
     randomPassword = 0
     # if Path.exists(Path("C:\\Program Files\\WinRAR\\Rar.exe")) and not Path.exists(Path("Rar.exe")):
@@ -32,7 +32,7 @@ def doAddToEncryptedRar(filePath):
         # 生成密码
         passwordGenerate = random.sample(passwordComponent, passwordLength)
         myPassword = ''.join(passwordGenerate)
-    elif  randomPassword == 0:
+    elif randomPassword == 0:
         myPassword = '1234'
     # 一次压缩文件名
     newFileName01 = '[一次压缩][' + str(len(myPassword)) + '位密码' + myPassword + '][文件名' + Path(filePath).name + '].rar'
@@ -41,7 +41,7 @@ def doAddToEncryptedRar(filePath):
     # -ep1 包含一层目录
     # -m0 压缩方式存储
     # -hp 加密
-    # -rr3p 添加3%恢复记录-_+=.,
+    # -rr3p 添加3%恢复记录
     if Path.is_file(filePath):
         firstZipFileName = filePath.parent.joinpath(newFileName01)
         os.system(rarFilePath + ' -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(firstZipFileName) + '" "' + str(filePath) + '"')
