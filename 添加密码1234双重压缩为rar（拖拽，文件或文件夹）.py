@@ -61,7 +61,7 @@ def doAddToEncryptedRar(filePath):
         newFileName02 =  '[二次压缩][' + str(len(myPassword)) + '位密码' + showmyPassword + '][文件名' + Path(filePath).name + '].rar'
         print('正在第二次压缩...' + firstZipFileName.name) 
         secondZipFileName = firstZipFileName.parent.joinpath(newFileName02)
-        os.system(rarFilePath + ' -rr3p -ep -m0 -hp' + myPassword + ' a "' + str(secondZipFileName) + '" "' + str(firstZipFileName) + '"')
+        os.system(rarFilePath + ' -ep -m0 -hp' + myPassword + ' a "' + str(secondZipFileName) + '" "' + str(firstZipFileName) + '"')
         # 是否删除第一次压缩的文件
         if ifDeleteFirstZipFileName:
             firstZipFileName.unlink()
