@@ -369,6 +369,10 @@ rename .flac file by flac metadata
 
 需要Rar.exe
 
+### 纯数字文件名前补0或去0（拖拽，多个文件或文件夹）.py
+
+纯数字文件名前补0或去0
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
