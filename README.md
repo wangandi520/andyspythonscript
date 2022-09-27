@@ -113,13 +113,13 @@ rename file between simplfied chinese and tradition chinese
 
 需要pip install opencc-python-reimplemented
 
-### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，文件夹名格式[作品][作者]XX）.py
+### 文件名识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，文件夹名格式[作品][作者]XX）.py
 
 mkdir folder/subfolder in old folder name [subfolder][folder]
 
 文件名格式[书名][作者]XX.XX，新建文件夹名是作者（无方括号），二级文件夹名是书名（无方括号），被拖拽的文件会被移动到作品名文件夹里
 
-### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，可简繁转换，文件夹名格式[作品][作者]XX）.py
+### 文件名识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件夹，可简繁转换，文件夹名格式[作品][作者]XX）.py
 
 mkdir folder/subfolder in old folder name [subfolder][folder], rename file between simplfied chinese and tradition chinese
 
@@ -127,7 +127,7 @@ mkdir folder/subfolder in old folder name [subfolder][folder], rename file betwe
 
 需要pip install opencc-python-reimplemented
 
-### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，文件名格式[作品][作者]XX）.py
+### 文件名识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，文件名格式[作品][作者]XX）.py
 
 mkdir folder/subfolder in old file name [subfolder][folder]
 
@@ -135,7 +135,7 @@ mkdir folder/subfolder in old file name [subfolder][folder]
 
 被拖拽的文件夹里的文件会被移动到作品名文件夹里
 
-### 识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，可简繁转换，文件名格式[作品][作者]XX）.py
+### 文件名识别作品名作者名并新建文件夹移动文件（拖拽，仅多个文件，可简繁转换，文件名格式[作品][作者]XX）.py
 
 mkdir folder/subfolder in old file name [subfolder][folder], rename file between simplfied chinese and tradition chinese
 
@@ -205,7 +205,7 @@ rename file name to pinyin
 
 英文不转换
 
-### 获取图片高度和对应文件数量（拖拽，递归，多个文件或文件夹）.py
+### 高度和对应文件数量信息获取（拖拽，递归，多个文件或文件夹）.py
 
 get image's height and file count
 
@@ -231,7 +231,7 @@ get folder's file's type, count, size
 
 拖文件夹或.sha文件到脚本上，也可以校验
 
-### 获取图片信息和颜色表或Photoshop .act文件（拖拽，多个文件或文件夹）.py
+### 图片信息和颜色表或Photoshop .act文件信息获取（拖拽，多个文件或文件夹）.py
 
 get color table of image and photoshop .act
 
@@ -293,7 +293,7 @@ combine two image into one
 
 文件夹内的第一张图如果不是单页，在文件内的setFirstSinglePage设置，比如第一张是单页，setFirstSinglePage = 0，第五张是单页，设置setFirstSinglePage = 4，会读取这页的宽度来判断哪些已经是双页的
 
-### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息.txt（拖拽，文件夹或ziprar）.py
+### 图片文件夹或ziprar文件内的图片类型高度宽度大小信息生成.txt（拖拽，文件夹或ziprar）.py
 
 get image's height,width, support zip and rar
 
@@ -305,7 +305,7 @@ get image's height,width, support zip and rar
 
 生成.txt文件包含信息：书名、作者、出版、扫者、类型数量、高度数量、文件数量、文件夹大小、文件夹创建时间、文件夹修改时间
 
-### 生成图片文件夹或ziprar文件内的图片类型高度宽度大小信息到压缩文件的注释并压缩或添加注释（拖拽，文件夹或ziprar）.py
+### 图片文件夹或ziprar文件内的图片类型高度宽度大小信息生成到压缩文件的注释并压缩或添加注释（拖拽，文件夹或ziprar）.py
 
 get image's height and put it into .zip file
 
@@ -325,7 +325,7 @@ rename .epub file by epub metadata
 
 使用epub元数据的书名重命名.epub文件
 
-### 识别文件真正的扩展名并修改（拖拽，多个文件或文件夹）.py
+### 文件名识别文件真正的扩展名并修改（拖拽，多个文件或文件夹）.py
 
 需要pip install fleep
 
