@@ -319,7 +319,7 @@ get image's height and put it into .zip file
 
 zip压缩包会添加注释，rar不会
 
-### 使用epub元数据的书名重命名.epub文件（拖拽，多个文件或文件夹）.py
+### 文件名重命名.epub文件使用epub元数据的书名（拖拽，多个文件或文件夹）.py
 
 rename .epub file by epub metadata 
 
@@ -333,7 +333,7 @@ rename .epub file by epub metadata
 
 有多个可能时，强行修改成第N个扩展名，forceRenameToRealSuffixIndex = -1，改成第1个 = 0，改成第2个 = 1
 
-### 使用flac元数据的歌名歌手重命名.flac文件（拖拽，多个文件或文件夹）.py
+### 文件名重命名.flac文件使用flac元数据的歌名歌手（拖拽，多个文件或文件夹）.py
 
 需要pip install tinytag
 
