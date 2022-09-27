@@ -55,7 +55,7 @@ html后加?search=关键词，打开网页时后自动显示搜索结果，例�
 
 同类软件推荐[Snap2HTML](https://rlvision.com/snap2html/about.php)
 
-### 把文件夹内的文件重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
+### 文件名重命名成文件夹名+Vol_序号的格式（拖拽，仅多个文件夹）.py
 
 rename files in folder
 
@@ -75,7 +75,7 @@ rename files in folder
 
 会生成日志和恢复文件名的bat文件，不过不想生成，就修改文件里的createLogAndRecover = False
 
-### 交换文件或文件夹名前两个[]的内容（拖拽，多个文件或文件夹）.py
+### 文件名或文件夹名前两个[]的内容交换（拖拽，多个文件或文件夹）.py
 
 switch two [] content in file names
 
@@ -87,7 +87,7 @@ switch two [] content in file names
 
 支持多个文件夹或文件一起拖拽
 
-### 交换文件名最后[]和Vol_XX（拖拽，多个文件夹，文件名格式[][][][]Vol_XX）.py
+### 文件名最后[]和Vol_XX交换（拖拽，多个文件夹，文件名格式[][][][]Vol_XX）.py
 
 switch Vol_xx and last []
 
@@ -97,13 +97,13 @@ switch Vol_xx and last []
 
 把文件夹或文件名字中最后[]和Vol_XX的内容交换位置，文件名格式[][][][]Vol_XX，支持多个文件夹或文件一起拖拽
 
-### 删除文件结尾的.1234（拖拽，多个文件或文件夹）.py
+### 文件名结尾的.1234删除（拖拽，多个文件或文件夹）.py
 
 remove .1234 in file name
 
 把文件夹内后缀名是.1234文件，去掉.1234，支持多个文件夹或文件一起拖拽
 
-### 文件和文件夹名简繁体转换（拖拽，递归，多个文件或文件夹）.py.py
+### 文件名和文件夹名简繁体转换（拖拽，递归，多个文件或文件夹）.py.py
 
 rename file between simplfied chinese and tradition chinese
 
@@ -189,13 +189,13 @@ add huoyue in moeshare.cc
 
 chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去，在水区帖子立按a开始评分。
 
-### 给文件原扩展名后添加新扩展名，rar为例（拖拽，多个文件或文件夹）.py
+### 文件名原扩展名后添加新扩展名，rar为例（拖拽，多个文件或文件夹）.py
 
 add new suffix to file
 
-给文件原扩展名后添加新扩展名
+件名原扩展名后添加新扩展名
 
-### 中文文件名改成拼音或拼音首字母（拖拽，多个文件或文件夹）.py
+### 文件名中文改成拼音或拼音首字母（拖拽，多个文件或文件夹）.py
 
 rename file name to pinyin
 
@@ -355,9 +355,9 @@ rename .flac file by flac metadata
 
 提取pdf图片和字体
 
-### 向图片末尾添加一行信息，如果已添加则显示信息（拖拽，多个文件或文件夹）.py
+### 图片末尾添加一行信息，如果已添加则显示信息（拖拽，多个文件或文件夹）.py
 
-向图片末尾添加一行信息，如果已添加则显示信息.
+图片末尾添加一行信息，如果已添加则显示信息.
 
 ### 把每个ziprar文件添加密码后压缩为7z（拖拽，仅ziprar文件）.py
 
