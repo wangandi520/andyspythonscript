@@ -239,7 +239,7 @@ get color table of image and photoshop .act
 
 读取Photoshop颜色表
 
-### 按比例修改图片高度（拖拽，多个文件或文件夹）.py
+### 图片高度按比例修改（拖拽，多个文件或文件夹）.py
 
 resize image for height
 
@@ -247,7 +247,7 @@ resize image for height
 
 按比例修改图片高度，文件里填写需要的高度
 
-### 使用ImageMagick包中的convert旋转图片角度（拖拽，多个文件或文件夹）.py
+### 图片旋转角度使用ImageMagick的convert（拖拽，多个文件或文件夹）.py
 
 change image's degree
 
@@ -255,7 +255,7 @@ change image's degree
 
 旋转，文件内修改角度
 
-### 使用pingo无损压缩图片（拖拽，多个文件或文件夹）.py
+### 图片无损压缩使用pingo（拖拽，多个文件或文件夹）.py
 
 需要pip install piexif
 
@@ -269,13 +269,13 @@ divide image into two
 
 裁剪分割图片，文件内设置参数
 
-### 按坐标裁剪图片（拖拽，多个文件或文件夹）.py
+### 图片按坐标裁剪（拖拽，多个文件或文件夹）.py
 
 cut image file for (x,y)
 
 文件内设置新图片的坐标
 
-### 使用ImageMagick包中的convert把图片水平分割成两张图（拖拽，多个文件或文件夹）.py
+### 图片水平分割成两张图使用ImageMagick的convert（拖拽，多个文件或文件夹）.py
 
 divide image into two
 
@@ -283,7 +283,7 @@ divide image into two
 
 拖拽文件夹到py上运行
 
-### 使用ImageMagick包中的convert把每两张图片水平合并（拖拽，仅文件夹）.py
+### 图片每两张水平合并使用ImageMagick的convert（拖拽，仅文件夹）.py
 
 combine two image into one
 
@@ -341,7 +341,7 @@ rename .flac file by flac metadata
 
 使用flac元数据的歌名歌手重命名.flac文件
 
-### 检测图片损坏（拖拽，多个文件或文件夹）.py
+### 图片损坏检测（拖拽，多个文件或文件夹）.py
 
 需要pip install pillow
 
