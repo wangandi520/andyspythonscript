@@ -32,10 +32,10 @@ def formatFileSize(sizeBytes):
     return format(result,'.2f') + suffix
         
 def writefile(filereadlines, inputPath, info):
-    if str(inputPath) == '.':
-        newfile = open(Path.cwd().name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html', mode='w', encoding='UTF-8')
-    elif inputPath:
-        newfile = open(inputPath.name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html', mode='w', encoding='UTF-8')
+    if len(sys.argv) == 1:
+        newfile = open(Path(sys.argv[0]).parent.joinpath(Path(sys.argv[0]).parent.name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html'), mode='w', encoding='UTF-8')
+    elif len(sys.argv) == 2:
+        newfile = open(Path(sys.argv[0]).parent.joinpath(inputPath.name + ',' + str(info[0]) + 'Files,' + info[1] + ',' + time.strftime("%Y%m%d", time.localtime()) + '.html'), mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()     
     
