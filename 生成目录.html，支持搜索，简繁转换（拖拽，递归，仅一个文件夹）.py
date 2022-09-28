@@ -47,7 +47,7 @@ def main(inputPath):
     # 是否显示处理过程, show process details = 1, no detils = 0
     showProcessDetails = 1
     # 键盘按键抬起立刻搜索 = 'onkeyup'，还是按回车搜索 = 'onchange'，文件数大于两万建议后者
-    howToReactSearch = 'onchange'
+    howToReactSearch = 'onkeyup'
     # 隐藏文件路径 = 1，不隐形并显示绝对路径 = 0
     hidePath = 0
     # 显示文件夹和文件 = 1，还是只显示文件夹 = 0
