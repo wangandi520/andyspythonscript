@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         moeshare save tid infos
+// @name         moeshare萌享帖子里按s保存帖子1楼信息.txt
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
 // @match        https://moeshare.cc/*
@@ -29,27 +29,18 @@ var showtime = function () {
         mm = checkTime(m),
         ss = checkTime(s);
     return year + "年" + month + "月" + date + "日 " + week[day] + " " + hh + ":" + mm + ":" + ss;
-
 }
 
 function downloadTXT(filename, contentType) {
     var tidName = document.querySelector('#subject_tpc').innerText
-    var info = tidName + '\n\n'
-    info = info + window.location.href
-    info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b').innerText + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerText + '\n'
-    info = info + document.querySelector('#read_tpc').innerHTML + '\n'
-    console.log(info)
-    info = info.replace('<br>', '\n')
-    info = info.replace('</span>', '\n')
-    info = info.replace('</blockquote>', '\n')
-    info = info.replace('</div>', '\n')
-    info = info.replace('<br/>', '\n')
-    info = info.replace(/<[^>]*>/g, ' ')
-    info = info.replace(/&nbsp;/g, ' ');
-    info = info + '本文件创建时间 ' + showtime() + '\n'
+    var info = document.querySelector('#subject_tpc').innerHTML
+    info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
+    info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b').innerHTML + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + '<br/>'
+    info = info + document.querySelector('#read_tpc').innerHTML + '<br/>'
+    info = info + '<p>本文件创建时间 ' + showtime() + '</p>'
     let element = document.createElement('a')
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(info))
-    element.setAttribute('download', tidName + '.txt')
+    element.setAttribute('download', tidName + '.html')
     element.style.display = 'none'
     document.body.appendChild(element);
     element.click()
