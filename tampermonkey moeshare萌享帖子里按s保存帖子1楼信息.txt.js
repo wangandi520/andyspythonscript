@@ -37,7 +37,15 @@ function downloadTXT(filename, contentType) {
     var info = tidName + '\n\n'
     info = info + window.location.href
     info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b').innerText + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerText + '\n'
-    info = info + document.querySelector('#read_tpc').innerText + '\n'
+    info = info + document.querySelector('#read_tpc').innerHTML + '\n'
+    console.log(info)
+    info = info.replace('<br>', '\n')
+    info = info.replace('</span>', '\n')
+    info = info.replace('</blockquote>', '\n')
+    info = info.replace('</div>', '\n')
+    info = info.replace('<br/>', '\n')
+    info = info.replace(/<[^>]*>/g, ' ')
+    info = info.replace(/&nbsp;/g, ' ');
     info = info + '本文件创建时间 ' + showtime() + '\n'
     let element = document.createElement('a')
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(info))
