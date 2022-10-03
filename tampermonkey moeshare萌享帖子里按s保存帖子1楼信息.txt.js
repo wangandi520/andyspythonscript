@@ -35,7 +35,7 @@ function downloadTXT(filename, contentType) {
     var tidName = document.querySelector('#subject_tpc').innerText
     var info = document.querySelector('#subject_tpc').innerHTML
     info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
-    info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b').innerHTML + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + '<br/>'
+    info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b > a').innerHTML + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + '<br/>'
     info = info + document.querySelector('#read_tpc').innerHTML + '<br/>'
     info = info + '<p>本文件创建时间 ' + showtime() + '</p>'
     let element = document.createElement('a')
