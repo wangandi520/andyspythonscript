@@ -41,7 +41,7 @@ function downloadTXT(filename, contentType) {
     info = info + '本文件创建时间 ' + showtime() + '\n'
     let element = document.createElement('a')
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(info))
-    element.setAttribute('download', tidName)
+    element.setAttribute('download', tidName + '.txt')
     element.style.display = 'none'
     document.body.appendChild(element);
     element.click()
