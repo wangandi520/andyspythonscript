@@ -5,9 +5,9 @@ from pathlib import Path
 import sys
 import os
 
+# 需要convert.exe
 # https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
 # https://imagemagick.org/script/convert.php
-# mutool.exe convert -o 1.pdf 1.jpg 2.jpg
 
 def doConvert(filePath):
     # type(filePath): Path
