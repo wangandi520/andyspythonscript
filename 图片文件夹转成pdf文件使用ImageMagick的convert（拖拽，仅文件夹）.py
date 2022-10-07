@@ -11,10 +11,13 @@ import os
 
 def doConvert(filePath):
     # type(filePath): Path
-    print('正在制作' + str(filePath.name) + '.pdf"')
-    cmd = 'convert.exe ' + str(filePath) + '\* "' + str(filePath.name) + '.pdf"'
-    os.system(cmd)
-    print('制作完成')
+    print('正在生成' + str(filePath.name) + '.pdf')
+    cmd = 'convert.exe "' + str(filePath) + '\*" "' + str(filePath) + '.pdf"'
+    if Path(str(filePath) + '.pdf').exists():
+        print('错误，文件已存在')
+    else:
+        os.system(cmd)
+        print('生成完成：' + str(filePath) + '.pdf')
         
 def main(inputPath):
     for aPath in inputPath[1:]:
