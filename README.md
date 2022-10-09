@@ -259,6 +259,10 @@ change image's degree
 
 需要pip install piexif
 
+需要pingo.exe
+
+注意备份，压缩的图片会覆盖原图
+
 loseless compress image
 
 压缩图片
