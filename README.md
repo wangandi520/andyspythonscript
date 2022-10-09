@@ -363,19 +363,22 @@ rename .flac file by flac metadata
 
 图片末尾添加一行信息，如果已添加则显示信息.
 
-### 把每个ziprar文件添加密码后压缩为7z（拖拽，仅ziprar文件）.py
 
-需要pip install py7zr
-
-每个分别压缩
-
-### 把文件或文件夹添加密码后压缩为rar（拖拽，文件或文件夹）.py
+### 添加密码1234双重压缩为rar（拖拽，文件或文件夹）.py
 
 需要Rar.exe
 
-### 纯数字文件名前补0或去0（拖拽，多个文件或文件夹）.py
+### 文件名纯数字前补0或去0（拖拽，多个文件或文件夹）.py
 
 纯数字文件名前补0或去0
+
+### 图片文件夹转成pdf文件使用ImageMagick的convert（拖拽，仅文件夹）.py
+
+需要convert.exe
+
+### tampermonkey moeshare萌享帖子里按s保存帖子1楼信息.js
+
+浏览器安装tampermonkey，新建脚本复制进去，帖子里按s保存成html
 
 ## 使用前请备份，防止文件名不符合你的需求
 
