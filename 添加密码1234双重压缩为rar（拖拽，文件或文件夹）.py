@@ -10,18 +10,18 @@ import string
 
 def doAddToEncryptedRar(filePath):
     # type(filePath): Path
+    rarFilePath = 'Rar.exe'
     # ifDoubleZip 是否双重压缩，是 = True，否 = False
     ifDoubleZip = True
     # 文件名显示密码 = True， 不显示密码 = False
     ifShowPasswordInFilename = True
     # 是否删除第一次压缩的文件，是 = True，否 = False
     ifDeleteFirstZipFileName = False
-    # setPasswordTypeAndLength = 0时设置密码为1234或自定义，setPasswordTypeAndLength = N（N >= 1）设置为随机N位数密码
+    # 设置成随机N位密码，还是自定义密码
+    # setPasswordTypeAndLength = 0时设置密码为1234或自定义，setPasswordTypeAndLength = N（N >= 1）设置成随机N位密码
     setPasswordTypeAndLength = 0
-    rarFilePath = 'Rar.exe'
-    
     if setPasswordTypeAndLength == 0:
-        # 自定义密码，默认为1234
+        # 设置自定义密码，默认为1234
         myPassword = '1234'
     elif setPasswordTypeAndLength > 0:
         tempPunctuation = string.punctuation
