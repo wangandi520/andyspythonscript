@@ -149,7 +149,7 @@ mkdir folder/subfolder in old file name [subfolder][folder], rename file between
 
 copy first file in .rar or .zip
 
-需要UnRAR.exe 或 pip3 install unrar
+需要同级目录下UnRAR.exe 或 pip3 install unrar
 
 常用于提取漫画封面
 
@@ -225,7 +225,7 @@ get folder's file's type, count, size
 
 用于显示文件各种信息，整理
 
-需要UnRAR.exe 或 pip3 install unrar
+需要同级目录下UnRAR.exe 或 pip3 install unrar
 
 如果直接运行，存在文件夹名.sha文件的话，就开始校验文件
 
@@ -251,7 +251,7 @@ resize image for height
 
 change image's degree
 
-需要下载convert.exe
+需要同级目录下convert.exe
 
 旋转，文件内修改角度
 
@@ -259,7 +259,7 @@ change image's degree
 
 需要pip install piexif
 
-需要pingo.exe
+需要同级目录下pingo.exe
 
 注意备份，压缩的图片会覆盖原图
 
@@ -283,7 +283,7 @@ cut image file for (x,y)
 
 divide image into two
 
-需要下载convert.exe
+需要同级目录下convert.exe
 
 拖拽文件夹到py上运行
 
@@ -291,7 +291,7 @@ divide image into two
 
 combine two image into one
 
-需要下载convert.exe
+需要同级目录下convert.exe
 
 拖拽文件夹到py上运行
 
@@ -355,7 +355,7 @@ rename .flac file by flac metadata
 
 ### 使用mupdf包中的mutool提取pdf图片和字体（拖拽，多个文件或文件夹）.py
 
-需要mutool.exe，下载地址https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
+需要同级目录下mutool.exe，下载地址https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
 
 提取pdf图片和字体
 
@@ -366,7 +366,9 @@ rename .flac file by flac metadata
 
 ### 添加密码1234双重压缩为rar（拖拽，文件或文件夹）.py
 
-需要Rar.exe
+需要同级目录下Rar.exe
+
+22行设置随机密码，或者25行自定义密码
 
 ### 文件名纯数字前补0或去0（拖拽，多个文件或文件夹）.py
 
@@ -374,7 +376,7 @@ rename .flac file by flac metadata
 
 ### 图片文件夹转成pdf文件使用ImageMagick的convert（拖拽，仅文件夹）.py
 
-需要convert.exe
+需要同级目录下convert.exe
 
 ### tampermonkey moeshare萌享帖子里按s保存帖子1楼信息.js
 
