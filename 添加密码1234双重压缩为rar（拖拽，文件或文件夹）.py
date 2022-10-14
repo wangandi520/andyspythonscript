@@ -12,7 +12,10 @@ def doAddToEncryptedRar(filePath):
     # type(filePath): Path
     rarFilePath = 'Rar.exe'
     # ifDoubleZip 是否双重压缩，是 = True，否 = False
-    ifDoubleZip = True
+    ifDoubleZip = False
+    if not ifDoubleZip:
+        # 单次压缩的情况下，文件名只显示原文件名 = True，否 = False
+        showOnlyFileName = True
     # 文件名显示密码 = True， 不显示密码 = False
     ifShowPasswordInFilename = True
     # 是否删除第一次压缩的文件，是 = True，否 = False
@@ -42,7 +45,11 @@ def doAddToEncryptedRar(filePath):
     else:
         showmyPassword = ''
     # 一次压缩文件名
-    newFileName01 = '[一次压缩]' + showmyPassword + '[文件名' + Path(filePath).name + '].rar'
+    if not ifDoubleZip and showOnlyFileName:
+        # 不显示原扩展名，把.name改成.stem
+        newFileName01 = Path(filePath).name + '.rar'
+    else:
+        newFileName01 = '[一次压缩]' + showmyPassword + '[文件名' + Path(filePath).name + '].rar'
     print('正在第一次压缩...' + filePath.name)
     # -ep 不包含路径
     # -ep1 包含一层目录
