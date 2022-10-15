@@ -11,11 +11,9 @@ def writefile(filename, filereadlines):
     newfile.close()
     
 def main(inputPath):
-    # get folder name
-    # create log and recover file = True, don't create = False
-    # 如果不想生成日志和恢复文件，下面这行改成createLogAndRecover = False
+    # 生成日志文件 = True, 不生成 = False
     createLogAndRecover = True
-    # show window，如果不想显示处理窗口，showCMDwindows = False
+    # 显示窗口 = True, 不显示 = False
     showCMDwindows = True
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
