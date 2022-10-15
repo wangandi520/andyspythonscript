@@ -50,7 +50,10 @@ def main(inputPath):
             lastFileName = ''
             lastFileOldName = ''
             for file in Path(aPath).glob('*'):
+                # 文件名命名成文件夹名+Vol_序号
                 newFileName = folderName + 'Vol_' + str(startIndex).zfill(2)
+                # 文件名命名成纯数字
+                #newFileName = str(startIndex).zfill(3)
                 # get file suffix
                 if Path.is_file(file):
                     newFileName = newFileName + file.suffix
