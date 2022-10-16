@@ -1,0 +1,12 @@
+rarfile
+unrar
+opencc-python-reimplemented
+pillow
+piexif
+fleep
+requests
+bs4
+lxml
+tinytag
+pypinyin
+numpy

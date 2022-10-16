@@ -1,4 +1,0 @@
-pip3 install zipfile
-pip3 install rarfile
-pip3 install unrar
-pip install opencc-python-reimplemented

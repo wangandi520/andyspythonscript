@@ -4,6 +4,8 @@
 
 请先备份你的文件，使用后确实符合你的要求后再批量应用
 
+安装所有需要的pip包，pip install -r requirement.txt
+
 拖拽：拖文件或文件到这个py文件上
 
 递归：这个效果，对于文件夹和他的所有子文件夹都会有效
@@ -29,7 +31,7 @@ sort .rar and .zip into two type:
 
 1.包含一个或多个二级文件夹。2.仅包含文件的。
 
-需要pip3 install zipfile，pip3 install rarfile
+需要，pip install rarfile
 
 ### 生成所有子文件目录到文件夹名.txt（拖拽，仅多个文件夹）.py
 
@@ -151,7 +153,7 @@ mkdir folder/subfolder in old file name [subfolder][folder], rename file between
 
 copy first file in .rar or .zip
 
-需要同级目录下UnRAR.exe 或 pip3 install unrar
+需要同级目录下UnRAR.exe 或 pip install unrar
 
 常用于提取漫画封面
 
@@ -227,7 +229,7 @@ get folder's file's type, count, size
 
 用于显示文件各种信息，整理
 
-需要同级目录下UnRAR.exe 或 pip3 install unrar
+需要同级目录下UnRAR.exe 或 pip install unrar
 
 如果直接运行，存在文件夹名.sha文件的话，就开始校验文件
 
