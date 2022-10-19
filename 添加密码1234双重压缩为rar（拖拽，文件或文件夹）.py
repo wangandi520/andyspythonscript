@@ -48,8 +48,12 @@ def doAddToEncryptedRar(filePath):
     if not ifDoubleZip and showOnlyFileName:
         # 不显示原扩展名，把.name改成.stem
         newFileName01 = Path(filePath).name + '.rar'
+        # 自定义显示的文件名
+        #newFileName01 = '1234.rar'
     else:
         newFileName01 = '[一次压缩]' + showmyPassword + '[文件名' + Path(filePath).name + '].rar'
+        # 自定义显示的文件名
+        #newFileName01 = '[一次压缩]' + showmyPassword + '[文件名1234].rar'
     print('正在第一次压缩...' + filePath.name)
     # -ep 不包含路径
     # -ep1 包含一层目录
