@@ -4,13 +4,13 @@
 // @version      0.4
 // @description  try to take over the world!
 // @author       You
-// @match        https://www.moeshare.cc/*
-// @match        https://moeshare.cc/*
+// @match        https://www.moeshare.cc/read-htm-tid*
+// @match        https://moeshare.cc/read-htm-tid*
 // @icon         https://www.google.com/s2/favicons?domain=moeshare.cc
 // @grant        none
 // ==/UserScript==
 
-function downloadTXT() {
+function downloadHTML() {
     var tidName = document.querySelector('#subject_tpc').innerText
     var info = document.querySelector('#subject_tpc').innerHTML
     info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
@@ -29,6 +29,6 @@ function downloadTXT() {
 document.onkeydown = function () {
     // 这里改成其他快捷键
     if (event.keyCode == 83) {
-        downloadTXT();
+        downloadHTML();
     }
 }
