@@ -1,9 +1,10 @@
 // ==UserScript==
 // @name         moeshare萌享帖子里按s保存帖子1楼信息.txt
 // @namespace    http://tampermonkey.net/
-// @version      0.3
+// @version      0.4
 // @description  try to take over the world!
 // @author       You
+// @match        https://www.moeshare.cc/*
 // @match        https://moeshare.cc/*
 // @icon         https://www.google.com/s2/favicons?domain=moeshare.cc
 // @grant        none

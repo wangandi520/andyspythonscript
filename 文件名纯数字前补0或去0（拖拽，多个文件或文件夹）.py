@@ -29,6 +29,9 @@ def renameBySomeZero(filePath):
 def main(inputPath):
     for aPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
+            # 修改文件夹名，使用33行，行首加#代表注释，不生效的意思
+            #renameBySomeZero(Path(aPath))
+            # 修改文件夹内的文件，使用35，36行
             for file in Path(aPath).glob('**/*'):
                 renameBySomeZero(file)
         if Path.is_file(Path(aPath)):
