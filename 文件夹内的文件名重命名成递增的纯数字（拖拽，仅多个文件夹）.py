@@ -69,8 +69,8 @@ def main(inputPath):
                 startIndex = startIndex + 1
 
             if createLogAndRecover:
-                writefile('Log.txt', cmdLog)
-                writefile('Recover.bat', recoverLog)
+                writefile('Log ' + Path(aPath).name + '.txt', cmdLog)
+                writefile('Recover ' + Path(aPath).name + '.bat', recoverLog)
                 
     if showCMDwindows:
         print("处理完成。")
