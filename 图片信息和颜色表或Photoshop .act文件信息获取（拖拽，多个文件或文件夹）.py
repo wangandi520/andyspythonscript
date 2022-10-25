@@ -147,7 +147,7 @@ def main(inputPath):
                 allFileInfo.append('\n')
                 imgData.close()
                 print()
-            if Path(aPath).suffix in ['.act', '.ACT']:
+            if Path(aPath).suffix.lower() in ['.act', '.ACT']:
                 print('文件名： ' + str(Path(aPath).name))
                 allFileInfo.append('文件名： ' + str(Path(aPath).name) + '\n')
                 with open(Path(aPath), 'rb') as actFile:
