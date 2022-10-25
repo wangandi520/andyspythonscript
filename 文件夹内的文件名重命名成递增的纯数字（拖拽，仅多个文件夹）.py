@@ -73,6 +73,7 @@ def main(inputPath):
                 writefile('Recover.bat', recoverLog)
                 
     if showCMDwindows:
+        print("处理完成。")
         os.system("pause")
         
 if __name__ == '__main__':
