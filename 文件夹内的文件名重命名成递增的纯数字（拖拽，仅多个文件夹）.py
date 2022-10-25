@@ -15,11 +15,15 @@ def main(inputPath):
     createLogAndRecover = True
     # 显示窗口 = True, 不显示 = False
     showCMDwindows = True
-    # first book start index，数字编号从几开始
+    # 文件名数字从几开始
     startIndex = 1
     # 文件名数字位数
     digitLength = 3
-    for aPath in inputPath:
+    for aPath in inputPath[1:]:
+        if Path.is_file(Path(aPath)):
+            print("请拖拽文件夹，终止程序。")
+            os.system("pause")
+            sys.exit()
         if Path.is_dir(Path(aPath)):
             # 如果文件夹内还有文件夹就终止程序
             inFile = False
