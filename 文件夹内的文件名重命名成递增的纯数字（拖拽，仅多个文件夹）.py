@@ -42,11 +42,20 @@ def main(inputPath):
                 
             # 如果文件夹内的文件名长度不一致就终止程序
             fileNameLength = {}
+            fileSuffix = {}
             for file in Path(aPath).glob('*'):
                 if len(file.stem) not in fileNameLength:
                     fileNameLength[len(file.stem)] = 1
                 else:
                     fileNameLength[len(file.stem)] = fileNameLength[len(file.stem)] + 1
+                if file.suffix not in fileSuffix:
+                    fileSuffix[file.suffix] = 1
+                else:
+                    fileSuffix[file.suffix] = fileSuffix[file.suffix] + 1
+            if detectFileSuffixDiff and len(fileSuffix) > 1:
+                print("文件扩展名不一致，终止程序。")
+                os.system("pause")
+                sys.exit()
             if len(fileNameLength) > 1:
                 print("文件名长度不一致，终止程序。")
                 os.system("pause")
