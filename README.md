@@ -386,6 +386,12 @@ rename .flac file by flac metadata
 
 浏览器安装tampermonkey，新建脚本复制进去，帖子里按s保存成html
 
+### 文件夹内的文件名重命名成递增的纯数字（拖拽，仅多个文件夹）.py
+
+文件夹内的文件名重命名成递增的纯数字
+
+可以设置开始序号和位数
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.

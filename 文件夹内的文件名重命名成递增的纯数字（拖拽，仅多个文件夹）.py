@@ -15,6 +15,8 @@ def main(inputPath):
     createLogAndRecover = True
     # 显示窗口 = True, 不显示 = False
     showCMDwindows = True
+    # 文件夹内的文件扩展名不一样时，是否终止程序。终止程序 = True, 不终止程序 = False
+    detectFileSuffixDiff = False
     # 文件名数字从几开始
     startIndex = 1
     # 文件名数字位数
