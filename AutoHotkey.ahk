@@ -1,6 +1,6 @@
 ;https://github.com/wangandi520/andyspythonscript
 
-;小键盘9暂停脚本
+;小键盘9重新载入脚本
 Numpad9::reload
 
 ;小键盘8暂停脚本
