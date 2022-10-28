@@ -32,6 +32,13 @@ Send {RButton Up}
 return
 }
 
+;小键盘4抬起鼠标左键
+Numpad4::
+{
+Send {LButton up}
+return
+}
+
 ;小键盘3连续点击F5
 Numpad3::
 {
@@ -46,13 +53,6 @@ return
 Numpad2::
 {
 Send {RButton Down}
-return
-}
-
-;小键盘4抬起鼠标左键
-Numpad4::
-{
-Send {LButton up}
 return
 }
 
