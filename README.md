@@ -392,6 +392,10 @@ rename .flac file by flac metadata
 
 可以设置开始序号和位数
 
+### 文件夹的最后一个文件删除（拖拽，递归，多个文件夹）.py
+
+处理被拖拽的文件夹的文件，和每个子文件夹内的文件
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
