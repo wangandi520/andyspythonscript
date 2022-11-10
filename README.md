@@ -83,10 +83,6 @@ rename files in folder
 
 switch two [] content in file names
 
-**把[扫者]放在Vol之后，适用于多个扫者的情况下卷的顺序错乱的情况，拖拽文件（夹）拖到py文件上**
-
-把文件（夹）名中最后[]的内容和Vol_XX交换位置
-
 文件（夹）名格式[书名][作者][出版社][扫者]Vol_XX，会重命名成"[书名][作者][出版社]Vol_XX[扫者]"
 
 支持多个文件夹或文件一起拖拽
@@ -95,7 +91,9 @@ switch two [] content in file names
 
 switch Vol_xx and last []
 
-把[扫者]放在Vol之后
+**把[扫者]放在Vol之后，适用于多个扫者的情况下卷的顺序错乱的情况，拖拽文件（夹）拖到py文件上**
+
+把文件（夹）名中最后[]的内容和Vol_XX交换位置
 
 适用于多个扫者的情况下卷的顺序错乱的情况
 
