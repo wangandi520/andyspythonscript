@@ -79,7 +79,7 @@ rename files in folder
 
 会生成日志和恢复文件名的bat文件，不过不想生成，就修改文件里的createLogAndRecover = False
 
-### 文件名或文件夹名前两个[]的内容交换（拖拽，多个文件或文件夹）.py
+### 文件名前两个[]的内容交换（拖拽，多个文件或文件夹）.py
 
 switch two [] content in file names
 
@@ -105,7 +105,7 @@ remove .1234 in file name
 
 把文件夹内后缀名是.1234文件，去掉.1234，支持多个文件夹或文件一起拖拽
 
-### 文件名和文件夹名简繁体转换（拖拽，递归，多个文件或文件夹）.py.py
+### 文件名简繁体转换（拖拽，递归，多个文件或文件夹）.py.py
 
 rename file between simplfied chinese and tradition chinese
 
@@ -157,7 +157,7 @@ copy first file in .rar or .zip
 
 支持压缩包里有一层或两层文件夹的情况
 
-### 把文件或文件夹名重命名为翻转的形式（拖拽，多个文件或文件夹，包含二级目录文件）.py
+### 文件重命名为翻转的形式（拖拽，多个文件或文件夹，包含二级目录文件）.py
 
 reverse file name
 
