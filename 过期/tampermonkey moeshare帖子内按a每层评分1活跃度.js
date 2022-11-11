@@ -1,10 +1,11 @@
 // ==UserScript==
-// @name         moeshare auto score
+// @name         moeshare帖子内按a每层评分1活跃度
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
 // @author       You
-// @match        https://moeshare.cc/*
+// @match        https://moeshare.cc/read*
+// @match        https://www.moeshare.cc/read*
 // @icon         https://www.google.com/s2/favicons?domain=moeshare.cc
 // @grant        none
 // ==/UserScript==
@@ -16,7 +17,7 @@ function pingfen(eachScore,i){
     console.log('正在评分第' + i + '楼');
     setTimeout(function(){
         var my = document.querySelector('#c_model');
-        my.querySelector('select').selectedIndex = 1;
+        my.querySelector('select').selectedIndex = 0;
         my.querySelector('input').value = 1;
         setTimeout(function(){
             document.querySelector('#box_container .btn2 button').click();

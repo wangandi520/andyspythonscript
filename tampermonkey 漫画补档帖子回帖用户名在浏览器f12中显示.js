@@ -5,7 +5,8 @@
 // @description  try to take over the world!
 // @author       You
 // @match        https://www.manhuabudangbbs.com/read*
-// @match        https://*moeshare.cc/read*
+// @match        https://www.moeshare.cc/read*
+// @match        https://moeshare.cc/read*
 // @icon         https://www.google.com/s2/favicons?domain=manhuabudangbs.com
 // @grant        none
 // ==/UserScript==
