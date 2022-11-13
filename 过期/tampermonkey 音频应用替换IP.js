@@ -11,7 +11,6 @@
 var getLinks = document.getElementsByTagName('a');
 for(var i=0; i< getLinks.length; i++){
     if(getLinks[i].href.indexOf("http://www.audiobar.net.cn")!==-1) {
-        console.log('h')
         getLinks[i].href = decodeURIComponent(getLinks[i].href.replace('http://www.audiobar.net.cn', 'http://43.225.39.42'));
     }
 }
