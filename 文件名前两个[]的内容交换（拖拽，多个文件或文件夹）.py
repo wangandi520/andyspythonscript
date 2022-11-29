@@ -16,7 +16,11 @@ def main(inputPath):
             getFileNamePart = re.findall(getFileName, fileName)
             getLastIndex = len(getFileNamePart[0]) + len(getFileNamePart[1])
             newFileName = '[' + getFileNamePart[1] + '][' + getFileNamePart[0] + ']' + fileName[getLastIndex + 4:]
-            Path(file).rename(Path(file).parent.joinpath(newFileName))
+            newFilePath = Path(file).parent.joinpath(newFileName)
+            if not newFilePath.exists():
+                Path(file).rename(newFilePath)
+            else:
+                print('文件已存在')
         else:
             print('文件（夹）名不符合规则：[][]')
             
