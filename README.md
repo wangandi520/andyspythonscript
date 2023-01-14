@@ -397,3 +397,7 @@ rename .flac file by flac metadata
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
+
+# 交流QQ群
+
+电子书漫画制作闲聊群1321993
