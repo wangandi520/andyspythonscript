@@ -6,7 +6,7 @@ import sys
 import os
 
 # 需要convert.exe
-# https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
+# https://imagemagick.org/archive/binaries/ImageMagick-7.1.0-59-portable-Q16-HDRI-x64.zip
 # https://imagemagick.org/script/convert.php
 
 def doConvert(filePath):
