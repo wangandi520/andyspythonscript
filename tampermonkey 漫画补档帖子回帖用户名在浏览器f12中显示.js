@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.1
 // @description  try to take over the world!
-// @author       You
+// @author       https://github.com/wangandi520/andyspythonscript
 // @match        https://www.manhuabudangbbs.com/read*
 // @match        https://www.moeshare.cc/read*
 // @match        https://moeshare.cc/read*
