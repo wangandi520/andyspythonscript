@@ -339,6 +339,12 @@ rename .epub file by epub metadata
 
 有多个可能时，强行修改成第N个扩展名，forceRenameToRealSuffixIndex = -1，改成第1个 = 0，改成第2个 = 1
 
+### 文件扩展名修改，txt改zip为例=txt_zip（拖拽，多个文件或文件夹）
+
+设置选项：
+任何旧扩展名都改成新扩展名
+没有扩展名的文件添加新扩展名
+
 ### 文件名重命名.flac文件使用flac元数据的歌名歌手（拖拽，多个文件或文件夹）.py
 
 需要pip install tinytag
