@@ -195,7 +195,7 @@ chrome或edge浏览器安装油猴子插件tampermonkey，新建并复制进去�
 
 add new suffix to file
 
-件名原扩展名后添加新扩展名
+文件名原扩展名后添加新扩展名
 
 ### 文件名中文改成拼音或拼音首字母（拖拽，多个文件或文件夹）.py
 
@@ -339,11 +339,13 @@ rename .epub file by epub metadata
 
 有多个可能时，强行修改成第N个扩展名，forceRenameToRealSuffixIndex = -1，改成第1个 = 0，改成第2个 = 1
 
-### 文件扩展名修改，txt改zip为例=txt_zip（拖拽，多个文件或文件夹）
+### 文件扩展名修改，txt改zip为例=txt_zip（拖拽，多个文件或文件夹）.py
 
 设置选项：
 任何旧扩展名都改成新扩展名
 没有扩展名的文件添加新扩展名
+需要修改的话，把文件夹名=后面改成自己需要的，原扩展名_新扩展名，例如
+文件扩展名修改，txt改zip为例=zip_pdf（拖拽，多个文件或文件夹）.py
 
 ### 文件名重命名.flac文件使用flac元数据的歌名歌手（拖拽，多个文件或文件夹）.py
 
