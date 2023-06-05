@@ -402,6 +402,10 @@ rename .flac file by flac metadata
 
 处理被拖拽的文件夹的文件，和每个子文件夹内的文件
 
+### 图片垂直或水平合并成一张图使用ImageMagick的convert（拖拽，仅多个文件）.py
+
+把多张图片拖拽到文件上，生成新的合并后的图片，可以设置压缩比例和垂直或水平合并
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
