@@ -19,6 +19,8 @@ def main(inputPath):
     detectFileSuffixDiff = False
     # 文件名数字从几开始
     startIndex = 1
+    # 文件名前缀（可选）
+    prefixFileName = ''
     # 文件名数字位数
     digitLength = 3
     for aPath in inputPath[1:]:
@@ -65,7 +67,7 @@ def main(inputPath):
             cmdLog = []
             recoverLog = []
             for file in Path(aPath).glob('*'):
-                newFileName = str(startIndex).zfill(digitLength)
+                newFileName = prefixFileName + str(startIndex).zfill(digitLength)
                 if Path.is_file(file):
                     newFileName = newFileName + file.suffix
                 # 命令
