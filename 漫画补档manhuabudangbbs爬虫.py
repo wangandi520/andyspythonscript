@@ -48,7 +48,7 @@ def main():
             print(str(eachtid) + ' 连接超时，请修改脚本tid后重新运行')
             os.system('pause')
         except:
-            print(str(eachtid) + ' 帖子错误')
+            print(str(eachtid) + ' 帖子不存在或其他错误')
         time.sleep(2)     
         
 if __name__ == '__main__':
