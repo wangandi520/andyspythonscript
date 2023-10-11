@@ -51,7 +51,9 @@ def main():
         except:
             print(str(eachtid) + ' 帖子不存在或其他错误')
             eachtid = eachtid + 1
-        time.sleep(2)     
+        time.sleep(2)
+    print('爬虫结束')
+    os.system('pause')
         
 if __name__ == '__main__':
     main()
