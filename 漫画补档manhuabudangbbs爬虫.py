@@ -45,11 +45,10 @@ def main():
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
         except requests.exceptions.RequestException as e:
-            print(str(eachtid) + ' 连接超时')
+            print(str(eachtid) + ' 连接超时，请修改脚本tid后重新运行')
             os.system('pause')
         except:
             print(str(eachtid) + ' 帖子错误')
-            os.system('pause')
         time.sleep(2)     
         
 if __name__ == '__main__':
