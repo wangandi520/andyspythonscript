@@ -23,9 +23,10 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    # 第二个数字tid
+    # 28行是开始的tid，29行是结束的tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    for eachtid in range(1, 2000):
+    eachtid = 1762
+    while eachtid < 2000:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
@@ -44,9 +45,9 @@ def main():
                 getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
+            eachtid = eachtid + 1
         except requests.exceptions.RequestException as e:
-            print(str(eachtid) + ' 连接超时，请修改脚本tid后重新运行')
-            os.system('pause')
+            print(str(eachtid) + ' 连接超时，重试中')
         except:
             print(str(eachtid) + ' 帖子不存在或其他错误')
         time.sleep(2)     
