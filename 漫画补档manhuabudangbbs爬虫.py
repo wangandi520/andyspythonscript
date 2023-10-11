@@ -25,7 +25,7 @@ def writefile(fileName, filereadlines):
 def main():
     # 第二个数字tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    for eachtid in range(1732, 2000):
+    for eachtid in range(1, 2000):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
