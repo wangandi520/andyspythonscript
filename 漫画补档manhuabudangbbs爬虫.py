@@ -26,7 +26,7 @@ def main():
     # 28行是开始的tid，29行是结束的tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
     eachtid = 1
-    while eachtid < 1000:
+    while eachtid <= 1000:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
