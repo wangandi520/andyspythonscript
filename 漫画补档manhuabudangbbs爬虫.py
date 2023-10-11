@@ -25,8 +25,8 @@ def writefile(fileName, filereadlines):
 def main():
     # 28行是开始的tid，29行是结束的tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    eachtid = 1762
-    while eachtid < 2000:
+    eachtid = 1
+    while eachtid < 1000:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
@@ -50,6 +50,7 @@ def main():
             print(str(eachtid) + ' 连接超时，重试中...')
         except:
             print(str(eachtid) + ' 帖子不存在或其他错误')
+            eachtid = eachtid + 1
         time.sleep(2)     
         
 if __name__ == '__main__':
