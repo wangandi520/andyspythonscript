@@ -5,7 +5,9 @@
 import requests
 import time
 import datetime
+import os
 from bs4 import BeautifulSoup
+from requests.adapters import HTTPAdapter
 
 def validFileName(fileName):
     # 把不能作为文件的字符替换成空格
@@ -23,13 +25,16 @@ def writefile(fileName, filereadlines):
 def main():
     # 第二个数字tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    for eachtid in range(1, 1000):
+    for eachtid in range(1732, 2000):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
-        getHtml = requests.get(url)
+        mySession = requests.session()
+        mySession.mount('http://', HTTPAdapter(max_retries = 3))
+        mySession.mount('https://', HTTPAdapter(max_retries = 3))
         try:
+            getHtml = mySession.request('GET', url=url, timeout=10)
             soup = BeautifulSoup(getHtml.text, 'html.parser')
             getName = soup.select('#subject_tpc')[0].get_text()[:-7]
-            print(str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+ ' tid=' + str(eachtid) + ' ' + getName)
+            print(str(eachtid) + ' ' + getName + ' ' + str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
             getAuthor = soup.select('.readName.b a')[0].get_text() + ' '
             getTime = soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
             getContent = soup.select('#td_tpc > div.tpc_content')
@@ -39,8 +44,12 @@ def main():
                 getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
+        except requests.exceptions.RequestException as e:
+            print(str(eachtid) + ' 连接超时')
+            os.system('pause')
         except:
-            print(str(eachtid) + '帖子错误')
+            print(str(eachtid) + ' 帖子错误')
+            os.system('pause')
         time.sleep(2)     
         
 if __name__ == '__main__':
