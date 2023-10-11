@@ -47,7 +47,7 @@ def main():
             writefile(getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
             eachtid = eachtid + 1
         except requests.exceptions.RequestException as e:
-            print(str(eachtid) + ' 连接超时，重试中')
+            print(str(eachtid) + ' 连接超时，重试中...')
         except:
             print(str(eachtid) + ' 帖子不存在或其他错误')
         time.sleep(2)     
