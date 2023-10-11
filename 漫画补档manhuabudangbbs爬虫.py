@@ -4,6 +4,7 @@
 
 import requests
 import time
+import datetime
 from bs4 import BeautifulSoup
 
 def validFileName(fileName):
@@ -20,13 +21,15 @@ def writefile(fileName, filereadlines):
         newfile.writelines(filereadlines)
 
 def main():
-    for eachtid in range(1, 500):
+    # 第二个数字tid
+    # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
+    for eachtid in range(1, 1000):
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         getHtml = requests.get(url)
         try:
             soup = BeautifulSoup(getHtml.text, 'html.parser')
             getName = soup.select('#subject_tpc')[0].get_text()[:-7]
-            print(url + ' ' + getName)
+            print(str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'))+ ' tid=' + str(eachtid) + ' ' + getName)
             getAuthor = soup.select('.readName.b a')[0].get_text() + ' '
             getTime = soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
             getContent = soup.select('#td_tpc > div.tpc_content')
