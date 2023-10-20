@@ -22,11 +22,31 @@ def writefile(fileName, filereadlines):
     with open(fileName + '.txt', mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
+def getLatestTid():
+    url = 'https://www.manhuabudangbbs.com'
+    getTid = ''
+    mySession = requests.session()
+    mySession.mount('http://', HTTPAdapter(max_retries = 3))
+    mySession.mount('https://', HTTPAdapter(max_retries = 3))
+    try:
+        getHtml = mySession.request('GET', url=url, timeout=10)
+        soup = BeautifulSoup(getHtml.text, 'html.parser')
+        getTidA = soup.select('#tabswi1_B > div:nth-child(1) > div > dl > dt > a')[0].get('href')
+        getTid = getTidA[13:getTidA.index('.html')]
+    except requests.exceptions.RequestException as e:
+        print(' 连接超时，重试中...')
+    except:
+        print(' 帖子不存在或其他错误')
+    if getTid != '':
+        return getTid
+    
 def main():
-    # 28行是开始的tid，29行是结束的tid
+    # 46行是开始的tid（包含），48行是结束的tid（包含）
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    eachtid = 6000
-    while eachtid <= 6009:
+    eachtid = 6009
+    # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
+    myLatestTid = int(getLatestTid())
+    while eachtid <= myLatestTid:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
