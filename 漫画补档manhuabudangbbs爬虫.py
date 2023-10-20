@@ -25,8 +25,8 @@ def writefile(fileName, filereadlines):
 def main():
     # 28行是开始的tid，29行是结束的tid
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    eachtid = 1
-    while eachtid <= 1000:
+    eachtid = 6000
+    while eachtid <= 6009:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
         mySession.mount('http://', HTTPAdapter(max_retries = 3))
@@ -44,7 +44,7 @@ def main():
             for eachReplace in myReplace:
                 getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
-            writefile(getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
+            writefile(str(eachtid) + ' ' + getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
             eachtid = eachtid + 1
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
@@ -52,7 +52,7 @@ def main():
             print(str(eachtid) + ' 帖子不存在或其他错误')
             eachtid = eachtid + 1
         time.sleep(2)
-    print('爬虫结束')
+    print('爬虫结束') 
     os.system('pause')
         
 if __name__ == '__main__':
