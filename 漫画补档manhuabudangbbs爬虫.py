@@ -6,8 +6,10 @@ import requests
 import time
 import datetime
 import os
+import sys
 from bs4 import BeautifulSoup
 from requests.adapters import HTTPAdapter
+from pathlib import Path
 
 def validFileName(fileName):
     # 把不能作为文件的字符替换成空格
@@ -19,9 +21,15 @@ def validFileName(fileName):
 def writefile(fileName, filereadlines):
     #write file
     fileName = validFileName(fileName)
-    with open(fileName + '.txt', mode='w', encoding='UTF-8') as newfile:
+    with open(fileName, mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
+def readfile(filename):
+    # readfile
+    with open(filename, mode='r', encoding='UTF-8') as file:
+        filereadlines = file.readlines()
+    return filereadlines
+    
 def getLatestTid():
     url = 'https://www.manhuabudangbbs.com'
     getTid = ''
@@ -39,14 +47,28 @@ def getLatestTid():
         print(' 帖子不存在或其他错误')
     if getTid != '':
         return getTid
+        
+def updateTidEachtime(latestTid):
+    myReadFile = readfile(sys.argv[0])
+    newFile = []
+    for i in range(0, len(myReadFile)):
+        if i == 62:
+            newFile.append('    eachtid = ' + str(latestTid) + '\n')
+        else:
+            newFile.append(myReadFile[i])
+    writefile(Path(sys.argv[0]).name, newFile)
     
 def main():
     # 46行是开始的tid（包含），48行是结束的tid（包含）
-    # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    eachtid = 6011
+    eachtid = 6034
     # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
     myLatestTid = int(getLatestTid())
     print('最新tid = ' + str(myLatestTid))
+    # 是否更新脚本的起始tid为最新tid，适用于每天定时运行
+    if True:
+        updateTidEachtime(myLatestTid + 1)
+        print('爬虫下次开始tid = ' + str(myLatestTid + 1))
+    
     while eachtid <= myLatestTid:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
@@ -65,7 +87,7 @@ def main():
             for eachReplace in myReplace:
                 getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
-            writefile(str(eachtid) + ' ' + getName, getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
+            writefile(str(eachtid) + ' ' + getName + '.txt', getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
             eachtid = eachtid + 1
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
