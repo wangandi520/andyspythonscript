@@ -43,9 +43,10 @@ def getLatestTid():
 def main():
     # 46行是开始的tid（包含），48行是结束的tid（包含）
     # 网址格式：https://www.manhuabudangbbs.com/read-htm-tid-1000.html
-    eachtid = 6009
+    eachtid = 6011
     # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
     myLatestTid = int(getLatestTid())
+    print('最新tid = ' + str(myLatestTid))
     while eachtid <= myLatestTid:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
         mySession = requests.session()
