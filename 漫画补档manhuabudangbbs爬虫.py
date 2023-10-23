@@ -20,10 +20,7 @@ def validFileName(fileName):
     
 def writefile(fileName, filereadlines):
     #write file
-    newFileName = validFileName(Path(fileName).name)
-    newnewFileName = Path(fileName).parent.joinpath(newFileName)
-    #print(newnewFileName)
-    with open( newnewFileName, mode='w', encoding='UTF-8') as newfile:
+    with open(fileName, mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
 def readfile(filename):
@@ -54,7 +51,7 @@ def updateTidEachtime(latestTid):
     myReadFile = readfile(sys.argv[0])
     newFile = []
     for i in range(0, len(myReadFile)):
-        if i == 66:
+        if i == 63:
             newFile.append('    eachtid = ' + str(latestTid) + '\n')
         else:
             newFile.append(myReadFile[i])
@@ -63,7 +60,7 @@ def updateTidEachtime(latestTid):
 def main():
     # 设置文件路径，如'd:\\new\\'，'/srv/ftp/'
     myPath = ''
-    # 67行是开始的tid（包含），69行是结束的tid（包含）
+    # 64行是开始的tid（包含），66行是结束的tid（包含）
     eachtid = 4
     # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
     myLatestTid = int(getLatestTid())
@@ -82,6 +79,7 @@ def main():
             getHtml = mySession.request('GET', url=url, timeout=10)
             soup = BeautifulSoup(getHtml.text, 'html.parser')
             getName = soup.select('#subject_tpc')[0].get_text()[:-7]
+            getName = validFileName(getName)
             print(str(eachtid) + ' ' + getName + ' ' + str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
             getAuthor = soup.select('.readName.b a')[0].get_text() + ' '
             getTime = soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
@@ -96,6 +94,7 @@ def main():
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
         except:
+            print(e)
             print(str(eachtid) + ' 帖子不存在或其他错误')
             eachtid = eachtid + 1
         time.sleep(2)
