@@ -20,8 +20,10 @@ def validFileName(fileName):
     
 def writefile(fileName, filereadlines):
     #write file
-    fileName = validFileName(fileName)
-    with open(fileName, mode='w', encoding='UTF-8') as newfile:
+    newFileName = validFileName(Path(fileName).name)
+    newnewFileName = Path(fileName).parent.joinpath(newFileName)
+    #print(newnewFileName)
+    with open( newnewFileName, mode='w', encoding='UTF-8') as newfile:
         newfile.writelines(filereadlines)
 
 def readfile(filename):
@@ -52,15 +54,17 @@ def updateTidEachtime(latestTid):
     myReadFile = readfile(sys.argv[0])
     newFile = []
     for i in range(0, len(myReadFile)):
-        if i == 62:
+        if i == 66:
             newFile.append('    eachtid = ' + str(latestTid) + '\n')
         else:
             newFile.append(myReadFile[i])
     writefile(Path(sys.argv[0]).name, newFile)
     
 def main():
-    # 46行是开始的tid（包含），48行是结束的tid（包含）
-    eachtid = 6034
+    # 设置文件路径，如'd:\\new\\'，'/srv/ftp/'
+    myPath = ''
+    # 67行是开始的tid（包含），69行是结束的tid（包含）
+    eachtid = 4
     # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
     myLatestTid = int(getLatestTid())
     print('最新tid = ' + str(myLatestTid))
@@ -87,7 +91,7 @@ def main():
             for eachReplace in myReplace:
                 getContent = str(getContent).replace(eachReplace, '\n')
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
-            writefile(str(eachtid) + ' ' + getName + '.txt', getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
+            writefile(myPath + str(eachtid) + ' ' + getName + '.txt', getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
             eachtid = eachtid + 1
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
