@@ -66,9 +66,6 @@ def main():
     myLatestTid = int(getLatestTid())
     print('最新tid = ' + str(myLatestTid))
     # 是否更新脚本的起始tid为最新tid，适用于每天定时运行
-    if True:
-        updateTidEachtime(myLatestTid + 1)
-        print('爬虫下次开始tid = ' + str(myLatestTid + 1))
     
     while eachtid <= myLatestTid:
         url = 'https://www.manhuabudangbbs.com/read-htm-tid-' + str(eachtid) + '.html'
@@ -78,8 +75,7 @@ def main():
         try:
             getHtml = mySession.request('GET', url=url, timeout=10)
             soup = BeautifulSoup(getHtml.text, 'html.parser')
-            getName = soup.select('#subject_tpc')[0].get_text()[:-7]
-            getName = validFileName(getName)
+            getName = validFileName(soup.select('#subject_tpc')[0].get_text()[:-7])
             print(str(eachtid) + ' ' + getName + ' ' + str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
             getAuthor = soup.select('.readName.b a')[0].get_text() + ' '
             getTime = soup.select('#td_tpc > div.tipTop.s6 > span:nth-child(3)')[0].get_text() + '\n'
@@ -94,11 +90,15 @@ def main():
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
         except:
-            print(e)
             print(str(eachtid) + ' 帖子不存在或其他错误')
             eachtid = eachtid + 1
         time.sleep(2)
     print('爬虫结束') 
+    
+    if True:
+        updateTidEachtime(myLatestTid + 1)
+        print('爬虫下次开始tid = ' + str(myLatestTid + 1))
+        
     os.system('pause')
         
 if __name__ == '__main__':
