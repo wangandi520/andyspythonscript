@@ -64,7 +64,7 @@ def main():
     eachtid = 4
     # 自动获取最新帖子的tid，如果手动设置请改成自己需要的数字，例如myLatestTid = 1000
     myLatestTid = int(getLatestTid())
-    print('开始tid = ' + eachtid + ' 最新tid = ' + str(myLatestTid))
+    print('开始tid = ' + str(eachtid) + ' 最新tid = ' + str(myLatestTid))
     # 是否更新脚本的起始tid为最新tid，适用于每天定时运行
     
     while eachtid <= myLatestTid:
