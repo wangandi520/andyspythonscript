@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.4
 // @description  try to take over the world!
-// @author       https://github.com/wangandi520/andyspythonscript
+// @author       You
 // @match        https://www.moeshare.cc/read-htm-tid*
 // @match        https://moeshare.cc/read-htm-tid*
 // @icon         https://www.google.com/s2/favicons?domain=moeshare.cc
@@ -16,7 +16,6 @@ function downloadHTML() {
     info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
     info = info + document.querySelector('#readfloor_tpc > table > tbody > tr.vt > td.floot_left > div > div.readName.b > a').innerHTML + ' ' + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + '<br/>'
     info = info + document.querySelector('#read_tpc').innerHTML + '<br/>'
-    info = info + document.querySelector('#readfloor_tpc > table > tbody > tr:nth-child(2) > td > div.pr > div > table > tbody > tr > td').innerHTML + '<br/>'
     info = info + '<p>本文件创建时间 ' + new Date().toLocaleString() + '</p>'
     let element = document.createElement('a')
     element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(info))
