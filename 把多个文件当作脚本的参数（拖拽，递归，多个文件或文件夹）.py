@@ -10,6 +10,7 @@ def doCMD(filePath):
     # 效果，你拖拽了文件夹1和文件1.txt，文件夹1里有2.txt，相当于运行test.py 2.txt 1.txt
     myCMD = 'D:\\new\\test.py'
     cmd = myCMD + ' "' + str(filePath) + '"'
+    print(cmd)
     os.system(cmd)
     
 def main(inputPath):
