@@ -11,8 +11,9 @@ def searchKeywordInFile(filePath, keyword):
         filereadlines = file.readlines()
     for i in range(len(filereadlines)):
         filereadlines[i] = filereadlines[i].rstrip()
-        if keyword in filereadlines[i]:
-            print(filereadlines[i] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
+        getKeywordLocation = filereadlines[i].find(keyword)
+        if getKeywordLocation > -1:
+            print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
     
 def main(inputPath):
     # 设置你的关键词
