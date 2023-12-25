@@ -12,7 +12,7 @@ def searchKeywordInFile(filePath, keyword):
     for i in range(len(filereadlines)):
         filereadlines[i] = filereadlines[i].rstrip()
         if keyword in filereadlines[i]:
-            print(str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
+            print(filereadlines[i] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
     
 def main(inputPath):
     # 设置你的关键词
@@ -21,7 +21,7 @@ def main(inputPath):
     mySuffix = ['.html', '.xhtml']
     del inputPath[0]
     print('搜索关键词：' + myKeyword)
-    print('行数 文件名 文件路径')
+    print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
