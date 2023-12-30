@@ -20,7 +20,7 @@ def main(inputPath):
     del inputPath[0]
     # 要搜索的文件的扩展名
     mySuffix = ['.jpeg', '.jpg', '.png']
-    print('文件路径 二维码扫描结果')
+    print('二维码扫描结果 文件路径')
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
