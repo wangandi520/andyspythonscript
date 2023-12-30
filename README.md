@@ -406,6 +406,18 @@ rename .flac file by flac metadata
 
 把多张图片拖拽到文件上，生成新的合并后的图片，可以设置压缩比例和垂直或水平合并
 
+### 把多个文件当作脚本的参数（拖拽，递归，多个文件或文件夹）.py
+
+可以配合kindleunpack解包电子书
+
+### 搜索文件夹内特定类型的文件内容是否含关键词（拖拽，多个文件夹）.py
+
+搜索关键词
+
+### 搜索文件夹内特定类型的图片是否含二维码（低精度）（拖拽，多个文件夹）.py
+
+搜索图片有没有二维码
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
