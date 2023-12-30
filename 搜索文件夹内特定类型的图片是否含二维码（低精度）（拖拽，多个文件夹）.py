@@ -12,11 +12,6 @@ def searchQRCodeInFile(filePath):
     with open(filePath, mode='rb') as file:
         image = Image.open(file)
         print('正在扫描' + filePath.name, end = '\r')
-        sys.stdout.flush()
-        # qrDecoded = pyzbar.decode(image)
-        # if len(qrDecoded) > 0:
-            # print(str(filePath) + ' ' + qrDecoded[0].data.decode('utf-8'))
-            
         for barcode in pyzbar.decode(image,symbols=[pyzbar.ZBarSymbol.QRCODE]):   
             barcodeData = barcode.data.decode("utf-8")
             print(barcodeData + '    ' + str(filePath))
