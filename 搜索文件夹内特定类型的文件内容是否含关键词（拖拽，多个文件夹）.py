@@ -11,23 +11,24 @@ def searchKeywordInFile(filePath, keyword):
         filereadlines = file.readlines()
     for i in range(len(filereadlines)):
         filereadlines[i] = filereadlines[i].rstrip()
-        getKeywordLocation = filereadlines[i].find(keyword)
-        if getKeywordLocation > -1:
-            print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
+        for eachKeyword in keyword:
+            getKeywordLocation = filereadlines[i].lower().find(eachKeyword)
+            if getKeywordLocation > -1:
+                print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
     
 def main(inputPath):
     # 设置你的关键词
-    myKeyword = '微信'
+    myKeywords = ['微信', '公众号']
     # 要搜索的文件的扩展名
-    mySuffix = ['.html', '.xhtml']
+    mySuffix = ['.html', '.xhtml', '.opf']
     del inputPath[0]
-    print('搜索关键词：' + myKeyword)
+    print('搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix.lower() in mySuffix:
-                    searchKeywordInFile(file, myKeyword)      
+                    searchKeywordInFile(file, myKeywords)      
     print('搜索完成\n')
     os.system('pause')                    
         
