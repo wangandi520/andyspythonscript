@@ -11,3 +11,4 @@ tinytag
 pypinyin
 numpy
 ddddocr
+pyzbar

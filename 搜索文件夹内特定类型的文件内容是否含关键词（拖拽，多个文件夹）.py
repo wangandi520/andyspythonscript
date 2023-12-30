@@ -12,6 +12,7 @@ def searchKeywordInFile(filePath, keyword):
     excludeKeyword = []
     with open(filePath, mode='r', encoding='UTF-8') as file:
         filereadlines = file.readlines()
+    print('正在扫描' + filePath.name, end = '\r')
     for i in range(len(filereadlines)):
         filereadlines[i] = filereadlines[i].rstrip()
         for eachKeyword in keyword:
@@ -19,10 +20,10 @@ def searchKeywordInFile(filePath, keyword):
             if getKeywordLocation > -1:
                 toShow = True
                 for eachExcludeKeyword in excludeKeyword:
-                    if eachExcludeKeyword in filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10]:
+                    if eachExcludeKeyword in filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10].lower():
                         toShow = False
                 if toShow:
-                    print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + ' ' + str(i + 1) + ' ' + str(filePath.name) + '  ' + str(filePath))
+                    print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + '    ' + str(i + 1) + '    ' + str(filePath.name) + '    ' + str(filePath))
     
 def main(inputPath):
     # 设置你的关键词
@@ -37,7 +38,7 @@ def main(inputPath):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix.lower() in mySuffix:
                     searchKeywordInFile(file, myKeywords)      
-    print('搜索完成\n')
+    print('\n搜索完成\n')
     os.system('pause')
         
 if __name__ == '__main__':
