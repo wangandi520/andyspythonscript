@@ -5,6 +5,10 @@ from pathlib import Path
 import sys
 import os
 
+def myPrint(string, padding = 80):
+    padding = ' ' * (padding - len(string)) if padding else ''
+    print(string + padding, end = '\r')
+
 def searchKeywordInFile(filePath, keyword):
     # 读取文件
     # 如果搜索的关键词前后10个字含有这些关键词，就不输出
@@ -12,7 +16,7 @@ def searchKeywordInFile(filePath, keyword):
     excludeKeyword = []
     with open(filePath, mode='r', encoding='UTF-8') as file:
         filereadlines = file.readlines()
-    print('正在扫描' + filePath.name, end = '\r')
+    myPrint('正在扫描' + filePath.name)
     for i in range(len(filereadlines)):
         filereadlines[i] = filereadlines[i].rstrip()
         for eachKeyword in keyword:

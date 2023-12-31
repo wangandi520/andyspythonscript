@@ -7,11 +7,15 @@ from pyzbar import pyzbar
 import sys
 import os
 
+def myPrint(string, padding = 80):
+    padding = ' ' * (padding - len(string)) if padding else ''
+    print(string + padding, end = '\r')
+
 def searchQRCodeInFile(filePath):
     # 读取文件
     with open(filePath, mode='rb') as file:
         image = Image.open(file)
-        print('正在扫描' + filePath.name, end = '\r')
+        myPrint('正在扫描' + filePath.name)
         for barcode in pyzbar.decode(image,symbols=[pyzbar.ZBarSymbol.QRCODE]):   
             barcodeData = barcode.data.decode("utf-8")
             print(barcodeData + '    ' + str(filePath))
