@@ -39,21 +39,29 @@ def getEpubInfo(filePath):
 
 def validFileName(fileName):
     # 把不能作为文件的字符替换成空格
-    for each in fileName:
-        if each in '\/:*?"<>|,':
-            fileName = fileName.replace(each, ' ')
-    return fileName
+    if fileName != '':
+        for each in fileName:
+            if each in '\/:*?"<>|,':
+                fileName = fileName.replace(each, ' ')
+        return fileName
 
 def doChangeFileName(filePath):
     # type(filePath): Path
     # 文件格式
     fileType = ['.epub']
-    
     if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         book = getEpubInfo(filePath)
-        title = validFileName(book['title']) + filePath.suffix
-        filePath.rename(filePath.parent.joinpath(title))
-        print(filePath.name + ' -> ' + title)
+        # 文件名格式：书名 作者.扩展名
+        if book.get('creator') != None:
+            title = validFileName(book['title']) + ' ' + validFileName(book['creator']) + filePath.suffix
+            filePath.rename(filePath.parent.joinpath(title))
+            print(filePath.name + ' -> ' + title)
+        elif book.get('title') != None:
+            title = validFileName(book['title']) + filePath.suffix
+            filePath.rename(filePath.parent.joinpath(title))
+            print(filePath.name + ' -> ' + title)
+        else:
+            print(filePath.name + ' 无法获取信息，重命名失败')
         
 def main(inputPath):
     del inputPath[0]
