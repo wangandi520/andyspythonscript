@@ -36,6 +36,7 @@ def main(inputPath):
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
+            print('共拖拽' + str(len(sys.argv) - 1) + '个文件（夹），未包含子文件（夹）')
             main(sys.argv)
     except IndexError:
         pass
