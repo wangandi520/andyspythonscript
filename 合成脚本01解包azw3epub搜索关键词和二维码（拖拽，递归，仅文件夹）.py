@@ -4,6 +4,7 @@
 from pathlib import Path
 from PIL import Image
 from pyzbar import pyzbar
+import subprocess
 import sys
 import os
 import zipfile
@@ -18,16 +19,15 @@ def doKindleunpack(allFilePath):
     myCMD = 'D:\\KindleUnpack-083\\lib\\kindleunpack.py'
     for eachFilePath in allFilePath:
         if eachFilePath.suffix == '.azw3':
-            print('正在unpack：' + eachFilePath.name)
+            print('正在处理azw3：' + eachFilePath.name)
             cmd = myCMD + ' "' + str(eachFilePath) + '"'
-            print(cmd)
-            os.system(cmd)
+            subprocess.call(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         
 def unzipEachFile(allFilePath):
     for eachFilePath in allFilePath:
         # 创建ZipFile对象并打开zip文件
         if eachFilePath.suffix == '.epub':
-            print('正在解压缩：' + eachFilePath.name)
+            print('正在处理epub：' + eachFilePath.name)
             with zipfile.ZipFile(eachFilePath, 'r') as myzipfile:
                 # 获取所有文件列表
                 eachFileList = myzipfile.namelist()
@@ -76,13 +76,12 @@ def searchQRCodeInFile(filePath):
             print(barcodeData + '    ' + str(filePath))
             
 def main(inputPath):
-    # unzip解压缩epub文件，kindleunpack解压azw3文件
-    # 搜索是否含有关键词和二维码图片
-    # 关键词
-    myKeywords = ['轻之国度', '輕之國度', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
     del inputPath[0]
     allFilePath = []
-    
+    # unzip解压缩epub文件，kindleunpack解压azw3文件
+    # 搜索是否含有关键词和二维码图片
+    # 要搜索的关键词
+    myKeywords = ['轻之国度', '輕之國度', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
     # 要搜索关键词的文件的扩展名
     mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
     for aPath in inputPath:
@@ -95,7 +94,8 @@ def main(inputPath):
                 allFilePath.append(Path(aPath))
     unzipEachFile(allFilePath)
     doKindleunpack(allFilePath)    
-    print('\n 搜索关键词：' + '，'.join(myKeywords))
+    
+    print('\n搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
