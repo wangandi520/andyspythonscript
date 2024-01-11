@@ -1,0 +1,123 @@
+# encoding:utf-8
+# https://github.com/wangandi520/andyspythonscript
+
+from pathlib import Path
+from PIL import Image
+from pyzbar import pyzbar
+import sys
+import os
+import zipfile
+
+def myPrint(string, padding = 80):
+    padding = ' ' * (padding - len(string)) if padding else ''
+    print(string + padding, end = '\r')
+    
+def doKindleunpack(allFilePath):
+    # KindleUnpack下载地址https://github.com/kevinhendricks/KindleUnpack
+    # 填写kindleunpack.py的地址，注意使用\\代替\
+    myCMD = 'D:\\KindleUnpack-083\\lib\\kindleunpack.py'
+    for eachFilePath in allFilePath:
+        if eachFilePath.suffix == '.azw3':
+            print('正在unpack：' + eachFilePath.name)
+            cmd = myCMD + ' "' + str(eachFilePath) + '"'
+            print(cmd)
+            os.system(cmd)
+        
+def unzipEachFile(allFilePath):
+    for eachFilePath in allFilePath:
+        print('正在解压缩：' + eachFilePath.name)
+        # 创建ZipFile对象并打开zip文件
+        if eachFilePath.suffix == '.epub':
+            with zipfile.ZipFile(eachFilePath, 'r') as myzipfile:
+                # 获取所有文件列表
+                eachFileList = myzipfile.namelist()
+                for eachFile in eachFileList:
+                    newZipFilePath = eachFilePath.parent.joinpath(eachFilePath.stem)
+                    # 新建文件夹
+                    if not newZipFilePath.exists():
+                        Path.mkdir(newZipFilePath)
+                    # 将文件从zip文件中提取指定目录
+                    myzipfile.extractall(newZipFilePath)
+            
+def doChangeSuffix(filePath):
+    # type(filePath): Path
+    newFileName = Path(filePath).parent.joinpath(Path(filePath).stem + '.epub')
+    if not newFileName.exists():
+        Path(filePath).rename(newFileName)
+        print(Path(filePath).name + '  ->  ' + Path(filePath).stem + '.zip')
+        
+def searchKeywordInFile(filePath, keyword):
+    # 读取文件
+    # 如果搜索的关键词前后10个字含有这些关键词，就不输出
+    # excludeKeyword = ['关键词01', '关键词02']
+    excludeKeyword = ['译文', '译林', 'shanghaiwenyi', 'yilinpr', '企鹅图书', 'stphbooks', 'shijiwenjing2002']
+    with open(filePath, mode='r', encoding='UTF-8') as file:
+        filereadlines = file.readlines()
+    myPrint('正在扫描' + filePath.name)
+    for i in range(len(filereadlines)):
+        filereadlines[i] = filereadlines[i].rstrip()
+        for eachKeyword in keyword:
+            getKeywordLocation = filereadlines[i].lower().find(eachKeyword)
+            if getKeywordLocation > -1:
+                toShow = True
+                for eachExcludeKeyword in excludeKeyword:
+                    if eachExcludeKeyword in filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10].lower():
+                        toShow = False
+                if toShow:
+                    print(filereadlines[i][getKeywordLocation - 10:getKeywordLocation + 10] + '    ' + str(i + 1) + '    ' + str(filePath.name) + '    ' + str(filePath))
+
+def searchQRCodeInFile(filePath):
+    # 读取文件
+    with open(filePath, mode='rb') as file:
+        image = Image.open(file)
+        myPrint('正在扫描' + filePath.name)
+        for barcode in pyzbar.decode(image,symbols=[pyzbar.ZBarSymbol.QRCODE]):   
+            barcodeData = barcode.data.decode("utf-8")
+            print(barcodeData + '    ' + str(filePath))
+            
+def main(inputPath):
+    # unzip解压缩epub文件，kindleunpack解压azw3文件
+    # 搜索是否含有关键词和二维码图片
+    # 关键词
+    myKeywords = ['轻之国度', '輕之國度', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
+    del inputPath[0]
+    allFilePath = []
+    
+    # 要搜索关键词的文件的扩展名
+    mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
+    for aPath in inputPath:
+        if Path.is_dir(Path(aPath)):
+            for file in Path(aPath).glob('**/*'):
+                if file.suffix in ['.epub', '.azw3']:
+                    allFilePath.append(file) 
+        if Path.is_file(Path(aPath)):
+            if file.suffix in ['.epub', '.azw3']:
+                allFilePath.append(Path(aPath))
+    unzipEachFile(allFilePath)
+    doKindleunpack(allFilePath)    
+    print('\n 搜索关键词：' + '，'.join(myKeywords))
+    print('内容 行数 文件名 文件路径')
+    for aPath in inputPath:
+        if Path.is_dir(Path(aPath)):
+            for file in Path(aPath).glob('**/*'):
+                if file.suffix.lower() in mySuffix01:
+                    searchKeywordInFile(file, myKeywords)      
+    print('\n搜索关键词完成\n')
+    
+    # 要搜索二维码的文件的扩展名
+    mySuffix02 = ['.jpeg', '.jpg', '.png']
+    print('二维码扫描结果 文件路径')
+    for aPath in inputPath:
+        if Path.is_dir(Path(aPath)):
+            for file in Path(aPath).glob('**/*'):
+                if file.suffix in mySuffix02:
+                    searchQRCodeInFile(file)      
+    print('\n搜索二维码完成\n')
+    os.system('pause')
+   
+if __name__ == '__main__':
+    try:
+        if len(sys.argv) >= 2:
+            main(sys.argv)
+    except IndexError:
+        pass
