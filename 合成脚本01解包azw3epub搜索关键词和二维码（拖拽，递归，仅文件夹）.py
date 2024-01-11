@@ -25,9 +25,9 @@ def doKindleunpack(allFilePath):
         
 def unzipEachFile(allFilePath):
     for eachFilePath in allFilePath:
-        print('正在解压缩：' + eachFilePath.name)
         # 创建ZipFile对象并打开zip文件
         if eachFilePath.suffix == '.epub':
+            print('正在解压缩：' + eachFilePath.name)
             with zipfile.ZipFile(eachFilePath, 'r') as myzipfile:
                 # 获取所有文件列表
                 eachFileList = myzipfile.namelist()
