@@ -79,10 +79,6 @@ def main(inputPath):
     allFilePath = []
     # unzip解压缩epub文件，kindleunpack解压azw3文件
     # 搜索是否含有关键词和二维码图片
-    # 要搜索的关键词
-    myKeywords = ['轻之国度', '輕之國度', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
-    # 要搜索关键词的文件的扩展名
-    mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
@@ -94,6 +90,10 @@ def main(inputPath):
     unzipEachFile(allFilePath)
     doKindleunpack(allFilePath)    
     
+    # 要搜索关键词的文件的扩展名
+    mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
+    # 要搜索的关键词
+    myKeywords = ['轻之国度', '輕之國度', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
     print('\n搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
@@ -104,7 +104,7 @@ def main(inputPath):
     print('\n搜索关键词完成\n')
     
     # 要搜索二维码的文件的扩展名
-    mySuffix02 = ['.jpeg', '.jpg', '.png']
+    mySuffix02 = ['.jpeg', '.jpg', '.png', '.gif']
     print('二维码扫描结果 文件路径')
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
