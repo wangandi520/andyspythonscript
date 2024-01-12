@@ -4,7 +4,6 @@
 from pathlib import Path
 from PIL import Image
 from pyzbar import pyzbar
-import subprocess
 import sys
 import os
 import zipfile
@@ -21,7 +20,7 @@ def doKindleunpack(allFilePath):
         if eachFilePath.suffix == '.azw3':
             print('正在处理azw3：' + eachFilePath.name)
             cmd = myCMD + ' "' + str(eachFilePath) + '"'
-            subprocess.call(cmd, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            os.system(cmd)
         
 def unzipEachFile(allFilePath):
     for eachFilePath in allFilePath:
