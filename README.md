@@ -4,7 +4,9 @@
 
 请先备份你的文件，使用后确实符合你的要求后再批量应用
 
-安装所有需要的pip包，pip install -r requirement.txt
+安装所有需要的pip包：pip install -r requirement.txt
+
+更新pip包：pip install --upgrade -r requirement.txt
 
 拖拽：拖文件或文件到这个py文件上
 
