@@ -12,3 +12,4 @@ pypinyin
 numpy
 ddddocr
 pyzbar
+matplotlib

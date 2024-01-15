@@ -4,6 +4,7 @@
 from pathlib import Path
 from PIL import Image
 from pyzbar import pyzbar
+import matplotlib.pyplot as plt
 import sys
 import os
 
@@ -19,6 +20,12 @@ def searchQRCodeInFile(filePath):
         for barcode in pyzbar.decode(image,symbols=[pyzbar.ZBarSymbol.QRCODE]):   
             barcodeData = barcode.data.decode("utf-8")
             print(barcodeData + '    ' + str(filePath))
+            # 是否显示含二维码的图片
+            if False:
+                plt.figure(str(filePath))
+                plt.title(str(filePath.name), fontproperties='SimHei')
+                plt.imshow(image)
+                plt.show()
     
 def main(inputPath):
     del inputPath[0]
