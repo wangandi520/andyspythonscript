@@ -5,6 +5,7 @@
 
 import sys
 import zipfile
+import re
 from lxml import etree
 from pathlib import Path
 
@@ -37,13 +38,12 @@ def getEpubInfo(filePath):
                 'dc:{0}/text()'.format(s), namespaces=ns)[0]
     return res
 
-def validFileName(fileName):
-    # 把不能作为文件的字符替换成空格
-    if fileName != '':
-        for each in fileName:
-            if each in '\/:*?"<>|,':
-                fileName = fileName.replace(each, ' ')
-        return fileName
+def validFileName(oldFileName):
+    # '/ \ : * ? " < > |'
+    # 替换为下划线
+    validChars = r"[\/\\\:\*\?\"\<\>\|]"  
+    newFileName = re.sub(validChars, "_", oldFileName)
+    return newFileName
 
 def doChangeFileName(filePath):
     # type(filePath): Path

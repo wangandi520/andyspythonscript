@@ -4,14 +4,15 @@
 
 import requests
 import time
+import re
 from bs4 import BeautifulSoup
 
-def validFileName(fileName):
-    # 把不能作为文件的字符替换成空格
-    for each in fileName:
-        if each in '\/:*?"<>|,':
-            fileName = fileName.replace(each, ' ')
-    return fileName
+def validFileName(oldFileName):
+    # '/ \ : * ? " < > |'
+    # 替换为下划线
+    validChars = r"[\/\\\:\*\?\"\<\>\|]"  
+    newFileName = re.sub(validChars, "_", oldFileName)
+    return newFileName
     
 def writefile(fileName, filereadlines):
     #write file
