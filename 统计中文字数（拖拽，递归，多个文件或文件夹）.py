@@ -28,16 +28,19 @@ def getWordCount(filePath):
     # 拖拽的是文件，只统计这个文件内的中文字数
     # 要统计字数的文件的扩展名
     mySuffix = ['.html', '.xhtml', '.txt']
+    # 文件夹
     if Path.is_dir(Path(filePath)):
         wordCount = 0
         for eachFilePath in Path(filePath).glob('**/*'):
             if eachFilePath.suffix in mySuffix:
                 wordCount = wordCount + getFileWordCount(eachFilePath)
-                # 输出格式：字数  文件名或文件夹名
+                # 输出格式：字数  文件夹名
         print(str(wordCount) + '  ' + str(Path(filePath).name))
+    # 文件
     if Path.is_file(Path(filePath)) and Path(filePath).suffix in mySuffix:
-            # 输出格式：字数  文件名或文件夹名
+            # 输出格式：字数  文件名
             print(str(getFileWordCount(filePath)) + '  ' + str(Path(filePath).name))
+    # epub
     if Path.is_file(Path(filePath)) and Path(filePath).suffix == '.epub':
         wordCount = 0
         with zipfile.ZipFile(filePath) as myzipfile:
@@ -49,7 +52,7 @@ def getWordCount(filePath):
                             for eachChar in eachLine:
                                 if ifIsChinese(eachChar):
                                     wordCount = wordCount + 1
-        # 输出格式：字数  文件名或文件夹名
+        # 输出格式：字数  epub文件名
         print(str(wordCount) + '  ' + str(Path(filePath).name))
 
 def main(inputPath):
