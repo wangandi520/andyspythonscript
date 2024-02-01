@@ -5,6 +5,7 @@ from pathlib import Path
 from PIL import Image
 import sys
 import os
+import zipfile
 
 def ifIsChinese(eachChar):
     if '\u4e00' <= eachChar <= '\u9fff':
@@ -34,10 +35,22 @@ def getWordCount(filePath):
                 wordCount = wordCount + getFileWordCount(eachFilePath)
                 # 输出格式：字数  文件名或文件夹名
         print(str(wordCount) + '  ' + str(Path(filePath).name))
-    if Path.is_file(Path(filePath)):
-        if Path(filePath).suffix in mySuffix:
+    if Path.is_file(Path(filePath)) and Path(filePath).suffix in mySuffix:
             # 输出格式：字数  文件名或文件夹名
             print(str(getFileWordCount(filePath)) + '  ' + str(Path(filePath).name))
+    if Path.is_file(Path(filePath)) and Path(filePath).suffix == '.epub':
+        wordCount = 0
+        with zipfile.ZipFile(filePath) as myzipfile:
+            for eachFile in myzipfile.namelist():
+                if eachFile.endswith(tuple(mySuffix)):
+                    with myzipfile.open(eachFile, 'r') as tempFile:
+                        for eachLine in tempFile.readlines():
+                            eachLine = eachLine.decode('utf-8')
+                            for eachChar in eachLine:
+                                if ifIsChinese(eachChar):
+                                    wordCount = wordCount + 1
+        # 输出格式：字数  文件名或文件夹名
+        print(str(wordCount) + '  ' + str(Path(filePath).name))
 
 def main(inputPath):
     del inputPath[0]

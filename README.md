@@ -420,6 +420,14 @@ rename .flac file by flac metadata
 
 搜索图片有没有二维码
 
+### 统计中文字数（拖拽，递归，多个文件或文件夹）.py
+
+拖拽的是文件夹，就统计里面所有符合扩展名类型的文件的中文字数
+
+拖拽的是文件，只统计这个文件内的中文字数
+
+支持epub文件
+
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
