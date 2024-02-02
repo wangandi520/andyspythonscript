@@ -1,6 +1,10 @@
+## 交流QQ群
+
+[电子书漫画制作闲聊群1321993](https://jq.qq.com/?_wv=1027&k=AqqQIfm7)
+
 ## 注意事项
 
-仅在windows下使用,only for Windows
+仅在windows下使用，only works in Windows
 
 请先备份你的文件，使用后确实符合你的要求后再批量应用
 
@@ -10,7 +14,7 @@
 
 拖拽：拖文件或文件到这个py文件上
 
-递归：这个效果，对于文件夹和他的所有子文件夹都会有效
+递归：脚本对文件夹和所有子文件和文件夹都有效
 
 部分脚本PyQt版[https://github.com/wangandi520/andyspyqtscript](https://github.com/wangandi520/andyspyqtscript)
 
@@ -335,6 +339,8 @@ rename .epub file by epub metadata
 
 ### 文件名识别文件真正的扩展名并修改（拖拽，多个文件或文件夹）.py
 
+get real suffix and rename
+
 需要pip install fleep
 
 默认只显示信息不修改扩展名，如果需要修改扩展名请把第14行改为renameToRealSuffix = True
@@ -342,6 +348,8 @@ rename .epub file by epub metadata
 有多个可能时，强行修改成第N个扩展名，forceRenameToRealSuffixIndex = -1，改成第1个 = 0，改成第2个 = 1
 
 ### 文件扩展名修改，txt改zip为例=txt_zip（拖拽，多个文件或文件夹）.py
+
+change file suffix
 
 设置选项：
 任何旧扩展名都改成新扩展名
@@ -351,6 +359,8 @@ rename .epub file by epub metadata
 
 ### 文件名重命名.flac文件使用flac元数据的歌名歌手（拖拽，多个文件或文件夹）.py
 
+rename .flac by meta data
+
 需要pip install tinytag
 
 rename .flac file by flac metadata 
@@ -358,6 +368,8 @@ rename .flac file by flac metadata
 使用flac元数据的歌名歌手重命名.flac文件
 
 ### 图片损坏检测（拖拽，多个文件或文件夹）.py
+
+search broke images
 
 需要pip install pillow
 
@@ -367,26 +379,27 @@ rename .flac file by flac metadata
 
 ### 使用mupdf包中的mutool提取pdf图片和字体（拖拽，多个文件或文件夹）.py
 
+get pdf's image and font
+
 需要同级目录下mutool.exe，下载地址https://mupdf.com/downloads/archive/mupdf-1.20.0-windows.zip
 
 提取pdf图片和字体
 
 ### 图片末尾添加一行信息，如果已添加则显示信息（拖拽，多个文件或文件夹）.py
 
+add info in image
+
 图片末尾添加一行信息，如果已添加则显示信息.
 
-
-### 添加密码1234双重压缩为rar（拖拽，文件或文件夹）.py
-
-需要同级目录下Rar.exe
-
-22行设置随机密码，或者25行自定义密码
-
 ### 文件名纯数字前补0或去0（拖拽，多个文件或文件夹）.py
+
+number filename add 0 or del 0
 
 纯数字文件名前补0或去0
 
 ### 图片文件夹转成pdf文件使用ImageMagick的convert（拖拽，仅文件夹）.py
+
+make pdf
 
 需要同级目录下convert.exe
 
@@ -396,31 +409,45 @@ rename .flac file by flac metadata
 
 ### 文件夹内的文件名重命名成递增的纯数字（拖拽，仅多个文件夹）.py
 
+rename filename by number
+
 文件夹内的文件名重命名成递增的纯数字
 
 可以设置开始序号和数字位数
 
 ### 文件夹的最后一个文件删除（拖拽，递归，多个文件夹）.py
 
+del last file in folder
+
 处理被拖拽的文件夹的文件，和每个子文件夹内的文件
 
 ### 图片垂直或水平合并成一张图使用ImageMagick的convert（拖拽，仅多个文件）.py
+
+image merge
 
 把多张图片拖拽到文件上，生成新的合并后的图片，可以设置压缩比例和垂直或水平合并
 
 ### 把多个文件当作脚本的参数（拖拽，递归，多个文件或文件夹）.py
 
+unpack .epub or .azw3
+
 可以配合kindleunpack解包电子书
 
 ### 搜索文件夹内特定类型的文件内容是否含关键词（拖拽，多个文件夹）.py
+
+search keywork in file
 
 搜索关键词
 
 ### 搜索文件夹内特定类型的图片是否含二维码（低精度）（拖拽，多个文件夹）.py
 
+search qrcode in image
+
 搜索图片有没有二维码
 
 ### 统计中文字数（拖拽，递归，多个文件或文件夹）.py
+
+get work count
 
 拖拽的是文件夹，就统计里面所有符合扩展名类型的文件的中文字数
 
@@ -431,7 +458,3 @@ rename .flac file by flac metadata
 ## 使用前请备份，防止文件名不符合你的需求
 
 ## Please test and backup, make sure it is your need. before you use it.
-
-# 交流QQ群
-
-电子书漫画制作闲聊群1321993
