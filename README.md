@@ -1,3 +1,7 @@
+## 使用前请备份，防止不符合你的需求
+
+## Please  backup, make sure it is your need.
+
 ## 交流QQ群
 
 [电子书漫画制作闲聊群1321993](https://jq.qq.com/?_wv=1027&k=AqqQIfm7)
@@ -454,7 +458,3 @@ get work count
 拖拽的是文件，只统计这个文件内的中文字数
 
 支持epub文件
-
-## 使用前请备份，防止文件名不符合你的需求
-
-## Please test and backup, make sure it is your need. before you use it.
