@@ -2,7 +2,6 @@
 # https://github.com/wangandi520/andyspythonscript
 
 from pathlib import Path
-from PIL import Image
 import sys
 import os
 import zipfile
