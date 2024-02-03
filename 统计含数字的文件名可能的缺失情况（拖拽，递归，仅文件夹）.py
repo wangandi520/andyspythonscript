@@ -32,7 +32,8 @@ def checkFileNameIndex(filePath):
             currentFileIndex = allFilePath[fileIndex].name[firstFileLength - getIndexNumber : firstFileLength]
             if previousFileIndex.isdigit() and currentFileIndex.isdigit():
                 if int(currentFileIndex) - int(previousFileIndex) != 1:
-                    print(allFilePath[fileIndex - 1].name[0 : firstFileLength - getIndexNumber] + str(int(previousFileIndex) + 1).zfill(getIndexNumber) + firstFileSuffix)
+                    # 输出：可能缺失的文件名  文件夹名
+                    print(allFilePath[fileIndex - 1].name[0 : firstFileLength - getIndexNumber] + str(int(previousFileIndex) + 1).zfill(getIndexNumber) + firstFileSuffix + '  ' + Path(allFilePath[0]).parent.name)
             else:
                 print('其他错误：文件名数字位数错误或其他')
 
