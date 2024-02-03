@@ -51,10 +51,12 @@ def checkFileNameIndex(filePath):
             allFileNameIndex.append(str(tempIndex).zfill(getIndexNumber))
         for tempIndex in allFileNameIndex:
             if tempIndex not in myFileNameIndex:
-                # 输出格式：可能缺失的文件名  文件夹名
-                #print(firstFileStem + tempIndex + firstFileSuffix + '  ' + str(filePath.name))
+                # 输出格式：可能缺失的文件名  上级文件夹名
+                #print(firstFileStem + tempIndex + firstFileSuffix + '          ' + str(filePath.name))
+                # 输出格式：可能缺失的文件名  上上级文件夹名
+                print(firstFileStem + tempIndex + firstFileSuffix + '          ' + str(filePath.parent.name))
                 # 输出格式：可能缺失的文件名
-                print(firstFileStem + tempIndex + firstFileSuffix)
+                #print(firstFileStem + tempIndex + firstFileSuffix)
 
 def main(inputPath):
     del inputPath[0]
