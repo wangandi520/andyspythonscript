@@ -462,3 +462,5 @@ get work count
 ### 统计含数字的文件名可能的缺失情况（拖拽，递归，仅文件夹）.py
 
 如果image001.jpg后是image003.jpg，则输出可能缺失的文件image002.jpg
+
+支持文件夹和zip格式

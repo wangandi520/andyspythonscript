@@ -4,9 +4,11 @@
 from pathlib import Path
 import sys
 import os
-
+import zipfile
+        
 def checkFileNameIndex(filePath):
     # 如果image001.jpg后是image003.jpg，则输出可能缺失的文件image002.jpg
+    # 如果是zip文件，修改上面函数的设置
     # 设置文件名最后几位是序号，image001是3
     getIndexNumber = 3
     # 第一个文件的序号
@@ -18,6 +20,11 @@ def checkFileNameIndex(filePath):
         for eachFilePath in Path(filePath).glob('*'):
             if Path.is_file(eachFilePath):
                 allFilePath.append(eachFilePath)
+    if Path.is_file(Path(filePath)) and Path(filePath).suffix == '.zip':
+        with zipfile.ZipFile(Path(filePath), 'a') as zf:
+            for eachFile in zf.infolist():
+                if not eachFile.is_dir():
+                    allFilePath.append(Path(eachFile.filename))
     if len(allFilePath) != 0:
         # 推测文件名数字序号位数
         # getGuessIndex = 0
@@ -29,7 +36,7 @@ def checkFileNameIndex(filePath):
         # if getGuessIndex != getIndexNumber:
             # 去掉下一行的#，直接使用程序推测的数字位数
             # getIndexNumber = getGuessIndex
-            #print('程序文件名序号位数应是' + str(getGuessIndex) + '，请修改第11行')
+            #print('程序文件名序号位数应是' + str(getGuessIndex) + '，请修改第13行')
         # 符合这几个条件才继续执行脚本：文件夹不包含子文件夹，所有文件名长度相同，扩展名相同
         firstFileLength = len(allFilePath[0].stem)
         firstFileSuffix = allFilePath[0].suffix
@@ -64,11 +71,13 @@ def main(inputPath):
     del inputPath[0]
     allFilePath = []
     for aPath in inputPath:
+        if Path.is_file(Path(aPath)) and Path(aPath).suffix == '.zip':
+            allFilePath.append(Path(aPath))
         if Path.is_dir(Path(aPath)):
-            allFilePath.append(aPath)
+            allFilePath.append(Path(aPath))
             for eachPath in Path(aPath).glob('**/*'):
                 if Path.is_dir(eachPath):
-                    allFilePath.append(eachPath)
+                    allFilePath.append(Path(eachPath))
     for eachFilePath in allFilePath:
         checkFileNameIndex(eachFilePath)
     print('程序结束，如果没有输出说明可能没有缺失的文件。')
