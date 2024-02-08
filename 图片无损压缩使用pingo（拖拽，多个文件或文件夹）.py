@@ -26,17 +26,17 @@ def doPingo(filePath):
     preserveJPGsMetadata = True
     
     if filePath.suffix.lower() == '.png':
-        cmd = 'pingo.exe -s9 "' + str(filePath) + '"'
+        cmd = 'pingo.exe -lossless  "' + str(filePath) + '"'
         os.system(cmd)
     if filePath.suffix.lower() == '.jpg':
         if preserveJPGsMetadata:
             oldImgExif = piexif.dump(piexif.load(str(filePath)))
-        cmd = 'pingo.exe -jpgtype=0 -s0 "' + str(filePath) + '"'
+        cmd = 'pingo.exe -lossless  "' + str(filePath) + '"'
         os.system(cmd)
         if preserveJPGsMetadata:
             piexif.insert(oldImgExif, str(filePath))   
     if filePath.suffix.lower() == '.webp':
-        cmd = 'pingo.exe -webp-lossless -s9 "' + str(filePath) + '"'
+        cmd = 'pingo.exe -webp-lossless "' + str(filePath) + '"'
         os.system(cmd)
     
 def main(inputPath):
