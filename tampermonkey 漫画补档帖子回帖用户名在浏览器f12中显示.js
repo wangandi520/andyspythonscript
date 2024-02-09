@@ -1,9 +1,9 @@
 // ==UserScript==
 // @name         漫画补档帖子回帖用户名在浏览器f12中显示
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @description  try to take over the world!
-// @author       https://github.com/wangandi520/andyspythonscript
+// @author       You
 // @match        https://www.manhuabudangbbs.com/read*
 // @match        https://www.moeshare.cc/read*
 // @match        https://moeshare.cc/read*
@@ -13,7 +13,6 @@
 
 var name = document.getElementsByClassName('readName b');
 
-
 for (var i = 0, len = name.length; i < len; i++) {
-    console.log(name[i].children[1].innerHTML);
+    console.log(i + '  ' + name[i].children[1].innerHTML);
 }
