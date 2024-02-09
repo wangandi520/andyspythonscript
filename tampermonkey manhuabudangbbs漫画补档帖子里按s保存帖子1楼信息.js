@@ -12,6 +12,9 @@
 function downloadHTML() {
     var tidName = document.querySelector('#subject_tpc').innerText
     var info = document.querySelector('#subject_tpc').innerHTML
+    if (tidName.indexOf(" [复制链接]") > 1){
+        tidName = tidName.substring(0, tidName.indexOf(" [复制链接]"))
+    }
     info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
     info = info + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + ' ' + document.querySelector('#td_tpc > div.tipTop.s6 > span:nth-child(3)').innerHTML + '<br/>'
     info = info + document.querySelector('#read_tpc').innerHTML + '<br/>'
