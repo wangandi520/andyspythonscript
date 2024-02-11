@@ -42,11 +42,17 @@ def checkFileNameIndex(filePath):
         firstFileSuffix = allFilePath[0].suffix
         for eachFilePath in allFilePath:
             if len(eachFilePath.stem) != firstFileLength:
+                print('错误，文件名长度不一致')
                 getFlag = False
+                break
             if eachFilePath.suffix != firstFileSuffix:
+                print('错误，文件扩展名不一致')
                 getFlag = False
+                break
             if Path.is_dir(eachFilePath):
+                print('错误，文件，文件夹混杂')
                 getFlag = False
+                break
         if getFlag:
             # 只显示可能缺失的文件名
             firstFileStem = allFilePath[0].name[0 : firstFileLength - getIndexNumber]
