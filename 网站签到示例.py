@@ -4,6 +4,7 @@
 import requests
 import time
 
+# 使用github的action离线签到，见https://andi.wang/2024/02/11/%E4%BD%BF%E7%94%A8github%E7%9A%84action%E9%85%8D%E5%90%88python%E6%AF%8F%E5%A4%A9%E7%AD%BE%E5%88%B0/
 # 时间
 currentTime = str(int(round(time.time())))
 # 状态

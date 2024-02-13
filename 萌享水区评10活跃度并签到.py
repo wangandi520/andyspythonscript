@@ -7,6 +7,7 @@ import json
 import calendar
 import math
 
+# 使用github的action离线签到，见https://andi.wang/2024/02/11/%E4%BD%BF%E7%94%A8github%E7%9A%84action%E9%85%8D%E5%90%88python%E6%AF%8F%E5%A4%A9%E7%AD%BE%E5%88%B0/
 # 本脚本原理：
 # 使用cookie模拟登录，给帖子每层楼评分1活跃度，自己也获得1活跃度，10活跃度后签到
 # 20220831，论坛改版，lv0,1每天能加的活跃度是2,5，所以现在需要用其他方式补充，lv2刚好每天10点
