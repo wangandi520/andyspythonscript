@@ -13,3 +13,4 @@ numpy
 ddddocr
 pyzbar
 matplotlib
+opencv-python
