@@ -12,10 +12,11 @@ import re
 rtspUrl = ['rtsp://用户名:密码@ip地址01', 'rtsp://用户名:密码@ip地址02']
 for eachUrl in rtspUrl:
     # 提取ip地址命名截图
-    getIP = re.findall(r"\b(?:[0-9]{1,3}\.){3}[0-9]{1,3}\b",  eachUrl)[0]
+    checkIP = re.compile(r"((?:(?:25[0-5]|2[0-4]\d|[01]?\d?\d)\.){3}(?:25[0-5]|2[0-4]\d|[01]?\d?\d))")
+    getIP = checkIP.search(eachUrl)
     if getIP:
-        print('正在截图' + getIP)
-        imageName = time.strftime(getIP + "_%Y%m%d_%H%M%S", time.localtime()) + '.png'
+        print('正在截图' + getIP.group())
+        imageName = time.strftime(getIP.group() + "_%Y%m%d_%H%M%S", time.localtime()) + '.png'
     else:
         print('正在截图')
         imageName = time.strftime("%Y%m%d_%H%M%S", time.localtime()) + '.png'
