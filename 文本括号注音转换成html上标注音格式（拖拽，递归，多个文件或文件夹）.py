@@ -74,7 +74,9 @@ def convertToHTML(filename):
     for eachLine in tempFileContent:
         getLeftCount = myStringSearch(eachLine,'(<rt></rt>')
         getRightCount = myStringSearch(eachLine,'<rt></rt>)')
+        addLast = False
         if '<ruby>(<rt></rt>' in eachLine and ')<rt></rt></ruby>' in eachLine:
+            addLast = True
             getLeftCount = getLeftCount[1:]
             getRightCount = getRightCount[0: -1]
         getCountLength = len(getLeftCount)
@@ -87,6 +89,8 @@ def convertToHTML(filename):
             tempLine = tempLine + eachLine[getRightCount[getCountLength - 1]:]
             tempLine = tempLine.replace(')<rt></rt>', '')
             tempLine = tempLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
+            if addLast:
+                tempLine = tempLine.replace('<rt></rt></ruby>',')<rt></rt></ruby>')
             ttempFileContent.append(tempLine)
         else:
             eachLine = eachLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
