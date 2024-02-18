@@ -21,7 +21,7 @@ def ifIsChinese(eachChar):
     else:
         return False
 
-def moreFind(myString, myFind):
+def myStringSearch(myString, myFind):
     tempIndex = 0
     indexArray = []
     while tempIndex < len(myString):
@@ -75,12 +75,13 @@ def convertToHTML(filename):
     ttempFileContent = []
     ttempIndex = 0
     for eachLine in tempFileContent:
-        getLeftCount = moreFind(eachLine,'(<rt></rt>')
-        getRightCount = moreFind(eachLine,'<rt></rt>)')
-        getCountLength = len(getLeftCount)
+        getLeftCount = myStringSearch(eachLine,'(<rt></rt>')
+        getRightCount = myStringSearch(eachLine,'<rt></rt>)')
         if '<ruby>(<rt></rt>' in eachLine and ')<rt></rt></ruby>' in eachLine:
-            ttempFileContent.append(eachLine)
-        elif getCountLength > 0:
+            getLeftCount = getLeftCount[1:]
+            getRightCount = getRightCount[0: -1]
+        getCountLength = len(getLeftCount)
+        if getCountLength > 0:
             tempLine = eachLine[0: getLeftCount[0]]
             tttempIndex = 0
             while tttempIndex < getCountLength - 1:
@@ -92,6 +93,7 @@ def convertToHTML(filename):
         else:
             ttempFileContent.append(eachLine)
     newFileName = Path(filename).stem + '.html'
+    print(ttempFileContent)
     #if not Path(newFileName).exists():
     writefile(newFileName, ttempFileContent)
         
