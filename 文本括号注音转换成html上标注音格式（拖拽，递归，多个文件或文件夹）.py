@@ -66,11 +66,8 @@ def convertToHTML(filename):
                             newLine = newLine + eachLine[tempIndex + 2: getTempIndex] + '</rt>'
                             tempIndex = getTempIndex
                 newLine = newLine.replace('\n','') +  '</ruby>\n'
-                #print(newLine)
                 if newLine.endswith('<rt></rt><rt></rt></ruby>\n'):
                     newLine = newLine[0: len(newLine) - 26] + '<rt></rt></ruby>\n'
-                    print(newLine)
-                    
                 tempFileContent.append(newLine)
     ttempFileContent = []
     ttempIndex = 0
@@ -89,11 +86,12 @@ def convertToHTML(filename):
                 tttempIndex = tttempIndex + 1
             tempLine = tempLine + eachLine[getRightCount[getCountLength - 1]:]
             tempLine = tempLine.replace(')<rt></rt>', '')
+            tempLine = tempLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
             ttempFileContent.append(tempLine)
         else:
+            eachLine = eachLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
             ttempFileContent.append(eachLine)
     newFileName = Path(filename).stem + '.html'
-    print(ttempFileContent)
     #if not Path(newFileName).exists():
     writefile(newFileName, ttempFileContent)
         
