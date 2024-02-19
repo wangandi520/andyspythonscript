@@ -19,7 +19,7 @@ function downloadHTML() {
     info = info + '播放数：' + document.querySelector('#viewbox_report > div > div > span.view.item').innerText + '<br/>'
     info = info + '弹幕数：' + document.querySelector('#viewbox_report > div > div > span.dm.item').innerText + '<br/>'
     info = info + '上传者： ' + document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-detail-top > a.up-name').innerText + '<br/>'
-    var getSign = document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-description.up-detail-bottom');
+    var getSign = document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-description.up-detail-bottom')
     if (getSign !== null && getSign !== undefined){
         info = info + '上传者签名： ' + getSign.innerText + '<br/>';
     }
@@ -27,6 +27,10 @@ function downloadHTML() {
     info = info + '投币： ' + document.querySelector('#arc_toolbar_report > div.video-toolbar-left > div.video-toolbar-left-main > div:nth-child(2) > div > span').innerText + '<br/>'
     info = info + '收藏： ' + document.querySelector('#arc_toolbar_report > div.video-toolbar-left > div.video-toolbar-left-main > div:nth-child(3) > div > span').innerText + '<br/>'
     info = info + '转发： ' + document.querySelector('#share-btn-outer > div > span').innerText + '<br/>'
+    var getPart = document.querySelector('#multi_page > div.cur-list')
+    if (getPart !== null && getPart !== undefined){
+        info = info + '视频选集： ' + getPart.innerText + '<br/>';
+    }
     info = info + '视频简介： ' + document.querySelector('#v_desc > div.basic-desc-info').innerText + '<br/>'
     info = info + '<p>本文件创建时间：' + new Date().toLocaleString() + '</p>'
     let element = document.createElement('a')
