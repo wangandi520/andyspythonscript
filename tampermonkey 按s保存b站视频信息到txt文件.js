@@ -19,7 +19,10 @@ function downloadHTML() {
     info = info + '播放数：' + document.querySelector('#viewbox_report > div > div > span.view.item').innerText + '<br/>'
     info = info + '弹幕数：' + document.querySelector('#viewbox_report > div > div > span.dm.item').innerText + '<br/>'
     info = info + '上传者： ' + document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-detail-top > a.up-name').innerText + '<br/>'
-    info = info + '上传者签名： ' + document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-description.up-detail-bottom').innerText + '<br/>'
+    var getSign = document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-description.up-detail-bottom');
+    if (getSign !== null && getSign !== undefined){
+        info = info + '上传者签名： ' + getSign.innerText + '<br/>';
+    }
     info = info + '点赞： ' + document.querySelector('#arc_toolbar_report > div.video-toolbar-left > div.video-toolbar-left-main > div:nth-child(1) > div > span').innerText + '<br/>'
     info = info + '投币： ' + document.querySelector('#arc_toolbar_report > div.video-toolbar-left > div.video-toolbar-left-main > div:nth-child(2) > div > span').innerText + '<br/>'
     info = info + '收藏： ' + document.querySelector('#arc_toolbar_report > div.video-toolbar-left > div.video-toolbar-left-main > div:nth-child(3) > div > span').innerText + '<br/>'
