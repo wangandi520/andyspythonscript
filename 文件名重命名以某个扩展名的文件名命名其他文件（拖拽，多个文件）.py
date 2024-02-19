@@ -21,20 +21,23 @@ def doChangeFileNameByFileType(allFilePath):
         else:
             allFileSuffix[eachFile.suffix] = allFileSuffix[eachFile.suffix] + 1
             checkSuffixCount = False
-    if checkSuffixCount:
+    if checkSuffixCount and allFileSuffix[setRenameFileType]:
         for eachFile in allFilePath:
             newFileName = eachFile.parent.joinpath(getRenameFileName.stem + eachFile.suffix)
             if not Path(newFileName).exists():
                 eachFile.rename(newFileName)
     else:
-        print('相同的扩展名的文件有2个或以上时，不会执行重命名')
+        print('相同的扩展名的文件有2个或以上时，不会执行重命名。或不存在需要的后缀名的文件。')
 
 def main(inputPath):
     allFilePath = []
     for aPath in inputPath[1:]:
         if Path.is_file(Path(aPath)):
             allFilePath.append(Path(aPath))
-    doChangeFileNameByFileType(allFilePath)
+    if len(allFilePath) > 1:
+        doChangeFileNameByFileType(allFilePath)
+    else:
+        print('需要拖拽2个或以上文件')
             
 if __name__ == '__main__':
     try:
