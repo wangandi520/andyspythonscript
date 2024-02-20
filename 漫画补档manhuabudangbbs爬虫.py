@@ -88,12 +88,13 @@ def main():
             getContent = BeautifulSoup(getContent, 'html.parser').get_text()
             writefile(myPath + str(eachtid) + ' ' + getName + '.txt', getName + '\n\n' +  getAuthor +getTime + '\n\n' + getContent + '\n\n'  +url)
             eachtid = eachtid + 1
+            time.sleep(2)
         except requests.exceptions.RequestException as e:
             print(str(eachtid) + ' 连接超时，重试中...')
+            time.sleep(2)
         except:
             print(str(eachtid) + ' 帖子不存在或其他错误')
             eachtid = eachtid + 1
-        time.sleep(2)
     print('爬虫结束') 
     
     if True:
