@@ -15,7 +15,7 @@ def main(inputPath):
     createLogAndRecover = True
     # 显示窗口 = True, 不显示 = False
     showCMDwindows = True
-    for aPath in inputPath:
+    for aPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
             # first book start index，第一本书的序号
             startIndex = 1
