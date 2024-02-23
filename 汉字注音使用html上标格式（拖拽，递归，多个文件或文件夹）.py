@@ -65,7 +65,7 @@ def convertToHTML(filename):
             outputFileContent.append(newLine)
         elif eachLine == '\n':
             outputFileContent.append('\n')
-    newFileName = Path(filename).stem + '.html'
+    newFileName = filename.parent.joinpath(Path(filename).stem + '.html')
     if not Path(newFileName).exists():
         writefile(newFileName, outputFileContent)
 

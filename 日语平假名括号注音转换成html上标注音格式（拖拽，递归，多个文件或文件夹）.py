@@ -95,7 +95,7 @@ def convertToHTML(filename):
         else:
             eachLine = eachLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
             ttempFileContent.append(eachLine)
-    newFileName = Path(filename).stem + '.html'
+    newFileName = filename.parent.joinpath(Path(filename).stem + '.html')
     if not Path(newFileName).exists():
         writefile(newFileName, ttempFileContent)
         
