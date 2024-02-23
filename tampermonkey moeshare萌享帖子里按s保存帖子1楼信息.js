@@ -11,6 +11,8 @@
 // ==/UserScript==
 
 function downloadHTML() {
+	//可以搭配下载html文件中的图片并修改地址成为本地文件名（拖拽，多个本地html文件）.py
+	//把图片保存到本地电脑中
     var tidName = document.querySelector('#subject_tpc').innerText
     var info = document.querySelector('#subject_tpc').innerHTML
     info = info + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
