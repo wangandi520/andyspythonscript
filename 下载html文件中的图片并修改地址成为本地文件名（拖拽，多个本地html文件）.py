@@ -6,9 +6,17 @@
 from pathlib import Path
 from bs4 import BeautifulSoup
 import sys
+import re
 import time
 import requests
 
+def validFileName(oldFileName):
+    # '/ \ : * ? " < > |'
+    # 替换为下划线
+    validChars = r"[\/\\\:\*\?\"\<\>\|]"  
+    newFileName = re.sub(validChars, "_", oldFileName)
+    return newFileName
+    
 def readfile(filename):
     with open(filename, mode='r', encoding='UTF-8') as file:
         filereadlines = file.readlines()
@@ -41,11 +49,14 @@ def main(inputPath):
             allImages = soup.find_all('img')
             tempImageName = []
             for tempIndex in range(0, len(allImages)):
-                getFileName = str(Path(allImages[tempIndex].get('src')).name)
-                getPartUrl = allImages[tempIndex].get('src').replace(getFileName, '')
+                oldFileName = str(Path(allImages[tempIndex].get('src')).name)
+                getPartUrl = allImages[tempIndex].get('src').replace(oldFileName, '')
+                newFileName = fileNamePrefix + str(tempIndex + 1).zfill(fileNameFill) + Path(allImages[tempIndex].get('src')).suffix
+                if '?' in newFileName:
+                    newFileName = newFileName.split('?')[0]
                 if getPartUrl[0:4] == 'http':
                     # [不含图片名的url，原图片名，保存的图片名]
-                    tempImageName.append([getPartUrl, getFileName, fileNamePrefix + str(tempIndex + 1).zfill(fileNameFill) + Path(allImages[tempIndex].get('src')).suffix])
+                    tempImageName.append([getPartUrl, oldFileName, validFileName(newFileName)])
             print('需要下载' + str(len(tempImageName)) + '张图片')
             for tempIndex in range(0, len(oldHtmlFile)):
                 for eachImage in tempImageName:
