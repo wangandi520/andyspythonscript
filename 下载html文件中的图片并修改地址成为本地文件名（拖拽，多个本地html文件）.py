@@ -46,19 +46,19 @@ def main(inputPath):
                 if getPartUrl[0:4] == 'http':
                     # [不含图片名的url，原图片名，保存的图片名]
                     tempImageName.append([getPartUrl, getFileName, fileNamePrefix + str(tempIndex + 1).zfill(fileNameFill) + Path(allImages[tempIndex].get('src')).suffix])
-            print('需要下载' + str(len(allImages)) + '张图片')
+            print('需要下载' + str(len(tempImageName)) + '张图片')
             for tempIndex in range(0, len(oldHtmlFile)):
                 for eachImage in tempImageName:
                     if (eachImage[0] + eachImage[1]) in oldHtmlFile[tempIndex]:
                         oldHtmlFile[tempIndex] = oldHtmlFile[tempIndex].replace((eachImage[0] + eachImage[1]), eachImage[2])
             for eachImage in tempImageName:
                 imgData = requests.get(url=eachImage[0] + eachImage[1]).content
-                print('正在下载 ' + eachImage[0] + eachImage[1])
+                print('正在下载 ' + eachImage[0] + eachImage[1] + ' 到 ' + str(Path(aPath).parent.joinpath(Path(eachImage[2]))))
                 # 保存图片
-                with open(eachImage[2], 'wb') as imageFile:
+                with open(Path(aPath).parent.joinpath(Path(eachImage[2])), 'wb') as imageFile:
                     imageFile.write(imgData)
             # 写入原html文件
-            writefile(Path(aPath).name, oldHtmlFile)
+            writefile(Path(aPath), oldHtmlFile)
             
 if __name__ == '__main__':
     try:
