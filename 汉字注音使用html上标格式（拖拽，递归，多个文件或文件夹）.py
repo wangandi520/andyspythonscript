@@ -5,6 +5,7 @@
 from pathlib import Path
 from pypinyin import pinyin, lazy_pinyin, Style
 import sys
+import re
 
 def readfile(filename):
     with open(filename, mode='r', encoding='UTF-8') as file:
@@ -22,33 +23,48 @@ def ifIsChinese(eachChar):
     else:
         return False
 
+def ifIsRareChinese(eachChar):
+    myPattern = re.compile(u'[~!@#$%^&* ]')
+    getMatch = myPattern.search(eachChar)
+    if getMatch:
+        return True
+    try:
+        eachChar.encode('gb2312')
+    except UnicodeEncodeError:
+        return True
+    return False
+    
 def convertToHTML(filename):
+    # 是否只注音生僻字
+    onlyConvertRare = True
     # 是否在每行首尾添加<p></p>
-    addP = False
+    addPTag = False
     readFileContent = readfile(filename)
     outputFileContent = []
     for eachLine in readFileContent:
-        if addP:
+        if addPTag:
             newLine = '<p><ruby>'
         else:
             newLine = '<ruby>'
-        print(eachLine)
         if eachLine != '\n':
             for eachChar in eachLine:
-                if ifIsChinese(eachChar):
-                    print(pinyin(eachChar))
-                    newLine = newLine + eachChar + '<rt>' + ''.join(pinyin(eachChar)[0]) + '</rt>'
+                if onlyConvertRare:
+                    if ifIsChinese(eachChar) and ifIsRareChinese(eachChar):
+                        newLine = newLine + eachChar + '<rt>' + ''.join(pinyin(eachChar)[0]) + '</rt>'
+                    else:
+                        newLine = newLine + eachChar + '<rt></rt>'
                 else:
-                    newLine = newLine + eachChar
-            print(newLine)
-            if addP:
+                    if ifIsChinese(eachChar):
+                        newLine = newLine + eachChar + '<rt>' + ''.join(pinyin(eachChar)[0]) + '</rt>'
+                    else:
+                        newLine = newLine + eachChar + '<rt></rt>'
+            if addPTag:
                 newLine = newLine.replace('\n','') +  '</ruby></p>\n'
             else:
                 newLine = newLine.replace('\n','') +  '</ruby>\n'
             outputFileContent.append(newLine)
         elif eachLine == '\n':
             outputFileContent.append('\n')
-    print(outputFileContent)
     newFileName = Path(filename).stem + '.html'
     if not Path(newFileName).exists():
         writefile(newFileName, outputFileContent)
