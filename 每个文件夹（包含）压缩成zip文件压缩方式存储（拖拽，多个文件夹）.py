@@ -10,7 +10,7 @@ def doZipFolder(inputPath):
     allFilePath = []
     for eachFilePath in inputPath.glob('**/*'):
         allFilePath.append(eachFilePath.relative_to(inputPath.parent))
-    myZipFile = zipfile.ZipFile(inputPath.stem + '.zip', 'w')
+    myZipFile = zipfile.ZipFile(inputPath.stem + '.zip', 'w', zipfile.ZIP_STORED)
     for eachFilePath in allFilePath:
         myZipFile.write(eachFilePath)
     myZipFile.close()
