@@ -95,7 +95,7 @@ def convertToHTML(filename):
         else:
             eachLine = eachLine.replace('</rt> <rt>', '</rt>&nbsp;<rt>')
             ttempFileContent.append(eachLine)
-    newFileName = filename.parent.joinpath(Path(filename).stem + '.html')
+    newFileName = filename.parent.joinpath(filename.stem + '.html')
     if not Path(newFileName).exists():
         writefile(newFileName, ttempFileContent)
         
@@ -105,10 +105,10 @@ def main(inputPath):
         if Path.is_dir(Path(aPath)):
             for eachFile in Path(aPath).glob('**/*'):
                 if (Path(eachFile).suffix in fileType):
-                    convertToHTML(eachFile)
+                    convertToHTML(Path(eachFile))
         if Path.is_file(Path(aPath)):
             if (Path(aPath).suffix in fileType):
-                convertToHTML(aPath)
+                convertToHTML(Path(aPath))
 
 if __name__ == '__main__':
     try:
