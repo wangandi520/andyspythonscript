@@ -4,6 +4,7 @@
 
 from pathlib import Path
 from pykakasi import kakasi
+from collections import Counter
 import sys
 import re
 
@@ -35,17 +36,20 @@ def convertLine(kakasiPart):
             if ifIsChinese(orig[-1]):
                 # 全是汉字
                 newLine = newLine + orig + '<rt>' + hira + '</rt>'
-            elif len(orig) == len(hira):
+            elif len(orig) == len(hira) and not ifIsChinese(orig[0]):
                 # 全是平片假名
-                if not ifIsChinese(orig[0]):
-                    for eachChar in orig:
-                        newLine = newLine + eachChar + '<rt></rt>'
+                for eachChar in orig:
+                    newLine = newLine + eachChar + '<rt></rt>'
             else:
                 for tempIndex in range(0, len(orig)):
                     if not ifIsChinese(orig[tempIndex]):
                         getIndex = tempIndex
-                newLine = newLine + orig[0:getIndex] + '<rt>' +  hira[0:len(hira) - getIndex] + '</rt>'
-                for eachChar in  hira[len(hira) - getIndex:]:
+                        break
+                # 对比转换前后相同的部分
+                myCompare = Counter(hira) & Counter(orig)
+                getSuffix = ''.join(myCompare.keys())
+                newLine = newLine + orig[0:orig.find(getSuffix)] + '<rt>' +  hira[0:hira.find(getSuffix)] + '</rt>'
+                for eachChar in getSuffix:
                      newLine = newLine + eachChar + '<rt></rt>'
             allLine = allLine + newLine
     return allLine

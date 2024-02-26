@@ -36,7 +36,7 @@ def ifIsRareChinese(eachChar):
     
 def convertToHTML(filename):
     # 是否只注音生僻字
-    onlyConvertRare = True
+    onlyConvertRare = False
     # 是否在每行首尾添加<p></p>
     addPTag = False
     readFileContent = readfile(filename)

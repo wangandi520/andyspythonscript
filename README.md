@@ -477,7 +477,7 @@ get work count
 
 每个文件夹压缩成zip文件，包含这个文件夹，zip文件=文件夹名，压缩方式：存储（速度最快）
 
-### 汉字注音使用html上标注音格式ruby和rt（拖拽，递归，多个文件或文件夹）.py
+### 中文注音使用html上标注音格式ruby和rt（拖拽，递归，多个文件或文件夹）.py
 
 需要pip install pypinyin
 
