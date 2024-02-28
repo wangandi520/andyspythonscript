@@ -1,5 +1,5 @@
 # encoding:utf-8
-# https://github.com/wangandi520/ClippingsToMarkdown
+# https://github.com/wangandi520/andyspythonscript
 # by Andy
 # v0.1
 # pip install pykakasi
