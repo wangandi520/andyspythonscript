@@ -1,6 +1,6 @@
 # encoding:utf-8
 # https://github.com/wangandi520/ClippingsToMarkdown
-# Programmed by Andy
+# by Andy
 # v0.2
 
 from pathlib import Path

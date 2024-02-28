@@ -1,5 +1,7 @@
 # encoding:utf-8
-# https://github.com/wangandi520/andyspythonscript
+# https://github.com/wangandi520/ClippingsToMarkdown
+# by Andy
+# v0.1
 
 from pathlib import Path
 import sys
