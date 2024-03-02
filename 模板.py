@@ -16,7 +16,7 @@ def readfile(fileName):
     return allFileContent
 
 def doConvert(fileName):
-    # readFileContent = readfile(filename)
+    # readFileContent = readfile(fileName)
     # for eachLine in readFileContent:
         # print(eachLine)
     # newFileName = filename.parent.joinpath(filename.stem + '.html')
