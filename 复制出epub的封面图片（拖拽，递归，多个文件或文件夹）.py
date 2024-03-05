@@ -1,7 +1,7 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.1
+# v0.2
 
 from pathlib import Path
 import sys
@@ -14,6 +14,8 @@ def getEpubCoverImage(filePath):
     fileType = ['.epub']
     # 封面图片名
     coverImageFilename = ['cover.jpg', 'cover.jpeg']
+    #  复制到脚本目录 = 'script'，还是epub目录 = 'epub'
+    copyTo = 'epub'
     if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         print('正在处理epub：' + filePath.name)
         with zipfile.ZipFile(filePath, 'r') as myzipfile:
@@ -21,17 +23,12 @@ def getEpubCoverImage(filePath):
             eachFileList = myzipfile.namelist()
             for eachFilePath in eachFileList:
                 if Path(eachFilePath).name.lower() in coverImageFilename:
-                    newZipFilePath = Path(eachFilePath).joinpath(Path(eachFilePath).stem)
-                    myzipfile.extract(eachFilePath, '.')
-                    Path(eachFilePath).replace(filePath.stem + Path(eachFilePath).suffix)
-                    while Path(eachFilePath).parent.exists() and Path(eachFilePath).parent != Path('.'):
-                        # 去掉这4行的注释可以删掉多余的空文件夹
-                        # try:
-                            # Path(eachFilePath).parent.rmdir()
-                        # except OSError:
-                            # pass
-                        print('可删除的文件夹 ' + str(Path(eachFilePath).parent))
-                        eachFilePath = Path(eachFilePath).parent
+                    imageData = myzipfile.read(eachFilePath)
+                    if copyTo == 'script':
+                        imageFilePath = filePath.parent.joinpath(Path(eachFilePath).name)
+                    if copyTo == 'epub':
+                        imageFilePath = Path(eachFilePath).name
+                    Path(imageFilePath).write_bytes(imageData)
 
 def main(inputPath):
     for aPath in inputPath[1:]:
