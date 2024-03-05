@@ -14,8 +14,6 @@ def getEpubCoverImage(filePath):
     fileType = ['.epub']
     # 封面图片名
     coverImageFilename = ['cover.jpg', 'cover.jpeg']
-    #  复制到脚本目录 = 'script'，还是epub目录 = 'epub'
-    copyTo = 'epub'
     if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         print('正在处理epub：' + filePath.name)
         with zipfile.ZipFile(filePath, 'r') as myzipfile:
@@ -24,10 +22,7 @@ def getEpubCoverImage(filePath):
             for eachFilePath in eachFileList:
                 if Path(eachFilePath).name.lower() in coverImageFilename:
                     imageData = myzipfile.read(eachFilePath)
-                    if copyTo == 'script':
-                        imageFilePath = filePath.parent.joinpath(Path(eachFilePath).name)
-                    if copyTo == 'epub':
-                        imageFilePath = Path(eachFilePath).name
+                    imageFilePath = filePath.parent.joinpath(Path(filePath).stem + Path(eachFilePath).suffix)
                     Path(imageFilePath).write_bytes(imageData)
 
 def main(inputPath):
