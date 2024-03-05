@@ -511,4 +511,4 @@ get work count
 
 ### 复制出epub的封面图片（拖拽，递归，多个文件或文件夹）.py
 
-复制出封面cover.jpg或cover.jpeg
+复制出封面图片cover.jpg或cover.jpeg，可以设置封面图片复制到的位置

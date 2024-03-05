@@ -17,7 +17,9 @@ def getEpubCoverImage(filePath):
     # 图片复制到哪个位置
     #copyToLocation = 'epub'，epub目录下
     #copyToLocation = 'script'，脚本目录下
-    copyToLocation = 'epub'
+    #copyToLocation = 'myfolder'，自己设置的目录下
+    copyToLocation = 'script'
+    myfolder = 'd:\\cover\\'
     if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
         print('正在处理epub：' + filePath.name)
         coverImageExist = False
@@ -31,6 +33,8 @@ def getEpubCoverImage(filePath):
                         imageFilePath = filePath.parent.joinpath(Path(filePath).stem + Path(eachFilePath).suffix)
                     if copyToLocation == 'script':
                         imageFilePath = Path(sys.argv[0]).parent.joinpath(Path(filePath).stem + Path(eachFilePath).suffix)
+                    if copyToLocation == 'myfolder':
+                        imageFilePath = Path(myfolder).joinpath(Path(filePath).stem + Path(eachFilePath).suffix)
                     Path(imageFilePath).write_bytes(imageData)
                     coverImageExist = True
         if not coverImageExist:
