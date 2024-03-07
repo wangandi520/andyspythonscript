@@ -1,5 +1,6 @@
 // @name neeview一键保存当前图片命名为文件名加页数
 // @description neeview一键保存当前图片命名为文件名加页数
+// @shortCutKey Ctrl+S
 
 param = {
     "FileNameMode": "BookPageNumber", 
