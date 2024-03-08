@@ -512,3 +512,7 @@ get work count
 ### 复制出epub的封面图片（拖拽，递归，多个文件或文件夹）.py
 
 复制出封面图片cover.jpg或cover.jpeg，可以设置封面图片复制到的位置
+
+### neeview一键保存当前图片命名为书名加图片名.nvjs
+
+[https://andi.wang/2024/03/07/neeview一键保存当前图片/](https://andi.wang/2024/03/07/neeview一键保存当前图片/)

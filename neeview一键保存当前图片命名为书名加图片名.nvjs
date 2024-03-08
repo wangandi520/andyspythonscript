@@ -2,24 +2,20 @@
 // @description neeview一键保存当前图片命名为书名加图片名
 // @shortCutKey Ctrl+S
 
-//nv.Book.Path 书名
-//nv.Book.ViewPages[0].Path 当前图片名
-//nv.Book.ViewPages[0].GetMetaValue("FileName") 当前图片名
-
 //保存截图的文件夹路径，例如var saveImagePath = "D:\\漫画截图"
 var saveImagePath = "D:\\漫画截图"
 param = {
-    "FileNameMode": "BookPageNumber", 
-	"ExportFolder": saveImagePath
+    "FileNameMode": "BookPageNumber",
+    "ExportFolder": saveImagePath
 }
 //导出图片
 nv.Command.ExportImage.Patch(param).Execute()
 //获取页数
 var getCurrentPageIndex = -1
-for (let pageIndex = 0; pageIndex < nv.book.pages.length; pageIndex++){
-if (nv.Book.ViewPages[0].Path == nv.book.pages[pageIndex].Path){
-getCurrentPageIndex = (Array(3).join('0') + pageIndex).slice(-3)
-}
+for (let pageIndex = 0; pageIndex < nv.book.pages.length; pageIndex++) {
+    if (nv.Book.ViewPages[0].Path == nv.book.pages[pageIndex].Path) {
+        getCurrentPageIndex = (Array(3).join('0') + pageIndex).slice(-3)
+    }
 }
 //获取保存的文件路径
 currentImagePath = nv.Book.ViewPages[0].Path
@@ -33,11 +29,11 @@ oldFileName = saveImagePath + '\\' + getBookName + '_' + getCurrentPageIndex + '
 //新文件名
 newFileName = getBookName + '_' + nv.Book.ViewPages[0].GetMetaValue("FileName")
 //改名
-//cmdPara = ' /k ren "' + saveImagePath + '\\' + oldFileName + '" "' + newFileName + '"'
-cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
+cmdPara = ' /c ren "' + oldFileName + '" "' + newFileName + '" && echo '
+//cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
 param = {
-    //"Command": "cmd.exe",
-    "Command": "python.exe",
+    "Command": "cmd.exe",
+    //"Command": "python.exe",
     "Parameter": cmdPara
 }
 nv.Command.OpenExternalApp.Patch(param).Execute()
