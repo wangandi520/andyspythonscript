@@ -21,6 +21,7 @@ for (let pageIndex = 0; pageIndex < nv.book.pages.length; pageIndex++) {
 currentImagePath = nv.Book.ViewPages[0].Path
 //获取当前图片扩展名
 currentImageSuffix = currentImagePath.slice((currentImagePath.lastIndexOf('.') - 1 >>> 0) + 2)
+//获取当前图片名
 tmpBookName = nv.Book.Path.split('\\')
 tmpBookName = tmpBookName[tmpBookName.length - 1]
 getBookName = tmpBookName.substring(0, tmpBookName.lastIndexOf('.'))
