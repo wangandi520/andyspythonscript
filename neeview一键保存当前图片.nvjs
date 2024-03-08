@@ -1,0 +1,8 @@
+// @name neeview一键保存当前图片
+// @description neeview一键保存当前图片
+
+param = {
+    "FileNameMode": "BookPageNumber", 
+	"ExportFolder": "H:\ecomic截图"
+}
+nv.Command.ExportImage.Patch(param).Execute()

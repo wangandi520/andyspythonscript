@@ -1,0 +1,43 @@
+// @name neeview一键保存当前图片命名为书名加图片名
+// @description neeview一键保存当前图片命名为书名加图片名
+// @shortCutKey Ctrl+S
+
+//nv.Book.Path 书名
+//nv.Book.ViewPages[0].Path 当前图片名
+//nv.Book.ViewPages[0].GetMetaValue("FileName") 当前图片名
+
+//保存截图的文件夹路径，例如var saveImagePath = "D:\\漫画截图"
+var saveImagePath = "H:\\ecomic截图1"
+param = {
+    "FileNameMode": "BookPageNumber", 
+	"ExportFolder": saveImagePath
+}
+//导出图片
+nv.Command.ExportImage.Patch(param).Execute()
+//获取页数
+var getCurrentPageIndex = -1
+for (let pageIndex = 0; pageIndex < nv.book.pages.length; pageIndex++){
+if (nv.Book.ViewPages[0].Path == nv.book.pages[pageIndex].Path){
+getCurrentPageIndex = (Array(3).join('0') + pageIndex).slice(-3)
+}
+}
+//获取保存的文件路径
+currentImagePath = nv.Book.ViewPages[0].Path
+//获取当前图片扩展名
+currentImageSuffix = currentImagePath.slice((currentImagePath.lastIndexOf('.') - 1 >>> 0) + 2)
+tmpBookName = nv.Book.Path.split('\\')
+tmpBookName = tmpBookName[tmpBookName.length - 1]
+getBookName = tmpBookName.substring(0, tmpBookName.lastIndexOf('.'))
+//程序导出的图片的路径
+oldFileName = saveImagePath + '\\' + getBookName + '_' + getCurrentPageIndex + '.' + currentImageSuffix
+//新文件名
+newFileName = getBookName + '_' + nv.Book.ViewPages[0].GetMetaValue("FileName")
+//改名
+//cmdPara = ' /k ren "' + saveImagePath + '\\' + oldFileName + '" "' + newFileName + '"'
+cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
+param = {
+    //"Command": "cmd.exe",
+    "Command": "python.exe",
+    "Parameter": cmdPara
+}
+nv.Command.OpenExternalApp.Patch(param).Execute()
