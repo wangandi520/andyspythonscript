@@ -7,7 +7,7 @@
 //nv.Book.ViewPages[0].GetMetaValue("FileName") 当前图片名
 
 //保存截图的文件夹路径，例如var saveImagePath = "D:\\漫画截图"
-var saveImagePath = "H:\\ecomic截图1"
+var saveImagePath = "D:\\漫画截图"
 param = {
     "FileNameMode": "BookPageNumber", 
 	"ExportFolder": saveImagePath

@@ -3,6 +3,6 @@
 
 param = {
     "FileNameMode": "BookPageNumber", 
-	"ExportFolder": "H:\ecomic截图"
+	"ExportFolder": "D:\\漫画截图"
 }
 nv.Command.ExportImage.Patch(param).Execute()
