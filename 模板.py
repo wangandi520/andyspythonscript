@@ -19,7 +19,7 @@ def doConvert(fileName):
     # readFileContent = readfile(fileName)
     # for eachLine in readFileContent:
         # print(eachLine)
-    # newFileName = filename.parent.joinpath(filename.stem + '.html')
+    # newFileName = fileName.parent.joinpath(fileName.stem + '.html')
     # if not Path(newFileName).exists():
         # writefile(newFileName, ttempFileContent)
         
