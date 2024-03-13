@@ -100,7 +100,7 @@ def main(inputPath):
     # 要搜索关键词的文件的扩展名
     mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
     # 要搜索的关键词
-    myKeywords = ['微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib']
+    myKeywords = ['coay.com', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib', '红心读书']
     print('\n搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
