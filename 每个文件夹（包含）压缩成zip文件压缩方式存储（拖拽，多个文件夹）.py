@@ -1,7 +1,7 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.2
+# v0.3
 
 from pathlib import Path
 import sys
@@ -9,7 +9,6 @@ import zipfile
 
 def doZipFolder(inputPath):
     # 每个文件夹压缩成zip文件，包含这个文件夹，zip文件=文件夹名
-    allFilePath = []
     # 压缩方式：存储（速度最快），体积和压缩前差不多
     myZipType = zipfile.ZIP_STORED
     # 压缩方式：标准（速度一般），体积会变小
