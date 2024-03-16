@@ -8,6 +8,13 @@ import sys
 import os
 import zipfile
 
+def makeStringShorten(myString, cutLength = 10):
+    # cutLength = 头尾要显示的字符长度
+    if len(myString) < 10:
+        return myString
+    else:
+        return myString[0: cutLength] + '......' + myString[-cutLength:]
+        
 def getEpubCoverImage(filePath):
     # type(filePath): Path
     # 文件格式
@@ -21,7 +28,7 @@ def getEpubCoverImage(filePath):
     copyToLocation = 'script'
     myfolder = 'd:\\cover\\'
     if Path.is_file(filePath) and (filePath.suffix.lower() in fileType):
-        print('正在处理epub：' + filePath.name)
+        print('正在处理文件：' + makeStringShorten(filePath.name))
         coverImageExist = False
         with zipfile.ZipFile(filePath, 'r') as myzipfile:
             # 获取所有文件列表
@@ -37,8 +44,10 @@ def getEpubCoverImage(filePath):
                         imageFilePath = Path(myfolder).joinpath(Path(filePath).stem + Path(eachFilePath).suffix)
                     Path(imageFilePath).write_bytes(imageData)
                     coverImageExist = True
-        if not coverImageExist:
-            print('未找到封面文件：' + filePath.name)
+        if coverImageExist:
+            print('成功提取封面：' + makeStringShorten(filePath.name))
+        else:
+            print('无法找到封面：' + makeStringShorten(filePath.name))
 
 def main(inputPath):
     for aPath in inputPath[1:]:
