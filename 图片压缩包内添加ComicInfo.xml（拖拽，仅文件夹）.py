@@ -49,31 +49,36 @@ def doConvertComicInfo(aPath):
         print('文件名格式不符合要求')
     if ifIsSorted:
         for tempIndex in range(0, len(allFilePath)):
-            allXmlContent = []
-            allXmlContent.append('<?xml version="1.0"?>\n')
-            allXmlContent.append('<ComicInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n')
-            allXmlContent.append('  <Title>' + bookName[1:-1] + '</Title>\n')
-            allXmlContent.append('  <Series>' + bookName[1:-1] + '</Series>\n')
-            allXmlContent.append('  <Number>' + str(tempIndex + 1) + '<Number>\n')
-            allXmlContent.append('  <Count>' + str(len(allFilePath)) + '</Count>\n')
-            allXmlContent.append('  <Publisher>' + bookPublisher[1:-1] + '</Publisher>\n')
-            allXmlContent.append('  <ScanInformation>' + bookScan[1:-1] + '</ScanInformation>\n')
-            # 其他需要填的信息，参考
-            # https://moeshare.cc/read-htm-tid-275776.html
-            # https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation
-            # allXmlContent.append('  <>' + x + '</>\n')
-            allXmlContent.append('</ComicInfo>')
-            writefile('ComicInfo.xml', allXmlContent)
             with zipfile.ZipFile(allFilePath[tempIndex], 'a') as myzipfile:
                 # 压缩包内不含文件夹时，而且没有ComicInfo.xml时，才会添加ComicInfo.xml
                 noDirAndnoXml = True
+                # 图片文件数
+                PageCount = 0
                 for eachFile in myzipfile.infolist():
                     # print(eachFile)
                     if eachFile.is_dir():
                         noDirAndnoXml = False
                     if eachFile.filename == 'ComicInfo.xml':
                         noDirAndnoXml = False
+                    if not eachFile.is_dir() and Path(eachFile.filename).suffix.lower() in ['.png', '.jpg', '.jpeg']:
+                        PageCount = PageCount + 1
                 if noDirAndnoXml:
+                    allXmlContent = []
+                    allXmlContent.append('<?xml version="1.0"?>\n')
+                    allXmlContent.append('<ComicInfo xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n')
+                    allXmlContent.append('  <Title>' + bookName[1:-1] + '</Title>\n')
+                    allXmlContent.append('  <Series>' + bookName[1:-1] + '</Series>\n')
+                    allXmlContent.append('  <Number>' + str(tempIndex + 1) + '<Number>\n')
+                    allXmlContent.append('  <Count>' + str(len(allFilePath)) + '</Count>\n')
+                    allXmlContent.append('  <Publisher>' + bookPublisher[1:-1] + '</Publisher>\n')
+                    allXmlContent.append('  <PageCount>' + str(PageCount) + '</PageCount>\n')
+                    allXmlContent.append('  <ScanInformation>' + bookScan[1:-1] + '</ScanInformation>\n')
+                    # 其他需要填的信息，参考
+                    # https://moeshare.cc/read-htm-tid-275776.html
+                    # https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation
+                    # allXmlContent.append('  <>' + x + '</>\n')
+                    # allXmlContent.append('</ComicInfo>')
+                    writefile('ComicInfo.xml', allXmlContent)
                     myzipfile.write('ComicInfo.xml')
                     Path('ComicInfo.xml').unlink()
                     print(allFilePath[tempIndex].name + ' 成功添加ComicInfo.xml')
