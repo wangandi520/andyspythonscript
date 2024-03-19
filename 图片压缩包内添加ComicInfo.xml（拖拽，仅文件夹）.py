@@ -15,7 +15,7 @@ def writefile(fileName, allFileContent):
 
 def doConvertComicInfo(aPath):
     # 给漫画压缩包添加ComicInfo.xml
-    # 仅拖拽文件夹，文件内是需要添加ComicInfo.xml的压缩包
+    # 仅拖拽文件夹，文件夹内是需要添加ComicInfo.xml的压缩包
     # 符合以下条件才会运行脚本
     # 1. 文件名要求格式[书名][作者][出版社][扫者]册数.扩展名
     # 2. 压缩包内不能含文件夹或ComicInfo.xml
