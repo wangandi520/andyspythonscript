@@ -81,9 +81,9 @@ def doConvertComicInfo(aPath):
                     writefile('ComicInfo.xml', allXmlContent)
                     myzipfile.write('ComicInfo.xml')
                     Path('ComicInfo.xml').unlink()
-                    print(allFilePath[tempIndex].name + ' 成功添加ComicInfo.xml')
+                    print('成功： ' + allFilePath[tempIndex].name)
                 else:
-                    print(allFilePath[tempIndex].name + ' 压缩包内存在文件夹或ComicInfo.xml')
+                    print('失败： ' + allFilePath[tempIndex].name + '，压缩包内存在文件夹或ComicInfo.xml')
         os.system('pause')
 
 def main(inputPath):
