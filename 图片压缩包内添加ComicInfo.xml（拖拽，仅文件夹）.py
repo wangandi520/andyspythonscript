@@ -77,7 +77,7 @@ def doConvertComicInfo(aPath):
                     # https://moeshare.cc/read-htm-tid-275776.html
                     # https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation
                     # allXmlContent.append('  <>' + x + '</>\n')
-                    # allXmlContent.append('</ComicInfo>')
+                    allXmlContent.append('</ComicInfo>')
                     writefile('ComicInfo.xml', allXmlContent)
                     myzipfile.write('ComicInfo.xml')
                     Path('ComicInfo.xml').unlink()
