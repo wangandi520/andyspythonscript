@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import re
 import zipfile
+import os
 
 def writefile(fileName, allFileContent):
     with open(fileName, mode='w', encoding='UTF-8') as newfile:
@@ -70,9 +71,11 @@ def doConvertComicInfo(aPath):
                         noDirAndnoXml = False
                 if noDirAndnoXml:
                     myzipfile.write('ComicInfo.xml')
+                    Path('ComicInfo.xml').unlink()
                     print(allFilePath[tempIndex].name + ' 成功添加ComicInfo.xml')
                 else:
                     print(allFilePath[tempIndex].name + ' 压缩包内存在文件夹或ComicInfo.xml')
+        os.system('pause')
 
 def main(inputPath):
     for aPath in inputPath[1:]:
