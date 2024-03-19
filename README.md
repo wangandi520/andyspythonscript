@@ -516,3 +516,13 @@ get work count
 ### neeview一键保存当前图片命名为书名加图片名.nvjs
 
 [https://andi.wang/2024/03/07/neeview一键保存当前图片/](https://andi.wang/2024/03/07/neeview一键保存当前图片/)
+
+### 图片压缩包内添加ComicInfo.xml（拖拽，仅文件夹）.py
+
+给漫画压缩包添加ComicInfo.xml
+仅拖拽文件夹，文件内是需要添加ComicInfo.xml的压缩包
+符合以下条件才会运行脚本
+1. 文件名要求格式[书名][作者][出版社][扫者]册数.扩展名
+2. 压缩包内不能含文件夹或ComicInfo.xml
+3. 文件夹内的文件[书名][作者]都一致
+4. 文件扩展名fileType = ['.cbz', '.zip']

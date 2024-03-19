@@ -28,10 +28,10 @@ def main(inputPath):
     for aPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
             for eachFile in Path(aPath).glob('**/*'):
-                if (Path(eachFile).suffix in fileType):
+                if (Path(eachFile).suffix.lower() in fileType):
                     doConvert(Path(eachFile))
         if Path.is_file(Path(aPath)):
-            if (Path(aPath).suffix in fileType):
+            if (Path(aPath).suffix.lower() in fileType):
                 doConvert(Path(aPath))
 
 if __name__ == '__main__':
