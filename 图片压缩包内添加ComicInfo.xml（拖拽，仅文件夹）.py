@@ -1,7 +1,7 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.1
+# v0.2
 
 from pathlib import Path
 import sys
@@ -18,7 +18,7 @@ def doConvertComicInfo(aPath):
     # 仅拖拽文件夹，文件夹内是需要添加ComicInfo.xml的压缩包
     # 符合以下条件才会运行脚本
     # 1. 文件名要求格式[书名][作者][出版社][扫者]册数.扩展名
-    # 2. 压缩包内不能含文件夹或ComicInfo.xml
+    # 2. 压缩包内不含文件夹时，而且没有ComicInfo.xml
     # 3. 文件夹内的文件[书名][作者]都一致
     # 4. 文件扩展名fileType = ['.cbz', '.zip']
     fileType = ['.cbz', '.zip']
@@ -65,7 +65,7 @@ def doConvertComicInfo(aPath):
             allXmlContent.append('</ComicInfo>')
             writefile('ComicInfo.xml', allXmlContent)
             with zipfile.ZipFile(allFilePath[tempIndex], 'a') as myzipfile:
-                # 压缩包内不含文件夹时，才会添加ComicInfo.xml
+                # 压缩包内不含文件夹时，而且没有ComicInfo.xml时，才会添加ComicInfo.xml
                 noDirAndnoXml = True
                 for eachFile in myzipfile.infolist():
                     # print(eachFile)
