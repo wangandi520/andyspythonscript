@@ -58,7 +58,9 @@ def doConvertComicInfo(aPath):
             allXmlContent.append('  <Count>' + str(len(allFilePath)) + '</Count>\n')
             allXmlContent.append('  <Publisher>' + bookPublisher[1:-1] + '</Publisher>\n')
             allXmlContent.append('  <ScanInformation>' + bookScan[1:-1] + '</ScanInformation>\n')
-            # 其他需要填的信息
+            # 其他需要填的信息，参考
+            # https://moeshare.cc/read-htm-tid-275776.html
+            # https://anansi-project.github.io/docs/comicinfo/documentation#scaninformation
             # allXmlContent.append('  <>' + x + '</>\n')
             allXmlContent.append('</ComicInfo>')
             writefile('ComicInfo.xml', allXmlContent)
