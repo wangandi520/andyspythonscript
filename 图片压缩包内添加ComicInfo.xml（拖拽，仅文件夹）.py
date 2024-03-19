@@ -47,6 +47,7 @@ def doConvertComicInfo(aPath):
                 ifIsSorted = False
     if not ifIsSorted:
         print('文件名格式不符合要求')
+        os.system('pause')
     if ifIsSorted:
         for tempIndex in range(0, len(allFilePath)):
             with zipfile.ZipFile(allFilePath[tempIndex], 'a') as myzipfile:
