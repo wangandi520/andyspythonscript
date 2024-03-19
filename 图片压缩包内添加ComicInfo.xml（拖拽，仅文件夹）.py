@@ -58,6 +58,8 @@ def doConvertComicInfo(aPath):
             allXmlContent.append('  <Count>' + str(len(allFilePath)) + '</Count>\n')
             allXmlContent.append('  <Publisher>' + bookPublisher[1:-1] + '</Publisher>\n')
             allXmlContent.append('  <ScanInformation>' + bookScan[1:-1] + '</ScanInformation>\n')
+            # 其他需要填的信息
+            # allXmlContent.append('  <>' + x + '</>\n')
             allXmlContent.append('</ComicInfo>')
             writefile('ComicInfo.xml', allXmlContent)
             with zipfile.ZipFile(allFilePath[tempIndex], 'a') as myzipfile:
