@@ -4,8 +4,8 @@
 // @version      0.5
 // @description  try to take over the world!
 // @author       You
-// @match        https://www.moeshare.cc/read-htm-tid*
-// @match        https://moeshare.cc/read-htm-tid*
+// @match        https://www.moeshare.cc/read*
+// @match        https://moeshare.cc/read*
 // @icon         https://www.google.com/s2/favicons?domain=moeshare.cc
 // @grant        none
 // ==/UserScript==
