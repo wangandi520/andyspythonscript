@@ -12,12 +12,12 @@
 function downloadHTML() {
     //使用bilibili evolved的快捷键功能时会冲突，在快捷键设置里添加一个空的自定义快捷可以禁用
 	//标题
-    var tidName = document.querySelector('#viewbox_report > h1').innerText
+    var tidName = document.querySelector('#viewbox_report > div.video-info-title > div > h1').innerText
 	//网址
     var info = tidName + '<p><a href="' + window.location.href + '">' + window.location.href + '</a></p>'
-    info = info + '上传时间：' + document.querySelector('#viewbox_report > div > div > span.pubdate-ip.item > span > span').innerText + '<br/>'
-    info = info + '播放数：' + document.querySelector('#viewbox_report > div > div > span.view.item').innerText + '<br/>'
-    info = info + '弹幕数：' + document.querySelector('#viewbox_report > div > div > span.dm.item').innerText + '<br/>'
+    info = info + '上传时间：' + document.querySelector('#viewbox_report > div.video-info-meta > div > div.pubdate-ip.item > div').innerText + '<br/>'
+    info = info + '播放数：' + document.querySelector('#viewbox_report > div.video-info-meta > div > div.view.item > div').innerText + '<br/>'
+    info = info + '弹幕数：' + document.querySelector('#viewbox_report > div.video-info-meta > div > div.dm.item > div').innerText + '<br/>'
     info = info + '上传者： ' + document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-detail-top > a.up-name').innerText + '<br/>'
     var getSign = document.querySelector('#mirror-vdcon > div.right-container.is-in-large-ab > div > div.up-panel-container > div.up-info-container > div.up-info--right > div.up-info__detail > div > div.up-description.up-detail-bottom')
     if (getSign !== null && getSign !== undefined){
