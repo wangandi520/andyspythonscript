@@ -76,7 +76,7 @@ eachLevelHuoyue = 0
 if response6.status_code == 200:
     tmpIndex11 = (response6.text).find('>Lv')
     myLevel = int(response6.text[tmpIndex11 + 4 : tmpIndex11 + 5])
-    huoyueArray = [2, 5, 10, 20, 50, 100]
+    huoyueArray = [1, 2, 6, 20, 40, 100]
     eachLevelHuoyue = huoyueArray[myLevel]
     print('用户等级：Lv.' + str(myLevel) + '。每日可用活跃度：' + str(eachLevelHuoyue))
     time.sleep(3)
