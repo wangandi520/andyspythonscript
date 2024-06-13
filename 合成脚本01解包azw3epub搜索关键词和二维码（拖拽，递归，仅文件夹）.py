@@ -50,7 +50,7 @@ def searchKeywordInFile(filePath, keyword):
     # 读取文件
     # 如果搜索的关键词前后10个字含有这些关键词，就不输出
     # excludeKeyword = ['关键词01', '关键词02']
-    excludeKeyword = ['译文', '译林', 'shanghaiwenyi', 'yilinpr', '企鹅图书', 'stphbooks', 'shijiwenjing2002']
+    excludeKeyword = ['译文', '译林', 'shanghaiwenyi', 'yilinpr', '企鹅图书', 'stphbooks', 'shijiwenjing2002','果麦文化']
     with open(filePath, mode='r', encoding='UTF-8') as file:
         filereadlines = file.readlines()
     myPrint('正在扫描' + filePath.name)
