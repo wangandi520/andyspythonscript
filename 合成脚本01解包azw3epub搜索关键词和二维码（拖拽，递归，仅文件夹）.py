@@ -75,11 +75,12 @@ def searchQRCodeInFile(filePath):
             barcodeData = barcode.data.decode("utf-8")
             print(barcodeData + '    ' + str(filePath))
             # 是否显示含二维码的图片
-            if False:
+            if True:
                 plt.figure(str(filePath))
                 plt.title(str(filePath.name), fontproperties='SimHei')
                 plt.imshow(image)
                 plt.show()
+        
             
 def main(inputPath):
     del inputPath[0]
@@ -100,7 +101,7 @@ def main(inputPath):
     # 要搜索关键词的文件的扩展名
     mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
     # 要搜索的关键词
-    myKeywords = ['coay.com', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib', '红心读书']
+    myKeywords = ['coay.com', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib.', '红心读书','booker527']
     print('\n搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
     for aPath in inputPath:
