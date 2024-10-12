@@ -10,7 +10,6 @@ lxml
 tinytag
 pypinyin
 numpy
-ddddocr
 pyzbar
 matplotlib
 opencv-python
