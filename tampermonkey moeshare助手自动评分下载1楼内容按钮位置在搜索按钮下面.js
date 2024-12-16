@@ -88,6 +88,7 @@ pingfenbutton.addEventListener('click', function() {
         if (i > 10){
             clearInterval(myinterval);
             myMessage.innerHTML = '<span>完成10次评分</span>';
+            window.open('https://moeshare.cc/jobcenter.php?action=punch&step=2')
         }
     }, 5000);
 });
