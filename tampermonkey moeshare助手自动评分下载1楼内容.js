@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         moeshare助手自动评分下载1楼内容
 // @namespace    http://tampermonkey.net/
-// @version      0.7
+// @version      0.8
 // @description  按钮位置在搜索按钮上面
 // @author       https://github.com/wangandi520/andyspythonscript
 // @match        https://moeshare.cc/read*
@@ -15,6 +15,8 @@
 var optionShowUserName = 1
 // www.moeshare.cc跳转到moeshare.cc
 var optionJumpToMoeshare = 0
+// 显示评分打卡按钮
+var optionShowPingfenDakaButton = 1
 // 显示打卡按钮
 var optionShowDakaButton = 1
 // 显示保存按钮
@@ -23,7 +25,7 @@ var optionShowSaveButton = 1
 var optionShowStatus = 1
 
 
-if (optionShowDakaButton){
+if (optionShowPingfenDakaButton){
 	let pingfenbutton = document.createElement('button');
 	pingfenbutton.innerHTML = '自动评分打卡';
 	pingfenbutton.style.backgroundColor = 'green';
@@ -49,11 +51,36 @@ if (optionShowDakaButton){
 				if (optionShowStatus){
 					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
 				}
-				window.open('https://moeshare.cc/jobcenter.php?action=punch&step=2')
+                let iframe = document.createElement('iframe');
+                document.lastElementChild.appendChild(iframe);
+                iframe.style = 'display: none;';
+                iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+                if (optionShowStatus){
+                    document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
+                }
 			}
 		}, 5000);
 	});
 	document.querySelector('#navA > div.navA > ul').appendChild(pingfenbutton);
+}
+
+if (optionShowPingfenDakaButton){
+	let dakabutton = document.createElement('button');
+	dakabutton.innerHTML = '仅打卡';
+	dakabutton.style.backgroundColor = 'blue';
+	dakabutton.style.color = 'white';
+	dakabutton.style.border = 'none';
+	dakabutton.style.padding = '10px 20px';
+	dakabutton.addEventListener('click', function() {
+        let iframe = document.createElement('iframe');
+        document.lastElementChild.appendChild(iframe);
+        iframe.style = 'display: none;';
+        iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+        if (optionShowStatus){
+            document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
+        }
+	});
+	document.querySelector('#navA > div.navA > ul').appendChild(dakabutton);
 }
 
 if (optionShowSaveButton){
