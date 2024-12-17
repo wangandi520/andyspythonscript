@@ -31,17 +31,24 @@ if (optionShowDakaButton){
 	pingfenbutton.style.border = 'none';
 	pingfenbutton.style.padding = '10px 20px';
 	pingfenbutton.addEventListener('click', function() {
+		if (optionShowStatus){
+			document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡开始</span>';
+		}
 		var eachScore = document.getElementsByClassName('r-score');
 		var i = 1;
 		var myinterval;
 		//在帖子内，按a键开始自动评分
 		myinterval = setInterval(function(){
 			pingfen(eachScore,i);
-            document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>正在评分第' + i + '楼</span>';
+			if (optionShowStatus){
+				document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>正在评分第' + i + '楼</span>';
+			}
 			i = i + 1;
 			if (i > 10){
 				clearInterval(myinterval);
-                document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成';
+				if (optionShowStatus){
+					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
+				}
 				window.open('https://moeshare.cc/jobcenter.php?action=punch&step=2')
 			}
 		}, 5000);
