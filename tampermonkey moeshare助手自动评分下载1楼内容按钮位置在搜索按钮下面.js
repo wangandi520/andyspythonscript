@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         moeshare助手自动评分下载1楼内容按钮位置在搜索按钮下面
 // @namespace    http://tampermonkey.net/
-// @version      0.5
+// @version      0.6
 // @description  按钮位置在搜索按钮下面
 // @author       https://github.com/wangandi520/andyspythonscript
 // @match        https://moeshare.cc/read*
@@ -9,7 +9,7 @@
 // @grant        none
 // ==/UserScript==
 
-//按钮位置在搜索按钮下面
+//按钮位置在搜索按钮下面，要打开某一帖后才会显示
 //不想启动的功能，请改成0=不启动，1=启用
 
 
@@ -32,10 +32,10 @@ if (optionJumpToMoeshare){
         window.location.href = "https://moeshare.cc" + getUrl.substr(23,getUrl.length);
     }
     /**
-if (getUrl.substr(0,11) == "https://moe"){
-    window.location.href = "https://www.moeshare.cc" + getUrl.substr(19,getUrl.length);
-}
-**/
+	if (getUrl.substr(0,11) == "https://moe"){
+		window.location.href = "https://www.moeshare.cc" + getUrl.substr(19,getUrl.length);
+	}
+	**/
 }
 
 function downloadHTML() {
@@ -72,7 +72,7 @@ function pingfen(eachScore,i){
 }
 
 let pingfenbutton = document.createElement('button');
-pingfenbutton.innerHTML = '自动评分';
+pingfenbutton.innerHTML = '自动评分打卡';
 pingfenbutton.style.backgroundColor = 'blue';
 pingfenbutton.style.color = 'white';
 pingfenbutton.style.border = 'none';
@@ -87,8 +87,8 @@ pingfenbutton.addEventListener('click', function() {
         i = i + 1;
         if (i > 10){
             clearInterval(myinterval);
-            myMessage.innerHTML = '<span>完成10次评分</span>';
             window.open('https://moeshare.cc/jobcenter.php?action=punch&step=2')
+            myMessage.innerHTML = '<span>打卡完成</span>';
         }
     }, 5000);
 });
