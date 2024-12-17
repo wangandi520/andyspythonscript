@@ -14,7 +14,7 @@
 
 
 //回帖用户名在浏览器f12中显示
-var openShowUserName = 1
+var optionShowUserName = 1
 //www.moeshare.cc跳转到moeshare.cc
 var optionJumpToMoeshare = 0
 
