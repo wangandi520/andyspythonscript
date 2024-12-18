@@ -49,22 +49,19 @@ if (optionShowPingfenDakaButton){
 			if (i > 10){
 				clearInterval(myinterval);
 				if (optionShowStatus){
-					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
+					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
 				}
                 let iframe = document.createElement('iframe');
                 document.lastElementChild.appendChild(iframe);
                 iframe.style = 'display: none;';
                 iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
-                if (optionShowStatus){
-                    document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
-                }
 			}
 		}, 5000);
 	});
 	document.querySelector('#navA > div.navA > ul').appendChild(pingfenbutton);
 }
 
-if (optionShowPingfenDakaButton){
+if (optionShowDakaButton){
 	let dakabutton = document.createElement('button');
 	dakabutton.innerHTML = '仅打卡';
 	dakabutton.style.backgroundColor = 'blue';
@@ -77,7 +74,7 @@ if (optionShowPingfenDakaButton){
         iframe.style = 'display: none;';
         iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
         if (optionShowStatus){
-            document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡完成</span>';
+            document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
         }
 	});
 	document.querySelector('#navA > div.navA > ul').appendChild(dakabutton);
