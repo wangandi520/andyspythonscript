@@ -39,14 +39,13 @@ if (optionShowPingfenDakaButton){
 		var eachScore = document.getElementsByClassName('r-score');
 		var i = 1;
 		var myinterval;
-		//在帖子内，按a键开始自动评分
 		myinterval = setInterval(function(){
 			pingfen(eachScore,i);
 			if (optionShowStatus){
 				document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>正在评分第' + i + '楼</span>';
 			}
 			i = i + 1;
-			if (i > 10){
+			if (i > 11){
 				clearInterval(myinterval);
 				if (optionShowStatus){
 					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
