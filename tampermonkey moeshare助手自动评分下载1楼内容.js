@@ -45,7 +45,7 @@ if (optionShowPingfenDakaButton){
 				document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>正在评分第' + i + '楼</span>';
 			}
 			i = i + 1;
-			if (i > 11){
+			if (i > 10){
 				clearInterval(myinterval);
 				if (optionShowStatus){
 					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
