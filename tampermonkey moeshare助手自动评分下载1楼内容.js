@@ -25,6 +25,18 @@ var optionShowSaveButton = 1
 var optionShowStatus = 1
 
 
+if (optionJumpToMoeshare){
+    var getUrl = window.location.href
+    if (getUrl.substr(0,11) == "https://www"){
+        window.location.href = "https://moeshare.cc" + getUrl.substr(23,getUrl.length);
+    }
+    /**
+	if (getUrl.substr(0,11) == "https://moe"){
+		window.location.href = "https://www.moeshare.cc" + getUrl.substr(19,getUrl.length);
+	}
+	**/
+}
+
 if (optionShowPingfenDakaButton){
 	let pingfenbutton = document.createElement('button');
 	pingfenbutton.innerHTML = '自动评分打卡';
@@ -47,13 +59,13 @@ if (optionShowPingfenDakaButton){
 			i = i + 1;
 			if (i > 10){
 				clearInterval(myinterval);
-				if (optionShowStatus){
-					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
-				}
                 let iframe = document.createElement('iframe');
                 document.lastElementChild.appendChild(iframe);
                 iframe.style = 'display: none;';
                 iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+				if (optionShowStatus){
+					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
+				}
 			}
 		}, 5000);
 	});
@@ -99,18 +111,6 @@ if (optionShowUserName){
 		for (var i = 0, len = name.length; i < len; i++) {
 			console.log(i + '  ' + name[i].children[1].innerHTML);
 		}
-}
-
-if (optionJumpToMoeshare){
-    var getUrl = window.location.href
-    if (getUrl.substr(0,11) == "https://www"){
-        window.location.href = "https://moeshare.cc" + getUrl.substr(23,getUrl.length);
-    }
-    /**
-	if (getUrl.substr(0,11) == "https://moe"){
-		window.location.href = "https://www.moeshare.cc" + getUrl.substr(19,getUrl.length);
-	}
-	**/
 }
 
 if (optionShowStatus){
