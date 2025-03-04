@@ -16,7 +16,7 @@ def readfile(filename):
 
 def writefile(filename,filereadlines):
     # 写入文件
-    newfile = open(Path(filename).parent.joinpath(Path(filename).stem + '转换后.txt'), mode='w', encoding='UTF-8')
+    newfile = open(Path(filename).parent.joinpath(Path(filename).stem + '转换后' + Path(filename).suffix), mode='w', encoding='UTF-8')
     newfile.writelines(filereadlines)
     newfile.close()
     print('完成：' + str(Path(filename).name))
