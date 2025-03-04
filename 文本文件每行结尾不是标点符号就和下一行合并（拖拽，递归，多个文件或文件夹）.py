@@ -70,23 +70,7 @@ def convertMoonReadermrexpt(filename):
             processed_lines.append(merged_line + '\n')
             i = j  # 跳转到下一个未处理的行
 
-    writefile(filename,processed_lines)
-    # 输出
-    # outputContent = []
-    # outputContent.append(myFrontMatter)
-    # outputContent.append('\n\n**共' + str(len(allContentSorted)) + '条标注**\n\n---')
-    # for myIndex in range(0, len(allContentSorted)):
-        # outputContent.append('\n\n> ' + allContentSorted[myIndex][1] + '\n\n')
-        # if len(allContentSorted[myIndex]) == 4:
-            # outputContent.append('**' +allContentSorted[myIndex][2] + '**\n\n')
-            # outputContent.append('*' + allContentSorted[myIndex][3] + '*\n\n')
-        # elif len(allContentSorted[myIndex]) == 3:
-            # outputContent.append('*' +allContentSorted[myIndex][2] + '*\n\n')
-        # outputContent.append('---')
-        # if myIndex == 1:
-            # outputContent.append('\n\n<!-- more -->')
-
-    # writefile(filename, outputContent)
+    writefile(filename, processed_lines)
     
 def main(inputPath):
     del inputPath[0]
