@@ -50,7 +50,6 @@ def formatDatesForFile(filePath):
     tempContent = []
     for eachLine in filereadlines:
         tempContent.append(formatDatesForLine(eachLine) + '\n')
-    print(tempContent)
     writefile(filePath, tempContent)
 
 def main(inputPath):
