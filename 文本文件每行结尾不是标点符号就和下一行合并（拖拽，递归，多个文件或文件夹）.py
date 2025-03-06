@@ -23,7 +23,7 @@ def writefile(filename,filereadlines):
     newfile.close()
     print('完成：' + str(Path(filename).name))
     
-def is_punctuation(char):
+def isPunctuation(char):
     # 判断给定字符是否为标点符号。
     if len(char) != 1:
         return False
@@ -31,7 +31,7 @@ def is_punctuation(char):
     if char not in [',', '，']:
         return category.startswith('P')  
     
-def convertMoonReadermrexpt(filename):
+def convertLines(filename):
     # 读取.txt文件
     filereadlines = readfile(filename)
     print('处理：' + str(Path(filename).name))
@@ -48,7 +48,7 @@ def convertMoonReadermrexpt(filename):
         last_char = current_line[-1]
         
         # 如果当前行以标点结尾，直接保留
-        if is_punctuation(last_char):
+        if isPunctuation(last_char):
             processed_lines.append(current_line + '\n')
             i += 1
         else:
@@ -62,7 +62,7 @@ def convertMoonReadermrexpt(filename):
                 stripped_merged = merged_line.rstrip()
                 if stripped_merged:
                     last_char_merged = stripped_merged[-1]
-                    if is_punctuation(last_char_merged):
+                    if isPunctuation(last_char_merged):
                         j += 1  # 包含当前行j
                         break
                 j += 1
@@ -77,11 +77,11 @@ def main(inputPath):
     for aPath in inputPath:
         if Path.is_dir(Path(aPath)):
             for eachFile in Path(aPath).glob('**/*'):
-                if (Path(eachFile).suffix == '.txt'):
-                    convertMoonReadermrexpt(eachFile)
+                if (Path(eachFile).suffix.lower() == '.txt'):
+                    convertLines(eachFile)
         if Path.is_file(Path(aPath)):
-            if (Path(aPath).suffix == '.txt'):
-                convertMoonReadermrexpt(aPath)
+            if (Path(aPath).suffix.lower() == '.txt'):
+                convertLines(aPath)
         
 if __name__ == '__main__':
     try:
