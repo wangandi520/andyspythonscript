@@ -1,7 +1,7 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.1
+# v0.2
 
 from pathlib import Path
 import sys
@@ -16,7 +16,7 @@ def readfile(fileName):
     return allFileContent
 
 def doConvert(fileName):
-    print('')
+    print(fileName)
     # readFileContent = readfile(fileName)
     # for eachLine in readFileContent:
         # print(eachLine)
@@ -25,9 +25,8 @@ def doConvert(fileName):
         # writefile(newFileName, ttempFileContent)
 
 def main(inputPath):
-    del inputPath[0]
     fileType = ['.txt']
-    for aPath in inputPath:
+    for eachPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
             for eachFile in Path(aPath).glob('**/*'):
                 if (Path(eachFile).suffix.lower() in fileType):
