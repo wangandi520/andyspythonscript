@@ -544,3 +544,11 @@ get work count
 ### 删除html文件内class名是test的span标签（拖拽，递归，多个文件或文件夹）.py
 
 用于处理html文件
+
+### 文件判断压缩文件是否加密（拖拽，递归，多个文件或文件夹）.py
+
+需要pip install py7zr rarfile
+
+如果压缩文件有密码，就输出文件名
+
+借助trae编写

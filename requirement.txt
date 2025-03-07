@@ -13,3 +13,4 @@ numpy
 pyzbar
 matplotlib
 opencv-python
+py7zr
