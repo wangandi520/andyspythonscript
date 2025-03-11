@@ -539,7 +539,7 @@ get work count
 
 处理笔记中日期不统一的情况
 
-借助deepseek编写
+使用deepseek协助编写
 
 ### 删除html文件内class名是test的span标签（拖拽，递归，多个文件或文件夹）.py
 
@@ -551,4 +551,8 @@ get work count
 
 如果压缩文件有密码，就输出文件名
 
-借助trae编写
+使用trae协助编写
+
+### 文件epub转zip（拖拽，递归，多个epub或文件夹）.py
+
+使用trae协助编写
