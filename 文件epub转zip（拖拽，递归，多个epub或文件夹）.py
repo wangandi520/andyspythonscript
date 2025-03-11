@@ -3,6 +3,7 @@
 # by Andy
 # v0.1
 # 使用trae协助编写
+# 源脚本来源https://moeshare.cc/read-htm-tid-328398.html
 
 from pathlib import Path
 import sys
