@@ -555,4 +555,13 @@ get work count
 
 ### 文件epub转zip（拖拽，递归，多个epub或文件夹）.py
 
+源脚本来源https://moeshare.cc/read-htm-tid-328398.html
+
 使用trae协助编写
+
+### 文件判断压缩文件是否包含文件夹（拖拽，递归，多个文件或文件夹）.py
+
+压缩包内包含或不包含文件夹，都会显示
+
+使用trae协助编写
+

@@ -5,9 +5,17 @@
 
 from pathlib import Path
 import sys
+import re
 
 from typing import List, Union
 
+def validFileName(oldFileName):
+    # '/ \ : * ? " < > |'
+    # 替换为下划线
+    validChars = r"[\/\\\:\*\?\"\<\>\|]"  
+    newFileName = re.sub(validChars, "_", oldFileName)
+    return newFileName
+    
 def writefile(fileName: Path, allFileContent: list[str]) -> None:
     try:
         with open(fileName, mode='w', encoding='UTF-8') as newfile:
