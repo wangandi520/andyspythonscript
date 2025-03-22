@@ -10,6 +10,7 @@ import os
 from pathlib import Path
 
 def ifZipEncrypted(filePath):
+    # 只显示加密的压缩文件名
     try:
         suffix = Path(filePath).suffix.lower()
         if suffix == '.zip':

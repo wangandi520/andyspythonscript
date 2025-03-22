@@ -9,6 +9,10 @@ import rarfile
 import os
 from pathlib import Path
 
+CONFIG = {
+    'onlyShowNoFolder': True,  # True: 只显示不包含文件夹的压缩包名，False: 全部显示
+}
+
 def ifZipContainsFolder(filePath):
     try:
         suffix = Path(filePath).suffix.lower()
@@ -18,7 +22,8 @@ def ifZipContainsFolder(filePath):
             with zipfile.ZipFile(filePath) as zip_file:
                 for zip_info in zip_file.infolist():
                     if zip_info.filename.endswith('/') or '/' in zip_info.filename:
-                        print(f"{Path(filePath).name} 包含文件夹")
+                        if not CONFIG['onlyShowNoFolder']:
+                            print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
                         break
         elif suffix == '.7z':
@@ -26,14 +31,16 @@ def ifZipContainsFolder(filePath):
                 file_list = z.getnames()
                 for file_path in file_list:
                     if '/' in file_path:
-                        print(f"{Path(filePath).name} 包含文件夹")
+                        if not CONFIG['onlyShowNoFolder']:
+                            print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
                         break
         elif suffix == '.rar':
             with rarfile.RarFile(filePath) as rar_file:
                 for info in rar_file.infolist():
                     if info.isdir() or '/' in info.filename:
-                        print(f"{Path(filePath).name} 包含文件夹")
+                        if not CONFIG['onlyShowNoFolder']:
+                            print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
                         break
                         
