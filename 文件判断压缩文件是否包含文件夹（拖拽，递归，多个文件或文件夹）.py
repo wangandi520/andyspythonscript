@@ -21,7 +21,8 @@ def ifZipContainsFolder(filePath):
         if suffix == '.zip':
             with zipfile.ZipFile(filePath) as zip_file:
                 for zip_info in zip_file.infolist():
-                    if zip_info.filename.endswith('/') or '/' in zip_info.filename:
+                    # 同时检查正斜杠和反斜杠
+                    if zip_info.filename.endswith('/') or '/' in zip_info.filename or '\\' in zip_info.filename:
                         if not CONFIG['onlyShowNoFolder']:
                             print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
@@ -30,7 +31,8 @@ def ifZipContainsFolder(filePath):
             with py7zr.SevenZipFile(filePath, mode='r') as z:
                 file_list = z.getnames()
                 for file_path in file_list:
-                    if '/' in file_path:
+                    # 同时检查正斜杠和反斜杠
+                    if '/' in file_path or '\\' in file_path:
                         if not CONFIG['onlyShowNoFolder']:
                             print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
@@ -38,7 +40,8 @@ def ifZipContainsFolder(filePath):
         elif suffix == '.rar':
             with rarfile.RarFile(filePath) as rar_file:
                 for info in rar_file.infolist():
-                    if info.isdir() or '/' in info.filename:
+                    # 同时检查正斜杠和反斜杠
+                    if info.isdir() or '/' in info.filename or '\\' in info.filename:
                         if not CONFIG['onlyShowNoFolder']:
                             print(f"{Path(filePath).name} 包含文件夹")
                         containsFolder = True
