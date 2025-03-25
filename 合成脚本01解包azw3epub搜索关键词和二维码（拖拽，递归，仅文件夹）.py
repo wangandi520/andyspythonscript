@@ -28,16 +28,21 @@ def unzipEachFile(allFilePath):
         # 创建ZipFile对象并打开zip文件
         if eachFilePath.suffix == '.epub':
             print('正在处理epub：' + eachFilePath.name)
-            with zipfile.ZipFile(eachFilePath, 'r') as myzipfile:
-                # 获取所有文件列表
-                eachFileList = myzipfile.namelist()
-                for eachFile in eachFileList:
+            try:
+                with zipfile.ZipFile(eachFilePath, 'r') as myzipfile:
+                    # 获取所有文件列表
                     newZipFilePath = eachFilePath.parent.joinpath(eachFilePath.stem)
                     # 新建文件夹
                     if not newZipFilePath.exists():
                         Path.mkdir(newZipFilePath)
-                    # 将文件从zip文件中提取指定目录
+                    # 将文件从zip文件中提取到指定目录
+                    print(f'开始解压 {eachFilePath.name} 到 {newZipFilePath}')
                     myzipfile.extractall(newZipFilePath)
+                    print(f'完成解压 {eachFilePath.name}')
+            except zipfile.BadZipFile:
+                print(f'错误: {eachFilePath.name} 不是有效的zip/epub文件')
+            except Exception as e:
+                print(f'处理 {eachFilePath.name} 时出错: {str(e)}')
             
 def doChangeSuffix(filePath):
     # type(filePath): Path
