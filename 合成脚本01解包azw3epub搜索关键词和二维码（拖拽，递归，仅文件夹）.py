@@ -36,9 +36,7 @@ def unzipEachFile(allFilePath):
                     if not newZipFilePath.exists():
                         Path.mkdir(newZipFilePath)
                     # 将文件从zip文件中提取到指定目录
-                    print(f'开始解压 {eachFilePath.name} 到 {newZipFilePath}')
                     myzipfile.extractall(newZipFilePath)
-                    print(f'完成解压 {eachFilePath.name}')
             except zipfile.BadZipFile:
                 print(f'错误: {eachFilePath.name} 不是有效的zip/epub文件')
             except Exception as e:
