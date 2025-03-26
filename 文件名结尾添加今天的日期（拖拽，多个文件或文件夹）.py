@@ -5,6 +5,7 @@ import sys
 import re
 import datetime
 from pathlib import Path
+from typing import List, Union
 
 def validFileName(oldFileName):
     # '/ \ : * ? " < > |'
@@ -23,20 +24,24 @@ def doChangeFileName(filePath):
         if not newFilePath.exists():
             filePath.rename(newFilePath)
             print(str(filePath) + ' -> ' + str(newFilePath))
-
-def main(inputPath):
-    del inputPath[0]
-    for aPath in inputPath:
-        if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('**/*'):
-                doChangeFileName(file)
-
-        if Path.is_file(Path(aPath)):
-            doChangeFileName(Path(aPath))
             
+def main(inputPath: list[str]) -> None:
+    try:
+        for eachPath in inputPath[1:]:
+            eachPath = Path(eachPath)
+            if eachPath.is_dir():
+                for eachFile in eachPath.glob('**/*'):
+                    doChangeFileName(eachFile)
+            elif eachPath.is_file():
+                doChangeFileName(eachPath)
+    except Exception as e:
+        print(f'程序执行出错：{str(e)}')
+
 if __name__ == '__main__':
     try:
         if len(sys.argv) >= 2:
             main(sys.argv)
+        else:
+            print('请拖拽文件到本脚本，或者命令行运行时添加文件路径')
     except IndexError:
         pass
