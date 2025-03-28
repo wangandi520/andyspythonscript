@@ -565,3 +565,8 @@ get work count
 
 使用trae协助编写
 
+### vscode插件将当前行中的日期更新为今天的日期update-date-to-today.zip
+
+vscode插件，将当前行中的日期更新为今天的日期
+
+https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E5%B0%86%E5%BD%93%E5%89%8D%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%9B%B4%E6%96%B0%E4%B8%BA%E4%BB%8A%E5%A4%A9%E7%9A%84%E6%97%A5%E6%9C%9F/
