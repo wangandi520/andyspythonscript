@@ -1,40 +1,80 @@
 // @name neeview一键保存当前图片命名为书名加图片名
 // @description neeview一键保存当前图片命名为书名加图片名
 // @shortCutKey Ctrl+S
-
-//保存截图的文件夹路径，例如var saveImagePath = "D:\\漫画截图"
-var saveImagePath = "D:\\漫画截图"
+// 版本1.1
+// log()函数可以在neeview console中输出信息，在选项，打开脚本控制台
+// 保存的文件格式：zip文件名_图片相对于zip的相对路径_图片名.扩展名
+// 例如压缩包1.zip内包含文件夹2，文件夹2内包含图片3.jpg，保存的文件名就是1_2_3.jpg
+// 保存截图的文件夹路径，例如var saveImagePath = "D:\\漫画截图"
+var saveImagePath = "H:\\ecomic截图"
 param = {
-    "FileNameMode": "BookPageNumber",
+    "Mode": "Original", 
+    "IsOriginalSize": "True", 
+    "IsShowToast": "False", 
+    "OverwriteMode": "AddNumber", 
+    "FileNameMode": "BookPageNumber", 
     "ExportFolder": saveImagePath
 }
-//导出图片
-nv.Command.ExportImage.Patch(param).Execute()
-//获取页数
-var getCurrentPageIndex = -1
-for (let pageIndex = 0; pageIndex < nv.book.pages.length; pageIndex++) {
-    if (nv.Book.ViewPages[0].Path == nv.book.pages[pageIndex].Path) {
-        getCurrentPageIndex = (Array(3).join('0') + pageIndex).slice(-3)
+
+// 从文件名和扩展名，获取文件名，不包括扩展名
+function getFileNameWithoutExt(fileName) {
+    var lastDotIndex = fileName.lastIndexOf('.');
+    return lastDotIndex === -1 ? fileName : fileName.substring(0, lastDotIndex);
+}
+
+// 从文件名和扩展名，获取扩展名，包括点号
+function getFileExtension(fileName) {
+    var lastDotIndex = fileName.lastIndexOf('.');
+    return lastDotIndex === -1 ? '' : fileName.substring(lastDotIndex);
+}
+
+// 从完整路径，获取文件名和扩展名
+function getFileNameFromPath(filePath) {
+    var pathParts = filePath.split('\\');
+    return pathParts[pathParts.length - 1];
+}
+
+// 获取图片在压缩包内的路径，文件名，扩展名
+function getRelativeFilePath(zipFilePath, imageFilePath) {
+	if (imageFilePath.startsWith(zipFilePath)) {
+		return imageFilePath.substring(zipFilePath.length).replace(/\\/g, '_');
+        //return filePath.substring(folderPath.length);
     }
 }
-//获取保存的文件路径
-currentImagePath = nv.Book.ViewPages[0].Path
-//获取当前图片扩展名
-currentImageSuffix = currentImagePath.slice((currentImagePath.lastIndexOf('.') - 1 >>> 0) + 2)
-//获取当前图片名
-tmpBookName = nv.Book.Path.split('\\')
-tmpBookName = tmpBookName[tmpBookName.length - 1]
-getBookName = tmpBookName.substring(0, tmpBookName.lastIndexOf('.'))
-//程序导出的图片的路径
-oldFileName = saveImagePath + '\\' + getBookName + '_' + getCurrentPageIndex + '.' + currentImageSuffix
-//新文件名
-newFileName = getBookName + '_' + nv.Book.ViewPages[0].GetMetaValue("FileName")
-//改名
-cmdPara = ' /c ren "' + oldFileName + '" "' + newFileName + '" && echo '
+
+// 执行导出图片
+nv.Command.ExportImage.Patch(param).Execute()
+// 当前书籍路径，文件名，扩展名
+var getBookPath = nv.Book.Path
+// 当前书籍文件名，扩展名
+var getBookFileName = getFileNameFromPath(nv.Book.Path)
+// 当前书籍文件名
+var getBookFileNameWithoutSuffix = getFileNameWithoutExt(getBookFileName)
+// 当前图片序号，从0开始
+var getCurrentPageIndex = nv.Book.ViewPages[0].Index
+// 当前图片路径，文件名，扩展名
+var getCurrentPagePath = nv.Book.ViewPages[0].Path
+// 当前图片文件名，扩展名
+var getCurrentPageFileName = getFileNameFromPath(nv.Book.ViewPages[0].Path)
+// 当前图片扩展名
+var getCurrentPageFileSuffix = getFileExtension(nv.Book.ViewPages[0].Path)
+// 当前图片在压缩包内的相对路径
+var getCurrentPageRelativePath = getRelativeFilePath(getBookPath, getCurrentPagePath)
+// 程序导出的图片的路径
+oldFileName = saveImagePath + '\\' + getBookFileNameWithoutSuffix + '_' + getCurrentPageIndex + getCurrentPageFileSuffix
+// 要修改成新的文件名，ren命令不加路径，move命令加路径
+//newFileName = getBookFileNameWithoutSuffix + getCurrentPageRelativePath
+newFileName = saveImagePath + '\\' + getBookFileNameWithoutSuffix + getCurrentPageRelativePath
+// 改名，如果有重名的，就覆盖
+//cmdPara = ' /c ren "' + oldFileName + '" "' + newFileName + '"'
+cmdPara = ' /c SET "COPYCMD=/Y" && move "' + oldFileName + '" "' + newFileName + '" && echo '
 //cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
 param = {
     "Command": "cmd.exe",
     //"Command": "python.exe",
     "Parameter": cmdPara
 }
+// 两个命令效果相同
 nv.Command.OpenExternalApp.Patch(param).Execute()
+//system("cmd.exe", cmdPara)
+nv.ShowToast(newFileName + '文件已保存。')

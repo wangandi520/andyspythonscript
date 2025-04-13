@@ -2,6 +2,10 @@
 // @description neeview一键保存当前图片
 
 param = {
+    "Mode": "Original", 
+    "IsOriginalSize": "True", 
+    "IsShowToast": "True", 
+    "OverwriteMode": "AddNumber", 
     "FileNameMode": "BookPageNumber", 
 	"ExportFolder": "D:\\漫画截图"
 }

@@ -519,6 +519,8 @@ get work count
 
 [https://andi.wang/2024/03/07/neeview一键保存当前图片/](https://andi.wang/2024/03/07/neeview一键保存当前图片/)
 
+如果文件名重复，就覆盖源文件
+
 ### 图片压缩包内添加ComicInfo.xml（拖拽，仅文件夹）.py
 
 给漫画压缩包添加ComicInfo.xml
