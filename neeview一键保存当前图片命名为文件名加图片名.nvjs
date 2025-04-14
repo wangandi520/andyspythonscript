@@ -13,14 +13,6 @@
 // 保存图片的文件夹路径：saveImagePath，注意要双斜杠，文件夹最后不加斜杠
 // 例如var saveImagePath = "D:\\漫画截图"
 var saveImagePath = "H:\\ecomic截图"
-param = {
-    "Mode": "Original", 
-    "IsOriginalSize": "True", 
-    "IsShowToast": "False", 
-    "OverwriteMode": "AddNumber", 
-    "FileNameMode": "BookPageNumber", 
-    "ExportFolder": saveImagePath
-}
 
 // 从文件名和扩展名，获取文件名，不包括扩展名
 function getFileNameWithoutExt(fileName) {
@@ -48,8 +40,16 @@ function getRelativeFilePath(zipFilePath, imageFilePath) {
     }
 }
 
+var param01 = {
+    "Mode": "Original", 
+    "IsOriginalSize": "True", 
+    "IsShowToast": "False", 
+    "OverwriteMode": "AddNumber", 
+    "FileNameMode": "BookPageNumber", 
+    "ExportFolder": saveImagePath
+}
 // 执行导出图片
-nv.Command.ExportImage.Patch(param).Execute()
+nv.Command.ExportImage.Patch(param01).Execute()
 // 当前书籍路径，文件名，扩展名
 var getBookPath = nv.Book.Path
 // 当前书籍文件名，扩展名
@@ -72,15 +72,15 @@ oldFileName = saveImagePath + '\\' + getBookFileNameWithoutSuffix + '_' + getCur
 //newFileName = getBookFileNameWithoutSuffix + getCurrentPageRelativePath
 newFileName = saveImagePath + '\\' + getBookFileNameWithoutSuffix + getCurrentPageRelativePath
 // 改名，如果有重名的，就覆盖
-//cmdPara = ' /c ren "' + oldFileName + '" "' + newFileName + '"'
-cmdPara = ' /c SET "COPYCMD=/Y" && move "' + oldFileName + '" "' + newFileName + '" && echo '
-//cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
-param = {
+var cmdPara = ' /c SET "COPYCMD=/Y" && move "' + oldFileName + '" "' + newFileName + '" && echo '
+//var cmdPara = ' /c ren "' + oldFileName + '" "' + newFileName + '"'
+//var cmdPara = nv.Config.Script.ScriptFolder + '\\neeview一键保存当前图片命名为文件名加图片名.py ' + oldFileName + ' ' + newFileName
+var param02 = {
     "Command": "cmd.exe",
     //"Command": "python.exe",
     "Parameter": cmdPara
 }
 // 两个命令效果相同
-nv.Command.OpenExternalApp.Patch(param).Execute()
+nv.Command.OpenExternalApp.Patch(param02).Execute()
 //system("cmd.exe", cmdPara)
 nv.ShowToast(newFileName + '文件已保存。')
