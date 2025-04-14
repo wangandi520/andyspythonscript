@@ -1,5 +1,5 @@
-// @name neeview一键保存当前图片命名为书名加图片名
-// @description neeview一键保存当前图片命名为书名加图片名
+// @name neeview一键保存当前图片命名为文件名加图片名
+// @description neeview一键保存当前图片命名为文件名加图片名
 // @shortCutKey Ctrl+S
 // https://github.com/wangandi520/andyspythonscript
 // 版本1.2
@@ -7,11 +7,12 @@
 // 脚本用于保存漫画压缩包内的图片到某个位置，保存成功后neeview右下角会弹出提示
 // 快捷键默认是Ctrl+S，可以自己修改，在选项，设置，指令，指令设置，拉到最下面，neeview一键保存当前图片命名为文件名加页数，双击，快捷键，如果有叹号是冲突了，点消除冲突，选择脚本名
 // 保存图片是原压缩包内的文件，未经过其他处理
+// 弹出的命令提示符窗口是修改文件名用的
 // 保存图片名不是原图片名，文件名格式：zip文件名_图片相对于zip的相对路径_图片名.扩展名
 // 例如压缩包1.zip内包含文件夹2，文件夹2内包含图片3.jpg，保存的文件名就是1_2_3.jpg
 // 保存图片的文件夹路径：saveImagePath，注意要双斜杠，文件夹最后不加斜杠
 // 例如var saveImagePath = "D:\\漫画截图"
-var saveImagePath = "D:\\漫画截图"
+var saveImagePath = "H:\\ecomic截图"
 param = {
     "Mode": "Original", 
     "IsOriginalSize": "True", 
