@@ -597,3 +597,4 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 注意文章排序是每个文章内的date最旧的是001开始排序的，新的文章date要是在其他文章中间的话，排序序号会变化
 例如原页面https://andi.wang/2025/04/18/单机网页麻将游戏电脑麻将
 生成后的短链接https://andi.wang/go?id=071
+查看每篇文件的短链接id在https://andi.wang/go
