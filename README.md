@@ -588,3 +588,12 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 在vscode中，点击左侧扩展按钮Ctrl+Shift+X，扩展窗口右上角三个点，从vsix安装，选择number-incrementer-0.0.1.vsix
 
 重启vscode，把光标放到需要修改的行，按下Ctrl+Shift+I快捷键，就会加1了。
+
+### 处理hexo的_post文件夹按时间排序001开始作为短链接跳转生成go.html（拖拽，_post文件夹）.py
+
+仅修改go.html文件，对博客原来的结构没有影响
+拖拽hexo博客内的_post文件夹到python程序，会生成go.html
+在网页根目录新建go文件夹，把go.html改名成index.html放进去
+注意文章排序是每个文章内的date最旧的是001开始排序的，新的文章date要是在其他文章中间的话，排序序号会变化
+例如原页面https://andi.wang/2025/04/18/单机网页麻将游戏电脑麻将
+生成后的短链接https://andi.wang/go?id=071
