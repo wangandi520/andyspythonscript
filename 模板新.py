@@ -42,6 +42,7 @@ def doConvert(fileName: Path) -> None:
             # writefile(newFileName, ttempFileContent)
     except Exception as e:
         print(f'处理文件时出错：{fileName}，错误：{str(e)}')
+    # input('按回车键继续...或者直接关闭本窗口')
 
 def main(inputPath: list[str]) -> None:
     fileType = {'.txt'}  # 使用集合而不是列表，查找更快

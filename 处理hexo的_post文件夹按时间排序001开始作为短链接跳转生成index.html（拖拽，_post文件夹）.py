@@ -34,7 +34,7 @@ def readfile(fileName: Path) -> list[str]:
 def doConvert(folderName: Path) -> None:
     fileType = {'.md'}  # 使用集合而不是列表，查找更快
     try:
-        print(f'处理中：{folderName}')
+        print(f'处理中')
         
         # 存储所有文件信息的列表
         allFiles = []
@@ -58,15 +58,14 @@ def doConvert(folderName: Path) -> None:
                     'fileName': eachFile.stem,  # 使用 stem 获取不带扩展名的文件名
                     'date': date
                 })
-        print(allFiles)
         # 按日期排序
         allFilesSorted = sorted(allFiles, key=lambda x: x['date'])
         
         # 创建HTML格式的数据
         allFileToHtml = []
         for index, fileInfo in enumerate(allFilesSorted, 1):
-            # 生成三位数索引，例如001, 002...
-            indexStr = str(index).zfill(3)
+            # 生成四位数索引，例如0001, 0002...
+            indexStr = str(index).zfill(4)
             fileInfo['index'] = indexStr
             
             # 从日期中提取年月日
@@ -76,17 +75,21 @@ def doConvert(folderName: Path) -> None:
                 # 构建href链接
                 href = f"/{year}/{month}/{day}/{fileInfo['fileName']}"
                 # 构建HTML
-                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span><span class="fileName">{fileInfo["fileName"]}</span><span class="date">{fileInfo["date"]}</span></a></p>'
+                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span>&nbsp<span class="fileName">{fileInfo["fileName"]}</span>&nbsp;<span class="date">{fileInfo["date"]}</span></a></p>\n'
                 allFileToHtml.append(html)
         # 设置HTML模板并将所有HTML元素写入同一行（不使用换行符）
         htmlHeader = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>短链接跳转</title></head><body>'
-        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded", function() {const queryString = window.location.search;const urlParams = new URLSearchParams(queryString);const idValue = urlParams.get("id");if (idValue) {const idDisplayElement = document.getElementById("idDisplay");if (idDisplayElement) {idDisplayElement.textContent = idValue;}const pElement = document.getElementById(idValue);if (pElement) {const aElement = pElement.querySelector("a");if (aElement && aElement.href) {window.location.href = aElement.href;}}}});</script>'
-        htmlFooter = '</body></html>'
-        newHtmlFile = htmlHeader + '\n' + htmlContent + '\n' + htmlFooter
-        writefile('go.html', [newHtmlFile])
+        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search,urlParams=new URLSearchParams(queryString),idValue=urlParams.get("id");if(idValue.length>4){const formattedId=idValue.padStart(4,"0"),idDisplayElement=document.getElementById("idDisplay");idDisplayElement&&(idDisplayElement.textContent=formattedId);const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");aElement&&aElement.href&&(window.location.href=aElement.href)}}});</script></body></html>'
+        newHtmlFile = htmlHeader + '\n' + htmlContent
+        if not Path('index.html').exists():
+            writefile('index.html', [newHtmlFile])
+            print('index.html已生成。')
+        else:
+            print('index.html已存在，未覆盖。')
                 
     except Exception as e:
         print(f'处理文件时出错：{folderName}，错误：{str(e)}')
+    input('按回车键继续...或者直接关闭本窗口')
 
 def main(inputPath: list[str]) -> None:
     try:

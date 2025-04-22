@@ -58,7 +58,7 @@ def doConvert(folderName: Path) -> None:
 
     except Exception as e:
         print(f'处理文件时出错：{folderName}，错误：{str(e)}')
-    input('按回车键继续...')
+    input('按回车键继续...或者直接关闭本窗口')
     
 def main(inputPath: list[str]) -> None:
     try:
