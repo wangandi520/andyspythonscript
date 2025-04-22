@@ -76,7 +76,7 @@ def doConvert(folderName: Path) -> None:
                 # 构建href链接
                 href = f"/{year}/{month}/{day}/{fileInfo['fileName']}"
                 # 构建HTML
-                html = f'<p id="{indexStr}"><a href="{href}"><span class="fileName">{fileInfo["fileName"]}</span><span class="date">{fileInfo["date"]}</span></a></p>'
+                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span><span class="fileName">{fileInfo["fileName"]}</span><span class="date">{fileInfo["date"]}</span></a></p>'
                 allFileToHtml.append(html)
         # 设置HTML模板并将所有HTML元素写入同一行（不使用换行符）
         htmlHeader = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>短链接跳转</title></head><body>'
