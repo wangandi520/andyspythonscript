@@ -79,7 +79,7 @@ def doConvert(folderName: Path) -> None:
                 allFileToHtml.append(html)
         # 设置HTML模板并将所有HTML元素写入同一行（不使用换行符）
         htmlHeader = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>短链接跳转</title></head><body>'
-        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search,urlParams=new URLSearchParams(queryString),idValue=urlParams.get("id");if(idValue.length>4){const formattedId=idValue.padStart(4,"0"),idDisplayElement=document.getElementById("idDisplay");idDisplayElement&&(idDisplayElement.textContent=formattedId);const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");aElement&&aElement.href&&(window.location.href=aElement.href)}}});</script></body></html>'
+        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search;const urlParams=new URLSearchParams(queryString);const idValue=urlParams.get("id");if(idValue){if(idValue.length>4){return;}const formattedId=idValue.padStart(4,"0");const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");if(aElement&&aElement.href){window.location.href=aElement.href;}}}});</script></body></html>'
         newHtmlFile = htmlHeader + '\n' + htmlContent
         if not Path('index.html').exists():
             writefile('index.html', [newHtmlFile])
