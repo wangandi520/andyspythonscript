@@ -9,6 +9,14 @@ import re
 
 from typing import List, Union
 
+# 把可以更改的设置都放在这里
+CONFIG = {
+    # True = ，False = 
+    'Option01': False,
+    # True = ，False = 
+    'option02': {}
+}
+
 def validFileName(oldFileName):
     # '/ \ : * ? " < > |'
     # 替换为下划线

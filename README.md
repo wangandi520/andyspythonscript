@@ -598,3 +598,9 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 例如原页面https://andi.wang/2025/04/18/单机网页麻将游戏电脑麻将
 生成后的短链接https://andi.wang/go?id=071
 查看每篇文件的短链接id在https://andi.wang/go
+
+### 输出文件夹结构.txt类似windows的tree命令（拖拽，仅文件夹）.py
+
+可设置选项：
+只显示文件夹，或文件加文件夹
+文件名后缀
