@@ -42,6 +42,7 @@ def readfile(fileName: Path) -> list[str]:
 def doConvert(fileName: Path) -> None:
     try:
         print(f'处理文件：{fileName}')
+        # CONFIG.get('resize_images', False)
         # readFileContent = readfile(fileName)
         # for eachLine in readFileContent:
             # print(eachLine)
