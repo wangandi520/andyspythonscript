@@ -10,13 +10,15 @@
 // ==/UserScript==
 
 // 百度贴吧
-if (document.querySelector('.btn.btn-next')) {
+if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
+	document.querySelector('.btn.btn-next')
     const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
     window.location.href = hrefValue;
 }
 
-// qq群
-const urlObj = new URL(window.location.href);
-if (urlObj.searchParams.get('url')) {
+// qq群;
+if (window.location.href.startsWith('https://c.pc.qq.com/')) {
+	const urlObj = new URL(window.location.href)
+	urlObj.searchParams.get('url')
     window.location.href = urlObj.searchParams.get('url');
 }
