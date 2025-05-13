@@ -25,7 +25,7 @@ CONFIG = {
     # 格式: "手柄按键": 键盘按键
     # 默认为空，请根据需要自行配置
     "A": None,        # A按钮映射
-    "B": None,        # B按钮映射
+    "B": Key.enter,        # B按钮映射
     "X": None,        # X按钮映射
     "Y": None,        # Y按钮映射
     "UP": None,       # 方向键上映射
@@ -81,6 +81,18 @@ def main():
     joystick = pygame.joystick.Joystick(0)
     joystick.init()
     print(f"已检测到游戏手柄: {joystick.get_name()}")
+    
+    # 输出CONFIG中设置了值的按键信息
+    print("\n当前已配置的按键映射:")
+    has_configured = False
+    for button_name, key in CONFIG.items():
+        if key is not None:
+            has_configured = True
+            print(f"  {button_name} -> {key}")
+    
+    if not has_configured:
+        print("  未配置任何按键映射")
+    print()
     
     # 按钮映射 - 手柄按钮索引到按钮名称的映射
     button_mapping = {
