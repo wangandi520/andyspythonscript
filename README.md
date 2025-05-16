@@ -621,3 +621,11 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 
 需要pip install pygame pynput
 在23行改成自己需要的按键
+
+### 通过sftp协议备份安伯尼克掌机的游戏存档.py
+
+适用于有tf卡2的安伯尼克H700掌机，要打开wifi，在rg34xx上测试通过，其他未测试
+SFTP连接设置，注意可能只有在保持亮屏状态下才能下载成功
+需要安装paramiko，pip install paramiko
+只需要修改host和local_path
+默认保存路径在C:/Users/Public/Downloads，可以修改
