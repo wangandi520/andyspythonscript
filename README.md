@@ -570,24 +570,20 @@ get work count
 ### vscode插件将当前行中的日期更新为今天的日期update-date-to-today.zip
 
 vscode插件，将当前行中的日期更新为今天的日期
-
 https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E5%B0%86%E5%BD%93%E5%89%8D%E8%A1%8C%E4%B8%AD%E7%9A%84%E6%97%A5%E6%9C%9F%E6%9B%B4%E6%96%B0%E4%B8%BA%E4%BB%8A%E5%A4%A9%E7%9A%84%E6%97%A5%E6%9C%9F/
-
 在vscode中，点击左侧扩展按钮Ctrl+Shift+X，扩展窗口右上角三个点，从vsix安装，选择update-date-to-today-0.0.1.vsix
-
 重启vscode，把光标放到需要修改的行，按下Ctrl+Shift+D快捷键，日期就会被修改了。
-
 使用trae协助编写
+相关文章https://andi.wang/go?id=69
 
 ### vscode插件修改第二栏的数字加1number-incrementer.zip
 
 vscode插件修改第二栏的数字加
-
 https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC%E4%BA%8C%E6%A0%8F%E7%9A%84%E6%95%B0%E5%AD%97%E5%8A%A01/
-
 在vscode中，点击左侧扩展按钮Ctrl+Shift+X，扩展窗口右上角三个点，从vsix安装，选择number-incrementer-0.0.1.vsix
-
 重启vscode，把光标放到需要修改的行，按下Ctrl+Shift+I快捷键，就会加1了。
+相关文章https://andi.wang/go?id=70
+
 
 ### 处理hexo的_post文件夹按时间排序001开始作为短链接跳转生成go.html（拖拽，_post文件夹）.py
 
@@ -598,6 +594,7 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 例如原页面https://andi.wang/2025/04/18/单机网页麻将游戏电脑麻将
 生成后的短链接https://andi.wang/go?id=071
 查看每篇文件的短链接id在https://andi.wang/go
+相关文章https://andi.wang/go?id=72
 
 ### 输出文件夹结构.txt类似windows的tree命令（拖拽，仅文件夹）.py
 
@@ -628,4 +625,5 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 SFTP连接设置，注意可能只有在保持亮屏状态下才能下载成功
 需要安装paramiko，pip install paramiko
 只需要修改host和local_path
-默认保存路径在C:/Users/Public/Downloads，可以修改
+默认保存路径在C:/Users/Public/Downloads，可以修改，注意斜杠，使用\的话要写成\\
+相关文章https://andi.wang/go?id=68
