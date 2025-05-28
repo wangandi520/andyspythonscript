@@ -6,12 +6,12 @@
 // @author       wangandi520
 // @match        https://jump2.bdimg.com/safecheck*
 // @match        https://c.pc.qq.com/*
+// @match        https://link.zhihu.com/*
 // @grant        none
 // ==/UserScript==
 
 // 百度贴吧
 if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
-	document.querySelector('.btn.btn-next')
     const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
     window.location.href = hrefValue;
 }
@@ -19,6 +19,11 @@ if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
 // qq群;
 if (window.location.href.startsWith('https://c.pc.qq.com/')) {
 	const urlObj = new URL(window.location.href)
-	urlObj.searchParams.get('url')
     window.location.href = urlObj.searchParams.get('url');
+}
+
+//知乎
+if (window.location.href.startsWith('https://link.zhihu.com/')) {
+    const hrefValue = document.querySelector('body > div.wrapper > div.content > p.link').textContent;
+    window.location.href = hrefValue;
 }
