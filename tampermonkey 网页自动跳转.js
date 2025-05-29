@@ -5,6 +5,7 @@
 // @description  网页自动跳转
 // @author       wangandi520
 // @match        https://jump2.bdimg.com/safecheck*
+// @match        https://jump.bdimg.com/safecheck*
 // @match        https://c.pc.qq.com/*
 // @match        https://link.zhihu.com/*
 // @grant        none
@@ -12,6 +13,10 @@
 
 // 百度贴吧
 if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
+    const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
+    window.location.href = hrefValue;
+}
+if (window.location.href.startsWith('https://jump.bdimg.com/safecheck')) {
     const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
     window.location.href = hrefValue;
 }
