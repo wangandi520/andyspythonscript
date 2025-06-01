@@ -483,3 +483,13 @@ SFTP连接设置，注意可能只有在保持亮屏状态下才能下载成功
 只需要修改host和local_path
 默认保存路径在C:/Users/Public/Downloads，可以修改，注意斜杠，使用\的话要写成\\
 相关文章https://andi.wang/go?id=68
+
+### 日语汉字在括号内注音（拖拽，递归，仅txt文件）.py
+
+需要pip install pykakasi
+转换前：
+すれ違う毎日が増えてゆくけれど
+转换后：
+すれ違（ちが）う毎日（まいにち）が増（ふ）えてゆくけれど
+
+例子https://andi.wang/go?id=5
