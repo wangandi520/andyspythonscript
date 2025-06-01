@@ -7,6 +7,7 @@
 // @match        https://jump2.bdimg.com/safecheck*
 // @match        https://jump.bdimg.com/safecheck*
 // @match        https://c.pc.qq.com/*
+// @match        https://wx.mail.qq.com/*
 // @match        https://link.zhihu.com/*
 // @grant        none
 // ==/UserScript==
@@ -21,10 +22,16 @@ if (window.location.href.startsWith('https://jump.bdimg.com/safecheck')) {
     window.location.href = hrefValue;
 }
 
-// qq群;
+// qq群
 if (window.location.href.startsWith('https://c.pc.qq.com/')) {
 	const urlObj = new URL(window.location.href)
     window.location.href = urlObj.searchParams.get('url');
+}
+
+// qq邮箱
+if (window.location.href.startsWith('https://wx.mail.qq.com/')) {
+    const hrefValue = document.querySelector('#linkText').textContent;
+    window.location.href = hrefValue;
 }
 
 //知乎
