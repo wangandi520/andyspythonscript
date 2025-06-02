@@ -10,7 +10,7 @@ import datetime
 
 # 把可以更改的设置都放在这里
 CONFIG = {
-    # 需要备份的文件夹路径，格式：r'D:\new01',r'D:\new02'
+    # 需要备份的文件夹路径，格式：r'D:\new01',r'D:\new02'，注意除了最后一个，前面的路径后面都要加逗号
     "allFolderPath": [
         r'D:\new01',
         r'D:\new02'

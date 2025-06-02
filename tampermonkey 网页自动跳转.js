@@ -9,6 +9,7 @@
 // @match        https://c.pc.qq.com/*
 // @match        https://wx.mail.qq.com/*
 // @match        https://link.zhihu.com/*
+// @match        https://gitee.com/link*
 // @grant        none
 // ==/UserScript==
 
@@ -39,3 +40,10 @@ if (window.location.href.startsWith('https://link.zhihu.com/')) {
     const hrefValue = document.querySelector('body > div.wrapper > div.content > p.link').textContent;
     window.location.href = hrefValue;
 }
+
+//gitee
+if (window.location.href.startsWith('https://gitee.com/link')) {
+    const hrefValue = document.querySelector('body > div > div > div.content-link > div').textContent;
+    window.location.href = hrefValue;
+}
+
