@@ -75,11 +75,11 @@ def doConvert(folderName: Path) -> None:
                 # 构建href链接
                 href = f"/{year}/{month}/{day}/{fileInfo['fileName']}"
                 # 构建HTML
-                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span>&nbsp<span class="fileName">{fileInfo["fileName"]}</span>&nbsp;<span class="date">{fileInfo["date"]}</span></a></p>\n'
+                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span>&nbsp<span class="fileName">{fileInfo["fileName"]}</span></a>&nbsp;<span><input type="text" value="/{href}"></span>&nbsp;<span class="date">{fileInfo["date"]}</span></p>\n'
                 allFileToHtml.append(html)
         # 设置HTML模板并将所有HTML元素写入同一行（不使用换行符）
         htmlHeader = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>短链接跳转</title></head><body>'
-        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search;const urlParams=new URLSearchParams(queryString);const idValue=urlParams.get("id");if(idValue){if(idValue.length>4){return;}const formattedId=idValue.padStart(4,"0");const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");if(aElement&&aElement.href){window.location.href=aElement.href;}}}});</script></body></html>'
+        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search;const urlParams=new URLSearchParams(queryString);const idValue=urlParams.get("id");if(idValue){if(idValue.length>4){return;}const formattedId=idValue.padStart(4,"0");const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");if(aElement&&aElement.href){window.location.href=aElement.href;}}}let currentUrl=window.location.href;if(currentUrl.endsWith("/")){currentUrl=currentUrl.slice(0,-1);}const inputs=document.querySelectorAll("body p input");inputs.forEach(input=>{const parentP=input.closest("p");if(parentP&&parentP.id){const idWithoutLeadingZeros=parseInt(parentP.id,10).toString();input.value=currentUrl+"?id="+idWithoutLeadingZeros}else{input.value=currentUrl}});});</script></body></html>'
         newHtmlFile = htmlHeader + '\n' + htmlContent
         if not Path('index.html').exists():
             writefile('index.html', [newHtmlFile])
