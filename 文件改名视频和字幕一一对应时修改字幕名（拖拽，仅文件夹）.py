@@ -39,6 +39,12 @@ def readfile(fileName: Path) -> list[str]:
         print(f'读取文件失败：{fileName}，错误：{str(e)}')
         return []
 
+def natural_sort_key(path):
+    """自然排序的key函数，确保01、02、1、2等能够正确排序"""
+    parts = re.split('([0-9]+)', path.stem)
+    parts[1::2] = map(lambda x: x.zfill(10), filter(None, parts[1::2]))
+    return ''.join(parts)
+
 def doConvert(folderName: Path) -> None:
     # 设置视频和字幕文件类型
     videoTypes = {'.mp4', '.mkv', '.avi', '.mov', '.wmv', '.flv', '.rmvb'}
@@ -69,9 +75,9 @@ def doConvert(folderName: Path) -> None:
             print('错误：视频文件和字幕文件数量不相同，无法进行匹配')
             return
             
-        # 按文件名排序
-        videoFiles.sort(key=lambda x: x.name)
-        subtitleFiles.sort(key=lambda x: x.name)
+        # 使用自然排序
+        videoFiles.sort(key=natural_sort_key)
+        subtitleFiles.sort(key=natural_sort_key)
         
         # 尝试通过文件名中的数字匹配
         video_numbers = {}
