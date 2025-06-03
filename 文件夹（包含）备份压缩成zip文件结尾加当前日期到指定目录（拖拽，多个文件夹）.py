@@ -1,12 +1,14 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.2
+# v0.3
 
 from pathlib import Path
 import sys
 import zipfile
 import datetime
+import os
+import msvcrt
 
 # 把可以更改的设置都放在这里
 CONFIG = {
@@ -62,7 +64,10 @@ def main():
         else:
             print(f"跳过（不是文件夹或不存在）: {folder_path}")
     print("所有任务完成")
-    input('按任意键继续...')
+    if CONFIG.get("zipSaveDir"):
+        print('按任意键退出程序，按y键打开备份文件夹: ', end='', flush=True)
+        if msvcrt.getch().decode().lower() == 'y':
+            os.startfile(CONFIG["zipSaveDir"])
 
 if __name__ == '__main__':
     try:
