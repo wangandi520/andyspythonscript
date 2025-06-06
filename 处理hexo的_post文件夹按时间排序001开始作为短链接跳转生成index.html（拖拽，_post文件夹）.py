@@ -75,11 +75,100 @@ def doConvert(folderName: Path) -> None:
                 # 构建href链接
                 href = f"/{year}/{month}/{day}/{fileInfo['fileName']}"
                 # 构建HTML
-                html = f'<p id="{indexStr}"><a href="{href}"><span class="id">{indexStr}</span>&nbsp<span class="fileName">{fileInfo["fileName"]}</span></a>&nbsp;<span><input type="text" value="/{href}"></span>&nbsp;<span class="date">{fileInfo["date"]}</span></p>\n'
+                html = f'<tr><td><a href="{href}"><span class="id">{indexStr}</span>&nbsp;<span class="fileName">{fileInfo["fileName"]}</span></a></td><td><input type="text" value="/{href}"></td><td>{fileInfo["date"]}</td></tr>\n'
                 allFileToHtml.append(html)
-        # 设置HTML模板并将所有HTML元素写入同一行（不使用换行符）
-        htmlHeader = '<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>短链接跳转</title></head><body>'
-        htmlContent = ''.join(allFileToHtml) + '<script>document.addEventListener("DOMContentLoaded",function(){const queryString=window.location.search;const urlParams=new URLSearchParams(queryString);const idValue=urlParams.get("id");if(idValue){if(idValue.length>4){return;}const formattedId=idValue.padStart(4,"0");const pElement=document.getElementById(formattedId);if(pElement){const aElement=pElement.querySelector("a");if(aElement&&aElement.href){window.location.href=aElement.href;}}}let currentUrl=window.location.href;if(currentUrl.endsWith("/")){currentUrl=currentUrl.slice(0,-1);}const inputs=document.querySelectorAll("body p input");inputs.forEach(input=>{const parentP=input.closest("p");if(parentP&&parentP.id){const idWithoutLeadingZeros=parseInt(parentP.id,10).toString();input.value=currentUrl+"?id="+idWithoutLeadingZeros}else{input.value=currentUrl}});});</script></body></html>'
+        
+        htmlHeader = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>短链接跳转</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        th, td {
+            padding: 3px;
+            border: 1px solid #ddd;
+            text-align: left;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        td:first-child {
+            width: auto;
+            min-width: fit-content;
+        }
+        td:nth-child(2) {
+            width: 40%;
+        }
+        td:nth-child(3) {
+            width: 20%;
+        }
+        th {
+            background-color: #f5f5f5;
+        }
+        input {
+            width: 95%;
+            padding: 4px;
+        }
+        .table-wrapper {
+            overflow-x: auto;
+        }
+        tbody tr:hover {
+            background-color: #f8f8f8;
+            transition: background-color 0.2s ease;
+        }
+    </style>
+</head>
+<body>
+<div class="table-wrapper">
+<table>
+    <thead>
+        <tr>
+            <th>文章链接</th>
+            <th>短链接</th>
+            <th>发布日期</th>
+        </tr>
+    </thead>
+    <tbody>'''
+
+        htmlContent = ''.join(allFileToHtml) + '</tbody></table></div><script>' + '''document.addEventListener("DOMContentLoaded",function(){
+    const queryString=window.location.search;
+    const urlParams=new URLSearchParams(queryString);
+    const idValue=urlParams.get("id");
+    if(idValue){
+        if(idValue.length>4){return;}
+        const formattedId=idValue.padStart(4,"0");
+        const spans = document.querySelectorAll('span.id');
+        for(const span of spans) {
+            if(span.textContent === formattedId) {
+                const aElement = span.closest('a');
+                if(aElement && aElement.href) {
+                    window.location.href = aElement.href;
+                    break;
+                }
+            }
+        }
+    }
+    let currentUrl=window.location.href;
+    if(currentUrl.endsWith("/")){
+        currentUrl=currentUrl.slice(0,-1);
+    }
+    const inputs=document.querySelectorAll("td input");
+    inputs.forEach(input=>{
+        const tr=input.closest("tr");
+        const idSpan=tr.querySelector(".id");
+        if(idSpan){
+            const id=idSpan.textContent;
+            const idWithoutLeadingZeros=parseInt(id,10).toString();
+            input.value=currentUrl+"?id="+idWithoutLeadingZeros;
+        }
+    });
+});</script></body></html>'''
         newHtmlFile = htmlHeader + '\n' + htmlContent
         if not Path('index.html').exists():
             writefile('index.html', [newHtmlFile])

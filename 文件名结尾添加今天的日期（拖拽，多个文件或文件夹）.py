@@ -20,6 +20,8 @@ def doChangeFileName(filePath):
     getTime = datetime.datetime.now().strftime("%Y%m%d")
     if Path.is_file(filePath):
         newFileName = validFileName(filePath.stem + getTime) + filePath.suffix
+        # 添加到文件名开头
+        # newFileName = validFileName(getTime + filePath.stem) + filePath.suffix
         newFilePath = Path(filePath).parent.joinpath(newFileName)
         if not newFilePath.exists():
             filePath.rename(newFilePath)
