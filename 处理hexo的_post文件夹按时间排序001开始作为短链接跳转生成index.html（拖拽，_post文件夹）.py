@@ -140,6 +140,17 @@ def doConvert(folderName: Path) -> None:
     const queryString=window.location.search;
     const urlParams=new URLSearchParams(queryString);
     const idValue=urlParams.get("id");
+    const searchValue=urlParams.get("search");
+    if(searchValue){
+        const links = document.querySelectorAll('a');
+        for(const link of links) {
+            const decodedHref = decodeURIComponent(link.href);
+            if(decodedHref.includes(searchValue)) {
+                window.location.href = link.href;
+                return;
+            }
+        }
+    }
     if(idValue){
         if(idValue.length>4){return;}
         const formattedId=idValue.padStart(4,"0");
