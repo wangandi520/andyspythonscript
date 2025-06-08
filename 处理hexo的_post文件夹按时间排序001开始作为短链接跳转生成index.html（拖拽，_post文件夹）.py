@@ -146,8 +146,7 @@ def doConvert(folderName: Path) -> None:
         for(const link of links) {
             const decodedHref = decodeURIComponent(link.href);
             if(decodedHref.includes(searchValue)) {
-                const baseUrl = window.location.origin;
-                window.location.href = baseUrl + link.href;
+                window.location.href = link.href;
                 return;
             }
         }
