@@ -452,8 +452,9 @@ https://andi.wang/2025/03/28/vscode%E6%8F%92%E4%BB%B6%E4%BF%AE%E6%94%B9%E7%AC%AC
 查看每篇文件的短链接id在https://andi.wang/go
 相关文章https://andi.wang/go?id=72
 id使用go?id=071
-新增搜索功能，搜索的是原文章名
+新增网址搜索跳转功能，搜索的是原文章名
 例如go?search=所有网盘分享
+新增网页内功能，第一行输入要搜索的内容，自动显示匹配的结果
 
 ### 输出文件夹结构.txt类似windows的tree命令（拖拽，仅文件夹）.py
 

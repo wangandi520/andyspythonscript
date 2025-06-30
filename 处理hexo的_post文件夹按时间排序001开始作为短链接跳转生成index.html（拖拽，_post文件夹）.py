@@ -133,6 +133,11 @@ def doConvert(folderName: Path) -> None:
             <th>短链接</th>
             <th>发布日期</th>
         </tr>
+        <tr id="search-row">
+            <td colspan="3">
+                <input type="text" id="table-search" placeholder="搜索文章、短链或日期..." style="width:100%;box-sizing:border-box;">
+            </td>
+        </tr>
     </thead>
     <tbody>'''
 
@@ -179,6 +184,23 @@ def doConvert(folderName: Path) -> None:
             input.value=currentUrl+"?id="+idWithoutLeadingZeros;
         }
     });
+    
+    // 搜索功能
+    const searchInput = document.getElementById('table-search');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const value = this.value.trim().toLowerCase();
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                if (text.includes(value)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    }
 });</script></body></html>'''
         newHtmlFile = htmlHeader + '\n' + htmlContent
         if not Path('index.html').exists():
