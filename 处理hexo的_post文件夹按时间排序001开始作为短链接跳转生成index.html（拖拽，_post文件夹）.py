@@ -44,19 +44,54 @@ def doConvert(folderName: Path) -> None:
                 allLines = readfile(eachFile)
                 title = ''
                 date = ''
+                categories = []
+                tags = []
+                in_categories = False
+                in_tags = False
                 for eachLine in allLines:
-                    # 处理每一行
                     eachLine = eachLine.strip()
+                    # 处理日期
                     if eachLine.startswith('date:'):
                         date = eachLine[5:].strip()
-                    if title and date:  # 如果都找到了就提前退出
+                    # 处理categories
+                    if eachLine.startswith('categories:'):
+                        value = eachLine[len('categories:'):].strip()
+                        if value.startswith('[') and value.endswith(']'):
+                            # 兼容 categories: [游戏, 其他]
+                            categories = [v.strip() for v in value[1:-1].split(',') if v.strip()]
+                        elif value:
+                            categories = [value]
+                        else:
+                            in_categories = True
+                            continue
+                    elif in_categories:
+                        if eachLine.startswith('- '):
+                            categories.append(eachLine[2:].strip())
+                        elif eachLine == '' or eachLine.startswith('tags:'):
+                            in_categories = False
+                    # 处理tags
+                    if eachLine.startswith('tags:'):
+                        value = eachLine[len('tags:'):].strip()
+                        if value.startswith('[') and value.endswith(']'):
+                            tags = [v.strip() for v in value[1:-1].split(',') if v.strip()]
+                        elif value:
+                            tags = [value]
+                        else:
+                            in_tags = True
+                            continue
+                    elif in_tags:
+                        if eachLine.startswith('- '):
+                            tags.append(eachLine[2:].strip())
+                        elif eachLine == '' or eachLine.startswith('categories:'):
+                            in_tags = False
+                    if title and date and categories and tags:
                         break
-                
-                # 将文件信息添加到列表中，只包含title和date
+                # 将文件信息添加到列表中，包含categories和tags
                 allFiles.append({
-                    # hexo网址的名字是文件名，不是title名
-                    'fileName': eachFile.stem,  # 使用 stem 获取不带扩展名的文件名
-                    'date': date
+                    'fileName': eachFile.stem,
+                    'date': date,
+                    'categories': categories,
+                    'tags': tags
                 })
         # 按日期排序
         allFilesSorted = sorted(allFiles, key=lambda x: x['date'])
@@ -74,8 +109,15 @@ def doConvert(folderName: Path) -> None:
                 year, month, day = date_parts[0], date_parts[1], date_parts[2].split()[0]
                 # 构建href链接
                 href = f"/{year}/{month}/{day}/{fileInfo['fileName']}"
+                # 分类和标签拼接
+                cat_tag = '，'.join(fileInfo.get('categories', []))
+                if cat_tag and fileInfo.get('tags'):
+                    cat_tag += '，'
+                cat_tag += '，'.join(fileInfo.get('tags', []))
+                cat_tag = f'（{cat_tag}）' if cat_tag else ''
+                cat_tag = f'<span style="color:#ccc;">{cat_tag}</span>' if cat_tag else ''
                 # 构建HTML
-                html = f'<tr><td><a href="{href}"><span class="id">{indexStr}</span>&nbsp;<span class="fileName">{fileInfo["fileName"]}</span></a></td><td><input type="text" value="/{href}"></td><td>{fileInfo["date"]}</td></tr>\n'
+                html = f'<tr><td><a href="{href}"><span class="id">{indexStr}</span>&nbsp;<span class="fileName">{fileInfo["fileName"]}{cat_tag}</span></a></td><td><input type="text" value="/{href}"></td><td>{fileInfo["date"]}</td></tr>\n'
                 allFileToHtml.append(html)
         
         htmlHeader = '''<!DOCTYPE html>
