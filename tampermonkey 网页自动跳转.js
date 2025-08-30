@@ -6,10 +6,12 @@
 // @author       wangandi520
 // @match        https://jump2.bdimg.com/safecheck*
 // @match        https://jump.bdimg.com/safecheck*
+// @match        http://jump.bdimg.com/safecheck*
 // @match        https://c.pc.qq.com/*
 // @match        https://wx.mail.qq.com/*
 // @match        https://link.zhihu.com/*
 // @match        https://gitee.com/link*
+// @match        https://95598.csg.cn/*
 // @grant        none
 // ==/UserScript==
 
@@ -19,6 +21,10 @@ if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
     window.location.href = hrefValue;
 }
 if (window.location.href.startsWith('https://jump.bdimg.com/safecheck')) {
+    const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
+    window.location.href = hrefValue;
+}
+if (window.location.href.startsWith('http://jump.bdimg.com/safecheck')) {
     const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
     window.location.href = hrefValue;
 }
@@ -47,3 +53,10 @@ if (window.location.href.startsWith('https://gitee.com/link')) {
     window.location.href = hrefValue;
 }
 
+//自动关闭南方电网户号详情客户经理联系方式并跳转到页面底部
+if (window.location.href.startsWith('https://95598.csg.cn/')) {
+    setTimeout(() => {
+        document.querySelector('body > div:nth-child(8) > div > div.ant-modal-wrap.ant-modal-centered > div > div.ant-modal-content > button').click();
+        window.scrollTo(0, document.documentElement.scrollHeight)
+    }, 2000);
+}
