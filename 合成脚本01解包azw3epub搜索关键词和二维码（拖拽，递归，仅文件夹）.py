@@ -3,7 +3,6 @@
 
 from pathlib import Path
 from PIL import Image
-from pyzbar import pyzbar
 import matplotlib.pyplot as plt
 import sys
 import os
@@ -86,43 +85,39 @@ def searchQRCodeInFile(filePath):
         
             
 def main(inputPath):
-    del inputPath[0]
     allFilePath = []
     # unzip解压缩epub文件，kindleunpack解压azw3文件
     # 搜索是否含有关键词和二维码图片
-    for aPath in inputPath:
+    for aPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix in ['.epub', '.azw3']:
-                    allFilePath.append(file) 
-        if Path.is_file(Path(aPath)):
-            if file.suffix in ['.epub', '.azw3']:
-                allFilePath.append(Path(aPath))
+                    allFilePath.append(file)
     unzipEachFile(allFilePath)
     doKindleunpack(allFilePath)    
     
     # 要搜索关键词的文件的扩展名
     mySuffix01 = ['.html', '.xhtml', '.opf', '.txt']
     # 要搜索的关键词
-    myKeywords = ['coay.com', '微信', '公众号', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib.', '红心读书','booker527']
+    myKeywords = ['coay.com', '微信', '公众号','公 眾 號', 'epubw', '三秋君', '窃蓝书房', 'tianlangbooks', '七彩友书', 'sobooks', 'cj5', 'chenjin5', 'elib.', '红心读书','booker527', '晚 霞 书 房']
     print('\n搜索关键词：' + '，'.join(myKeywords))
     print('内容 行数 文件名 文件路径')
-    for aPath in inputPath:
+    for aPath in inputPath[1:]:
         if Path.is_dir(Path(aPath)):
             for file in Path(aPath).glob('**/*'):
                 if file.suffix.lower() in mySuffix01:
                     searchKeywordInFile(file, myKeywords)      
     print('\n搜索关键词完成\n')
     
-    # 要搜索二维码的文件的扩展名
-    mySuffix02 = ['.jpeg', '.jpg', '.png', '.gif']
-    print('二维码扫描结果 文件路径')
-    for aPath in inputPath:
-        if Path.is_dir(Path(aPath)):
-            for file in Path(aPath).glob('**/*'):
-                if file.suffix in mySuffix02:
-                    searchQRCodeInFile(file)      
-    print('\n搜索二维码完成\n')
+    # # 要搜索二维码的文件的扩展名
+    # mySuffix02 = ['.jpeg', '.jpg', '.png', '.gif']
+    # print('二维码扫描结果 文件路径')
+    # for aPath in inputPath:
+        # if Path.is_dir(Path(aPath)):
+            # for file in Path(aPath).glob('**/*'):
+                # if file.suffix in mySuffix02:
+                    # searchQRCodeInFile(file)      
+    # print('\n搜索二维码完成\n')
     os.system('pause')
    
 if __name__ == '__main__':
