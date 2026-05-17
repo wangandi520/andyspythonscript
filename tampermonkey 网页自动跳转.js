@@ -12,6 +12,7 @@
 // @match        https://link.zhihu.com/*
 // @match        https://gitee.com/link*
 // @match        https://95598.csg.cn/*
+// @match        https://tieba.baidu.com/*
 // @grant        none
 // ==/UserScript==
 
@@ -26,6 +27,10 @@ if (window.location.href.startsWith('https://jump.bdimg.com/safecheck')) {
 }
 if (window.location.href.startsWith('http://jump.bdimg.com/safecheck')) {
     const hrefValue = document.querySelector('.btn.btn-next').getAttribute('href');
+    window.location.href = hrefValue;
+}
+if (window.location.href.startsWith('https://tieba.baidu.com/mo/q/checkurl?')) {
+    const hrefValue = document.querySelector('body > div.checkurl-wrap > p.link.link-pc > a').getAttribute('href');
     window.location.href = hrefValue;
 }
 

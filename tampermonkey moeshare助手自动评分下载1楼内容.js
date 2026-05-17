@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         moeshare助手自动评分下载1楼内容
 // @namespace    http://tampermonkey.net/
-// @version      0.8
+// @version      0.9
 // @description  按钮位置在搜索按钮上面
 // @author       https://github.com/wangandi520/andyspythonscript
 // @match        https://moeshare.cc/read*
@@ -62,7 +62,12 @@ if (optionShowPingfenDakaButton){
                 let iframe = document.createElement('iframe');
                 document.lastElementChild.appendChild(iframe);
                 iframe.style = 'display: none;';
-                iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+                if (getUrl.substr(0,11) == "https://moe"){
+                    iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+                }
+                if (getUrl.substr(0,11) == "https://www"){
+                    iframe.src = 'https://www.moeshare.cc/jobcenter.php?action=punch&step=2';
+                }
 				if (optionShowStatus){
 					document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
 				}
@@ -83,7 +88,12 @@ if (optionShowDakaButton){
         let iframe = document.createElement('iframe');
         document.lastElementChild.appendChild(iframe);
         iframe.style = 'display: none;';
-        iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+        if (getUrl.substr(0,11) == "https://moe"){
+            iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
+        }
+        if (getUrl.substr(0,11) == "https://www"){
+            iframe.src = 'https://www.moeshare.cc/jobcenter.php?action=punch&step=2';
+        }
         if (optionShowStatus){
             document.querySelector('#navA > div.navA > ul > span > span').innerHTML = '<span>打卡可能完成</span>';
         }
