@@ -62,6 +62,7 @@ if (optionShowPingfenDakaButton){
                 let iframe = document.createElement('iframe');
                 document.lastElementChild.appendChild(iframe);
                 iframe.style = 'display: none;';
+                var getUrl = window.location.href
                 if (getUrl.substr(0,11) == "https://moe"){
                     iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
                 }
@@ -88,6 +89,7 @@ if (optionShowDakaButton){
         let iframe = document.createElement('iframe');
         document.lastElementChild.appendChild(iframe);
         iframe.style = 'display: none;';
+        var getUrl = window.location.href
         if (getUrl.substr(0,11) == "https://moe"){
             iframe.src = 'https://moeshare.cc/jobcenter.php?action=punch&step=2';
         }
