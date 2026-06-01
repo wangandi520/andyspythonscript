@@ -38,7 +38,7 @@ myProxies = {
 # }
 
 # 是否回复一帖，回复一次+1活跃度，是 = True，否 = False
-ifReply = True
+ifReply = False
 # 是否保存时辰
 ifSaveTime = True
 # 是否把时辰转换成缺少活跃度，1时辰 = 2活跃度，是 = True，否 = False
@@ -46,10 +46,9 @@ ifOnlineTimeToHuoyue = False
 # 不管活跃度多少，都用掉全部可以评价的数量
 ifUseAllHuoyue = True
 # 水区帖子tid，第一个用于加活跃度，全部帖都会回复，回复几贴加几活跃度
-tid = ['211701', '211817']
+tid = ['210595']
 # 每一帖回复的内容，相邻的内容不能一样，数量和tid数量一致
-myReply = ['先水一帖，每天打卡活跃下。',
-        '先水水帖，今天打卡活跃下。']
+myReply = ['先水一帖，每天打卡活跃下。']
 if ifReply and len(tid) != len(myReply):
     print('myReply和tid长度不一致。')
 page = '1'
@@ -95,7 +94,7 @@ if response5.status_code == 200:
     tmpIndex9 = (response5.text).find('<h5 class="h5"><a class="fr" href="userpay.php?action=log">进入积分日志')
     getHuoyueNum = response5.text[tmpIndex5 + 18: tmpIndex6 - 6]
     daka = response5.text[tmpIndex7 + 23: tmpIndex5 - 6]
-    onlineTime = response5.text[tmpIndex8 + 21: tmpIndex9 - 12]
+    onlineTime = response5.text[tmpIndex8 + 21: tmpIndex9 - 15]
     print('本月打卡: ' + daka)
     print('时辰: ' + onlineTime)
     try:
@@ -172,9 +171,10 @@ if ifUseAllHuoyue:
     for i in range(0, eachLevelHuoyue):
         tmpIndex5 = (response7.text[newStart:]).find('showping_')
         tmpPid = ((response7.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
-        if not tmpPid.isdigit():
-            print('PID 获取错误，不是数字：tmpPid = ' + tmpPid)
-            sys.exit()
+        print(tmpPid)
+        # if not tmpPid.isdigit():
+            # print('PID 获取错误，不是数字：tmpPid = ' + tmpPid)
+            # sys.exit()
         newStart = newStart + tmpIndex5 + 16
         pidArray.append(tmpPid)
 
