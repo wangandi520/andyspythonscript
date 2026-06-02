@@ -81,6 +81,9 @@ if response6.status_code == 200:
     time.sleep(3)
     
 # 获取活跃度数值
+daka = "0"
+onlineTime = "0"
+myveri = ""
 headers = {"User-Agent": myAgent,
            "Cookie": myCookie + str(int(round(time.time()))) + "; 8017a_lastvisit=0	" + str(int(round(time.time()))) + "	/index.php"}
 jifenUrl = 'https://moeshare.cc/userpay.php'
@@ -171,7 +174,6 @@ if ifUseAllHuoyue:
     for i in range(0, eachLevelHuoyue):
         tmpIndex5 = (response7.text[newStart:]).find('showping_')
         tmpPid = ((response7.text[newStart:])[tmpIndex5 + 9: tmpIndex5 + 16])
-        print(tmpPid)
         # if not tmpPid.isdigit():
             # print('PID 获取错误，不是数字：tmpPid = ' + tmpPid)
             # sys.exit()
