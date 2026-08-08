@@ -13,6 +13,7 @@
 // @match        https://gitee.com/link*
 // @match        https://95598.csg.cn/*
 // @match        https://tieba.baidu.com/*
+// @match        https://www.douban.com/link2/*
 // @grant        none
 // ==/UserScript==
 
@@ -64,4 +65,10 @@ if (window.location.href.startsWith('https://95598.csg.cn/')) {
         document.querySelector('body > div:nth-child(8) > div > div.ant-modal-wrap.ant-modal-centered > div > div.ant-modal-content > button').click();
         window.scrollTo(0, document.documentElement.scrollHeight)
     }, 2000);
+}
+
+//douban
+if (window.location.href.startsWith('https://www.douban.com/link2/')) {
+    const hrefValue = document.querySelector('#content > div > div.article > div > div > p.target-link').textContent;
+    window.location.href = hrefValue;
 }
