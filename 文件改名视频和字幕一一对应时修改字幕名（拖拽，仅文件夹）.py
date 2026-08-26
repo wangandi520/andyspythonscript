@@ -16,7 +16,6 @@ CONFIG = {
     # True = ，False = 
     'option02': {}
 }
-
 def validFileName(oldFileName):
     # '/ \ : * ? " < > |'
     # 替换为下划线
@@ -87,7 +86,7 @@ def doConvert(folderName: Path) -> None:
             if numbers:
                 # 使用第一个数字作为集数标识
                 episode_num = numbers[0]
-                video_numbers[episode_num] = video
+            video_numbers.setdefault(episode_num, []).append(video)
         
         # 匹配字幕文件
         matches = []
@@ -95,8 +94,8 @@ def doConvert(folderName: Path) -> None:
         
         for subtitle in subtitleFiles:
             numbers = re.findall(r'\d+', subtitle.stem)
-            if numbers and numbers[0] in video_numbers:
-                matches.append((video_numbers[numbers[0]], subtitle))
+            if numbers and numbers[0] in video_numbers and video_numbers[numbers[0]]:
+                matches.append((video_numbers[numbers[0]].pop(0), subtitle))
             else:
                 unmatched_subtitles.append(subtitle)
         
