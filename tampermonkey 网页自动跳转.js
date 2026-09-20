@@ -14,8 +14,23 @@
 // @match        https://95598.csg.cn/*
 // @match        https://tieba.baidu.com/*
 // @match        https://www.douban.com/link2/*
+// @match        https://www.fanxinzhui.com/*
 // @grant        none
 // ==/UserScript==
+
+// 追新番自动添加百度网盘密码
+if (window.location.href.startsWith('https://www.fanxinzhui.com/')) {
+    document.querySelectorAll('a[href^="https://pan.baidu.com"]').forEach(function (link) {
+      if (/[?&]pwd=/.test(link.href)) {
+        return;
+      }
+      var passwordLink = link.closest('span').querySelector('a.password');
+      var password = passwordLink ? passwordLink.textContent.trim() : '';
+      if (/^[a-zA-Z0-9]{4}$/.test(password)) {
+        link.href += '?pwd=' + password;
+      }
+    });
+}
 
 // 百度贴吧
 if (window.location.href.startsWith('https://jump2.bdimg.com/safecheck')) {
