@@ -15,11 +15,16 @@ def validFileName(oldFileName):
     return newFileName
 
 def doChangeFileName(filePath):
+    # mode = 1，文件名末尾添加空格+日期。mode = 2,文件名前面添加日期+空格。
+    mode = 1
     # type(filePath): Path
     # getTime，%Y%m%d%H%M%S分别是年月日时分秒，可以替换成自己需要的格式
     getTime = datetime.datetime.now().strftime("%Y%m%d")
     if Path.is_file(filePath):
-        newFileName = validFileName(filePath.stem + getTime) + filePath.suffix
+        if mode == 1:
+            newFileName = validFileName(filePath.stem + ' ' + getTime) + filePath.suffix
+        if mode == 2:
+            newFileName = validFileName(getTime + ' ' + filePath.stem) + filePath.suffix
         # 添加到文件名开头
         # newFileName = validFileName(getTime + filePath.stem) + filePath.suffix
         newFilePath = Path(filePath).parent.joinpath(newFileName)
