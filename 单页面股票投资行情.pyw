@@ -18,16 +18,18 @@ from PyQt6.QtCore import QSize, QUrl, Qt, QTimer, QDateTime
 class MyQWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setWindowTitle('单页面股票投资行情v0.1')
+        self.setWindowTitle('单页面股票投资行情v0.2')
         self.stockDataWidget = QTableWidget()
         self.stockDataWidget.resizeRowsToContents()
         self.stockDataWidget.resizeColumnsToContents()
         self.inputSearchValueLineEdit = QLineEdit()
         self.inputSearchValueLineEdit.mousePressEvent = lambda _: self.inputSearchValueLineEdit.selectAll()
         self.searchButton = QPushButton('查询')
+        self.clearButton = QPushButton('清空')
         # F5刷新数据
         self.searchButton.setShortcut(QKeySequence('F5'))
         self.searchButton.clicked.connect(self.setStockData)
+        self.clearButton.clicked.connect(self.clearData)
 
         # 搜索框自动补全
         # 读取文件
@@ -72,6 +74,7 @@ class MyQWidget(QWidget):
         # Layout设置
         topLayout.addWidget(self.inputSearchValueLineEdit)
         topLayout.addWidget(self.searchButton)
+        topLayout.addWidget(self.clearButton)
         middleLayout.addWidget(self.stockDataWidget)
         bottomLayout.addWidget(self.statusBar)
         mainLayout.addLayout(topLayout)
@@ -405,12 +408,16 @@ class MyQWidget(QWidget):
                 13, 0, QTableWidgetItem(myStockData[29]))
             self.stockDataWidget.setItem(
                 13, 1, QTableWidgetItem(myStockData[30]))
-            self.searchStatus.setText(
-                myStockData[0] + ' 查询成功 ' + QDateTime.currentDateTime().toString("hh:mm:ss"))
+            self.searchStatus.setText(myStockData[0] + ' 查询成功 ' + QDateTime.currentDateTime().toString("hh:mm:ss"))
         else:
-            self.searchStatus.setText(
-                '查询失败 ' + QDateTime.currentDateTime().toString("hh:mm:ss"))
+            self.searchStatus.setText('查询失败 ' + QDateTime.currentDateTime().toString("hh:mm:ss"))
 
+
+    def clearData(self):
+        # 把股票数据写道表格中
+        self.initStockData()
+        self.inputSearchValueLineEdit.clear()
+        self.searchStatus.setText('数据清空 ' + QDateTime.currentDateTime().toString("hh:mm:ss"))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
