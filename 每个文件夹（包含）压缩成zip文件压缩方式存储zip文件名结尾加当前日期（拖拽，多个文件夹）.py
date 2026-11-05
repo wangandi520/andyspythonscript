@@ -10,7 +10,9 @@ import datetime
 
 # 把可以更改的设置都放在这里
 CONFIG = {
-    "zipSaveDir": r'D:\backup' # 如果填. 就是保存在文件夹同级目录
+    # "zipSaveDir": Path(__file__).resolve().parent # 保存 Python脚本同级目录
+    "zipSaveDir": '.' # 保存在被压缩文件夹的同级目录
+    # "zipSaveDir": r'D:\backup' # 保存在自定义目录
 }
 
 def doZipFolder(inputPath):
