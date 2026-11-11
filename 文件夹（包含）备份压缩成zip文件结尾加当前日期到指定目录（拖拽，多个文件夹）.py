@@ -1,12 +1,13 @@
 # encoding:utf-8
 # https://github.com/wangandi520/andyspythonscript
 # by Andy
-# v0.3
+# v0.4
 
 from pathlib import Path
 import sys
 import zipfile
 import datetime
+import time
 import os
 import msvcrt
 
@@ -18,12 +19,29 @@ CONFIG = {
         [r'D:\new01', 'new01', True],
         [r'D:\new02', 'new02', True]
     ],
+    # 仅当文件夹内最新文件的修改时间距现在少于此分钟数时才备份，6*60就是6个小时
+    "maxMinutesSinceLatestFile": 48 * 60,
     # 压缩包保存的路径（如为空则保存在目标文件夹同级目录）
     "zipSaveDir": r'D:\backup'
 }
 
+def minutes_since_latest_file(folder_path):
+    """Return minutes since the most recently modified file in a folder tree."""
+    folder = Path(folder_path)
+    if not folder.is_dir():
+        raise NotADirectoryError(f"Not a folder: {folder_path}")
+
+    latest_mtime = max(
+        (path.stat().st_mtime for path in folder.rglob("*") if path.is_file()),
+        default=None,
+    )
+    if latest_mtime is None:
+        return None
+
+    return (time.time() - latest_mtime) / 60
+    
 def doZipFolder(inputPath, custom_name):
-    print(f"开始压缩文件夹: {inputPath}")
+    print(f"开始备份{custom_name}: {inputPath}")
     # 每个文件夹压缩成zip文件，包含这个文件夹，zip文件=文件夹名
     # 压缩方式：存储（速度最快），体积和压缩前差不多
     myZipType = zipfile.ZIP_STORED
@@ -60,7 +78,17 @@ def main():
             print(f"跳过（备份已禁用）: {folder_path}\n")
             continue
         if Path(folder_path).is_dir():
-            doZipFolder(Path(folder_path), custom_name)
+            latest_file_age = minutes_since_latest_file(folder_path)
+            max_age = CONFIG["maxMinutesSinceLatestFile"]
+            if latest_file_age is None:
+                print(f"跳过（文件夹内没有文件）: {folder_path}\n")
+            elif latest_file_age < max_age:
+                doZipFolder(Path(folder_path), custom_name)
+            else:
+                print(
+                    f"跳过（最新文件距现在 {latest_file_age:.1f} 分钟，"
+                    f"不小于设置的 {max_age} 分钟）: {folder_path}\n"
+                )
         else:
             print(f"跳过（不是文件夹或不存在）: {folder_path}")
     print("所有任务完成")
