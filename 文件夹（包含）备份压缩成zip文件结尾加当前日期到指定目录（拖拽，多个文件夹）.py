@@ -62,7 +62,7 @@ def doZipFolder(inputPath, custom_name):
     for eachFilePath in inputPath.glob('**/*'):
         myZipFile.write(eachFilePath, eachFilePath.relative_to(inputPath.parent))
     myZipFile.close()
-    print(f"完成压缩: {myZipSavePath}\n")
+    print(f"完成压缩: {zip_name}\n")
 
 def main():
     folder_list = CONFIG["allFolder"]
@@ -75,7 +75,7 @@ def main():
         custom_name = folder_info[1]
         should_backup = folder_info[2] if len(folder_info) > 2 else True
         if not should_backup:
-            print(f"跳过（备份已禁用）: {folder_path}\n")
+            print(f"跳过（备份已禁用）: {custom_name}\n")
             continue
         if Path(folder_path).is_dir():
             latest_file_age = minutes_since_latest_file(folder_path)
@@ -87,10 +87,10 @@ def main():
             else:
                 print(
                     f"跳过（最新文件距现在 {latest_file_age:.1f} 分钟，"
-                    f"不小于设置的 {max_age} 分钟）: {folder_path}\n"
+                    f"不小于设置的 {max_age} 分钟）: {custom_name}\n"
                 )
         else:
-            print(f"跳过（不是文件夹或不存在）: {folder_path}")
+            print(f"跳过（不是文件夹或不存在）: {custom_name}")
     print("所有任务完成")
     if CONFIG.get("zipSaveDir"):
         print('按任意键退出程序，按y键打开备份文件夹: ', end='', flush=True)
